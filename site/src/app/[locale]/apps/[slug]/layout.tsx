@@ -1,11 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apps, getApp } from "@/content/apps";
+import { apps, getApp, localized } from "@/content/apps";
+import { LocaleSwitcher } from "@/components/locale-switcher";
+import { getDict } from "@/lib/dictionaries";
+import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
 import { APEX_DOMAIN, CONTACT_EMAIL, hubOrigin } from "@/lib/site";
 
 export function generateStaticParams() {
-  return apps.map((app) => ({ slug: app.slug }));
+  return LOCALES.flatMap((locale) =>
+    apps.map((app) => ({ locale, slug: app.slug })),
+  );
 }
 
 export const dynamicParams = false;
@@ -15,15 +20,19 @@ export default async function AppLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
   const app = getApp(slug);
   if (!app) notFound();
+  const loc = localized(app, locale);
+  const dict = getDict(locale);
 
-  // On the live subdomain these resolve to /privacy, /support; on the apex
-  // path or preview deployments they resolve under /apps/<slug>/.
-  const base = `/apps/${slug}`;
+  // On the live subdomain these resolve to /privacy, /support (the middleware
+  // strips the redundant prefix); on the apex path or preview deployments
+  // they resolve under /apps/<slug>/.
+  const base = `${localePrefix(locale)}/apps/${slug}`;
 
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-6 sm:px-10">
@@ -39,10 +48,8 @@ export default async function AppLayout({
             height={36}
             className="border-line rounded-lg border"
           />
-          <span
-            className="font-display text-lg font-semibold"
-          >
-            {app.name}
+          <span className="font-display text-lg font-semibold">
+            {loc.name}
           </span>
         </Link>
         <nav className="flex items-center gap-6">
@@ -50,14 +57,15 @@ export default async function AppLayout({
             href={`${base}/support`}
             className="text-slate text-sm transition-colors hover:text-paper"
           >
-            Support
+            {dict.app.navSupport}
           </Link>
           <Link
             href={`${base}/privacy`}
             className="text-slate text-sm transition-colors hover:text-paper"
           >
-            Privacy
+            {dict.app.navPrivacy}
           </Link>
+          <LocaleSwitcher current={locale} />
         </nav>
       </header>
 
@@ -66,9 +74,12 @@ export default async function AppLayout({
       <footer className="border-line mt-auto border-t py-10">
         <div className="text-slate flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
           <span className="spec-label">
-            {app.name} · build {String(app.buildNumber).padStart(3, "0")} from{" "}
+            {fmt(dict.app.footerFrom, {
+              name: loc.name,
+              n: String(app.buildNumber).padStart(3, "0"),
+            })}{" "}
             <a
-              href={hubOrigin()}
+              href={`${hubOrigin()}${localePrefix(locale)}`}
               className="underline decoration-line underline-offset-4 transition-colors hover:text-indigo-soft"
             >
               {APEX_DOMAIN}
@@ -79,19 +90,19 @@ export default async function AppLayout({
               href={`${base}/support`}
               className="spec-label transition-colors hover:text-indigo-soft"
             >
-              support
+              {dict.app.footSupport}
             </Link>
             <Link
               href={`${base}/privacy`}
               className="spec-label transition-colors hover:text-indigo-soft"
             >
-              privacy
+              {dict.app.footPrivacy}
             </Link>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="spec-label transition-colors hover:text-indigo-soft"
             >
-              contact
+              {dict.app.footContact}
             </a>
           </span>
         </div>

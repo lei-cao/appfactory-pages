@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getApp } from "@/content/apps";
+import { getApp, localized } from "@/content/apps";
+import { getDict } from "@/lib/dictionaries";
+import { fmt, isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
 import { appOrigin } from "@/lib/site";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const app = getApp(slug);
-  if (!app) return {};
+  if (!app || !isLocale(locale)) return {};
+  const loc = localized(app, locale);
+  const dict = getDict(locale);
   return {
-    title: { absolute: `${app.name} — Privacy Policy` },
-    description: `Privacy policy for ${app.storeName}.`,
-    alternates: { canonical: `${appOrigin(slug)}/privacy` },
+    title: { absolute: `${loc.name} — ${dict.privacy.title}` },
+    description: `${loc.storeName} · ${dict.privacy.title}`,
+    alternates: {
+      canonical: `${appOrigin(slug)}${localePrefix(locale)}/privacy`,
+      languages: languageAlternates(appOrigin(slug), "/privacy"),
+    },
     icons: { icon: app.icon },
   };
 }
@@ -22,32 +29,30 @@ export async function generateMetadata({
 export default async function Privacy({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
   const app = getApp(slug);
   if (!app) notFound();
+  const loc = localized(app, locale);
+  const dict = getDict(locale);
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
       <span className="spec-label">
-        last updated {app.privacy.updated}
+        {fmt(dict.privacy.updated, { date: loc.privacy.updated })}
       </span>
-      <h1
-        className="font-display mt-3 text-4xl font-bold"
-      >
-        Privacy Policy
+      <h1 className="font-display mt-3 text-4xl font-bold">
+        {dict.privacy.title}
       </h1>
       <p className="text-slate mt-4 leading-relaxed">
-        {app.name} is developed by lei cao (&quot;we&quot;). This policy
-        explains what data the app handles and why.
+        {fmt(dict.privacy.intro, { name: loc.name })}
       </p>
 
-      {app.privacy.sections.map((section) => (
+      {loc.privacy.sections.map((section) => (
         <section key={section.heading} className="mt-10">
-          <h2
-            className="font-display text-xl font-semibold"
-          >
+          <h2 className="font-display text-xl font-semibold">
             {section.heading}
           </h2>
           {section.body.map((item, i) =>

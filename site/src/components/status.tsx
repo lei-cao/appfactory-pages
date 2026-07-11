@@ -1,4 +1,4 @@
-import { AppStatus, STATUS_LABEL } from "@/content/apps";
+import type { AppStatus } from "@/content/apps";
 
 const STATUS_COLOR: Record<AppStatus, string> = {
   building: "text-indigo-soft",
@@ -15,17 +15,21 @@ const STATUS_PULSE: Record<AppStatus, boolean> = {
   live: false,
 };
 
-export function StatusBadge({ status }: { status: AppStatus }) {
+export function StatusBadge({
+  status,
+  label,
+}: {
+  status: AppStatus;
+  label: string;
+}) {
   return (
-    <span
-      className={`inline-flex items-center gap-2 ${STATUS_COLOR[status]}`}
-    >
+    <span className={`inline-flex items-center gap-2 ${STATUS_COLOR[status]}`}>
       <span
         className="status-light bg-current"
         data-pulse={STATUS_PULSE[status]}
         aria-hidden
       />
-      <span className="spec-label !text-current">{STATUS_LABEL[status]}</span>
+      <span className="spec-label !text-current">{label}</span>
     </span>
   );
 }

@@ -23,6 +23,17 @@ Cloudflare) — each app subdomain is added explicitly by `npm run add-app`.
 The same pages are reachable path-style (`/apps/poker-night`) on the apex and
 on `*.vercel.app` preview deployments; canonical URLs point at the subdomains.
 
+## Languages
+
+Every page ships in English (unprefixed, canonical), 简体中文 (`/zh-cn`), and
+繁體中文 (`/zh-tw`) — e.g. `poker-night.appfactory.sg/zh-cn/support`. The
+middleware adds the internal `/en` prefix so all routes render under
+`src/app/[locale]/`; an explicit `/en` in a URL 308s to the unprefixed form.
+Site chrome strings live in `src/lib/dictionaries.ts`; each app provides its
+own copy per locale in its content file (`i18n: { en, "zh-cn", "zh-tw" }`),
+including per-locale screenshots. `hreflang` alternates are emitted on every
+page; a client-side switcher (EN / 简体 / 繁體) sits in each header.
+
 ## Local dev
 
 ```sh
@@ -60,7 +71,8 @@ creates the matching DNS-only records in Cloudflare, and writes
 ## Adding app N+1
 
 1. `cp src/content/poker-night.ts src/content/<slug>.ts` and fill in real
-   content (registry types are in `src/content/apps.ts`).
+   content (registry types are in `src/content/apps.ts`) — all three locales
+   are required by the types; reuse the store listing copy where it exists.
 2. Register it in `src/content/apps.ts` (`import` + add to the `apps` array).
 3. Drop the icon + screenshots in `public/apps/<slug>/` (640px-wide PNGs).
 4. `VERCEL_TOKEN=… CLOUDFLARE_API_TOKEN=… npm run add-app -- <slug>`

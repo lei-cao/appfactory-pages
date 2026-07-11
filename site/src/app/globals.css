@@ -12,15 +12,19 @@
   --color-live: #3ddc97;
   --color-review: #f5b84b;
 
-  --font-display: var(--font-bricolage);
-  --font-body: var(--font-instrument);
-  --font-mono: var(--font-plex-mono);
+  /* CJK fallbacks: the Latin webfonts don't cover Chinese, so zh-CN/zh-TW
+     glyphs fall through to the platform's native CJK faces. */
+  --font-cjk: "PingFang SC", "PingFang TC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", "Noto Sans TC";
+  --font-display: var(--font-bricolage), var(--font-cjk), sans-serif;
+  --font-body: var(--font-instrument), var(--font-cjk), sans-serif;
+  --font-mono: var(--font-plex-mono), var(--font-cjk), monospace;
 }
 
 html {
   background: var(--color-ink);
   color: var(--color-paper);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 

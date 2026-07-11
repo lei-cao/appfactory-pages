@@ -1,4 +1,5 @@
 import type { AppContent } from "@/content/apps";
+import type { Dict } from "@/lib/dictionaries";
 
 function Badge({
   href,
@@ -36,20 +37,20 @@ function Badge({
   );
 }
 
-export function StoreBadges({ app }: { app: AppContent }) {
+export function StoreBadges({ app, dict }: { app: AppContent; dict: Dict }) {
   return (
     <div className="flex flex-wrap gap-3">
       {app.platforms.includes("iOS") && (
         <Badge
           href={app.appStoreUrl}
-          eyebrow={app.appStoreUrl ? "download on the" : "coming soon to the"}
+          eyebrow={app.appStoreUrl ? dict.badges.download : dict.badges.comingSoon}
           label="App Store"
         />
       )}
       {app.platforms.includes("Android") && (
         <Badge
           href={app.playStoreUrl}
-          eyebrow={app.playStoreUrl ? "get it on" : "coming soon to"}
+          eyebrow={app.playStoreUrl ? dict.badges.download : dict.badges.comingSoon}
           label="Google Play"
         />
       )}
