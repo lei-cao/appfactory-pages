@@ -135,7 +135,7 @@ export const pokerNight: AppContent = {
       {
         heading: "Contact",
         body: [
-          "Questions: open an issue at github.com/lei-cao/appfactory or email lei.cao.life@gmail.com.",
+          "Questions: email lei@appfactory.sg.",
         ],
       },
       {

@@ -30,8 +30,17 @@ export function middleware(req: NextRequest) {
 
   const slug = subdomainOf(host);
   if (slug) {
+    // In-app links are path-style (/apps/<slug>/support) so they work on the
+    // apex and on previews; on the app's own subdomain that prefix is
+    // redundant — redirect to the clean canonical URL instead of 404ing.
+    const prefix = `/apps/${slug}`;
+    if (url.pathname === prefix || url.pathname.startsWith(`${prefix}/`)) {
+      const clean = url.clone();
+      clean.pathname = url.pathname.slice(prefix.length) || "/";
+      return NextResponse.redirect(clean, 308);
+    }
     const rewritten = url.clone();
-    rewritten.pathname = `/apps/${slug}${url.pathname === "/" ? "" : url.pathname}`;
+    rewritten.pathname = `${prefix}${url.pathname === "/" ? "" : url.pathname}`;
     return NextResponse.rewrite(rewritten);
   }
 
