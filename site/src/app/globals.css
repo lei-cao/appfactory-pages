@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #070b15;
+  --color-panel: #0d1424;
+  --color-panel-2: #111a2e;
+  --color-line: #1d2942;
+  --color-paper: #e9edf8;
+  --color-slate: #93a0c2;
+  --color-indigo: #4f5ff6;
+  --color-indigo-soft: #8a94ff;
+  --color-live: #3ddc97;
+  --color-review: #f5b84b;
+
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-instrument);
+  --font-mono: var(--font-plex-mono);
+}
+
+html {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-indigo);
+  color: var(--color-paper);
+}
+
+/* Spec-sheet label: the mono eyebrow used across the site */
+.spec-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+}
+
+/* Status light with a slow breathing pulse for in-flight states */
+.status-light {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+}
+
+.status-light[data-pulse="true"]::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0.25;
+  animation: light-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes light-pulse {
+  0%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.08;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-light[data-pulse="true"]::after {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
