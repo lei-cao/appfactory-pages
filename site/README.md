@@ -45,12 +45,17 @@ npm run dev
 
 ## One-time setup (already automated)
 
-Requires two tokens in the environment:
+Requires two tokens:
 
 - `VERCEL_TOKEN` — vercel.com → Account Settings → Tokens
 - `CLOUDFLARE_API_TOKEN` — dash.cloudflare.com → API Tokens →
   custom token with **Zone:Read + DNS:Edit** on the `appfactory.sg` zone
 - `VERCEL_TEAM_ID` — only if the project should live in a team scope
+
+The scripts auto-load them from `site/.env.local` (gitignored) or
+`~/.appfactory/secrets/pages.env` — both exist on the dev machine (mode
+600), so `npm run add-app -- <slug>` works with no env prefix. Shell
+env vars still override the files. Never commit token values anywhere.
 
 ```sh
 npm run setup-infra
@@ -75,7 +80,8 @@ creates the matching DNS-only records in Cloudflare, and writes
    are required by the types; reuse the store listing copy where it exists.
 2. Register it in `src/content/apps.ts` (`import` + add to the `apps` array).
 3. Drop the icon + screenshots in `public/apps/<slug>/` (640px-wide PNGs).
-4. `VERCEL_TOKEN=… CLOUDFLARE_API_TOKEN=… npm run add-app -- <slug>`
+4. `npm run add-app -- <slug>` (tokens auto-load from `site/.env.local`
+   or `~/.appfactory/secrets/pages.env`)
 5. Commit and push — the deploy makes `<slug>.appfactory.sg` live.
 
 ## Don't break

@@ -10,6 +10,27 @@ export const PROJECT_NAME = "appfactory-site";
 export const GITHUB_REPO = "lei-cao/appfactory-pages";
 export const SITE_DIR = dirname(dirname(fileURLToPath(import.meta.url)));
 
+// Tokens can live in an env file instead of the shell: site/.env.local
+// (gitignored) or ~/.appfactory/secrets/pages.env. First value wins;
+// explicit shell env always beats both files.
+for (const file of [
+  join(SITE_DIR, ".env.local"),
+  join(process.env.HOME ?? "", ".appfactory", "secrets", "pages.env"),
+]) {
+  let text;
+  try {
+    text = readFileSync(file, "utf8");
+  } catch {
+    continue;
+  }
+  for (const line of text.split("\n")) {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
+    if (m && !m[1].startsWith("#") && process.env[m[1]] === undefined) {
+      process.env[m[1]] = m[2];
+    }
+  }
+}
+
 export function requireEnv(name) {
   const v = process.env[name];
   if (!v) {
