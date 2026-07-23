@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
+import { CalmSortLandingPage } from "@/components/calm-sort/landing";
 import { StatusBadge } from "@/components/status";
 import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
@@ -17,19 +18,30 @@ export async function generateMetadata({
   const app = getApp(slug);
   if (!app || !isLocale(locale)) return {};
   const loc = localized(app, locale);
+  const title = loc.metaTitle ?? loc.storeName;
+  const description = loc.metaDescription ?? loc.oneLiner;
+  const image = app.ogImage ?? loc.screenshots[0]?.src ?? app.icon;
   return {
-    title: { absolute: loc.storeName },
-    description: loc.oneLiner,
+    title: { absolute: title },
+    description,
     alternates: {
       canonical: `${appOrigin(slug)}${localePrefix(locale)}`,
       languages: languageAlternates(appOrigin(slug), "/"),
     },
     icons: { icon: app.icon },
     openGraph: {
-      title: loc.storeName,
-      description: loc.oneLiner,
+      title,
+      description,
       url: `${appOrigin(slug)}${localePrefix(locale)}`,
-      images: [loc.screenshots[0]?.src ?? app.icon],
+      siteName: loc.name,
+      type: "website",
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
     },
   };
 }
@@ -43,6 +55,10 @@ export default async function AppLanding({
   if (!isLocale(locale)) notFound();
   const app = getApp(slug);
   if (!app) notFound();
+
+  // Apps with a bespoke landing page render it instead of the template.
+  if (slug === "calm-sort") return <CalmSortLandingPage locale={locale} />;
+
   const loc = localized(app, locale);
   const dict = getDict(locale);
 

@@ -28,6 +28,8 @@ export interface AppBase {
   appStoreUrl?: string;
   playStoreUrl?: string;
   icon: string;
+  /** 1200×630 social card; falls back to the first screenshot. */
+  ogImage?: string;
 }
 
 /** Everything language-specific, provided once per locale. */
@@ -49,6 +51,11 @@ export interface AppLocalized {
   trust?: { title: string; body: string };
   faqs: { q: string; a: string }[];
   privacy: { updated: string; sections: PrivacySection[] };
+  /** Optional Terms of Use — adds a /terms page and nav/footer links. */
+  terms?: { updated: string; sections: PrivacySection[] };
+  /** Optional SEO overrides for the landing page. */
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface AppContent extends AppBase {
@@ -56,8 +63,9 @@ export interface AppContent extends AppBase {
 }
 
 import { pokerNight } from "./poker-night";
+import { calmSort } from "./calm-sort";
 
-export const apps: AppContent[] = [pokerNight];
+export const apps: AppContent[] = [pokerNight, calmSort];
 
 export function getApp(slug: string): AppContent | undefined {
   return apps.find((a) => a.slug === slug);

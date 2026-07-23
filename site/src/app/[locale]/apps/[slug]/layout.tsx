@@ -35,7 +35,8 @@ export default async function AppLayout({
   const base = `${localePrefix(locale)}/apps/${slug}`;
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-6 sm:px-10">
+    <div data-app={slug}>
+      <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-6 sm:px-10">
       <header className="flex items-center justify-between gap-4 pt-8">
         <Link
           href={base}
@@ -65,6 +66,14 @@ export default async function AppLayout({
           >
             {dict.app.navPrivacy}
           </Link>
+          {loc.terms && (
+            <Link
+              href={`${base}/terms`}
+              className="text-slate hidden text-sm transition-colors hover:text-paper sm:inline"
+            >
+              {dict.app.navTerms}
+            </Link>
+          )}
           <LocaleSwitcher current={locale} />
         </nav>
       </header>
@@ -98,6 +107,14 @@ export default async function AppLayout({
             >
               {dict.app.footPrivacy}
             </Link>
+            {loc.terms && (
+              <Link
+                href={`${base}/terms`}
+                className="spec-label transition-colors hover:text-indigo-soft"
+              >
+                {dict.app.footTerms}
+              </Link>
+            )}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="spec-label transition-colors hover:text-indigo-soft"
@@ -107,6 +124,7 @@ export default async function AppLayout({
           </span>
         </div>
       </footer>
+      </div>
     </div>
   );
 }

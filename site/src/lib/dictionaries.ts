@@ -27,11 +27,13 @@ export interface Dict {
   app: {
     navSupport: string;
     navPrivacy: string;
+    navTerms: string;
     whatItDoes: string;
     screens: string;
     footerFrom: string; // "{name} · build {n} from"
     footSupport: string;
     footPrivacy: string;
+    footTerms: string;
     footContact: string;
   };
   support: {
@@ -43,6 +45,11 @@ export interface Dict {
     mailSubject: string; // {name} {version}
   };
   privacy: {
+    updated: string; // {date}
+    title: string;
+    intro: string; // {name}
+  };
+  terms: {
     updated: string; // {date}
     title: string;
     intro: string; // {name}
@@ -84,11 +91,13 @@ const en: Dict = {
   app: {
     navSupport: "Support",
     navPrivacy: "Privacy",
+    navTerms: "Terms",
     whatItDoes: "what it does",
     screens: "screens",
     footerFrom: "{name} · build {n} from",
     footSupport: "support",
     footPrivacy: "privacy",
+    footTerms: "terms",
     footContact: "contact",
   },
   support: {
@@ -105,6 +114,12 @@ const en: Dict = {
     title: "Privacy Policy",
     intro:
       '{name} is developed by lei cao ("we"). This policy explains what data the app handles and why.',
+  },
+  terms: {
+    updated: "last updated {date}",
+    title: "Terms of Use",
+    intro:
+      "These terms govern your use of {name}. By downloading or using the app you agree to them.",
   },
   notFound: {
     eyebrow: "status 404",
@@ -143,11 +158,13 @@ const zhCn: Dict = {
   app: {
     navSupport: "支持",
     navPrivacy: "隐私",
+    navTerms: "条款",
     whatItDoes: "功能亮点",
     screens: "应用截图",
     footerFrom: "{name} · 编号 {n} · 出自",
     footSupport: "支持",
     footPrivacy: "隐私",
+    footTerms: "条款",
     footContact: "联系",
   },
   support: {
@@ -162,6 +179,11 @@ const zhCn: Dict = {
     updated: "最近更新 {date}",
     title: "隐私政策",
     intro: "{name} 由 lei cao（“我们”）开发。本政策说明应用会处理哪些数据以及原因。",
+  },
+  terms: {
+    updated: "最近更新 {date}",
+    title: "使用条款",
+    intro: "本条款约束你对 {name} 的使用。下载或使用本应用即表示你同意这些条款。",
   },
   notFound: {
     eyebrow: "状态 404",
@@ -200,11 +222,13 @@ const zhTw: Dict = {
   app: {
     navSupport: "支援",
     navPrivacy: "隱私",
+    navTerms: "條款",
     whatItDoes: "功能亮點",
     screens: "畫面截圖",
     footerFrom: "{name} · 編號 {n} · 出自",
     footSupport: "支援",
     footPrivacy: "隱私",
+    footTerms: "條款",
     footContact: "聯絡",
   },
   support: {
@@ -220,6 +244,11 @@ const zhTw: Dict = {
     title: "隱私權政策",
     intro:
       "{name} 由 lei cao（「我們」）開發。本政策說明應用程式會處理哪些資料以及原因。",
+  },
+  terms: {
+    updated: "最近更新 {date}",
+    title: "使用條款",
+    intro: "本條款規範你對 {name} 的使用。下載或使用本應用程式即表示你同意這些條款。",
   },
   notFound: {
     eyebrow: "狀態 404",
