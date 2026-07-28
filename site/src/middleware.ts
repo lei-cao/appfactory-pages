@@ -6,6 +6,13 @@ import { DEFAULT_LOCALE, isLocale, localePrefix, type Locale } from "@/lib/i18n"
 // poker-night.localhost:3000 work in `next dev` with zero config.
 const ROOT_HOSTS = [APEX_DOMAIN, "localhost"];
 
+// old full host -> new subdomain label. Calm Sort became Sushi Sort on
+// 2026-07-28; calm-sort.appfactory.sg is still in the App Store listing that
+// was submitted under the old name, so it must not 404.
+const RENAMED_SUBDOMAINS: Record<string, string> = {
+  [`calm-sort.${APEX_DOMAIN}`]: "sushi-sort",
+};
+
 function subdomainOf(host: string): string | null {
   for (const root of ROOT_HOSTS) {
     if (host !== root && host.endsWith(`.${root}`)) {
@@ -34,6 +41,16 @@ export function middleware(req: NextRequest) {
   if (host === `www.${APEX_DOMAIN}`) {
     return NextResponse.redirect(
       `https://${APEX_DOMAIN}${url.pathname}${url.search}`,
+      308,
+    );
+  }
+
+  // Renamed apps: the old subdomain keeps working forever, because App Store
+  // listings, review submissions and anything already linked point at it.
+  const renamed = RENAMED_SUBDOMAINS[host];
+  if (renamed) {
+    return NextResponse.redirect(
+      `https://${renamed}.${APEX_DOMAIN}${url.pathname}${url.search}`,
       308,
     );
   }

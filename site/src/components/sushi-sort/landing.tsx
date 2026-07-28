@@ -1,12 +1,12 @@
-// Bespoke landing page for calm-sort.appfactory.sg. Rendered by
+// Bespoke landing page for sushi-sort.appfactory.sg. Rendered by
 // app/[locale]/apps/[slug]/page.tsx in place of the generic template; the
-// warm theme comes from [data-app="calm-sort"] in globals.css, so all
+// warm theme comes from [data-app="sushi-sort"] in globals.css, so all
 // semantic utilities here (bg-panel, border-line, text-slate…) resolve to
 // the izakaya palette.
 
 import Image from "next/image";
 import { getApp, localized } from "@/content/apps";
-import { calmSortLanding } from "@/content/calm-sort";
+import { sushiSortLanding } from "@/content/sushi-sort";
 import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -59,10 +59,10 @@ const STEP_LANES = [
   <Lane key="c" plates={[3, 3, 3, 3]} done />,
 ];
 
-export async function CalmSortLandingPage({ locale }: { locale: Locale }) {
-  const app = getApp("calm-sort")!;
+export async function SushiSortLandingPage({ locale }: { locale: Locale }) {
+  const app = getApp("sushi-sort")!;
   const loc = localized(app, locale);
-  const copy = calmSortLanding[locale];
+  const copy = sushiSortLanding[locale];
   const dict = getDict(locale);
   const origin = appOrigin(app.slug);
   const url = `${origin}${localePrefix(locale)}/`;
@@ -152,14 +152,14 @@ export async function CalmSortLandingPage({ locale }: { locale: Locale }) {
           />
           <div className="relative flex items-end justify-center">
             <Image
-              src="/apps/calm-sort/shot-board.png"
+              src="/apps/sushi-sort/shot-board.png"
               alt={loc.screenshots[1].alt}
               width={375}
               height={815}
               className="border-line relative z-0 w-40 -rotate-6 rounded-2xl border shadow-xl sm:w-48"
             />
             <Image
-              src="/apps/calm-sort/shot-home.png"
+              src="/apps/sushi-sort/shot-home.png"
               alt={loc.screenshots[0].alt}
               width={375}
               height={815}

@@ -1,21 +1,21 @@
-// Calm Sort — content in all three locales, plus the copy for its bespoke
-// landing page (src/components/calm-sort/landing.tsx). The subdomain gets a
-// warm "izakaya" theme via [data-app="calm-sort"] in globals.css.
+// Sushi Sort — content in all three locales, plus the copy for its bespoke
+// landing page (src/components/sushi-sort/landing.tsx). The subdomain gets a
+// warm "izakaya" theme via [data-app="sushi-sort"] in globals.css.
 
 import type { Locale } from "@/lib/i18n";
 import type { AppContent, AppLocalized } from "./apps";
 
 const en: AppLocalized = {
-  name: "Calm Sort",
-  storeName: "Calm Sort: Sushi Puzzle Game",
+  name: "Sushi Sort",
+  storeName: "Sushi Sort: Zen Puzzle Game",
   tagline: "Sort. Breathe. Repeat.",
   subtitle: "Relaxing zen escape. No timers",
   oneLiner:
     "Sort sushi onto bento serving lanes until every lane holds one kind. One-thumb calm, offline forever — no energy, no lives, no timers, ever.",
   statusNote: "iOS build submitted to App Review. Android release in progress.",
-  metaTitle: "Calm Sort: Sushi Puzzle Game — a relaxing sort puzzle with no timers",
+  metaTitle: "Sushi Sort: Zen Puzzle Game — a relaxing sushi sort puzzle with no timers",
   metaDescription:
-    "Calm Sort is the honest sushi sort puzzle: 200 verified-solvable levels across 10 worlds, free unlimited undo, no energy, no lives, no timers — and one $2.99 purchase removes every ad forever. Offline, no account.",
+    "Sushi Sort is the honest sushi sort puzzle: 200 verified-solvable levels across 10 worlds, free unlimited undo, no energy, no lives, no timers — and one $2.99 purchase removes every ad forever. Offline, no account.",
   features: [
     {
       title: "200 levels, all provably fair",
@@ -44,23 +44,23 @@ const en: AppLocalized = {
   ],
   screenshots: [
     {
-      src: "/apps/calm-sort/shot-home.png",
-      alt: "Calm Sort home screen: a wooden sushi counter with Play, Daily, and Endless buttons under cherry blossoms",
+      src: "/apps/sushi-sort/shot-home.png",
+      alt: "Sushi Sort home screen: a wooden sushi counter with Play, Daily, and Endless buttons under cherry blossoms",
     },
     {
-      src: "/apps/calm-sort/shot-board.png",
-      alt: "A Calm Sort puzzle board: sushi plates being sorted across six wooden serving lanes",
+      src: "/apps/sushi-sort/shot-board.png",
+      alt: "A Sushi Sort puzzle board: sushi plates being sorted across six wooden serving lanes",
     },
     {
-      src: "/apps/calm-sort/shot-worlds.png",
+      src: "/apps/sushi-sort/shot-worlds.png",
       alt: "The Worlds map: a winding conveyor path of levels passing torii gates for World 2 and World 3",
     },
     {
-      src: "/apps/calm-sort/shot-promises.png",
-      alt: "The promises screen listing Calm Sort's honest-game promises",
+      src: "/apps/sushi-sort/shot-promises.png",
+      alt: "The promises screen listing Sushi Sort's honest-game promises",
     },
     {
-      src: "/apps/calm-sort/shot-settings.png",
+      src: "/apps/sushi-sort/shot-settings.png",
       alt: "Settings screen with sound, haptics, and privacy controls on warm wood",
     },
   ],
@@ -70,7 +70,7 @@ const en: AppLocalized = {
   },
   faqs: [
     {
-      q: "Is Calm Sort free?",
+      q: "Is Sushi Sort free?",
       a: "Yes. All 200 levels, the daily challenge, and Endless mode are free, with occasional ads between levels only — never during play. A single $2.99 purchase removes every ad permanently.",
     },
     {
@@ -136,7 +136,7 @@ const en: AppLocalized = {
       {
         heading: "Children",
         body: [
-          "Calm Sort is not directed at children under 13 and does not knowingly collect personal information from them.",
+          "Sushi Sort is not directed at children under 13 and does not knowingly collect personal information from them.",
         ],
       },
       {
@@ -157,7 +157,7 @@ const en: AppLocalized = {
       {
         heading: "License",
         body: [
-          "We grant you a personal, non-exclusive, non-transferable license to install and play Calm Sort on devices you own or control, for your own non-commercial use, subject to the App Store or Google Play terms under which you obtained it.",
+          "We grant you a personal, non-exclusive, non-transferable license to install and play Sushi Sort on devices you own or control, for your own non-commercial use, subject to the App Store or Google Play terms under which you obtained it.",
         ],
       },
       {
@@ -185,7 +185,7 @@ const en: AppLocalized = {
       {
         heading: "Disclaimer & liability",
         body: [
-          "Calm Sort is provided \"as is\", without warranties of any kind to the fullest extent permitted by law. To the same extent, our total liability for any claim relating to the app is limited to the amount you paid for it in the twelve months before the claim.",
+          "Sushi Sort is provided \"as is\", without warranties of any kind to the fullest extent permitted by law. To the same extent, our total liability for any claim relating to the app is limited to the amount you paid for it in the twelve months before the claim.",
         ],
       },
       {
@@ -205,16 +205,16 @@ const en: AppLocalized = {
 };
 
 const zhCn: AppLocalized = {
-  name: "Calm Sort",
-  storeName: "Calm Sort：寿司分拣解谜",
+  name: "Sushi Sort",
+  storeName: "Sushi Sort：寿司分拣解谜",
   tagline: "分拣。呼吸。再来一局。",
   subtitle: "禅意解压小游戏，没有倒计时",
   oneLiner:
     "把寿司分拣到便当出餐道上，直到每条道只剩一种。单手可玩、完全离线——没有体力、没有生命值、没有倒计时，永远没有。",
   statusNote: "iOS 版本已提交 App Store 审核，Android 版本筹备中。",
-  metaTitle: "Calm Sort：寿司分拣解谜 — 没有倒计时的放松分类游戏",
+  metaTitle: "Sushi Sort：寿司分拣解谜 — 没有倒计时的放松分类游戏",
   metaDescription:
-    "Calm Sort 是「诚实的分拣解谜」：10 个世界、200 个经机器验证可解的关卡，撤销永久免费，没有体力、生命值和倒计时——一次 $2.99 内购即可永久移除所有广告。离线可玩，无需账号。",
+    "Sushi Sort 是「诚实的分拣解谜」：10 个世界、200 个经机器验证可解的关卡，撤销永久免费，没有体力、生命值和倒计时——一次 $2.99 内购即可永久移除所有广告。离线可玩，无需账号。",
   features: [
     {
       title: "200 关，关关可解",
@@ -243,23 +243,23 @@ const zhCn: AppLocalized = {
   ],
   screenshots: [
     {
-      src: "/apps/calm-sort/shot-home.png",
-      alt: "Calm Sort 主界面：樱花下的木质寿司台，带开始、每日挑战和无尽模式按钮",
+      src: "/apps/sushi-sort/shot-home.png",
+      alt: "Sushi Sort 主界面：樱花下的木质寿司台，带开始、每日挑战和无尽模式按钮",
     },
     {
-      src: "/apps/calm-sort/shot-board.png",
-      alt: "Calm Sort 关卡棋盘：寿司餐盘在六条木质出餐道之间分拣",
+      src: "/apps/sushi-sort/shot-board.png",
+      alt: "Sushi Sort 关卡棋盘：寿司餐盘在六条木质出餐道之间分拣",
     },
     {
-      src: "/apps/calm-sort/shot-worlds.png",
+      src: "/apps/sushi-sort/shot-worlds.png",
       alt: "世界地图：蜿蜒的传送带关卡路径，穿过第 2、3 世界的鸟居",
     },
     {
-      src: "/apps/calm-sort/shot-promises.png",
-      alt: "承诺页面：列出 Calm Sort 的诚实游戏承诺",
+      src: "/apps/sushi-sort/shot-promises.png",
+      alt: "承诺页面：列出 Sushi Sort 的诚实游戏承诺",
     },
     {
-      src: "/apps/calm-sort/shot-settings.png",
+      src: "/apps/sushi-sort/shot-settings.png",
       alt: "设置页面：暖木背景上的声音、震动与隐私选项",
     },
   ],
@@ -269,7 +269,7 @@ const zhCn: AppLocalized = {
   },
   faqs: [
     {
-      q: "Calm Sort 免费吗？",
+      q: "Sushi Sort 免费吗？",
       a: "免费。全部 200 关、每日挑战和无尽模式都免费，仅在关卡之间偶尔出现广告——游戏进行中绝不插播。一次 $2.99 内购即可永久移除所有广告。",
     },
     {
@@ -334,7 +334,7 @@ const zhCn: AppLocalized = {
       },
       {
         heading: "儿童",
-        body: ["Calm Sort 不面向 13 岁以下儿童，也不会刻意收集他们的个人信息。"],
+        body: ["Sushi Sort 不面向 13 岁以下儿童，也不会刻意收集他们的个人信息。"],
       },
       {
         heading: "联系方式",
@@ -352,7 +352,7 @@ const zhCn: AppLocalized = {
       {
         heading: "许可",
         body: [
-          "我们授予你一项个人的、非独占、不可转让的许可：在你拥有或控制的设备上安装并游玩 Calm Sort，仅限个人非商业用途，并受你获取本应用时所适用的 App Store 或 Google Play 条款约束。",
+          "我们授予你一项个人的、非独占、不可转让的许可：在你拥有或控制的设备上安装并游玩 Sushi Sort，仅限个人非商业用途，并受你获取本应用时所适用的 App Store 或 Google Play 条款约束。",
         ],
       },
       {
@@ -380,7 +380,7 @@ const zhCn: AppLocalized = {
       {
         heading: "免责声明与责任限制",
         body: [
-          "Calm Sort 按「现状」提供，在法律允许的最大范围内不附带任何形式的保证。在同等范围内，我们就与本应用相关的任何索赔所承担的全部责任，以你在索赔前十二个月内为本应用支付的金额为限。",
+          "Sushi Sort 按「现状」提供，在法律允许的最大范围内不附带任何形式的保证。在同等范围内，我们就与本应用相关的任何索赔所承担的全部责任，以你在索赔前十二个月内为本应用支付的金额为限。",
         ],
       },
       {
@@ -400,16 +400,16 @@ const zhCn: AppLocalized = {
 };
 
 const zhTw: AppLocalized = {
-  name: "Calm Sort",
-  storeName: "Calm Sort：壽司分揀解謎",
+  name: "Sushi Sort",
+  storeName: "Sushi Sort：壽司分揀解謎",
   tagline: "分揀。呼吸。再來一局。",
   subtitle: "禪意紓壓小遊戲，沒有倒數計時",
   oneLiner:
     "把壽司分揀到便當出餐道上，直到每條道只剩一種。單手可玩、完全離線——沒有體力、沒有生命值、沒有倒數計時，永遠沒有。",
   statusNote: "iOS 版本已送交 App Store 審核，Android 版本籌備中。",
-  metaTitle: "Calm Sort：壽司分揀解謎 — 沒有倒數計時的放鬆分類遊戲",
+  metaTitle: "Sushi Sort：壽司分揀解謎 — 沒有倒數計時的放鬆分類遊戲",
   metaDescription:
-    "Calm Sort 是「誠實的分揀解謎」：10 個世界、200 個經機器驗證可解的關卡，復原永久免費，沒有體力、生命值和倒數計時——一次 $2.99 內購即可永久移除所有廣告。離線可玩，無需帳號。",
+    "Sushi Sort 是「誠實的分揀解謎」：10 個世界、200 個經機器驗證可解的關卡，復原永久免費，沒有體力、生命值和倒數計時——一次 $2.99 內購即可永久移除所有廣告。離線可玩，無需帳號。",
   features: [
     {
       title: "200 關，關關可解",
@@ -438,23 +438,23 @@ const zhTw: AppLocalized = {
   ],
   screenshots: [
     {
-      src: "/apps/calm-sort/shot-home.png",
-      alt: "Calm Sort 主畫面：櫻花下的木質壽司台，帶開始、每日挑戰和無盡模式按鈕",
+      src: "/apps/sushi-sort/shot-home.png",
+      alt: "Sushi Sort 主畫面：櫻花下的木質壽司台，帶開始、每日挑戰和無盡模式按鈕",
     },
     {
-      src: "/apps/calm-sort/shot-board.png",
-      alt: "Calm Sort 關卡棋盤：壽司餐盤在六條木質出餐道之間分揀",
+      src: "/apps/sushi-sort/shot-board.png",
+      alt: "Sushi Sort 關卡棋盤：壽司餐盤在六條木質出餐道之間分揀",
     },
     {
-      src: "/apps/calm-sort/shot-worlds.png",
+      src: "/apps/sushi-sort/shot-worlds.png",
       alt: "世界地圖：蜿蜒的輸送帶關卡路徑，穿過第 2、3 世界的鳥居",
     },
     {
-      src: "/apps/calm-sort/shot-promises.png",
-      alt: "承諾頁面：列出 Calm Sort 的誠實遊戲承諾",
+      src: "/apps/sushi-sort/shot-promises.png",
+      alt: "承諾頁面：列出 Sushi Sort 的誠實遊戲承諾",
     },
     {
-      src: "/apps/calm-sort/shot-settings.png",
+      src: "/apps/sushi-sort/shot-settings.png",
       alt: "設定頁面：暖木背景上的聲音、震動與隱私選項",
     },
   ],
@@ -464,7 +464,7 @@ const zhTw: AppLocalized = {
   },
   faqs: [
     {
-      q: "Calm Sort 免費嗎？",
+      q: "Sushi Sort 免費嗎？",
       a: "免費。全部 200 關、每日挑戰和無盡模式都免費，僅在關卡之間偶爾出現廣告——遊戲進行中絕不插播。一次 $2.99 內購即可永久移除所有廣告。",
     },
     {
@@ -529,7 +529,7 @@ const zhTw: AppLocalized = {
       },
       {
         heading: "兒童",
-        body: ["Calm Sort 不面向 13 歲以下兒童，也不會刻意收集他們的個人資訊。"],
+        body: ["Sushi Sort 不面向 13 歲以下兒童，也不會刻意收集他們的個人資訊。"],
       },
       {
         heading: "聯絡方式",
@@ -547,7 +547,7 @@ const zhTw: AppLocalized = {
       {
         heading: "授權",
         body: [
-          "我們授予你一項個人的、非專屬、不可轉讓的授權：在你擁有或控制的裝置上安裝並遊玩 Calm Sort，僅限個人非商業用途，並受你取得本應用程式時所適用的 App Store 或 Google Play 條款約束。",
+          "我們授予你一項個人的、非專屬、不可轉讓的授權：在你擁有或控制的裝置上安裝並遊玩 Sushi Sort，僅限個人非商業用途，並受你取得本應用程式時所適用的 App Store 或 Google Play 條款約束。",
         ],
       },
       {
@@ -575,7 +575,7 @@ const zhTw: AppLocalized = {
       {
         heading: "免責聲明與責任限制",
         body: [
-          "Calm Sort 按「現況」提供，在法律允許的最大範圍內不附帶任何形式的保證。在同等範圍內，我們就與本應用程式相關的任何索賠所承擔的全部責任，以你在索賠前十二個月內為本應用程式支付的金額為限。",
+          "Sushi Sort 按「現況」提供，在法律允許的最大範圍內不附帶任何形式的保證。在同等範圍內，我們就與本應用程式相關的任何索賠所承擔的全部責任，以你在索賠前十二個月內為本應用程式支付的金額為限。",
         ],
       },
       {
@@ -594,21 +594,21 @@ const zhTw: AppLocalized = {
   },
 };
 
-export const calmSort: AppContent = {
-  slug: "calm-sort",
+export const sushiSort: AppContent = {
+  slug: "sushi-sort",
   buildNumber: 3,
   version: "1.2.0",
   status: "in-review",
   platforms: ["iOS", "Android"],
-  icon: "/apps/calm-sort/icon.png",
-  ogImage: "/apps/calm-sort/og.png",
+  icon: "/apps/sushi-sort/icon.png",
+  ogImage: "/apps/sushi-sort/og.png",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
 
 // ---------------------------------------------------------------------------
 // Copy for the bespoke landing page only (not part of the generic registry).
 
-export interface CalmSortLanding {
+export interface SushiSortLanding {
   kicker: string;
   /** Three beats of the hero headline; the last renders in the accent color. */
   heroWords: [string, string, string];
@@ -636,7 +636,7 @@ export interface CalmSortLanding {
   closingBody: string;
 }
 
-const landingEn: CalmSortLanding = {
+const landingEn: SushiSortLanding = {
   kicker: "10 worlds · 200 levels · offline forever",
   heroWords: ["Sort.", "Breathe.", "Repeat."],
   heroSub:
@@ -646,7 +646,7 @@ const landingEn: CalmSortLanding = {
   promisesEyebrow: "our promises",
   promisesTitle: "The honest sort puzzle",
   promisesIntro:
-    "Most \"relaxing\" puzzles relax you until the paywall. Calm Sort makes six promises instead — printed here, kept in the game.",
+    "Most \"relaxing\" puzzles relax you until the paywall. Sushi Sort makes six promises instead — printed here, kept in the game.",
   promises: [
     {
       title: "Remove Ads means removed",
@@ -703,10 +703,10 @@ const landingEn: CalmSortLanding = {
   faqTitle: "Fair questions, straight answers",
   closingTitle: "Ready when you are. No timer says so.",
   closingBody:
-    "Calm Sort will be on the App Store shortly — it's in Apple's review queue right now.",
+    "Sushi Sort will be on the App Store shortly — it's in Apple's review queue right now.",
 };
 
-const landingZhCn: CalmSortLanding = {
+const landingZhCn: SushiSortLanding = {
   kicker: "10 个世界 · 200 关 · 永远离线可玩",
   heroWords: ["分拣。", "呼吸。", "再来一局。"],
   heroSub:
@@ -715,7 +715,7 @@ const landingZhCn: CalmSortLanding = {
   promisesEyebrow: "我们的承诺",
   promisesTitle: "诚实的分拣解谜",
   promisesIntro:
-    "多数「放松」解谜游戏，只放松到付费墙为止。Calm Sort 换一种做法：立下六条承诺——写在这里，兑现在游戏里。",
+    "多数「放松」解谜游戏，只放松到付费墙为止。Sushi Sort 换一种做法：立下六条承诺——写在这里，兑现在游戏里。",
   promises: [
     {
       title: "移除广告 = 真的移除",
@@ -771,10 +771,10 @@ const landingZhCn: CalmSortLanding = {
   faqEyebrow: "常见问题",
   faqTitle: "坦率的问题，直接的回答",
   closingTitle: "随时开局——反正没有倒计时。",
-  closingBody: "Calm Sort 即将登陆 App Store——目前正在 Apple 审核队列中。",
+  closingBody: "Sushi Sort 即将登陆 App Store——目前正在 Apple 审核队列中。",
 };
 
-const landingZhTw: CalmSortLanding = {
+const landingZhTw: SushiSortLanding = {
   kicker: "10 個世界 · 200 關 · 永遠離線可玩",
   heroWords: ["分揀。", "呼吸。", "再來一局。"],
   heroSub:
@@ -783,7 +783,7 @@ const landingZhTw: CalmSortLanding = {
   promisesEyebrow: "我們的承諾",
   promisesTitle: "誠實的分揀解謎",
   promisesIntro:
-    "多數「放鬆」解謎遊戲，只放鬆到付費牆為止。Calm Sort 換一種做法：立下六條承諾——寫在這裡，兌現在遊戲裡。",
+    "多數「放鬆」解謎遊戲，只放鬆到付費牆為止。Sushi Sort 換一種做法：立下六條承諾——寫在這裡，兌現在遊戲裡。",
   promises: [
     {
       title: "移除廣告 = 真的移除",
@@ -839,10 +839,10 @@ const landingZhTw: CalmSortLanding = {
   faqEyebrow: "常見問題",
   faqTitle: "坦率的問題，直接的回答",
   closingTitle: "隨時開局——反正沒有倒數計時。",
-  closingBody: "Calm Sort 即將登陸 App Store——目前正在 Apple 審核佇列中。",
+  closingBody: "Sushi Sort 即將登陸 App Store——目前正在 Apple 審核佇列中。",
 };
 
-export const calmSortLanding: Record<Locale, CalmSortLanding> = {
+export const sushiSortLanding: Record<Locale, SushiSortLanding> = {
   en: landingEn,
   "zh-cn": landingZhCn,
   "zh-tw": landingZhTw,

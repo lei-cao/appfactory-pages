@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
-import { CalmSortLandingPage } from "@/components/calm-sort/landing";
+import { SushiSortLandingPage } from "@/components/sushi-sort/landing";
 import { StatusBadge } from "@/components/status";
 import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
@@ -57,7 +57,7 @@ export default async function AppLanding({
   if (!app) notFound();
 
   // Apps with a bespoke landing page render it instead of the template.
-  if (slug === "calm-sort") return <CalmSortLandingPage locale={locale} />;
+  if (slug === "sushi-sort") return <SushiSortLandingPage locale={locale} />;
 
   const loc = localized(app, locale);
   const dict = getDict(locale);

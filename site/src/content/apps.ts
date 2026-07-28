@@ -63,9 +63,9 @@ export interface AppContent extends AppBase {
 }
 
 import { pokerNight } from "./poker-night";
-import { calmSort } from "./calm-sort";
+import { sushiSort } from "./sushi-sort";
 
-export const apps: AppContent[] = [pokerNight, calmSort];
+export const apps: AppContent[] = [pokerNight, sushiSort];
 
 export function getApp(slug: string): AppContent | undefined {
   return apps.find((a) => a.slug === slug);

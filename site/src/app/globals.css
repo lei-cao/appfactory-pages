@@ -84,12 +84,12 @@ html {
 }
 
 /* ---------------------------------------------------------------------------
-   Calm Sort — warm "izakaya" theme for the calm-sort subdomain. The layout
+   Sushi Sort — warm "izakaya" theme for the sushi-sort subdomain. The layout
    sets data-app=<slug> on the page wrapper; remapping the theme variables
    here re-skins every semantic utility (bg-panel, border-line, text-slate…)
    on the landing, support, privacy, and terms pages at once. */
 
-[data-app="calm-sort"] {
+[data-app="sushi-sort"] {
   --color-ink: #f8f0e1;
   --color-panel: #fdf8ec;
   --color-panel-2: #f3e6cc;
