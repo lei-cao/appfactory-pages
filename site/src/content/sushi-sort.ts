@@ -12,7 +12,7 @@ const en: AppLocalized = {
   subtitle: "Relaxing zen escape. No timers",
   oneLiner:
     "Sort sushi onto bento serving lanes until every lane holds one kind. One-thumb calm, offline forever — no energy, no lives, no timers, ever.",
-  statusNote: "iOS build submitted to App Review. Android release in progress.",
+  statusNote: "Live now on the App Store. Android release in progress.",
   metaTitle: "Sushi Sort: Zen Puzzle Game — a relaxing sushi sort puzzle with no timers",
   metaDescription:
     "Sushi Sort is the honest sushi sort puzzle: 200 verified-solvable levels across 10 worlds, free unlimited undo, no energy, no lives, no timers — and one $2.99 purchase removes every ad forever. Offline, no account.",
@@ -211,7 +211,7 @@ const zhCn: AppLocalized = {
   subtitle: "禅意解压小游戏，没有倒计时",
   oneLiner:
     "把寿司分拣到便当出餐道上，直到每条道只剩一种。单手可玩、完全离线——没有体力、没有生命值、没有倒计时，永远没有。",
-  statusNote: "iOS 版本已提交 App Store 审核，Android 版本筹备中。",
+  statusNote: "已在 App Store 上线，Android 版本筹备中。",
   metaTitle: "Sushi Sort：寿司分拣解谜 — 没有倒计时的放松分类游戏",
   metaDescription:
     "Sushi Sort 是「诚实的分拣解谜」：10 个世界、200 个经机器验证可解的关卡，撤销永久免费，没有体力、生命值和倒计时——一次 $2.99 内购即可永久移除所有广告。离线可玩，无需账号。",
@@ -406,7 +406,7 @@ const zhTw: AppLocalized = {
   subtitle: "禪意紓壓小遊戲，沒有倒數計時",
   oneLiner:
     "把壽司分揀到便當出餐道上，直到每條道只剩一種。單手可玩、完全離線——沒有體力、沒有生命值、沒有倒數計時，永遠沒有。",
-  statusNote: "iOS 版本已送交 App Store 審核，Android 版本籌備中。",
+  statusNote: "已在 App Store 上線，Android 版本籌備中。",
   metaTitle: "Sushi Sort：壽司分揀解謎 — 沒有倒數計時的放鬆分類遊戲",
   metaDescription:
     "Sushi Sort 是「誠實的分揀解謎」：10 個世界、200 個經機器驗證可解的關卡，復原永久免費，沒有體力、生命值和倒數計時——一次 $2.99 內購即可永久移除所有廣告。離線可玩，無需帳號。",
@@ -596,9 +596,11 @@ const zhTw: AppLocalized = {
 
 export const sushiSort: AppContent = {
   slug: "sushi-sort",
-  buildNumber: 3,
-  version: "1.2.0",
-  status: "in-review",
+  buildNumber: 7,
+  version: "1.2.1",
+  status: "live",
+  appStoreUrl:
+    "https://apps.apple.com/us/app/sushi-sort-zen-puzzle-game/id6792529319",
   platforms: ["iOS", "Android"],
   icon: "/apps/sushi-sort/icon.png",
   ogImage: "/apps/sushi-sort/og.png",

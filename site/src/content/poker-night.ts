@@ -7,7 +7,7 @@ const en: AppLocalized = {
   subtitle: "Chip ledger & equity odds",
   oneLiner:
     "The scorekeeper for your home cash game: track every buy-in live, settle the night in one tap, and check hand equity between hands.",
-  statusNote: "iOS build in App Store review. Android release in progress.",
+  statusNote: "Live now on the App Store. Android release in progress.",
   features: [
     {
       title: "Live ledger",
@@ -148,7 +148,7 @@ const zhCn: AppLocalized = {
   subtitle: "记账结算 · 胜率计算",
   oneLiner:
     "家庭现金局的记账管家：实时记录每一次买入和码量，散场一键算清谁转谁多少，局间还能顺手算一把胜率。",
-  statusNote: "iOS 版本正在 App Store 审核中，Android 版本即将推出。",
+  statusNote: "已在 App Store 上线，Android 版本即将推出。",
   features: [
     {
       title: "实时账本",
@@ -285,7 +285,7 @@ const zhTw: AppLocalized = {
   subtitle: "記帳結算 · 勝率計算",
   oneLiner:
     "家庭現金局的記帳管家：即時記錄每一次買入和碼量，散場一鍵算清誰轉誰多少，局間還能順手算一把勝率。",
-  statusNote: "iOS 版本正在 App Store 審核中，Android 版本即將推出。",
+  statusNote: "已在 App Store 上線，Android 版本即將推出。",
   features: [
     {
       title: "即時帳本",
@@ -417,8 +417,10 @@ const zhTw: AppLocalized = {
 export const pokerNight: AppContent = {
   slug: "poker-night",
   buildNumber: 1,
-  version: "1.4.0",
-  status: "in-review",
+  version: "1.6.0",
+  status: "live",
+  appStoreUrl:
+    "https://apps.apple.com/us/app/poker-night-home-game-ledger/id6788786222",
   platforms: ["iOS", "Android"],
   icon: "/apps/poker-night/icon.png",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
