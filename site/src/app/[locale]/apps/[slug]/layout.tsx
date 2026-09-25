@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { apps, getApp, localized } from "@/content/apps";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { emberDeckFontClass } from "@/components/ember-deck/fonts";
 import { getDict } from "@/lib/dictionaries";
 import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
 import { APEX_DOMAIN, CONTACT_EMAIL, hubOrigin } from "@/lib/site";
@@ -34,10 +35,13 @@ export default async function AppLayout({
   // they resolve under /apps/<slug>/.
   const base = `${localePrefix(locale)}/apps/${slug}`;
 
+  // Apps with their own typefaces (bespoke themes in globals.css).
+  const fontClass = slug === "ember-deck" ? emberDeckFontClass : undefined;
+
   return (
-    <div data-app={slug}>
+    <div data-app={slug} className={fontClass}>
       <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-6 sm:px-10">
-      <header className="flex items-center justify-between gap-4 pt-8">
+      <header className="relative z-10 flex items-center justify-between gap-4 pt-8">
         <Link
           href={base}
           className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo"

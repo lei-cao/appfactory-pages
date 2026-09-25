@@ -271,3 +271,153 @@ html {
   transform: rotate(-4deg);
   box-shadow: 0 2px 10px rgba(210, 70, 47, 0.3);
 }
+
+/* ---------------------------------------------------------------------------
+   Ember Deck — "a lit hearth in a dark book" (app repo docs/v2/ux-v2.md §1).
+   Charcoal and parchment surfaces, one warm light source, ember accent.
+   The ux-v2 AVOID list binds here too: no neon, no glassmorphism, no emoji,
+   no Cinzel. Remapping the tokens re-skins support/privacy/terms as well. */
+
+[data-app="ember-deck"] {
+  --color-ink: #120f17; /* charcoalDeep */
+  --color-panel: #1a1620; /* charcoal */
+  --color-panel-2: #241e2a; /* charcoalRaised */
+  --color-line: #3a3240;
+  --color-paper: #e8dcc8; /* parchment */
+  --color-slate: #b9ab95;
+  --color-indigo: #f0a030; /* ember */
+  --color-indigo-soft: #e3b04b; /* gilt */
+  --color-live: #8fd67a;
+  --ed-heat0: #5a4c44;
+  --ed-heat1: #b0501e;
+  --ed-heat2: #e0701e;
+  --ed-heat3: #ff9a2e;
+  --ed-heat4: #ffd36b;
+  --ed-heat5: #fff4d6;
+  --ed-blaze: #ff7a1a;
+  --ed-iron: #4a4550;
+  --ed-bronze: #9c6b3a;
+  --font-display: var(--font-grenze), "Songti SC", "Songti TC", "STSong",
+    "Noto Serif SC", "Noto Serif TC", serif;
+  --font-body: var(--font-alegreya), var(--font-cjk), sans-serif;
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* ux-v2 body 17 */
+  color: var(--color-paper);
+  background:
+    radial-gradient(900px 520px at 50% -160px, rgba(240, 160, 48, 0.1), transparent 70%),
+    var(--color-ink);
+  /* full-bleed sections use 100vw; clip the scrollbar-width overhang */
+  overflow-x: clip;
+}
+
+/* The eyebrow becomes the ux-v2 "label" token instead of the hub's mono. */
+[data-app="ember-deck"] .spec-label {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--color-indigo);
+}
+
+[data-app="ember-deck"] ::selection {
+  background: #b0501e;
+  color: #fff4d6;
+}
+
+/* Full-bleed band inside the max-w layout container. */
+.ed-bleed {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Forged-iron frame: a double metal edge rather than a 1px stroke. */
+.ed-frame {
+  border: 1px solid #5a4c44;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 3px rgba(156, 107, 58, 0.18),
+    0 10px 30px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Parchment reading panel (ux-v2 DO #11). */
+.ed-parchment {
+  background:
+    radial-gradient(120% 90% at 30% 10%, #efe4d1, #e0d0b4 70%, #cdb994);
+  color: #221a14;
+}
+
+/* Slow ember drift over the key art. GPU-cheap; frozen by reduced motion. */
+.ed-ember {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #ffb347;
+  opacity: 0;
+  animation: ed-rise 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ed-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate3d(24px, -340px, 0);
+    opacity: 0;
+  }
+}
+
+/* The Heat flame breathes (ux-v2 §1.6 ambient class). */
+.ed-breathe {
+  animation: ed-breathe 3.2s ease-in-out infinite;
+}
+
+@keyframes ed-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-ember,
+  .ed-breathe {
+    animation: none;
+  }
+}
+
+/* Header on a 390pt phone: the blackletter wordmark plus three nav items
+   and the language switcher don't fit on one row, so below sm the name
+   goes visually hidden (kept for screen readers — it names the home link)
+   and nothing is allowed to wrap mid-word. */
+[data-app="ember-deck"] header nav {
+  column-gap: 1rem;
+}
+[data-app="ember-deck"] header a,
+[data-app="ember-deck"] header span {
+  white-space: nowrap;
+}
+@media (max-width: 639px) {
+  [data-app="ember-deck"] header > a > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
 import { SushiSortLandingPage } from "@/components/sushi-sort/landing";
 import { TracesheetLandingPage } from "@/components/tracesheet/landing";
+import { EmberDeckLandingPage } from "@/components/ember-deck/landing";
 import { StatusBadge } from "@/components/status";
 import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
@@ -60,6 +61,7 @@ export default async function AppLanding({
   // Apps with a bespoke landing page render it instead of the template.
   if (slug === "sushi-sort") return <SushiSortLandingPage locale={locale} />;
   if (slug === "tracesheet") return <TracesheetLandingPage locale={locale} />;
+  if (slug === "ember-deck") return <EmberDeckLandingPage locale={locale} />;
 
   const loc = localized(app, locale);
   const dict = getDict(locale);
