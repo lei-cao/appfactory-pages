@@ -132,7 +132,14 @@ const en: AppLocalized = {
       {
         heading: "What we don't collect",
         body: [
-          "No accounts, no emails, no contacts, no location, no photos, no messages. Your game ledger — player names, buy-ins, chip counts, session history — is stored only on your device. Your ledger is never uploaded; the app has no accounts and no server that stores your data. Live Activities, widgets and blinds-timer alerts are generated entirely on your device — nothing about a running game or a timer is ever sent anywhere.",
+          "No accounts, no emails, no contacts, no location, no photos, no messages. Your game ledger — player names, buy-ins, chip counts, session history — is stored only on your device. Your ledger is never uploaded unless you choose to share a night live (see below); the app has no accounts. Live Activities, widgets and blinds-timer alerts are generated entirely on your device — nothing about a running game or a timer is ever sent anywhere.",
+        ],
+      },
+      {
+        heading: "Live sharing (optional)",
+        body: [
+          "If you tap Share live during a night, Poker Night uploads a read-only snapshot of that night so the people at your table can follow it on their own phones: the display names you typed for tonight's players, buy-ins, chip counts, results, the chip value, who pays whom once settled, and the night's title if you gave it one. It is stored in Google Cloud Firestore (Firebase) under a random 128-bit link, together with an anonymous Firebase sign-in id that lets only your device update or stop it. It is not linked to any account, email, advertising id or analytics id.",
+          "Anyone with the link or QR code can view the snapshot; it can't be searched or listed. It is deleted when you tap Stop sharing, and automatically at most 48 hours after its last update (24 hours after the night settles). Nothing is uploaded for nights you don't share, and guests who open the link in a browser are not asked for anything.",
         ],
       },
       {
@@ -156,6 +163,7 @@ const en: AppLocalized = {
             "Remove ads permanently via Poker Night Pro (or the earlier Remove ads purchase, which already includes it).",
             "Turn off blinds-timer notifications and Live Activities anytime in your device's notification settings.",
             "Delete any player or session in the app to remove it from your device.",
+            "Stop sharing a live night anytime; the link stops working and the snapshot is deleted.",
           ],
         ],
       },
@@ -299,7 +307,14 @@ const zhCn: AppLocalized = {
       {
         heading: "我们不收集什么",
         body: [
-          "没有账号、邮箱、通讯录、位置、照片或消息。你的牌局账本——玩家姓名、买入、码量、历史记录——只保存在你的设备上，从不上传；应用没有账号系统，也没有存储你数据的服务器。锁屏实时活动、桌面小组件与盲注计时器的提醒完全在设备本地生成——不会有任何牌局或计时信息被发送出去。",
+          "没有账号、邮箱、通讯录、位置、照片或消息。你的牌局账本——玩家姓名、买入、码量、历史记录——只保存在你的设备上；除非你主动选择实时共享某一局（见下文），否则从不上传。应用没有账号系统。锁屏实时活动、桌面小组件与盲注计时器的提醒完全在设备本地生成——不会有任何牌局或计时信息被发送出去。",
+        ],
+      },
+      {
+        heading: "实时共享（可选）",
+        body: [
+          "如果你在牌局中点了「实时共享」，扑克之夜会上传这一局的只读快照，让同桌的朋友用自己的手机查看：你为今晚玩家填写的显示名字、买入、筹码数、盈亏、筹码折算金额、结算后的转账明细，以及你设置的牌局名称（如有）。快照存放在 Google Cloud Firestore（Firebase）中，以一个 128 位随机链接标识，并附带一个匿名的 Firebase 登录标识，只有你的设备才能更新或停止共享。它不与任何账号、邮箱、广告标识或分析标识关联。",
+          "拿到链接或二维码的人都可以查看快照，但无法被搜索或列出。你点「停止共享」时会立即删除；即使不停止，也会在最后一次更新后最多 48 小时（牌局结算后 24 小时）自动删除。没有共享的牌局不会上传任何内容；客人在浏览器中打开链接时也不需要提供任何信息。",
         ],
       },
       {
@@ -323,6 +338,7 @@ const zhCn: AppLocalized = {
             "通过「扑克之夜 Pro」（或之前购买的「移除广告」，已自动包含 Pro）永久移除广告。",
             "随时在系统设置中关闭盲注计时器的通知与实时活动。",
             "在应用内删除任意玩家或牌局，即从设备上移除。",
+            "随时停止实时共享；链接立即失效，快照随之删除。",
           ],
         ],
       },
@@ -464,7 +480,14 @@ const zhTw: AppLocalized = {
       {
         heading: "我們不收集什麼",
         body: [
-          "沒有帳號、Email、通訊錄、位置、照片或訊息。你的牌局帳本——玩家姓名、買入、碼量、歷史記錄——只保存在你的裝置上，從不上傳；App 沒有帳號系統，也沒有儲存你資料的伺服器。鎖定畫面即時動態、桌面小工具與盲注計時器的提醒完全在裝置本機產生——不會有任何牌局或計時資訊被送出去。",
+          "沒有帳號、Email、通訊錄、位置、照片或訊息。你的牌局帳本——玩家姓名、買入、碼量、歷史記錄——只保存在你的裝置上；除非你主動選擇即時分享某一局（見下文），否則從不上傳。App 沒有帳號系統。鎖定畫面即時動態、桌面小工具與盲注計時器的提醒完全在裝置本機產生——不會有任何牌局或計時資訊被送出去。",
+        ],
+      },
+      {
+        heading: "即時分享（選用）",
+        body: [
+          "如果你在牌局中點了「即時分享」，撲克之夜會上傳這一局的唯讀快照，讓同桌的朋友用自己的手機查看：你為今晚玩家填寫的顯示名稱、買入、籌碼數、盈虧、籌碼換算金額、結算後的轉帳明細，以及你設定的牌局名稱（如有）。快照存放在 Google Cloud Firestore（Firebase）中，以一個 128 位元隨機連結識別，並附帶一個匿名的 Firebase 登入識別碼，只有你的裝置才能更新或停止分享。它不與任何帳號、Email、廣告識別碼或分析識別碼關聯。",
+          "拿到連結或 QR code 的人都可以查看快照，但無法被搜尋或列出。你點「停止分享」時會立即刪除；即使不停止，也會在最後一次更新後最多 48 小時（牌局結算後 24 小時）自動刪除。沒有分享的牌局不會上傳任何內容；客人在瀏覽器中開啟連結時也不需要提供任何資訊。",
         ],
       },
       {
@@ -488,6 +511,7 @@ const zhTw: AppLocalized = {
             "透過「撲克之夜 Pro」（或先前購買的「移除廣告」，已自動包含 Pro）永久移除廣告。",
             "隨時在系統設定中關閉盲注計時器的通知與即時動態。",
             "在 App 內刪除任意玩家或牌局，即從裝置上移除。",
+            "隨時停止即時分享；連結立即失效，快照隨之刪除。",
           ],
         ],
       },
