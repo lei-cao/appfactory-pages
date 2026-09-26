@@ -28,13 +28,25 @@ export interface Dict {
     navSupport: string;
     navPrivacy: string;
     navTerms: string;
+    /** Poker Night only, en/zh-cn only — see the `guide` block below. */
+    navGuide: string;
     whatItDoes: string;
     screens: string;
     footerFrom: string; // "{name} · build {n} from"
     footSupport: string;
     footPrivacy: string;
     footTerms: string;
+    footGuide: string;
     footContact: string;
+  };
+  /** Poker Night's home-game guide (only rendered for that app). */
+  guide: {
+    eyebrow: string;
+    title: string; // "{name} home-game guide"
+    intro: string;
+    back: string; // link back to the guide index
+    minutesRead: string; // "{n} min read"
+    updated: string; // "Updated {date}"
   };
   support: {
     eyebrow: string;
@@ -92,13 +104,24 @@ const en: Dict = {
     navSupport: "Support",
     navPrivacy: "Privacy",
     navTerms: "Terms",
+    navGuide: "Guide",
     whatItDoes: "what it does",
     screens: "screens",
     footerFrom: "{name} · build {n} from",
     footSupport: "support",
     footPrivacy: "privacy",
     footTerms: "terms",
+    footGuide: "guide",
     footContact: "contact",
+  },
+  guide: {
+    eyebrow: "home-game guide",
+    title: "{name} home-game guide",
+    intro:
+      "Seventeen short articles on the rules, hand rankings, hosting and etiquette — the same guide that's built into the app, plus an English–中文 glossary.",
+    back: "← All articles",
+    minutesRead: "{n} min read",
+    updated: "Updated {date}",
   },
   support: {
     eyebrow: "support",
@@ -159,13 +182,24 @@ const zhCn: Dict = {
     navSupport: "支持",
     navPrivacy: "隐私",
     navTerms: "条款",
+    navGuide: "指南",
     whatItDoes: "功能亮点",
     screens: "应用截图",
     footerFrom: "{name} · 编号 {n} · 出自",
     footSupport: "支持",
     footPrivacy: "隐私",
     footTerms: "条款",
+    footGuide: "指南",
     footContact: "联系",
+  },
+  guide: {
+    eyebrow: "家庭牌局指南",
+    title: "{name} 家庭牌局指南",
+    intro:
+      "17 篇关于规则、牌型、组局与礼仪的短文——和内置在应用里的指南完全一样，还附带中英文术语表。",
+    back: "← 所有文章",
+    minutesRead: "{n} 分钟读完",
+    updated: "更新于 {date}",
   },
   support: {
     eyebrow: "支持",
@@ -223,13 +257,24 @@ const zhTw: Dict = {
     navSupport: "支援",
     navPrivacy: "隱私",
     navTerms: "條款",
+    navGuide: "指南",
     whatItDoes: "功能亮點",
     screens: "畫面截圖",
     footerFrom: "{name} · 編號 {n} · 出自",
     footSupport: "支援",
     footPrivacy: "隱私",
     footTerms: "條款",
+    footGuide: "指南",
     footContact: "聯絡",
+  },
+  guide: {
+    eyebrow: "家庭牌局指南",
+    title: "{name} 家庭牌局指南",
+    intro:
+      "17 篇關於規則、牌型、組局與禮儀的短文——與 App 內建的指南完全相同，並附中英術語表。",
+    back: "← 所有文章",
+    minutesRead: "{n} 分鐘讀完",
+    updated: "更新於 {date}",
   },
   support: {
     eyebrow: "支援",
