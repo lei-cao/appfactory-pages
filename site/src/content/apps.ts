@@ -30,6 +30,8 @@ export interface AppBase {
   icon: string;
   /** 1200×630 social card; falls back to the first screenshot. */
   ogImage?: string;
+  /** Support contact for this app; defaults to the site-wide CONTACT_EMAIL. */
+  contactEmail?: string;
 }
 
 /** Everything language-specific, provided once per locale. */
@@ -66,8 +68,19 @@ import { pokerNight } from "./poker-night";
 import { sushiSort } from "./sushi-sort";
 import { tracesheet } from "./tracesheet";
 import { emberDeck } from "./ember-deck";
+import { courtyardArrows } from "./courtyard-arrows";
+import { porcelainTrio } from "./porcelain-trio";
+import { glossyBlocks } from "./glossy-blocks";
 
-export const apps: AppContent[] = [pokerNight, sushiSort, tracesheet, emberDeck];
+export const apps: AppContent[] = [
+  pokerNight,
+  sushiSort,
+  tracesheet,
+  emberDeck,
+  courtyardArrows,
+  porcelainTrio,
+  glossyBlocks,
+];
 
 export function getApp(slug: string): AppContent | undefined {
   return apps.find((a) => a.slug === slug);

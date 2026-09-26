@@ -37,6 +37,7 @@ export default async function Support({
   if (!app) notFound();
   const loc = localized(app, locale);
   const dict = getDict(locale);
+  const contact = app.contactEmail ?? CONTACT_EMAIL;
 
   const subject = encodeURIComponent(
     fmt(dict.support.mailSubject, { name: loc.name, version: app.version }),
@@ -50,10 +51,10 @@ export default async function Support({
       </h1>
       <p className="text-slate mt-4 leading-relaxed">{dict.support.intro}</p>
       <a
-        href={`mailto:${CONTACT_EMAIL}?subject=${subject}`}
+        href={`mailto:${contact}?subject=${subject}`}
         className="border-line bg-panel mt-6 inline-block rounded-xl border px-6 py-3 font-medium transition-colors hover:border-indigo"
       >
-        {CONTACT_EMAIL}
+        {contact}
       </a>
       <p className="text-slate mt-4 text-sm leading-relaxed">
         {dict.support.hint}

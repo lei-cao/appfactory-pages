@@ -120,7 +120,7 @@ export default async function AppLayout({
               </Link>
             )}
             <a
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={`mailto:${app.contactEmail ?? CONTACT_EMAIL}`}
               className="spec-label transition-colors hover:text-indigo-soft"
             >
               {dict.app.footContact}
