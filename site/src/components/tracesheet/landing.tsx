@@ -47,28 +47,45 @@ function GridCell({
   );
 }
 
-/** Download button. No official Apple badge artwork is in the repo, so this
- * is a plain text button in the ink colour (Apple's guidelines don't allow
- * the Apple logo outside the official badge). */
-function StoreButton({
-  href,
-  eyebrow,
-  label,
-}: {
-  href?: string;
-  eyebrow: string;
-  label: string;
-}) {
+/** Official "Download on the App Store" artwork from Apple Marketing Tools
+ * (toolbox.marketingtools.apple.com), black preferred badge, one file per
+ * locale. Shown as delivered: no recolor, no extra chrome. */
+const APP_STORE_BADGES: Record<
+  Locale,
+  { src: string; width: number; alt: string }
+> = {
+  en: {
+    src: "/apps/tracesheet/app-store-badge-en.svg",
+    width: 119.66407,
+    alt: "Download on the App Store",
+  },
+  "zh-cn": {
+    src: "/apps/tracesheet/app-store-badge-zh-cn.svg",
+    width: 108.85157,
+    alt: "App Store 下载",
+  },
+  "zh-tw": {
+    src: "/apps/tracesheet/app-store-badge-zh-tw.svg",
+    width: 108.85157,
+    alt: "App Store 下載",
+  },
+};
+
+const BADGE_HEIGHT = 48;
+
+function StoreButton({ href, locale }: { href?: string; locale: Locale }) {
   if (!href) return null;
+  const badge = APP_STORE_BADGES[locale];
   return (
-    <a
-      href={href}
-      className="ts-store-button inline-flex flex-col items-start rounded-xl px-6 py-3 leading-tight"
-    >
-      <span className="text-[0.7rem] font-medium tracking-wide opacity-80">
-        {eyebrow}
-      </span>
-      <span className="font-display text-xl font-semibold">{label}</span>
+    <a href={href} className="ts-store-badge inline-block leading-none">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={badge.src}
+        alt={badge.alt}
+        width={(badge.width / 40) * BADGE_HEIGHT}
+        height={BADGE_HEIGHT}
+        className="h-12 w-auto"
+      />
     </a>
   );
 }
@@ -213,11 +230,7 @@ export async function TracesheetLandingPage({ locale }: { locale: Locale }) {
             {copy.heroSub}
           </p>
           <div className="flex flex-col items-start gap-4 sm:items-end">
-            <StoreButton
-              href={app.appStoreUrl}
-              eyebrow={copy.cta.eyebrow}
-              label={copy.cta.label}
-            />
+            <StoreButton href={app.appStoreUrl} locale={locale} />
             <ul className="ts-facts text-slate flex flex-col gap-y-1 text-sm sm:flex-row sm:flex-wrap sm:justify-end">
               {copy.heroFacts.map((fact) => (
                 <li key={fact}>{fact}</li>
@@ -451,11 +464,7 @@ export async function TracesheetLandingPage({ locale }: { locale: Locale }) {
             {copy.closingBody}
           </p>
           <div className="mt-8">
-            <StoreButton
-              href={app.appStoreUrl}
-              eyebrow={copy.cta.eyebrow}
-              label={copy.cta.label}
-            />
+            <StoreButton href={app.appStoreUrl} locale={locale} />
           </div>
         </div>
       </section>

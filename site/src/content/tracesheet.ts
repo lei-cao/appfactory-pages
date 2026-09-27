@@ -681,7 +681,6 @@ export interface TracesheetLanding {
   heroFacts: string[];
   video: TracesheetHeroVideo;
   videoLabel: string;
-  cta: { eyebrow: string; label: string };
   learnEyebrow: string;
   learnTitle: string;
   learnIntro: string;
@@ -721,7 +720,6 @@ const landingEn: TracesheetLanding = {
   video: heroVideo("en"),
   videoLabel:
     "TraceSheet in 40 seconds: add a word, browse 2,000-word decks, flip flashcards, write 花 stroke by stroke, take dictation and print a 田字格 worksheet.",
-  cta: { eyebrow: "Download on the", label: "App Store" },
   learnEyebrow: "learn it",
   learnTitle: "From a word you just met to a word you can write",
   learnIntro:
@@ -831,7 +829,6 @@ const landingZhCn: TracesheetLanding = {
   video: heroVideo("zh-cn"),
   videoLabel:
     "40 秒看 TraceSheet：添加一个词、浏览 2,000 词词库、翻闪卡、按笔顺写“花”、做听写，再打印一张田字格字帖。",
-  cta: { eyebrow: "前往下载", label: "App Store" },
   learnEyebrow: "学会它",
   learnTitle: "从刚遇到的词，到会写的词",
   learnIntro:
@@ -936,7 +933,6 @@ const landingZhTw: TracesheetLanding = {
   video: heroVideo("en"),
   videoLabel:
     "40 秒看 TraceSheet：新增一個詞、瀏覽 2,000 詞詞庫、翻字卡、按筆順寫「花」、做聽寫，再列印一張田字格字帖。",
-  cta: { eyebrow: "前往下載", label: "App Store" },
   learnEyebrow: "學會它",
   learnTitle: "從剛遇到的詞，到會寫的詞",
   learnIntro:

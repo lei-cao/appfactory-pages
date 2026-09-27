@@ -272,19 +272,12 @@ html {
   box-shadow: 0 2px 10px rgba(210, 70, 47, 0.3);
 }
 
-/* Download button: solid ink on paper; vermilion only on hover/focus. */
-.ts-store-button {
-  background: var(--color-paper);
-  color: var(--color-panel);
-  transition: background-color 150ms ease;
-}
-.ts-store-button:hover,
-.ts-store-button:focus-visible {
-  background: #b23522; /* vermilionDeep */
-}
-.ts-store-button:focus-visible {
+/* Official App Store badge. No hover recolor — the artwork stays as Apple
+   delivered it. The ring sits outside the badge. */
+.ts-store-badge:focus-visible {
   outline: 2px solid var(--color-indigo);
-  outline-offset: 3px;
+  outline-offset: 4px;
+  border-radius: 10px;
 }
 
 /* Fact list: stacked on phones, one line separated by thin middle dots
