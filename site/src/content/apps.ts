@@ -26,6 +26,8 @@ export interface AppBase {
   status: AppStatus;
   platforms: string[];
   appStoreUrl?: string;
+  /** Numeric App Store id; emits the apple-itunes-app Smart App Banner. */
+  appStoreId?: string;
   playStoreUrl?: string;
   icon: string;
   /** 1200×630 social card; falls back to the first screenshot. */
