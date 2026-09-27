@@ -44,7 +44,7 @@ const en: AppLocalized = {
   metaTitle:
     "TraceSheet — collect words, learn them, print 田字格 practice sheets free",
   metaDescription:
-    "Collect any word in Chinese, Japanese, Korean or English. Hear it, flip flashcards, write it stroke by stroke and take dictation — then print 田字格, pinyin and English practice sheets free, with no limit. iPhone and iPad. No account, no ads.",
+    "Collect any word in Chinese, Japanese, Korean or English. Hear it, flip flashcards, write it stroke by stroke and take dictation — then print 田字格, pinyin and English practice sheets free: page 1 of every sheet, with no limit on sheets. iPhone and iPad. No account, no ads.",
   features: [
     {
       title: "Collect any word",
@@ -93,7 +93,7 @@ const en: AppLocalized = {
     },
     {
       q: "What can I print for free?",
-      a: "Everyday sheets, with no limit: 田字格 with 描红 tracing and pinyin, pinyin four-line sheets, English handwriting, notebook lines and square grid, with every layout setting. Print, share a PDF or save an image as often as you like. Free pages carry a small App Store QR code in the footer.",
+      a: "Page 1 of any everyday sheet, with no limit on how many sheets you make: 田字格 with 描红 tracing and pinyin, pinyin four-line sheets, English handwriting, notebook lines and square grid, with every layout setting. Print, share a PDF or save an image as often as you like — free exports contain page 1 of each sheet, with a small App Store QR code in the footer.",
     },
     {
       q: "Is TraceSheet Pro a subscription?",
@@ -241,7 +241,7 @@ const zhCn: AppLocalized = {
   statusNote: "1.0 版正在 App Store 审核中，通过后即可在 iPhone 和 iPad 上免费下载。",
   metaTitle: "TraceSheet — 随手收词，田字格字帖免费打印",
   metaDescription:
-    "中文、日文、韩文、英文的词随手收下：听读音、翻闪卡、按笔顺一笔一笔写、听写，再免费打印田字格、拼音四线格和英文书写字帖，不限张数。支持 iPhone 和 iPad，无需账号，没有广告。",
+    "中文、日文、韩文、英文的词随手收下：听读音、翻闪卡、按笔顺一笔一笔写、听写，再免费打印田字格、拼音四线格和英文书写字帖——每张字帖免费打印第 1 页，不限张数。支持 iPhone 和 iPad，无需账号，没有广告。",
   features: [
     {
       title: "随手收词",
@@ -290,7 +290,7 @@ const zhCn: AppLocalized = {
     },
     {
       q: "免费能打印什么？",
-      a: "日常字帖都能免费打印，不限张数：田字格描红（可加拼音）、拼音四线格、英文书写、横线纸和方格纸，每一项排版都能调。打印、分享 PDF、存成图片，想印几张就印几张。免费页面底部有一个小小的 App Store 二维码。",
+      a: "每张日常字帖都能免费打印第 1 页，字帖数量不限：田字格描红（可加拼音）、拼音四线格、英文书写、横线纸和方格纸，每一项排版都能调。打印、分享 PDF、存成图片，想印几次就印几次——免费导出的都是每张字帖的第 1 页，底部有一个小小的 App Store 二维码。",
     },
     {
       q: "TraceSheet Pro 是订阅吗？",
@@ -438,7 +438,7 @@ const zhTw: AppLocalized = {
   statusNote: "1.0 版正在 App Store 審核中，通過後即可在 iPhone 和 iPad 上免費下載。",
   metaTitle: "TraceSheet — 隨手收詞，田字格字帖免費列印",
   metaDescription:
-    "中文、日文、韓文、英文的詞隨手收下：聽讀音、翻字卡、按筆順一筆一筆寫、聽寫，再免費列印田字格、拼音四線格和英文書寫字帖，不限張數。支援 iPhone 和 iPad，無需帳號，沒有廣告。",
+    "中文、日文、韓文、英文的詞隨手收下：聽讀音、翻字卡、按筆順一筆一筆寫、聽寫，再免費列印田字格、拼音四線格和英文書寫字帖——每張字帖免費列印第 1 頁，不限張數。支援 iPhone 和 iPad，無需帳號，沒有廣告。",
   features: [
     {
       title: "隨手收詞",
@@ -487,7 +487,7 @@ const zhTw: AppLocalized = {
     },
     {
       q: "免費能列印什麼？",
-      a: "日常字帖都能免費列印，不限張數：田字格描紅（可加拼音）、拼音四線格、英文書寫、橫線紙和方格紙，每一項排版都能調。列印、分享 PDF、存成圖片，想印幾張就印幾張。免費頁面底部有一個小小的 App Store QR 碼。",
+      a: "每張日常字帖都能免費列印第 1 頁，字帖數量不限：田字格描紅（可加拼音）、拼音四線格、英文書寫、橫線紙和方格紙，每一項排版都能調。列印、分享 PDF、存成圖片，想印幾次就印幾次——免費匯出的都是每張字帖的第 1 頁，底部有一個小小的 App Store QR 碼。",
     },
     {
       q: "TraceSheet Pro 是訂閱嗎？",
@@ -717,7 +717,7 @@ const landingEn: TracesheetLanding = {
   heroLines: ["Collect any word.", "Learn it.", "Print real practice."],
   heroSub:
     "Save a word the moment you meet it, in any of four languages. Hear it, flip flashcards, write it stroke by stroke, take dictation — then print sheets that look like a copybook.",
-  heroFacts: ["Free sheets, no limit", "iPhone & iPad", "No account, no ads"],
+  heroFacts: ["Free one-page sheets, no limit", "iPhone & iPad", "No account, no ads"],
   video: heroVideo("en"),
   videoLabel:
     "TraceSheet in 40 seconds: add a word, browse 2,000-word decks, flip flashcards, write 花 stroke by stroke, take dictation and print a 田字格 worksheet.",
@@ -770,7 +770,7 @@ const landingEn: TracesheetLanding = {
   planTitle: "Everyday sheets are free. Pro is yours for good.",
   planIntro:
     "No sheet count, no trial clock. Every Pro sheet option can be tried free: the preview shows page 1, and “Use free options” switches back in one tap.",
-  planFree: { name: "Free", price: "USD 0", note: "Unlimited everyday sheets" },
+  planFree: { name: "Free", price: "USD 0", note: "Unlimited one-page sheets" },
   planPro: {
     name: "Pro",
     price: "USD 14.99",
@@ -782,6 +782,7 @@ const landingEn: TracesheetLanding = {
     { label: "田字格 tian-grid sheets with 描红 tracing and pinyin", free: true, pro: true },
     { label: "Pinyin four-line, English lines, notebook lines, square grid", free: true, pro: true },
     { label: "Every layout setting, A4 or US Letter", free: true, pro: true },
+    { label: "Pages per sheet", free: "Page 1", pro: "All pages" },
     { label: "Print, share PDF, save image", free: "Unlimited", pro: "Unlimited" },
     { label: "App Store QR code in the page footer", free: "Small QR", pro: "No QR" },
     { label: "笔顺 stroke-order sheets and strips", free: "Try: page 1", pro: true },
@@ -797,7 +798,7 @@ const landingEn: TracesheetLanding = {
   shareEyebrow: "for teachers & parents",
   shareTitle: "Share sheets free — with the class, the teacher, the group chat",
   shareBody:
-    "Free sheets aren't a trial. Print a stack for the whole class, send the PDF to the teacher, or pass it on to other parents — as often as you like. Each free page carries a small App Store QR code in the footer, so anyone holding a copy can find the app that made it.",
+    "Free sheets aren't a trial — they print page 1 of each sheet, and a class list usually fits on one page anyway. Print a stack for the whole class, send the PDF to the teacher, or pass it on to other parents — as often as you like. Each free page carries a small App Store QR code in the footer, so anyone holding a copy can find the app that made it.",
   shareSteps: [
     {
       title: "Make it once",
@@ -826,7 +827,7 @@ const landingZhCn: TracesheetLanding = {
   heroLines: ["随手收词，", "学会它，", "印成真正的字帖。"],
   heroSub:
     "遇到一个词，随手收下，四种语言都行。听读音、翻闪卡、一笔一笔写、做听写——最后打印成像字帖一样的练习纸。",
-  heroFacts: ["免费打印，不限张数", "iPhone 和 iPad", "无需账号，没有广告"],
+  heroFacts: ["免费打印第 1 页，不限张数", "iPhone 和 iPad", "无需账号，没有广告"],
   video: heroVideo("zh-cn"),
   videoLabel:
     "40 秒看 TraceSheet：添加一个词、浏览 2,000 词词库、翻闪卡、按笔顺写“花”、做听写，再打印一张田字格字帖。",
@@ -878,7 +879,7 @@ const landingZhCn: TracesheetLanding = {
   planTitle: "日常字帖免费印，Pro 买一次用到底。",
   planIntro:
     "不限张数，也没有试用期。所有 Pro 字帖选项都能免费试：预览显示第 1 页，点“改用免费选项”一键换回。",
-  planFree: { name: "免费", price: "0 美元", note: "日常字帖不限张数" },
+  planFree: { name: "免费", price: "0 美元", note: "单页字帖不限张数" },
   planPro: { name: "Pro", price: "14.99 美元", note: "一次性购买，不是订阅" },
   planFeatureHeader: "功能",
   planRows: [
@@ -886,6 +887,7 @@ const landingZhCn: TracesheetLanding = {
     { label: "田字格描红字帖，可加拼音", free: true, pro: true },
     { label: "拼音四线格、英文书写线、横线纸、方格纸", free: true, pro: true },
     { label: "所有排版设置，A4 或 Letter", free: true, pro: true },
+    { label: "每张字帖打印页数", free: "第 1 页", pro: "全部页" },
     { label: "打印、分享 PDF、存成图片", free: "不限", pro: "不限" },
     { label: "页脚的 App Store 二维码", free: "小二维码", pro: "无二维码" },
     { label: "笔顺字帖和笔顺条", free: "可试：第 1 页", pro: true },
@@ -900,7 +902,7 @@ const landingZhCn: TracesheetLanding = {
   shareEyebrow: "给老师和家长",
   shareTitle: "字帖免费分享——发给全班、发给老师、发到家长群",
   shareBody:
-    "免费字帖不是试用。给全班每人印一份、把 PDF 发给老师、转给其他家长，想分享几次都行。每张免费页面的页脚都有一个小小的 App Store 二维码，拿到字帖的人扫一下就能找到这个应用。",
+    "免费字帖不是试用——每张只是印第 1 页，而一份听写清单通常一页就够。给全班每人印一份、把 PDF 发给老师、转给其他家长，想分享几次都行。每张免费页面的页脚都有一个小小的 App Store 二维码，拿到字帖的人扫一下就能找到这个应用。",
   shareSteps: [
     {
       title: "做一次",
@@ -928,7 +930,7 @@ const landingZhTw: TracesheetLanding = {
   heroLines: ["隨手收詞，", "學會它，", "印成真正的字帖。"],
   heroSub:
     "遇到一個詞，隨手收下，四種語言都行。聽讀音、翻字卡、一筆一筆寫、做聽寫——最後列印成像字帖一樣的練習紙。",
-  heroFacts: ["免費列印，不限張數", "iPhone 和 iPad", "無需帳號，沒有廣告"],
+  heroFacts: ["免費列印第 1 頁，不限張數", "iPhone 和 iPad", "無需帳號，沒有廣告"],
   // No Traditional-Chinese cut of the hero exists; the English one carries
   // no Simplified captions a zh-TW reader would trip over.
   video: heroVideo("en"),
@@ -982,7 +984,7 @@ const landingZhTw: TracesheetLanding = {
   planTitle: "日常字帖免費印，Pro 買一次用到底。",
   planIntro:
     "不限張數，也沒有試用期。所有 Pro 字帖選項都能免費試：預覽顯示第 1 頁，點「改用免費選項」一鍵換回。",
-  planFree: { name: "免費", price: "0 美元", note: "日常字帖不限張數" },
+  planFree: { name: "免費", price: "0 美元", note: "單頁字帖不限張數" },
   planPro: { name: "Pro", price: "14.99 美元", note: "一次性購買，不是訂閱" },
   planFeatureHeader: "功能",
   planRows: [
@@ -990,6 +992,7 @@ const landingZhTw: TracesheetLanding = {
     { label: "田字格描紅字帖，可加拼音", free: true, pro: true },
     { label: "拼音四線格、英文書寫線、橫線紙、方格紙", free: true, pro: true },
     { label: "所有排版設定，A4 或 Letter", free: true, pro: true },
+    { label: "每張字帖列印頁數", free: "第 1 頁", pro: "全部頁" },
     { label: "列印、分享 PDF、存成圖片", free: "不限", pro: "不限" },
     { label: "頁尾的 App Store QR 碼", free: "小 QR 碼", pro: "無 QR 碼" },
     { label: "筆順字帖和筆順條", free: "可試：第 1 頁", pro: true },
@@ -1004,7 +1007,7 @@ const landingZhTw: TracesheetLanding = {
   shareEyebrow: "給老師和家長",
   shareTitle: "字帖免費分享——傳給全班、傳給老師、傳到家長群組",
   shareBody:
-    "免費字帖不是試用。給全班每人印一份、把 PDF 傳給老師、轉給其他家長，想分享幾次都行。每張免費頁面的頁尾都有一個小小的 App Store QR 碼，拿到字帖的人掃一下就能找到這個 App。",
+    "免費字帖不是試用——每張只是列印第 1 頁，而一份聽寫清單通常一頁就夠。給全班每人印一份、把 PDF 傳給老師、轉給其他家長，想分享幾次都行。每張免費頁面的頁尾都有一個小小的 App Store QR 碼，拿到字帖的人掃一下就能找到這個 App。",
   shareSteps: [
     {
       title: "做一次",
