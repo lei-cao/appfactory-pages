@@ -6,7 +6,12 @@
 
 import Image from "next/image";
 import { getApp, localized } from "@/content/apps";
-import { sushiSortLanding } from "@/content/sushi-sort";
+import {
+  sushiSortLanding,
+  sushiSortMusicCredits,
+  sushiSortSfxCredits,
+  type CreditSource,
+} from "@/content/sushi-sort";
 import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -46,6 +51,55 @@ function Lane({
       {done && (
         <span className="text-indigo ml-auto pr-1 text-sm font-bold">✓</span>
       )}
+    </div>
+  );
+}
+
+/** One credit source: who, licence, site link, then its tracks. */
+function CreditCard({
+  source,
+  byLabel,
+  locale,
+}: {
+  source: CreditSource;
+  byLabel: string;
+  locale: Locale;
+}) {
+  return (
+    <div className="border-line bg-panel rounded-2xl border p-6">
+      <h4 className="font-display text-lg font-semibold">
+        <a
+          href={source.url}
+          className="hover:text-indigo underline decoration-dotted underline-offset-4"
+          rel="noopener"
+        >
+          {source.name}
+        </a>
+      </h4>
+      {source.requiredCredit && (
+        <p className="mt-1 text-sm font-semibold">{source.requiredCredit}</p>
+      )}
+      <p className="text-slate mt-1 text-sm">
+        {byLabel} {source.by} · {source.licence[locale]}
+      </p>
+      <p className="mt-1 text-sm break-all">
+        <a href={source.url} className="text-indigo" rel="noopener">
+          {source.url}
+        </a>
+      </p>
+      <ul className="mt-4 space-y-1.5 text-sm leading-relaxed">
+        {source.tracks.map((t) => (
+          <li key={t.url}>
+            <a
+              href={t.url}
+              className="hover:text-indigo underline decoration-dotted underline-offset-4"
+              rel="noopener"
+            >
+              {t.title}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -334,6 +388,55 @@ export async function SushiSortLandingPage({ locale }: { locale: Locale }) {
             </div>
           ))}
         </dl>
+      </section>
+
+      {/* Music & sound credits */}
+      <section
+        id="credits"
+        aria-label={copy.creditsTitle}
+        className="pb-24"
+      >
+        <span className="spec-label">{copy.creditsEyebrow}</span>
+        <h2 className="font-display mt-3 text-3xl font-bold sm:text-4xl">
+          {copy.creditsTitle}
+        </h2>
+        <p className="text-slate mt-4 max-w-3xl leading-relaxed">
+          {copy.creditsIntro}
+        </p>
+        <h3 className="font-display mt-10 text-xl font-semibold">
+          {copy.creditsMusic}
+        </h3>
+        <div className="mt-5 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+          <CreditCard
+            source={sushiSortMusicCredits[0]}
+            byLabel={copy.creditsMusicBy}
+            locale={locale}
+          />
+          <div className="grid content-start gap-6">
+            {sushiSortMusicCredits.slice(1).map((c) => (
+              <CreditCard
+                key={c.url}
+                source={c}
+                byLabel={copy.creditsMusicBy}
+                locale={locale}
+              />
+            ))}
+          </div>
+        </div>
+        <h3 className="font-display mt-10 text-xl font-semibold">
+          {copy.creditsSfx}
+        </h3>
+        <div className="mt-5 grid gap-6 sm:grid-cols-2">
+          {sushiSortSfxCredits.map((c) => (
+            <CreditCard
+              key={c.url}
+              source={c}
+              byLabel={copy.creditsSoundsBy}
+              locale={locale}
+            />
+          ))}
+        </div>
+        <p className="text-slate mt-6 text-sm">{copy.creditsOriginal}</p>
       </section>
 
       {/* Closing CTA */}

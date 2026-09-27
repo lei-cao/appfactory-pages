@@ -636,6 +636,16 @@ export interface SushiSortLanding {
   faqTitle: string;
   closingTitle: string;
   closingBody: string;
+  creditsEyebrow: string;
+  creditsTitle: string;
+  creditsIntro: string;
+  creditsMusic: string;
+  creditsSfx: string;
+  /** "Music by" / "Sounds by" prefix for a credit source. */
+  creditsMusicBy: string;
+  creditsSoundsBy: string;
+  /** Closing line for the original (procedural) score and sounds. */
+  creditsOriginal: string;
 }
 
 const landingEn: SushiSortLanding = {
@@ -706,6 +716,16 @@ const landingEn: SushiSortLanding = {
   closingTitle: "Ready when you are. No timer says so.",
   closingBody:
     "Sushi Sort will be on the App Store shortly — it's in Apple's review queue right now.",
+  creditsEyebrow: "credits",
+  creditsTitle: "Music & sound credits",
+  creditsIntro:
+    "The music and sounds in Sushi Sort come from these composers and libraries. Thank you — every track links to its page.",
+  creditsMusic: "Music",
+  creditsSfx: "Sound effects",
+  creditsMusicBy: "Music by",
+  creditsSoundsBy: "Sounds by",
+  creditsOriginal:
+    "Everything else — the procedural koto, shakuhachi and taiko score and the chimes — was made for Sushi Sort.",
 };
 
 const landingZhCn: SushiSortLanding = {
@@ -774,6 +794,15 @@ const landingZhCn: SushiSortLanding = {
   faqTitle: "坦率的问题，直接的回答",
   closingTitle: "随时开局——反正没有倒计时。",
   closingBody: "Sushi Sort 即将登陆 App Store——目前正在 Apple 审核队列中。",
+  creditsEyebrow: "致谢",
+  creditsTitle: "音乐与音效致谢",
+  creditsIntro:
+    "Sushi Sort 的音乐与音效来自以下作曲者和素材库，衷心感谢。每首曲目都附有原始页面链接。",
+  creditsMusic: "音乐",
+  creditsSfx: "音效",
+  creditsMusicBy: "作曲",
+  creditsSoundsBy: "音效",
+  creditsOriginal: "其余部分——程序生成的筝、尺八、太鼓配乐与铃声——均为 Sushi Sort 原创。",
 };
 
 const landingZhTw: SushiSortLanding = {
@@ -842,6 +871,15 @@ const landingZhTw: SushiSortLanding = {
   faqTitle: "坦率的問題，直接的回答",
   closingTitle: "隨時開局——反正沒有倒數計時。",
   closingBody: "Sushi Sort 即將登陸 App Store——目前正在 Apple 審核佇列中。",
+  creditsEyebrow: "致謝",
+  creditsTitle: "音樂與音效致謝",
+  creditsIntro:
+    "Sushi Sort 的音樂與音效來自以下作曲者與素材庫，衷心感謝。每首曲目都附有原始頁面連結。",
+  creditsMusic: "音樂",
+  creditsSfx: "音效",
+  creditsMusicBy: "作曲",
+  creditsSoundsBy: "音效",
+  creditsOriginal: "其餘部分——程式生成的箏、尺八、太鼓配樂與鈴聲——皆為 Sushi Sort 原創。",
 };
 
 export const sushiSortLanding: Record<Locale, SushiSortLanding> = {
@@ -849,3 +887,100 @@ export const sushiSortLanding: Record<Locale, SushiSortLanding> = {
   "zh-cn": landingZhCn,
   "zh-tw": landingZhTw,
 };
+
+// ---------------------------------------------------------------------------
+// Music & sound credits — mirrors the app's assets/audio/credits.json
+// (Settings → Credits). Track titles are proper names: Japanese original +
+// English, the same in every locale. MOMIZizm MUSiC's terms ask for credit
+// plus a link to https://music.storyinvention.com/en/.
+
+export interface CreditSource {
+  /** Library or label, linked to its site. */
+  name: string;
+  url: string;
+  /** Composer / maker. */
+  by: string;
+  /** A credit line the licence asks for verbatim (e.g. 音楽：魔王魂). */
+  requiredCredit?: string;
+  licence: Record<Locale, string>;
+  tracks: { title: string; url: string }[];
+}
+
+const MOMIZIZM = "https://music.storyinvention.com/en/";
+const withCredit: Record<Locale, string> = {
+  en: "Free with credit and a link to the site",
+  "zh-cn": "注明出处并附网站链接即可使用",
+  "zh-tw": "註明出處並附網站連結即可使用",
+};
+const MOMIZIZM_TRACKS: [string, string][] = [
+  ["温泉旅館で流れてそうな曲24 — Onsen-style music 24", "onsen-ryokan-24-en"],
+  ["料亭で流れてそうな曲30（桜懐石） — Sakura Kaiseki", "ryoutei-30-en"],
+  ["温泉旅館で流れてそうな曲7 — Onsen-style music 7", "onsen-ryokan-7-en"],
+  ["旅館・宿っぽい曲1 — Ryokan-style music 1", "ryokan-yado-1-en"],
+  ["京都の料亭 — Kyoto's Ryotei", "kyoto-ryotey-en"],
+  ["料亭で流れてそうな曲14 — Ryotei-style music 14", "ryoutei-14-en"],
+  ["宇治抹茶 — Uji Green Tea", "uji-matcha-en"],
+  ["京都のお囃子 — Kyoto's Musical Accompaniment", "kyoto-ohayashi-en"],
+  ["ほのぼの茶房 — Honobono Teahouse", "honobono-sabou-en"],
+  ["あんみつ道中 — Syrup Journey", "anmitsu-douchu-en"],
+  ["おむすびの冒険 — Omusubi Adventure", "omusubi-bouken-en"],
+  ["ほんのり小町 — Honnori Komachi", "honnori-komachi-en"],
+  ["お月さまとのお話 — Talking with the Moon", "otsukisama-ohanashi-en"],
+  ["トコトコくん — Tokotoko Boy", "tokotoko-kun-en"],
+];
+const cc0: Record<Locale, string> = {
+  en: "CC0 1.0 (public domain)",
+  "zh-cn": "CC0 1.0（公有领域）",
+  "zh-tw": "CC0 1.0（公有領域）",
+};
+
+export const sushiSortMusicCredits: CreditSource[] = [
+  {
+    name: "MOMIZizm MUSiC",
+    url: MOMIZIZM,
+    by: "もみじば (Momijiba)",
+    licence: withCredit,
+    tracks: MOMIZIZM_TRACKS.map(([title, slug]) => ({
+      title,
+      url: `${MOMIZIZM}${slug}/`,
+    })),
+  },
+  {
+    name: "魔王魂 Maou Damashii",
+    url: "https://maou.audio/",
+    by: "森田交一 (Koichi Morita)",
+    requiredCredit: "音楽：魔王魂",
+    licence: { en: "CC BY 4.0", "zh-cn": "CC BY 4.0", "zh-tw": "CC BY 4.0" },
+    tracks: [
+      { title: "民族32 初詣 — Hatsumode", url: "https://maou.audio/bgm_ethnic32/" },
+      { title: "民族27 和の輪 — Wa no Wa", url: "https://maou.audio/bgm_ethnic27/" },
+      { title: "民族09 揺れる提灯 — Yureru Chōchin", url: "https://maou.audio/bgm_ethnic09/" },
+    ],
+  },
+  {
+    name: "甘茶の音楽工房 Amacha",
+    url: "https://amachamusic.chagasi.com/",
+    by: "甘茶 (Amacha)",
+    licence: {
+      en: "Free for commercial use (site terms)",
+      "zh-cn": "可免费商用（网站条款）",
+      "zh-tw": "可免費商用（網站條款）",
+    },
+    tracks: [
+      { title: "花祭り — Hanamatsuri", url: "https://amachamusic.chagasi.com/music_hanamatsuri.html" },
+    ],
+  },
+];
+
+export const sushiSortSfxCredits: CreditSource[] = [
+  {
+    name: "Kenney",
+    url: "https://kenney.nl/",
+    by: "Kenney",
+    licence: cc0,
+    tracks: [
+      { title: "Casino Audio — plate clacks, spot tick, lid lift, flight", url: "https://kenney.nl/assets/casino-audio" },
+      { title: "RPG Audio — soft knock, coins", url: "https://kenney.nl/assets/rpg-audio" },
+    ],
+  },
+];
