@@ -124,7 +124,7 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-27",
+    updated: "2026-09-28",
     sections: [
       {
         heading: "What we collect",
@@ -144,7 +144,7 @@ const en: AppLocalized = {
       {
         heading: "Advertising & tracking",
         body: [
-          "TraceSheet shows no ads and does not track you across apps or websites — there is no App Tracking Transparency prompt and no advertising identifier is used. The QR code printed on free sheets is a plain link to TraceSheet's App Store page; it carries no identifier and nothing about you or your child.",
+          "TraceSheet shows no ads and does not track you across apps or websites — there is no App Tracking Transparency prompt and no advertising identifier is used. The QR code printed on sheets opens a short link on appfactory.sg that forwards to TraceSheet's App Store page (or this site on other devices). The link says only that it came from a printed sheet; it carries no identifier and nothing about you or your child. Our web host keeps standard request logs (such as IP address and browser type) for security, as any website does.",
         ],
       },
       {
@@ -321,7 +321,7 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-27",
+    updated: "2026-09-28",
     sections: [
       {
         heading: "我们收集什么",
@@ -341,7 +341,7 @@ const zhCn: AppLocalized = {
       {
         heading: "广告与追踪",
         body: [
-          "TraceSheet 不展示广告，也不会跨应用或网站追踪你——没有 App 跟踪透明度弹窗，也不使用广告标识符。免费字帖上印的二维码只是指向 TraceSheet App Store 页面的普通链接，不带任何标识，也不包含你或孩子的任何信息。",
+          "TraceSheet 不展示广告，也不会跨应用或网站追踪你——没有 App 跟踪透明度弹窗，也不使用广告标识符。字帖上印的二维码是 appfactory.sg 上的一个短链接，会转到 TraceSheet 的 App Store 页面（其他设备则转到本网站）。链接只表明它来自打印的字帖，不带任何标识，也不包含你或孩子的任何信息。和所有网站一样，我们的网站托管方会出于安全原因保留常规访问日志（如 IP 地址和浏览器类型）。",
         ],
       },
       {
@@ -518,7 +518,7 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-27",
+    updated: "2026-09-28",
     sections: [
       {
         heading: "我們收集什麼",
@@ -538,7 +538,7 @@ const zhTw: AppLocalized = {
       {
         heading: "廣告與追蹤",
         body: [
-          "TraceSheet 不顯示廣告，也不會跨應用程式或網站追蹤你——沒有 App 追蹤透明度彈窗，也不使用廣告識別碼。免費字帖上印的 QR 碼只是指向 TraceSheet App Store 頁面的一般連結，不帶任何識別碼，也不包含你或孩子的任何資訊。",
+          "TraceSheet 不顯示廣告，也不會跨應用程式或網站追蹤你——沒有 App 追蹤透明度彈窗，也不使用廣告識別碼。字帖上印的 QR 碼是 appfactory.sg 上的一個短連結，會轉到 TraceSheet 的 App Store 頁面（其他裝置則轉到本網站）。連結只表明它來自列印的字帖，不帶任何識別碼，也不包含你或孩子的任何資訊。和所有網站一樣，我們的網站代管商會基於安全原因保留一般存取紀錄（如 IP 位址和瀏覽器類型）。",
         ],
       },
       {
