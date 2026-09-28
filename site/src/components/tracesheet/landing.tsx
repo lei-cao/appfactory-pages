@@ -231,6 +231,7 @@ export async function TracesheetLandingPage({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-col items-start gap-4 sm:items-end">
             <StoreButton href={app.appStoreUrl} locale={locale} />
+            <p className="text-indigo text-sm font-medium">{loc.statusNote}</p>
             <ul className="ts-facts text-slate flex flex-col gap-y-1 text-sm sm:flex-row sm:flex-wrap sm:justify-end">
               {copy.heroFacts.map((fact) => (
                 <li key={fact}>{fact}</li>

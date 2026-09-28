@@ -39,8 +39,7 @@ const en: AppLocalized = {
   subtitle: "Stroke order, kanji & hangul",
   oneLiner:
     "Collect any word in Chinese, Japanese, Korean or English, learn it — listen, flashcards, stroke-by-stroke writing, dictation — and print practice sheets that look like a copybook.",
-  statusNote:
-    "Version 1.0 is in App Store review — free on iPhone and iPad once approved.",
+  statusNote: "Live now on the App Store — free on iPhone and iPad.",
   metaTitle:
     "TraceSheet — collect words, learn them, print 田字格 practice sheets free",
   metaDescription:
@@ -238,7 +237,7 @@ const zhCn: AppLocalized = {
   subtitle: "笔顺描红，中日韩英都能练",
   oneLiner:
     "中文、日文、韩文、英文的词都能随手收下，再听读音、翻闪卡、一笔一笔写、做听写，最后打印成像字帖一样的练习纸。",
-  statusNote: "1.0 版正在 App Store 审核中，通过后即可在 iPhone 和 iPad 上免费下载。",
+  statusNote: "已在 App Store 上线，iPhone 和 iPad 均可免费下载。",
   metaTitle: "TraceSheet — 随手收词，田字格字帖免费打印",
   metaDescription:
     "中文、日文、韩文、英文的词随手收下：听读音、翻闪卡、按笔顺一笔一笔写、听写，再免费打印田字格、拼音四线格和英文书写字帖——每张字帖免费打印第 1 页，不限张数。支持 iPhone 和 iPad，无需账号，没有广告。",
@@ -435,7 +434,7 @@ const zhTw: AppLocalized = {
   subtitle: "筆順描紅，中日韓英都能練",
   oneLiner:
     "中文、日文、韓文、英文的詞都能隨手收下，再聽讀音、翻字卡、一筆一筆寫、做聽寫，最後列印成像字帖一樣的練習紙。",
-  statusNote: "1.0 版正在 App Store 審核中，通過後即可在 iPhone 和 iPad 上免費下載。",
+  statusNote: "已在 App Store 上線，iPhone 和 iPad 皆可免費下載。",
   metaTitle: "TraceSheet — 隨手收詞，田字格字帖免費列印",
   metaDescription:
     "中文、日文、韓文、英文的詞隨手收下：聽讀音、翻字卡、按筆順一筆一筆寫、聽寫，再免費列印田字格、拼音四線格和英文書寫字帖——每張字帖免費列印第 1 頁，不限張數。支援 iPhone 和 iPad，無需帳號，沒有廣告。",
@@ -629,9 +628,10 @@ export const tracesheet: AppContent = {
   slug: "tracesheet",
   buildNumber: 8,
   version: "1.0.0",
-  status: "in-review",
+  status: "live",
   platforms: ["iOS"],
-  appStoreUrl: "https://apps.apple.com/app/id6816287607",
+  // ct=site attributes site downloads in App Store Connect analytics.
+  appStoreUrl: "https://apps.apple.com/app/id6816287607?pt=119559267&ct=site&mt=8",
   appStoreId: "6816287607",
   icon: `${ASSETS}/icon.png`,
   ogImage: `${ASSETS}/og.png`,
