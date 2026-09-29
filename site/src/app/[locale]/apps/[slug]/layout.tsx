@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { apps, getApp, localized } from "@/content/apps";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { emberDeckFontClass } from "@/components/ember-deck/fonts";
+import { sushiSortFontClass } from "@/components/sushi-sort/fonts";
 import { getDict } from "@/lib/dictionaries";
 import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
 import { APEX_DOMAIN, CONTACT_EMAIL, hubOrigin } from "@/lib/site";
@@ -36,7 +37,12 @@ export default async function AppLayout({
   const base = `${localePrefix(locale)}/apps/${slug}`;
 
   // Apps with their own typefaces (bespoke themes in globals.css).
-  const fontClass = slug === "ember-deck" ? emberDeckFontClass : undefined;
+  const fontClass =
+    slug === "ember-deck"
+      ? emberDeckFontClass
+      : slug === "sushi-sort"
+        ? sushiSortFontClass
+        : undefined;
 
   return (
     <div data-app={slug} className={fontClass}>

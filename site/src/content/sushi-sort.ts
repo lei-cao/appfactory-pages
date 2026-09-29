@@ -8,94 +8,107 @@ import type { AppContent, AppLocalized } from "./apps";
 const en: AppLocalized = {
   name: "Sushi Sort",
   storeName: "Sushi Sort: Zen Puzzle Game",
-  tagline: "Sort. Breathe. Repeat.",
-  subtitle: "Relaxing zen escape. No timers",
+  tagline: "Lift the lids. Sort the sushi.",
+  subtitle: "Calm mystery trays, no timers",
   oneLiner:
-    "Sort sushi onto bento serving lanes until every lane holds one kind. One-thumb calm, offline forever — no energy, no lives, no timers, ever.",
-  statusNote: "Live now on the App Store. Android release in progress.",
-  metaTitle: "Sushi Sort: Zen Puzzle Game — a relaxing sushi sort puzzle with no timers",
+    "A calm Japanese sorting puzzle where most sushi waits face-down under black lacquer lids. Only the front piece shows, every pour flips the next one, and there are no timers, no energy and no lives.",
+  statusNote:
+    "On the App Store for iPhone and iPad. Android release in progress.",
+  metaTitle: "Sushi Sort 2.2: The Mystery Tray — a calm sushi sort puzzle with no timers",
   metaDescription:
-    "Sushi Sort is the honest sushi sort puzzle: 200 verified-solvable levels across 10 worlds, free unlimited undo, no energy, no lives, no timers — and one $2.99 purchase removes every ad forever. Offline, no account.",
+    "Sushi Sort 2.2 hides the sushi under black lacquer lids: only the front piece shows and every pour flips the next. 600 machine-verified levels across 30 worlds, racks up to 10 deep, free undo, Zen mode, no timers. One $3.99 purchase removes every ad.",
   features: [
     {
-      title: "200 levels, all provably fair",
-      body: "Every one of the 200 levels across 10 worlds is machine-verified solvable before it ships. If you're stuck, it's a puzzle — never a paywall.",
+      title: "The mystery tray",
+      body: "Most sushi sits face-down under a black lacquer lid marked with a gold question mark. Only the front piece shows. Every pour flips the next one, so you remember what you've seen.",
     },
     {
-      title: "Ten worlds, ten menus",
-      body: "Climb from a casual nigiri counter to a premium omakase spread. Each world serves its own plates and its own pace — gentle starts, satisfying finales, never a wall.",
+      title: "Racks up to 10 deep",
+      body: "Late boards stack eight to ten pieces per rack with little free space. Each move is a small commitment.",
     },
     {
-      title: "Late-game twists",
-      body: "Locked lanes, sealed plates, and mystery pieces that hide again if you look away. The rules stay simple; the boards get delightfully devious.",
+      title: "Five kinds of board",
+      body: "Nigiri Line, Deep Tray, Mystery Box, Tight Counter and Chef's Lock. The same kind never comes up twice in a row.",
     },
     {
-      title: "A fresh challenge every day",
-      body: "One new daily puzzle each day, plus an Endless mode that keeps getting tougher for as long as you keep your streak of calm.",
+      title: "Chef's Order",
+      body: "Every level has a move goal and three star lines. Undo is free and gives the move back. Zen mode turns the limit off.",
     },
     {
-      title: "Sounds like a quiet kitchen",
-      body: "Soft ambient music with ceramic-and-wood sound design. Plates click, lanes slide, nothing beeps at you.",
+      title: "Spare spots",
+      body: "Spots on the counter hold one piece of any kind while you sort. Add one when you're stuck, or play the Chef's Challenge with one fewer.",
     },
     {
-      title: "One-thumb, anywhere",
-      body: "Drag or tap — play as fast as you think. Works completely offline with no account, on the train or thirty thousand feet above it.",
+      title: "Restore the restaurant",
+      body: "Stars renovate five areas of a Japanese restaurant, one task at a time. After the grand opening they dress it for the seasons.",
     },
   ],
   screenshots: [
     {
-      src: "/apps/sushi-sort/shot-home.png",
-      alt: "Sushi Sort home screen: a wooden sushi counter with Play, Daily, and Endless buttons under cherry blossoms",
+      src: "/apps/sushi-sort/shot-mystery.png",
+      alt: "A Sushi Sort board mid-game: six hinoki racks of sushi, most under black lacquer lids with a gold question mark, a few pieces already revealed, and a tamago piece parked on one of three lacquer spare spots",
     },
     {
-      src: "/apps/sushi-sort/shot-board.png",
-      alt: "A Sushi Sort puzzle board: sushi plates being sorted across six wooden serving lanes",
+      src: "/apps/sushi-sort/shot-lids.png",
+      alt: "The same board before the first move: every piece behind the front one is under a lid, one rack is empty, and two spare spots wait above the racks",
     },
     {
-      src: "/apps/sushi-sort/shot-worlds.png",
-      alt: "The Worlds map: a winding conveyor path of levels passing torii gates for World 2 and World 3",
+      src: "/apps/sushi-sort/shot-master.png",
+      alt: "A Master level on a gold-trimmed black lacquer tray: ten racks ten deep, almost every piece lidded, and a reserved spot that opens after one plate is served",
     },
     {
-      src: "/apps/sushi-sort/shot-promises.png",
-      alt: "The promises screen listing Sushi Sort's honest-game promises",
+      src: "/apps/sushi-sort/shot-first.png",
+      alt: "World 1, level 4: four short racks with every piece face up, three empty spare spots, and the Chef's Order tip: finish within the moves shown, undo gives moves back",
     },
     {
-      src: "/apps/sushi-sort/shot-settings.png",
-      alt: "Settings screen with sound, haptics, and privacy controls on warm wood",
+      src: "/apps/sushi-sort/shot-order.png",
+      alt: "The Chef's Order ticket for World 29 Level 10, a Master level: serve it all in 94 moves, three stars in 80, with one reserved spare spot",
+    },
+    {
+      src: "/apps/sushi-sort/shot-restaurant.png",
+      alt: "The restaurant home: a tea garden with a koi pond being renovated, area 3 of 5, with the next task 'Plant the red maple' for 10 stars",
+    },
+    {
+      src: "/apps/sushi-sort/shot-world-page.png",
+      alt: "The world page for World 15, Hot Spring Inn: 14 of 60 stars, rack depth, lids, spare racks and kinds at a glance, above a grid of levels",
     },
   ],
   trust: {
     title: "The honest sort puzzle",
-    body: "No energy, no lives, no timers. Restart never reshuffles. Undo is always free and unlimited. Every level is machine-verified solvable — and one $2.99 purchase removes every ad, including the optional ones, forever.",
+    body: "No energy, no lives, no timers. Restart never reshuffles. Undo is always free and gives the move back. Every level is machine-verified solvable within its move goal, and one $3.99 purchase removes every ad for good.",
   },
   faqs: [
     {
+      q: "What's new in Sushi Sort 2.2?",
+      a: "The mystery tray. Most sushi now sits face-down under a lacquer lid, only the front piece shows, and each pour flips the next one. Racks go up to 10 deep, boards come in five kinds, spare spots sit on the counter, and there's new Japanese background music.",
+    },
+    {
       q: "Is Sushi Sort free?",
-      a: "Yes. All 200 levels, the daily challenge, and Endless mode are free, with occasional ads between levels only — never during play. A single $2.99 purchase removes every ad permanently.",
+      a: "Yes. All 600 levels, the daily quests, the weekly Omakase Festival and Endless mode are free. There's a banner and an occasional ad between levels, never during a move. Reward ads are always optional. One $3.99 purchase removes every ad.",
     },
     {
       q: "What exactly does Remove Ads include?",
-      a: "Everything. One purchase removes every ad in the game — including the optional rewarded ones — and hints become free. It's a one-time purchase, processed by the App Store, and it lasts forever.",
+      a: "Every ad goes: the banner, the between-level ads and the optional reward ads. When your booster stock runs out, the ones you'd have watched an ad for are simply free. It's a one-time App Store purchase and you can restore it on a new device.",
+    },
+    {
+      q: "How do the lids work?",
+      a: "Only the front piece of a rack — the one you can take — is face up. When you move it, the next piece flips over and stays face up. A move stops at the first lid, so you can only lift what you can see. The Lift the lids booster shows every piece for four seconds.",
+    },
+    {
+      q: "What if a level is too hard?",
+      a: "Undo is free and gives the move back. Fail twice and the chef adds a few moves; fail four times and the chef adds more, plus a free lid-lift and a spare spot. You can also add a spot yourself, or switch on Zen mode to play with no move limit.",
     },
     {
       q: "Are there timers, lives, or energy?",
-      a: "No, and there never will be. You can play one level a month or fifty in a night; nothing recharges, expires, or locks you out.",
-    },
-    {
-      q: "Does restarting a level reshuffle it?",
-      a: "No. Restart gives you the exact same board, so you can actually learn a hard level instead of rerolling for an easier one.",
-    },
-    {
-      q: "How does the sorting work?",
-      a: "Only the front sushi — the piece nearest the serving end — can move. Place it on another lane and pieces snap forward. A lane is done when every plate on it holds the same kind.",
-    },
-    {
-      q: "Do I need an account or an internet connection?",
-      a: "Neither. There is no account and no sign-up, and the whole game works offline. Your progress, stars, and daily streak are stored only on your device.",
+      a: "No, and there never will be. Nothing recharges, expires, or locks you out. The only countdown is on the weekly festival page, never in a level.",
     },
     {
       q: "Can a level be unsolvable?",
-      a: "No. Every level is machine-verified solvable before it ships — including the late-game boards with locked lanes, sealed plates, and mystery pieces.",
+      a: "No. Every level is machine-verified solvable within its move goal before it ships, by a solver that plays under the real face-down rule. Restart gives you the exact same board.",
+    },
+    {
+      q: "Do I need an account or an internet connection?",
+      a: "Neither. There's no account or sign-up and the game plays offline. Your progress, stars and restaurant are stored on your device.",
     },
   ],
   privacy: {
@@ -207,94 +220,106 @@ const en: AppLocalized = {
 const zhCn: AppLocalized = {
   name: "Sushi Sort",
   storeName: "Sushi Sort：寿司分拣解谜",
-  tagline: "分拣。呼吸。再来一局。",
-  subtitle: "禅意解压小游戏，没有倒计时",
+  tagline: "掀开漆盖，分拣寿司。",
+  subtitle: "安静的神秘漆盘，没有倒计时",
   oneLiner:
-    "把寿司分拣到便当出餐道上，直到每条道只剩一种。单手可玩、完全离线——没有体力、没有生命值、没有倒计时，永远没有。",
-  statusNote: "已在 App Store 上线，Android 版本筹备中。",
-  metaTitle: "Sushi Sort：寿司分拣解谜 — 没有倒计时的放松分类游戏",
+    "一款安静的日式分拣解谜：大多数寿司扣在黑漆盖下，只有最前面一件朝上，每移走一件就翻开下一件。没有倒计时、没有体力、没有生命值。",
+  statusNote: "已在 App Store 上线（iPhone 与 iPad），Android 版本筹备中。",
+  metaTitle: "Sushi Sort 2.2「神秘漆盘」— 没有倒计时的放松寿司分拣解谜",
   metaDescription:
-    "Sushi Sort 是「诚实的分拣解谜」：10 个世界、200 个经机器验证可解的关卡，撤销永久免费，没有体力、生命值和倒计时——一次 $2.99 内购即可永久移除所有广告。离线可玩，无需账号。",
+    "Sushi Sort 2.2 把寿司藏在黑漆盖下：只有最前面一件朝上，每移走一件就翻开下一件。30 个世界、600 个经机器验证可解的关卡，餐架最深 10 格，撤销免费，禅模式，没有倒计时。一次 $3.99 内购移除所有广告。",
   features: [
     {
-      title: "200 关，关关可解",
-      body: "10 个世界共 200 关，每一关上线前都经过机器验证确保可解。卡住了，那是谜题——绝不是付费墙。",
+      title: "神秘漆盘",
+      body: "大多数寿司扣在描着金色「?」的黑漆盖下，只有最前面一件朝上。每移走一件，下一件就翻开——记住你看过的。",
     },
     {
-      title: "十个世界，十份菜单",
-      body: "从家常握寿司小馆一路吃到高级 omakase。每个世界有自己的餐盘与节奏——开局轻柔、收尾尽兴，绝不撞墙。",
+      title: "餐架最深 10 格",
+      body: "后期每条餐架叠 8 到 10 件，空位很少。每一步都是一次小小的取舍。",
     },
     {
-      title: "后期新花样",
-      body: "上锁的餐道、封印的餐盘、一转眼又藏起来的神秘寿司。规则始终简单，棋盘越来越有趣。",
+      title: "五种棋盘",
+      body: "握寿司长列、深盘、神秘盒、窄柜台、主厨之锁。同一种棋盘不会连续出现两次。",
     },
     {
-      title: "每天一道新题",
-      body: "每日挑战每天更新一题，还有越玩越难的无尽模式，陪你把「静心时刻」坚持下去。",
+      title: "主厨订单",
+      body: "每关都有步数目标和三条星级线。撤销免费并退还步数。开启禅模式即可取消步数限制。",
     },
     {
-      title: "听起来像安静的厨房",
-      body: "柔和的环境音乐，陶瓷与木质的音效设计。餐盘轻响、餐道滑动，没有任何刺耳提示音。",
+      title: "备用小碟",
+      body: "柜台上的小碟可暂放任意一件寿司。卡住时可以加一个，也可以接受「主厨挑战」少用一个。",
     },
     {
-      title: "单手随处可玩",
-      body: "拖动或点按，想多快就多快。完全离线、无需账号——通勤路上或三万英尺高空都能玩。",
+      title: "重建餐厅",
+      body: "用星星逐项翻新一家日式餐厅的五个区域。盛大开业之后，星星还能为餐厅换上四季装扮。",
     },
   ],
   screenshots: [
     {
-      src: "/apps/sushi-sort/shot-home.png",
-      alt: "Sushi Sort 主界面：樱花下的木质寿司台，带开始、每日挑战和无尽模式按钮",
+      src: "/apps/sushi-sort/shot-mystery.png",
+      alt: "Sushi Sort 对局中：六条桧木餐架，大多数寿司扣在带金色问号的黑漆盖下，几件已经翻开，一件玉子寿司暂放在三个漆器备用小碟之一",
     },
     {
-      src: "/apps/sushi-sort/shot-board.png",
-      alt: "Sushi Sort 关卡棋盘：寿司餐盘在六条木质出餐道之间分拣",
+      src: "/apps/sushi-sort/shot-lids.png",
+      alt: "同一棋盘开局前：每条餐架除最前面一件外全部盖着漆盖，一条餐架为空，上方有两个备用小碟",
     },
     {
-      src: "/apps/sushi-sort/shot-worlds.png",
-      alt: "世界地图：蜿蜒的传送带关卡路径，穿过第 2、3 世界的鸟居",
+      src: "/apps/sushi-sort/shot-master.png",
+      alt: "金边黑漆盘上的大师关：十条餐架、每条十格，几乎全部盖着漆盖，另有一个送出一盘后才开放的预留小碟",
     },
     {
-      src: "/apps/sushi-sort/shot-promises.png",
-      alt: "承诺页面：列出 Sushi Sort 的诚实游戏承诺",
+      src: "/apps/sushi-sort/shot-first.png",
+      alt: "第 1 世界第 4 关：四条短餐架，寿司全部朝上，三个空的备用小碟，以及主厨订单提示：在规定步数内完成，撤销会退还步数",
     },
     {
-      src: "/apps/sushi-sort/shot-settings.png",
-      alt: "设置页面：暖木背景上的声音、震动与隐私选项",
+      src: "/apps/sushi-sort/shot-order.png",
+      alt: "第 29 世界第 10 关（大师关）的主厨订单：94 步内全部出餐，80 步内三星，带一个预留备用小碟",
+    },
+    {
+      src: "/apps/sushi-sort/shot-restaurant.png",
+      alt: "餐厅主页：正在翻新的茶庭与锦鲤池，第 3 / 5 区域，下一项任务「种下红枫」需要 10 颗星",
+    },
+    {
+      src: "/apps/sushi-sort/shot-world-page.png",
+      alt: "第 15 世界「温泉旅馆」页面：60 颗星中已得 14 颗，餐架深度、漆盖、空餐架与寿司种类一目了然，下方是关卡格",
     },
   ],
   trust: {
     title: "诚实的分拣解谜",
-    body: "没有体力、没有生命值、没有倒计时。重开不会重新洗牌，撤销永久免费不限次数。每一关都经机器验证可解——一次 $2.99 内购即可永久移除包括可选广告在内的所有广告。",
+    body: "没有体力、没有生命值、没有倒计时。重开不洗牌。撤销永久免费并退还步数。每一关都经机器验证可在步数目标内完成，一次 $3.99 内购永久移除所有广告。",
   },
   faqs: [
     {
+      q: "Sushi Sort 2.2 有什么新内容？",
+      a: "神秘漆盘。大多数寿司现在扣在漆盖下，只有最前面一件朝上，每移走一件就翻开下一件。餐架最深 10 格，棋盘分五种，柜台上有备用小碟，还有全新的日式背景音乐。",
+    },
+    {
       q: "Sushi Sort 免费吗？",
-      a: "免费。全部 200 关、每日挑战和无尽模式都免费，仅在关卡之间偶尔出现广告——游戏进行中绝不插播。一次 $2.99 内购即可永久移除所有广告。",
+      a: "免费。全部 600 关、每日任务、每周的 Omakase 祭典和无尽模式都免费。游戏有横幅广告，关卡之间偶尔有广告，移动途中绝不插播。激励广告永远是可选的。一次 $3.99 内购即可移除所有广告。",
     },
     {
       q: "「移除广告」到底包含什么？",
-      a: "全部。一次购买移除游戏内所有广告——包括可选的激励广告——提示也变为免费。一次性内购，由 App Store 处理，永久有效。",
+      a: "所有广告都会消失：横幅、关卡间广告和可选的激励广告。道具库存用完后，原本需要看广告才能获得的道具直接免费。一次性 App Store 内购，换新设备可恢复购买。",
+    },
+    {
+      q: "漆盖是怎么运作的？",
+      a: "每条餐架只有最前面、可以拿走的那一件朝上。移走它，下一件就会翻开并保持朝上。一次移动在遇到第一个漆盖时停下，所以你只能拿起看得见的寿司。「掀开漆盖」道具会让所有寿司显示 4 秒。",
+    },
+    {
+      q: "关卡太难怎么办？",
+      a: "撤销免费并退还步数。失败两次，主厨会加几步；失败四次，主厨再多加几步，并送一次掀盖和一个备用小碟。你也可以自己加一个小碟，或开启禅模式不限步数。",
     },
     {
       q: "有倒计时、生命值或体力吗？",
-      a: "没有，将来也不会有。一个月玩一关，或一晚玩五十关都行；没有任何东西会充能、过期或把你锁在门外。",
-    },
-    {
-      q: "重开关卡会重新洗牌吗？",
-      a: "不会。重开后棋盘完全一样，你可以真正钻研一道难题，而不是刷一个更简单的开局。",
-    },
-    {
-      q: "分拣规则是怎样的？",
-      a: "只有最前面的寿司（最靠近出餐口的那件）可以移动。把它放到另一条道上，后面的会自动往前补位。一条道上所有餐盘都是同一种寿司，就算完成。",
-    },
-    {
-      q: "需要账号或联网吗？",
-      a: "都不需要。没有账号、无需注册，整个游戏离线可玩。进度、星星和每日连胜只保存在你的设备上。",
+      a: "没有，将来也不会有。没有任何东西会充能、过期或把你锁在门外。唯一的倒计时在每周祭典页面上，关卡里永远没有。",
     },
     {
       q: "会不会遇到无解的关卡？",
-      a: "不会。每一关上线前都经过机器验证确保可解——包括后期带锁道、封印盘和神秘寿司的棋盘。",
+      a: "不会。每一关上线前都由按真实翻盖规则下棋的求解器验证，确保能在步数目标内完成。重开后棋盘完全一样。",
+    },
+    {
+      q: "需要账号或联网吗？",
+      a: "都不需要。没有账号、无需注册，游戏可离线游玩。进度、星星和餐厅都保存在你的设备上。",
     },
   ],
   privacy: {
@@ -402,94 +427,106 @@ const zhCn: AppLocalized = {
 const zhTw: AppLocalized = {
   name: "Sushi Sort",
   storeName: "Sushi Sort：壽司分揀解謎",
-  tagline: "分揀。呼吸。再來一局。",
-  subtitle: "禪意紓壓小遊戲，沒有倒數計時",
+  tagline: "掀開漆蓋，分揀壽司。",
+  subtitle: "安靜的神祕漆盤，沒有倒數計時",
   oneLiner:
-    "把壽司分揀到便當出餐道上，直到每條道只剩一種。單手可玩、完全離線——沒有體力、沒有生命值、沒有倒數計時，永遠沒有。",
-  statusNote: "已在 App Store 上線，Android 版本籌備中。",
-  metaTitle: "Sushi Sort：壽司分揀解謎 — 沒有倒數計時的放鬆分類遊戲",
+    "一款安靜的日式分揀解謎：大多數壽司扣在黑漆蓋下，只有最前面一件朝上，每移走一件就翻開下一件。沒有倒數計時、沒有體力、沒有生命值。",
+  statusNote: "已在 App Store 上架（iPhone 與 iPad），Android 版本籌備中。",
+  metaTitle: "Sushi Sort 2.2「神祕漆盤」— 沒有倒數計時的放鬆壽司分揀解謎",
   metaDescription:
-    "Sushi Sort 是「誠實的分揀解謎」：10 個世界、200 個經機器驗證可解的關卡，復原永久免費，沒有體力、生命值和倒數計時——一次 $2.99 內購即可永久移除所有廣告。離線可玩，無需帳號。",
+    "Sushi Sort 2.2 把壽司藏在黑漆蓋下：只有最前面一件朝上，每移走一件就翻開下一件。30 個世界、600 個經機器驗證可解的關卡，餐架最深 10 格，復原免費，禪模式，沒有倒數計時。一次 $3.99 內購移除所有廣告。",
   features: [
     {
-      title: "200 關，關關可解",
-      body: "10 個世界共 200 關，每一關上架前都經過機器驗證確保可解。卡住了，那是謎題——絕不是付費牆。",
+      title: "神祕漆盤",
+      body: "大多數壽司扣在描著金色「?」的黑漆蓋下，只有最前面一件朝上。每移走一件，下一件就翻開——記住你看過的。",
     },
     {
-      title: "十個世界，十份菜單",
-      body: "從家常握壽司小館一路吃到高級 omakase。每個世界有自己的餐盤與節奏——開局輕柔、收尾盡興,絕不撞牆。",
+      title: "餐架最深 10 格",
+      body: "後期每條餐架疊 8 到 10 件，空位很少。每一步都是一次小小的取捨。",
     },
     {
-      title: "後期新花樣",
-      body: "上鎖的餐道、封印的餐盤、一轉眼又藏起來的神祕壽司。規則始終簡單，棋盤越來越有趣。",
+      title: "五種棋盤",
+      body: "握壽司長列、深盤、神祕盒、窄櫃檯、主廚之鎖。同一種棋盤不會連續出現兩次。",
     },
     {
-      title: "每天一道新題",
-      body: "每日挑戰每天更新一題，還有越玩越難的無盡模式，陪你把「靜心時刻」堅持下去。",
+      title: "主廚訂單",
+      body: "每關都有步數目標和三條星級線。復原免費並退還步數。開啟禪模式即可取消步數限制。",
     },
     {
-      title: "聽起來像安靜的廚房",
-      body: "柔和的環境音樂，陶瓷與木質的音效設計。餐盤輕響、餐道滑動，沒有任何刺耳提示音。",
+      title: "備用小碟",
+      body: "櫃檯上的小碟可暫放任意一件壽司。卡住時可以加一個，也可以接受「主廚挑戰」少用一個。",
     },
     {
-      title: "單手隨處可玩",
-      body: "拖曳或點按，想多快就多快。完全離線、無需帳號——通勤路上或三萬英尺高空都能玩。",
+      title: "重建餐廳",
+      body: "用星星逐項翻新一家日式餐廳的五個區域。盛大開幕之後，星星還能為餐廳換上四季裝扮。",
     },
   ],
   screenshots: [
     {
-      src: "/apps/sushi-sort/shot-home.png",
-      alt: "Sushi Sort 主畫面：櫻花下的木質壽司台，帶開始、每日挑戰和無盡模式按鈕",
+      src: "/apps/sushi-sort/shot-mystery.png",
+      alt: "Sushi Sort 對局中：六條檜木餐架，大多數壽司扣在帶金色問號的黑漆蓋下，幾件已經翻開，一件玉子壽司暫放在三個漆器備用小碟之一",
     },
     {
-      src: "/apps/sushi-sort/shot-board.png",
-      alt: "Sushi Sort 關卡棋盤：壽司餐盤在六條木質出餐道之間分揀",
+      src: "/apps/sushi-sort/shot-lids.png",
+      alt: "同一棋盤開局前：每條餐架除最前面一件外全部蓋著漆蓋，一條餐架為空，上方有兩個備用小碟",
     },
     {
-      src: "/apps/sushi-sort/shot-worlds.png",
-      alt: "世界地圖：蜿蜒的輸送帶關卡路徑，穿過第 2、3 世界的鳥居",
+      src: "/apps/sushi-sort/shot-master.png",
+      alt: "金邊黑漆盤上的大師關：十條餐架、每條十格，幾乎全部蓋著漆蓋，另有一個送出一盤後才開放的預留小碟",
     },
     {
-      src: "/apps/sushi-sort/shot-promises.png",
-      alt: "承諾頁面：列出 Sushi Sort 的誠實遊戲承諾",
+      src: "/apps/sushi-sort/shot-first.png",
+      alt: "第 1 世界第 4 關：四條短餐架，壽司全部朝上，三個空的備用小碟，以及主廚訂單提示：在規定步數內完成，復原會退還步數",
     },
     {
-      src: "/apps/sushi-sort/shot-settings.png",
-      alt: "設定頁面：暖木背景上的聲音、震動與隱私選項",
+      src: "/apps/sushi-sort/shot-order.png",
+      alt: "第 29 世界第 10 關（大師關）的主廚訂單：94 步內全部出餐，80 步內三星，帶一個預留備用小碟",
+    },
+    {
+      src: "/apps/sushi-sort/shot-restaurant.png",
+      alt: "餐廳主頁：正在翻新的茶庭與錦鯉池，第 3 / 5 區域，下一項任務「種下紅楓」需要 10 顆星",
+    },
+    {
+      src: "/apps/sushi-sort/shot-world-page.png",
+      alt: "第 15 世界「溫泉旅館」頁面：60 顆星中已得 14 顆，餐架深度、漆蓋、空餐架與壽司種類一目了然，下方是關卡格",
     },
   ],
   trust: {
     title: "誠實的分揀解謎",
-    body: "沒有體力、沒有生命值、沒有倒數計時。重開不會重新洗牌，復原永久免費不限次數。每一關都經機器驗證可解——一次 $2.99 內購即可永久移除包括可選廣告在內的所有廣告。",
+    body: "沒有體力、沒有生命值、沒有倒數計時。重開不洗牌。復原永久免費並退還步數。每一關都經機器驗證可在步數目標內完成，一次 $3.99 內購永久移除所有廣告。",
   },
   faqs: [
     {
+      q: "Sushi Sort 2.2 有什麼新內容？",
+      a: "神祕漆盤。大多數壽司現在扣在漆蓋下，只有最前面一件朝上，每移走一件就翻開下一件。餐架最深 10 格，棋盤分五種，櫃檯上有備用小碟，還有全新的日式背景音樂。",
+    },
+    {
       q: "Sushi Sort 免費嗎？",
-      a: "免費。全部 200 關、每日挑戰和無盡模式都免費，僅在關卡之間偶爾出現廣告——遊戲進行中絕不插播。一次 $2.99 內購即可永久移除所有廣告。",
+      a: "免費。全部 600 關、每日任務、每週的 Omakase 祭典和無盡模式都免費。遊戲有橫幅廣告，關卡之間偶爾有廣告，移動途中絕不插播。獎勵廣告永遠是可選的。一次 $3.99 內購即可移除所有廣告。",
     },
     {
       q: "「移除廣告」到底包含什麼？",
-      a: "全部。一次購買移除遊戲內所有廣告——包括可選的獎勵廣告——提示也變為免費。一次性內購，由 App Store 處理，永久有效。",
+      a: "所有廣告都會消失：橫幅、關卡間廣告和可選的獎勵廣告。道具庫存用完後，原本需要看廣告才能取得的道具直接免費。一次性 App Store 內購，換新裝置可回復購買。",
+    },
+    {
+      q: "漆蓋是怎麼運作的？",
+      a: "每條餐架只有最前面、可以拿走的那一件朝上。移走它，下一件就會翻開並保持朝上。一次移動在遇到第一個漆蓋時停下，所以你只能拿起看得見的壽司。「掀開漆蓋」道具會讓所有壽司顯示 4 秒。",
+    },
+    {
+      q: "關卡太難怎麼辦？",
+      a: "復原免費並退還步數。失敗兩次，主廚會加幾步；失敗四次，主廚再多加幾步，並送一次掀蓋和一個備用小碟。你也可以自己加一個小碟，或開啟禪模式不限步數。",
     },
     {
       q: "有倒數計時、生命值或體力嗎？",
-      a: "沒有，將來也不會有。一個月玩一關，或一晚玩五十關都行；沒有任何東西會充能、過期或把你鎖在門外。",
-    },
-    {
-      q: "重開關卡會重新洗牌嗎？",
-      a: "不會。重開後棋盤完全一樣，你可以真正鑽研一道難題，而不是刷一個更簡單的開局。",
-    },
-    {
-      q: "分揀規則是怎樣的？",
-      a: "只有最前面的壽司（最靠近出餐口的那件）可以移動。把它放到另一條道上，後面的會自動往前補位。一條道上所有餐盤都是同一種壽司，就算完成。",
-    },
-    {
-      q: "需要帳號或連網嗎？",
-      a: "都不需要。沒有帳號、無需註冊，整個遊戲離線可玩。進度、星星和每日連勝只保存在你的裝置上。",
+      a: "沒有，將來也不會有。沒有任何東西會充能、過期或把你鎖在門外。唯一的倒數計時在每週祭典頁面上，關卡裡永遠沒有。",
     },
     {
       q: "會不會遇到無解的關卡？",
-      a: "不會。每一關上架前都經過機器驗證確保可解——包括後期帶鎖道、封印盤和神祕壽司的棋盤。",
+      a: "不會。每一關上架前都由按真實翻蓋規則下棋的求解器驗證，確保能在步數目標內完成。重開後棋盤完全一樣。",
+    },
+    {
+      q: "需要帳號或連網嗎？",
+      a: "都不需要。沒有帳號、無需註冊，遊戲可離線遊玩。進度、星星和餐廳都保存在你的裝置上。",
     },
   ],
   privacy: {
@@ -597,41 +634,64 @@ const zhTw: AppLocalized = {
 export const sushiSort: AppContent = {
   slug: "sushi-sort",
   buildNumber: 7,
-  version: "1.2.1",
+  version: "2.2.0",
   status: "live",
   appStoreUrl:
     "https://apps.apple.com/us/app/sushi-sort-zen-puzzle-game/id6792529319",
   platforms: ["iOS", "Android"],
   icon: "/apps/sushi-sort/icon.png",
-  ogImage: "/apps/sushi-sort/og.png",
+  ogImage: "/apps/sushi-sort/og-2-2.png",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
 
 // ---------------------------------------------------------------------------
 // Copy for the bespoke landing page only (not part of the generic registry).
+// Facts come from the 2.2 design docs in the app repo
+// (apps/sushi-sort/docs/upgrade-2.2/) and the in-app help text.
+
+interface Point {
+  title: string;
+  body: string;
+}
 
 export interface SushiSortLanding {
+  /** Small line above the hero headline. */
   kicker: string;
-  /** Three beats of the hero headline; the last renders in the accent color. */
-  heroWords: [string, string, string];
+  /** Two lines of the hero headline; the second renders in vermilion. */
+  heroLines: [string, string];
   heroSub: string;
+  /** "New in 2.2" label on the hero. */
+  versionLabel: string;
   priceNote: string;
+  mysteryEyebrow: string;
+  mysteryTitle: string;
+  mysteryBody: string;
+  mysteryPoints: Point[];
+  /** Captions under the before / after pair of screenshots. */
+  mysteryBefore: string;
+  mysteryAfter: string;
+  coursesEyebrow: string;
+  coursesTitle: string;
+  coursesBody: string;
+  /** Five board kinds: the name is a proper noun in the game. */
+  courses: Point[];
+  /** Caption for the World 1 board beside the course list. */
+  firstCaption: string;
+  orderEyebrow: string;
+  orderTitle: string;
+  orderBody: string;
+  orderPoints: Point[];
+  orderCaption: string;
+  restaurantEyebrow: string;
+  restaurantTitle: string;
+  restaurantBody: string;
+  restaurantPoints: Point[];
+  restaurantCaption: string;
+  worldsCaption: string;
   promisesEyebrow: string;
   promisesTitle: string;
   promisesIntro: string;
-  promises: { title: string; body: string }[];
-  howEyebrow: string;
-  howTitle: string;
-  steps: { title: string; body: string }[];
-  worldsEyebrow: string;
-  worldsTitle: string;
-  worldsBody: string;
-  worldFirst: string;
-  worldLast: string;
-  insideEyebrow: string;
-  insideTitle: string;
-  galleryEyebrow: string;
-  galleryTitle: string;
+  promises: Point[];
   faqEyebrow: string;
   faqTitle: string;
   closingTitle: string;
@@ -649,73 +709,142 @@ export interface SushiSortLanding {
 }
 
 const landingEn: SushiSortLanding = {
-  kicker: "10 worlds · 200 levels · offline forever",
-  heroWords: ["Sort.", "Breathe.", "Repeat."],
+  kicker: "600 levels · 30 worlds · no timers",
+  heroLines: ["Lift the lids.", "Sort the sushi."],
   heroSub:
-    "Sort sushi onto bento serving lanes until every lane holds one kind. One-thumb calm with no energy, no lives, no timers — ever.",
-  priceNote:
-    "Free to play · one $2.99 purchase removes every ad, forever",
+    "Most sushi waits face-down under black lacquer lids. Only the front piece of each rack shows, and every move lifts the next lid. A calm Japanese puzzle that really makes you think — no timers, no energy, no lives.",
+  versionLabel: "New in 2.2 · The Mystery Tray",
+  priceNote: "Free to play · one $3.99 purchase removes every ad",
+  mysteryEyebrow: "the mystery tray",
+  mysteryTitle: "Every pour reveals the next piece",
+  mysteryBody:
+    "Sushi Sort 2.2 is built around one rule: you can only lift what you can see. Watch the racks, remember what turns up, and plan a few moves ahead.",
+  mysteryPoints: [
+    {
+      title: "Only the front piece shows",
+      body: "Everything behind it sits under a black lacquer lid marked with a gold question mark.",
+    },
+    {
+      title: "Move it and the next one flips",
+      body: "A revealed piece stays face up wherever it goes. A move stops at the first lid.",
+    },
+    {
+      title: "Racks up to 10 deep",
+      body: "Late boards are tall and tight, with one empty rack or none, and a few spare spots.",
+    },
+    {
+      title: "Lift the lids when you need to",
+      body: "The booster shows every piece for four seconds, then the lids close again.",
+    },
+  ],
+  mysteryBefore: "Before the first move: lids on every rack.",
+  mysteryAfter: "A few pours later: pieces revealed, one parked on a spot.",
+  coursesEyebrow: "five courses",
+  coursesTitle: "No two levels in a row feel the same",
+  coursesBody:
+    "Every level is dealt as one of five kinds of board, and the same kind never comes up twice in a row. Every fifth level is Hard. Every tenth is a Master board on a gold-trimmed black lacquer tray, and the one after it is a breather.",
+  courses: [
+    {
+      title: "Nigiri Line",
+      body: "Wide and shallow, everything face up. Read the board and route.",
+    },
+    {
+      title: "Deep Tray",
+      body: "A few tall racks. Commit, and bury what you'll need later.",
+    },
+    {
+      title: "Mystery Box",
+      body: "Tall racks with lids everywhere. Reveal, remember, commit.",
+    },
+    {
+      title: "Tight Counter",
+      body: "Full racks and very little room. Park each piece with care.",
+    },
+    {
+      title: "Chef's Lock",
+      body: "A locked rack or a nori wrap. Open things in the right order.",
+    },
+  ],
+  firstCaption:
+    "Where it starts: World 1, short racks, every piece face up. The Master board at the top of this page is World 29.",
+  orderEyebrow: "the chef's order",
+  orderTitle: "A move goal, not a clock",
+  orderBody:
+    "Each level comes with an order ticket: serve every plate within the moves shown. There's still no timer, and undo is always free — it even gives the move back.",
+  orderPoints: [
+    {
+      title: "Spare spots",
+      body: "Small lacquer spots on the counter hold one piece of any kind. Stuck? The dashed + adds one more for the attempt.",
+    },
+    {
+      title: "Chef's Challenge",
+      body: "Start with one spot fewer for extra coins and a red seal on the level. Only offered when the board is verified solvable that way.",
+    },
+    {
+      title: "The chef helps",
+      body: "Fail twice and the chef adds a few moves. Fail four times and you get more moves, a free lid-lift and a spare spot.",
+    },
+    {
+      title: "Zen mode",
+      body: "Prefer no limits? Switch Zen mode on in Settings and play any level with no move goal.",
+    },
+  ],
+  orderCaption: "The order ticket for a Master level.",
+  restaurantEyebrow: "between levels",
+  restaurantTitle: "Bring a little restaurant back to life",
+  restaurantBody:
+    "Stars you earn renovate a Japanese restaurant, one task at a time, across five areas. After the grand opening they dress it for the seasons.",
+  restaurantPoints: [
+    {
+      title: "Thirty worlds",
+      body: "Each world page shows its stars, rack depth, lids and kinds, with your next level one tap away.",
+    },
+    {
+      title: "Something every day",
+      body: "Daily quests, a calendar that never resets, the Sushi Encyclopedia album and a new Omakase Festival every week.",
+    },
+    {
+      title: "Japanese music",
+      body: "Teahouse, ryokan and ryotei pieces by MOMIZizm MUSiC and others, with soft wood-and-ceramic sounds. Full credits below.",
+    },
+  ],
+  restaurantCaption: "The tea garden, mid-renovation.",
+  worldsCaption: "A world at a glance.",
   promisesEyebrow: "our promises",
   promisesTitle: "The honest sort puzzle",
   promisesIntro:
-    "Most \"relaxing\" puzzles relax you until the paywall. Sushi Sort makes six promises instead — printed here, kept in the game.",
+    "Harder boards, same promises. They're printed here and in the game.",
   promises: [
     {
       title: "Remove Ads means removed",
-      body: "One $2.99 purchase and every ad disappears — including the optional ones. Hints become free. Forever.",
+      body: "One $3.99 purchase removes every ad, including the optional ones.",
     },
     {
       title: "No energy, no lives, no timers",
-      body: "Nothing recharges, expires, or locks you out. Play one level a month or fifty in a night.",
-    },
-    {
-      title: "Restart never reshuffles",
-      body: "The same board every time, so a hard level is something you learn — not something you reroll.",
+      body: "Nothing recharges, expires, or locks you out.",
     },
     {
       title: "Undo is always free",
-      body: "Unlimited, one tap, never behind an ad. Thinking out loud is how sorting is meant to feel.",
+      body: "Unlimited, one tap, never behind an ad — and it gives the move back.",
+    },
+    {
+      title: "Restart never reshuffles",
+      body: "The same board every time, so a hard level is something you learn.",
     },
     {
       title: "Every level provably solvable",
-      body: "All 200 levels are machine-verified before they ship. No engineered dead ends, no difficulty paywalls.",
+      body: "All 600 are machine-verified within their move goal, lids and all.",
     },
     {
-      title: "No account. Fully offline",
-      body: "No sign-up, no cloud, no permissions begging. Your progress lives on your device and nowhere else.",
+      title: "No account",
+      body: "No sign-up. The game plays offline and your progress stays on your device.",
     },
   ],
-  howEyebrow: "how it plays",
-  howTitle: "Three rules, endless calm",
-  steps: [
-    {
-      title: "Only the front sushi moves",
-      body: "The piece nearest the serving end is the one you can pick up — every lane is a little queue.",
-    },
-    {
-      title: "Place it, pieces snap forward",
-      body: "Drop it on another lane and everything shuffles neatly ahead. Drag or tap — play as fast as you think.",
-    },
-    {
-      title: "One kind per lane wins",
-      body: "When every plate on a lane holds the same sushi, it's served. Clear the board, take a breath, next level.",
-    },
-  ],
-  worldsEyebrow: "ten worlds",
-  worldsTitle: "Difficulty like a tasting course",
-  worldsBody:
-    "Climb from a casual nigiri counter to a premium omakase spread — each world serves its own plates and its own pace. Gentle starts, satisfying finales, never a wall. Late worlds fold in locked lanes, sealed plates, and mystery pieces that hide again if you look away.",
-  worldFirst: "World 1 · a casual nigiri counter",
-  worldLast: "World 10 · the omakase finale",
-  insideEyebrow: "what's inside",
-  insideTitle: "Small game, deep pantry",
-  galleryEyebrow: "screens",
-  galleryTitle: "Warm wood, soft light",
   faqEyebrow: "questions",
   faqTitle: "Fair questions, straight answers",
-  closingTitle: "Ready when you are. No timer says so.",
+  closingTitle: "The lids are on. Take your time.",
   closingBody:
-    "Sushi Sort will be on the App Store shortly — it's in Apple's review queue right now.",
+    "Sushi Sort is free on the App Store for iPhone and iPad.",
   creditsEyebrow: "credits",
   creditsTitle: "Music & sound credits",
   creditsIntro:
@@ -729,71 +858,139 @@ const landingEn: SushiSortLanding = {
 };
 
 const landingZhCn: SushiSortLanding = {
-  kicker: "10 个世界 · 200 关 · 永远离线可玩",
-  heroWords: ["分拣。", "呼吸。", "再来一局。"],
+  kicker: "600 关 · 30 个世界 · 没有倒计时",
+  heroLines: ["掀开漆盖，", "分拣寿司。"],
   heroSub:
-    "把寿司分拣到便当出餐道上，直到每条道只剩一种。单手即可享受的平静——没有体力、没有生命值、没有倒计时，永远没有。",
-  priceNote: "免费游玩 · 一次 $2.99 内购永久移除所有广告",
+    "大多数寿司扣在黑漆盖下。只有最前面一件朝上，每移走一件就翻开下一件。一款安静却真正烧脑的日式解谜——没有体力、没有生命值、没有倒计时。",
+  versionLabel: "2.2 新内容 · 神秘漆盘",
+  priceNote: "免费游玩 · 一次 $3.99 内购移除所有广告",
+  mysteryEyebrow: "神秘漆盘",
+  mysteryTitle: "每一次移动，都翻开下一件",
+  mysteryBody:
+    "Sushi Sort 2.2 围绕一条规则：看得见的才能拿。盯住餐架，记住翻出来的寿司，提前想好几步。",
+  mysteryPoints: [
+    {
+      title: "只有最前面一件朝上",
+      body: "后面的都扣在描着金色「?」的漆盖下。",
+    },
+    {
+      title: "移走它，下一件就翻开",
+      body: "翻开的寿司无论放到哪里都保持朝上。一次移动遇到第一个漆盖就停下。",
+    },
+    {
+      title: "餐架最深 10 格",
+      body: "后期棋盘又高又挤，空餐架只有一条甚至没有，外加几个备用小碟。",
+    },
+    {
+      title: "需要时掀开漆盖",
+      body: "道具会让所有寿司显示 4 秒，然后漆盖重新合上。",
+    },
+  ],
+  mysteryBefore: "开局前：每条餐架都盖着漆盖。",
+  mysteryAfter: "几步之后：寿司陆续翻开，一件暂放在小碟上。",
+  coursesEyebrow: "五道菜",
+  coursesTitle: "连续两关，绝不雷同",
+  coursesBody:
+    "每一关都属于五种棋盘之一，同一种不会连续出现两次。每第 5 关是困难关；每第 10 关是摆在金边黑漆盘上的大师关，紧随其后的一关让你喘口气。",
+  courses: [
+    {
+      title: "握寿司长列",
+      body: "又宽又浅，全部朝上。读懂棋盘，规划路线。",
+    },
+    {
+      title: "深盘",
+      body: "几条高高的餐架。果断下手，把之后要用的先压在下面。",
+    },
+    {
+      title: "神秘盒",
+      body: "高餐架，处处是漆盖。翻开、记住、下定决心。",
+    },
+    {
+      title: "窄柜台",
+      body: "餐架满满，空间极少。每一件都要小心安放。",
+    },
+    {
+      title: "主厨之锁",
+      body: "上锁的餐架或海苔卷。按正确顺序逐一打开。",
+    },
+  ],
+  firstCaption: "起点：第 1 世界，短餐架，寿司全部朝上。页首那块大师关棋盘来自第 29 世界。",
+  orderEyebrow: "主厨订单",
+  orderTitle: "目标是步数，不是时钟",
+  orderBody:
+    "每关都附一张订单：在规定步数内送出所有餐盘。依然没有倒计时，撤销永远免费——还会退还步数。",
+  orderPoints: [
+    {
+      title: "备用小碟",
+      body: "柜台上的漆器小碟可暂放任意一件寿司。卡住了？点虚线「+」为本局再加一个。",
+    },
+    {
+      title: "主厨挑战",
+      body: "少用一个小碟开局，赢得额外金币和关卡上的红色印章。只在验证过这样也能解开的棋盘上提供。",
+    },
+    {
+      title: "主厨来帮忙",
+      body: "失败两次，主厨会加几步；失败四次，再加步数，外送一次掀盖和一个备用小碟。",
+    },
+    {
+      title: "禅模式",
+      body: "不想受限？在设置中开启禅模式，任何关卡都没有步数目标。",
+    },
+  ],
+  orderCaption: "大师关的订单。",
+  restaurantEyebrow: "关卡之外",
+  restaurantTitle: "让一家小餐厅重新热闹起来",
+  restaurantBody:
+    "赢得的星星用来逐项翻新一家日式餐厅，共五个区域。盛大开业之后，星星还能为餐厅换上四季装扮。",
+  restaurantPoints: [
+    {
+      title: "三十个世界",
+      body: "每个世界页面都列出星星、餐架深度、漆盖与寿司种类，下一关一点即达。",
+    },
+    {
+      title: "每天都有新鲜事",
+      body: "每日任务、永不重置的签到日历、寿司图鉴，以及每周一场新的 Omakase 祭典。",
+    },
+    {
+      title: "日式音乐",
+      body: "来自 MOMIZizm MUSiC 等作者的茶屋、旅馆与料亭风格曲目，配上柔和的木与陶瓷音效。完整致谢见下方。",
+    },
+  ],
+  restaurantCaption: "翻新中的茶庭。",
+  worldsCaption: "一个世界，一目了然。",
   promisesEyebrow: "我们的承诺",
   promisesTitle: "诚实的分拣解谜",
-  promisesIntro:
-    "多数「放松」解谜游戏，只放松到付费墙为止。Sushi Sort 换一种做法：立下六条承诺——写在这里，兑现在游戏里。",
+  promisesIntro: "棋盘更难了，承诺不变。写在这里，也写在游戏里。",
   promises: [
     {
       title: "移除广告 = 真的移除",
-      body: "一次 $2.99 购买，所有广告消失——包括可选广告。提示变为免费。永久有效。",
+      body: "一次 $3.99 购买，移除所有广告，包括可选广告。",
     },
     {
       title: "没有体力、生命值和倒计时",
-      body: "没有任何东西会充能、过期或把你锁在门外。一个月玩一关，或一晚玩五十关都行。",
-    },
-    {
-      title: "重开不洗牌",
-      body: "每次重开都是同一个棋盘。难关是用来钻研的——不是用来刷开局的。",
+      body: "没有任何东西会充能、过期或把你锁在门外。",
     },
     {
       title: "撤销永久免费",
-      body: "不限次数，一键撤销，绝不藏在广告后面。边想边试，才是分拣该有的感觉。",
+      body: "不限次数，一键撤销，绝不藏在广告后面——还会退还步数。",
+    },
+    {
+      title: "重开不洗牌",
+      body: "每次都是同一个棋盘，难关是用来钻研的。",
     },
     {
       title: "每关都验证可解",
-      body: "200 关全部经机器验证后才上线。没有故意设计的死局，没有难度付费墙。",
+      body: "600 关全部经机器验证可在步数目标内完成，漆盖也算在内。",
     },
     {
-      title: "无账号，完全离线",
-      body: "无需注册、没有云端、不索要多余权限。你的进度只存在你的设备上。",
+      title: "无需账号",
+      body: "无需注册。游戏可离线游玩，进度只保存在你的设备上。",
     },
   ],
-  howEyebrow: "玩法",
-  howTitle: "三条规则，无尽平静",
-  steps: [
-    {
-      title: "只有最前面的寿司能动",
-      body: "最靠近出餐口的那件才能拿起——每条餐道都是一列小队伍。",
-    },
-    {
-      title: "放下后自动补位",
-      body: "放到另一条道上，所有寿司整齐地向前挪。拖动或点按，想多快就多快。",
-    },
-    {
-      title: "一道一种即完成",
-      body: "当一条道上的餐盘都是同一种寿司，这道就出餐了。清空棋盘，深呼吸，下一关。",
-    },
-  ],
-  worldsEyebrow: "十个世界",
-  worldsTitle: "难度像一场怀石料理",
-  worldsBody:
-    "从家常握寿司小馆一路进阶到高级 omakase——每个世界有自己的餐盘与节奏。开局轻柔、收尾尽兴，绝不撞墙。后期世界还会加入上锁餐道、封印餐盘，和一转眼又藏起来的神秘寿司。",
-  worldFirst: "第 1 世界 · 家常握寿司小馆",
-  worldLast: "第 10 世界 · omakase 终章",
-  insideEyebrow: "游戏内容",
-  insideTitle: "小游戏，大厨房",
-  galleryEyebrow: "截图",
-  galleryTitle: "暖木与柔光",
   faqEyebrow: "常见问题",
   faqTitle: "坦率的问题，直接的回答",
-  closingTitle: "随时开局——反正没有倒计时。",
-  closingBody: "Sushi Sort 即将登陆 App Store——目前正在 Apple 审核队列中。",
+  closingTitle: "漆盖已经盖好，慢慢来。",
+  closingBody: "Sushi Sort 已在 App Store 免费提供，支持 iPhone 与 iPad。",
   creditsEyebrow: "致谢",
   creditsTitle: "音乐与音效致谢",
   creditsIntro:
@@ -806,71 +1003,139 @@ const landingZhCn: SushiSortLanding = {
 };
 
 const landingZhTw: SushiSortLanding = {
-  kicker: "10 個世界 · 200 關 · 永遠離線可玩",
-  heroWords: ["分揀。", "呼吸。", "再來一局。"],
+  kicker: "600 關 · 30 個世界 · 沒有倒數計時",
+  heroLines: ["掀開漆蓋，", "分揀壽司。"],
   heroSub:
-    "把壽司分揀到便當出餐道上，直到每條道只剩一種。單手即可享受的平靜——沒有體力、沒有生命值、沒有倒數計時，永遠沒有。",
-  priceNote: "免費遊玩 · 一次 $2.99 內購永久移除所有廣告",
+    "大多數壽司扣在黑漆蓋下。只有最前面一件朝上，每移走一件就翻開下一件。一款安靜卻真正燒腦的日式解謎——沒有體力、沒有生命值、沒有倒數計時。",
+  versionLabel: "2.2 新內容 · 神祕漆盤",
+  priceNote: "免費遊玩 · 一次 $3.99 內購移除所有廣告",
+  mysteryEyebrow: "神祕漆盤",
+  mysteryTitle: "每一次移動，都翻開下一件",
+  mysteryBody:
+    "Sushi Sort 2.2 圍繞一條規則：看得見的才能拿。盯住餐架，記住翻出來的壽司，提前想好幾步。",
+  mysteryPoints: [
+    {
+      title: "只有最前面一件朝上",
+      body: "後面的都扣在描著金色「?」的漆蓋下。",
+    },
+    {
+      title: "移走它，下一件就翻開",
+      body: "翻開的壽司無論放到哪裡都保持朝上。一次移動遇到第一個漆蓋就停下。",
+    },
+    {
+      title: "餐架最深 10 格",
+      body: "後期棋盤又高又擠，空餐架只有一條甚至沒有，外加幾個備用小碟。",
+    },
+    {
+      title: "需要時掀開漆蓋",
+      body: "道具會讓所有壽司顯示 4 秒，然後漆蓋重新合上。",
+    },
+  ],
+  mysteryBefore: "開局前：每條餐架都蓋著漆蓋。",
+  mysteryAfter: "幾步之後：壽司陸續翻開，一件暫放在小碟上。",
+  coursesEyebrow: "五道菜",
+  coursesTitle: "連續兩關，絕不雷同",
+  coursesBody:
+    "每一關都屬於五種棋盤之一，同一種不會連續出現兩次。每第 5 關是困難關；每第 10 關是擺在金邊黑漆盤上的大師關，緊隨其後的一關讓你喘口氣。",
+  courses: [
+    {
+      title: "握壽司長列",
+      body: "又寬又淺，全部朝上。讀懂棋盤，規劃路線。",
+    },
+    {
+      title: "深盤",
+      body: "幾條高高的餐架。果斷下手，把之後要用的先壓在下面。",
+    },
+    {
+      title: "神祕盒",
+      body: "高餐架，處處是漆蓋。翻開、記住、下定決心。",
+    },
+    {
+      title: "窄櫃檯",
+      body: "餐架滿滿，空間極少。每一件都要小心安放。",
+    },
+    {
+      title: "主廚之鎖",
+      body: "上鎖的餐架或海苔捲。按正確順序逐一打開。",
+    },
+  ],
+  firstCaption: "起點：第 1 世界，短餐架，壽司全部朝上。頁首那塊大師關棋盤來自第 29 世界。",
+  orderEyebrow: "主廚訂單",
+  orderTitle: "目標是步數，不是時鐘",
+  orderBody:
+    "每關都附一張訂單：在規定步數內送出所有餐盤。依然沒有倒數計時，復原永遠免費——還會退還步數。",
+  orderPoints: [
+    {
+      title: "備用小碟",
+      body: "櫃檯上的漆器小碟可暫放任意一件壽司。卡住了？點虛線「+」為本局再加一個。",
+    },
+    {
+      title: "主廚挑戰",
+      body: "少用一個小碟開局，贏得額外金幣和關卡上的紅色印章。只在驗證過這樣也能解開的棋盤上提供。",
+    },
+    {
+      title: "主廚來幫忙",
+      body: "失敗兩次，主廚會加幾步；失敗四次，再加步數，外送一次掀蓋和一個備用小碟。",
+    },
+    {
+      title: "禪模式",
+      body: "不想受限？在設定中開啟禪模式，任何關卡都沒有步數目標。",
+    },
+  ],
+  orderCaption: "大師關的訂單。",
+  restaurantEyebrow: "關卡之外",
+  restaurantTitle: "讓一家小餐廳重新熱鬧起來",
+  restaurantBody:
+    "贏得的星星用來逐項翻新一家日式餐廳，共五個區域。盛大開幕之後，星星還能為餐廳換上四季裝扮。",
+  restaurantPoints: [
+    {
+      title: "三十個世界",
+      body: "每個世界頁面都列出星星、餐架深度、漆蓋與壽司種類，下一關一點即達。",
+    },
+    {
+      title: "每天都有新鮮事",
+      body: "每日任務、永不重置的簽到日曆、壽司圖鑑，以及每週一場新的 Omakase 祭典。",
+    },
+    {
+      title: "日式音樂",
+      body: "來自 MOMIZizm MUSiC 等作者的茶屋、旅館與料亭風格曲目，配上柔和的木與陶瓷音效。完整致謝見下方。",
+    },
+  ],
+  restaurantCaption: "翻新中的茶庭。",
+  worldsCaption: "一個世界，一目了然。",
   promisesEyebrow: "我們的承諾",
   promisesTitle: "誠實的分揀解謎",
-  promisesIntro:
-    "多數「放鬆」解謎遊戲，只放鬆到付費牆為止。Sushi Sort 換一種做法：立下六條承諾——寫在這裡，兌現在遊戲裡。",
+  promisesIntro: "棋盤更難了，承諾不變。寫在這裡，也寫在遊戲裡。",
   promises: [
     {
       title: "移除廣告 = 真的移除",
-      body: "一次 $2.99 購買，所有廣告消失——包括可選廣告。提示變為免費。永久有效。",
+      body: "一次 $3.99 購買，移除所有廣告，包括可選廣告。",
     },
     {
       title: "沒有體力、生命值和倒數計時",
-      body: "沒有任何東西會充能、過期或把你鎖在門外。一個月玩一關，或一晚玩五十關都行。",
-    },
-    {
-      title: "重開不洗牌",
-      body: "每次重開都是同一個棋盤。難關是用來鑽研的——不是用來刷開局的。",
+      body: "沒有任何東西會充能、過期或把你鎖在門外。",
     },
     {
       title: "復原永久免費",
-      body: "不限次數，一鍵復原，絕不藏在廣告後面。邊想邊試，才是分揀該有的感覺。",
+      body: "不限次數，一鍵復原，絕不藏在廣告後面——還會退還步數。",
+    },
+    {
+      title: "重開不洗牌",
+      body: "每次都是同一個棋盤，難關是用來鑽研的。",
     },
     {
       title: "每關都驗證可解",
-      body: "200 關全部經機器驗證後才上架。沒有故意設計的死局，沒有難度付費牆。",
+      body: "600 關全部經機器驗證可在步數目標內完成，漆蓋也算在內。",
     },
     {
-      title: "無帳號，完全離線",
-      body: "無需註冊、沒有雲端、不索取多餘權限。你的進度只存在你的裝置上。",
+      title: "無需帳號",
+      body: "無需註冊。遊戲可離線遊玩，進度只保存在你的裝置上。",
     },
   ],
-  howEyebrow: "玩法",
-  howTitle: "三條規則，無盡平靜",
-  steps: [
-    {
-      title: "只有最前面的壽司能動",
-      body: "最靠近出餐口的那件才能拿起——每條餐道都是一列小隊伍。",
-    },
-    {
-      title: "放下後自動補位",
-      body: "放到另一條道上，所有壽司整齊地向前挪。拖曳或點按，想多快就多快。",
-    },
-    {
-      title: "一道一種即完成",
-      body: "當一條道上的餐盤都是同一種壽司，這道就出餐了。清空棋盤，深呼吸，下一關。",
-    },
-  ],
-  worldsEyebrow: "十個世界",
-  worldsTitle: "難度像一場懷石料理",
-  worldsBody:
-    "從家常握壽司小館一路進階到高級 omakase——每個世界有自己的餐盤與節奏。開局輕柔、收尾盡興，絕不撞牆。後期世界還會加入上鎖餐道、封印餐盤，和一轉眼又藏起來的神祕壽司。",
-  worldFirst: "第 1 世界 · 家常握壽司小館",
-  worldLast: "第 10 世界 · omakase 終章",
-  insideEyebrow: "遊戲內容",
-  insideTitle: "小遊戲，大廚房",
-  galleryEyebrow: "截圖",
-  galleryTitle: "暖木與柔光",
   faqEyebrow: "常見問題",
   faqTitle: "坦率的問題，直接的回答",
-  closingTitle: "隨時開局——反正沒有倒數計時。",
-  closingBody: "Sushi Sort 即將登陸 App Store——目前正在 Apple 審核佇列中。",
+  closingTitle: "漆蓋已經蓋好，慢慢來。",
+  closingBody: "Sushi Sort 已在 App Store 免費提供，支援 iPhone 與 iPad。",
   creditsEyebrow: "致謝",
   creditsTitle: "音樂與音效致謝",
   creditsIntro:
