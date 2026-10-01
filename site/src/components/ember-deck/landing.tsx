@@ -555,6 +555,34 @@ export async function EmberDeckLandingPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* Music & sound credits */}
+      <section id="credits" aria-labelledby="credits-title" className="pb-24">
+        <span className="spec-label">{copy.creditsEyebrow}</span>
+        <h2 id="credits-title" className="font-display mt-2 text-4xl leading-tight font-bold sm:text-5xl">
+          {copy.creditsTitle}
+        </h2>
+        <dl className="mt-10 grid gap-x-12 gap-y-9 sm:grid-cols-2">
+          <div>
+            <dt className="text-xl font-extrabold">{copy.creditsMusicLabel}</dt>
+            <dd className="text-slate mt-2 leading-relaxed">
+              <a
+                href={copy.creditsMusicUrl}
+                rel="noopener"
+                className="text-indigo-soft font-bold underline decoration-[#9c6b3a] underline-offset-4 transition-colors hover:text-paper"
+              >
+                {copy.creditsMusicBy}
+              </a>
+              <br />
+              {copy.creditsMusicNote}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-xl font-extrabold">{copy.creditsSfxLabel}</dt>
+            <dd className="text-slate mt-2 leading-relaxed">{copy.creditsSfxBody}</dd>
+          </div>
+        </dl>
+      </section>
+
       {/* Closing */}
       <section className="pb-28">
         <div className="ed-frame relative overflow-hidden rounded-lg px-6 py-14 text-center sm:px-16">

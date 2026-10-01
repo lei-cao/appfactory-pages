@@ -735,6 +735,15 @@ export interface EmberDeckLanding {
   pressFacts: { label: string; value: string }[];
   pressItems: { file: string; label: string; meta: string }[];
   pressZip: string;
+  creditsEyebrow: string;
+  creditsTitle: string;
+  creditsMusicLabel: string;
+  creditsMusicBy: string;
+  creditsMusicNote: string;
+  creditsSfxLabel: string;
+  creditsSfxBody: string;
+  /** MOMIZizm MUSiC's terms ask for the composer's name plus this link. */
+  creditsMusicUrl: string;
   closingTitle: string;
   closingBody: string;
 }
@@ -873,6 +882,14 @@ const landingEn: EmberDeckLanding = {
     { file: `${PRESS}/ember-deck-social-card.jpg`, label: "Social card", meta: "JPG · 1200 × 630" },
   ],
   pressZip: "Download everything (.zip)",
+  creditsEyebrow: "credits",
+  creditsTitle: "Music & sound credits",
+  creditsMusicLabel: "Music",
+  creditsMusicBy: "もみじば (Momijiba) — MOMIZizm MUSiC",
+  creditsMusicNote: "Used with credit under the composer's licence.",
+  creditsSfxLabel: "Sound effects",
+  creditsSfxBody: "Sound effects: original, made for Ember Deck.",
+  creditsMusicUrl: "https://music.storyinvention.com/en/",
   closingTitle: anyReleased ? "One more run. Always one more run." : "One more run is coming.",
   closingBody: anyReleased
     ? "Free to play, fully offline, no energy timers. Pick a hero and start climbing."
@@ -1009,6 +1026,14 @@ const landingZhCn: EmberDeckLanding = {
     { file: `${PRESS}/ember-deck-social-card.jpg`, label: "社交分享图", meta: "JPG · 1200 × 630" },
   ],
   pressZip: "打包下载全部素材（.zip）",
+  creditsEyebrow: "致谢",
+  creditsTitle: "音乐与音效致谢",
+  creditsMusicLabel: "音乐",
+  creditsMusicBy: "もみじば (Momijiba) — MOMIZizm MUSiC",
+  creditsMusicNote: "依据作曲者的授权条款，注明出处使用。",
+  creditsSfxLabel: "音效",
+  creditsSfxBody: "音效：为《余烬牌组》原创制作。",
+  creditsMusicUrl: "https://music.storyinvention.com/en/",
   closingTitle: anyReleased ? "还想再来一局。永远还想再来一局。" : "下一局，就快来了。",
   closingBody: anyReleased
     ? "免费游玩，完全离线，没有体力计时。选一位英雄，开始攀登吧。"
@@ -1145,6 +1170,14 @@ const landingZhTw: EmberDeckLanding = {
     { file: `${PRESS}/ember-deck-social-card.jpg`, label: "社群分享圖", meta: "JPG · 1200 × 630" },
   ],
   pressZip: "打包下載全部素材（.zip）",
+  creditsEyebrow: "致謝",
+  creditsTitle: "音樂與音效致謝",
+  creditsMusicLabel: "音樂",
+  creditsMusicBy: "もみじば (Momijiba) — MOMIZizm MUSiC",
+  creditsMusicNote: "依據作曲者的授權條款，註明出處使用。",
+  creditsSfxLabel: "音效",
+  creditsSfxBody: "音效：為《餘燼牌組》原創製作。",
+  creditsMusicUrl: "https://music.storyinvention.com/en/",
   closingTitle: anyReleased ? "還想再來一局。永遠還想再來一局。" : "下一局，就快來了。",
   closingBody: anyReleased
     ? "免費遊玩，完全離線，沒有體力計時。選一位英雄，開始攀登吧。"
