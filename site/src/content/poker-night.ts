@@ -120,7 +120,7 @@ const en: AppLocalized = {
   faqs: [
     {
       q: "Where is my data stored?",
-      a: "On your device, and nowhere else. Player names, buy-ins, chip counts, and session history never leave your phone — the app has no backend and no account system.",
+      a: "On your device. Player names, buy-ins, chip counts and session history stay on your phone, and there is no account system. The one exception is optional: if you choose to share a night live with your table, a temporary copy of that night is sent so guests can follow along.",
     },
     {
       q: "Does Poker Night move money?",
@@ -319,7 +319,7 @@ const zhCn: AppLocalized = {
   faqs: [
     {
       q: "我的数据存在哪里？",
-      a: "只存在你的设备上，别处都没有。玩家姓名、买入、码量与历史记录都不会离开你的手机——应用没有后端，也没有账号系统。",
+      a: "只存在你的设备上。玩家姓名、买入、码量与历史记录都留在你的手机里，也没有账号系统。唯一的例外由你决定：如果你选择与牌桌实时共享某一局，会上传这一局的临时副本，方便牌友同步查看。",
     },
     {
       q: "扑克之夜会经手资金吗？",
@@ -516,7 +516,7 @@ const zhTw: AppLocalized = {
   faqs: [
     {
       q: "我的資料存在哪裡？",
-      a: "只存在你的裝置上，別處都沒有。玩家姓名、買入、碼量與歷史記錄都不會離開你的手機——App 沒有後端，也沒有帳號系統。",
+      a: "只存在你的裝置上。玩家姓名、買入、碼量與歷史記錄都留在你的手機裡，也沒有帳號系統。唯一的例外由你決定：如果你選擇與牌桌即時共享某一局，會上傳這一局的暫時副本，方便牌友同步查看。",
     },
     {
       q: "撲克之夜會經手資金嗎？",
