@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
+import { JsonLd } from "@/components/json-ld";
 import { getDict } from "@/lib/dictionaries";
 import { fmt, isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
-import { appOrigin, CONTACT_EMAIL } from "@/lib/site";
+import { absUrl, breadcrumbLd, faqLd, ogImagePath } from "@/lib/seo";
+import { appOrigin, CONTACT_EMAIL, hubOrigin, SITE_NAME } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -22,7 +24,22 @@ export async function generateMetadata({
       canonical: `${appOrigin(slug)}${localePrefix(locale)}/support`,
       languages: languageAlternates(appOrigin(slug), "/support"),
     },
-    icons: { icon: app.icon },
+    icons: { icon: app.icon, apple: app.icon },
+    openGraph: {
+      type: "website",
+      title: `${loc.name} — ${dict.app.navSupport}`,
+      description: fmt(dict.support.title, { name: loc.storeName }),
+      url: `${appOrigin(slug)}${localePrefix(locale)}/support`,
+      siteName: loc.name,
+      images: [
+        {
+          url: absUrl(appOrigin(slug), ogImagePath(app)),
+          width: 1200,
+          height: 630,
+          alt: loc.storeName,
+        },
+      ],
+    },
   };
 }
 
@@ -42,8 +59,19 @@ export default async function Support({
     fmt(dict.support.mailSubject, { name: loc.name, version: app.version }),
   );
 
+  const origin = appOrigin(slug);
+  const prefix = localePrefix(locale);
+
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+      <JsonLd data={faqLd(loc.faqs)} />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: SITE_NAME, url: `${hubOrigin()}${prefix}` },
+          { name: loc.name, url: `${origin}${prefix}` },
+          { name: dict.app.navSupport, url: `${origin}${prefix}/support` },
+        ])}
+      />
       <span className="spec-label">{dict.support.eyebrow}</span>
       <h1 className="font-display mt-3 text-4xl font-bold">
         {fmt(dict.support.title, { name: loc.name })}

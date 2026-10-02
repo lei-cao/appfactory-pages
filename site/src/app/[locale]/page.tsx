@@ -1,11 +1,60 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { apps, localized } from "@/content/apps";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { JsonLd } from "@/components/json-ld";
 import { StatusBadge } from "@/components/status";
 import { getDict } from "@/lib/dictionaries";
-import { fmt, isLocale, localePrefix } from "@/lib/i18n";
-import { APEX_DOMAIN, appOrigin, CONTACT_EMAIL } from "@/lib/site";
+import {
+  fmt,
+  isLocale,
+  LANG_TAG,
+  languageAlternates,
+  localePrefix,
+  OG_LOCALE,
+} from "@/lib/i18n";
+import {
+  APEX_DOMAIN,
+  appOrigin,
+  CONTACT_EMAIL,
+  hubOrigin,
+  SITE_NAME,
+} from "@/lib/site";
+import { hubItemListLd, organizationLd, websiteLd } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const dict = getDict(locale);
+  const url = `${hubOrigin()}${localePrefix(locale)}`;
+  const image = `${hubOrigin()}/og/hub.png`;
+  return {
+    alternates: {
+      canonical: url,
+      languages: languageAlternates(hubOrigin(), "/"),
+    },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      title: dict.meta.title,
+      description: dict.meta.description,
+      url,
+      locale: OG_LOCALE[locale],
+      images: [{ url: image, width: 1200, height: 630, alt: SITE_NAME }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.meta.title,
+      description: dict.meta.description,
+      images: [image],
+    },
+  };
+}
 
 export default async function Hub({
   params,
@@ -23,6 +72,29 @@ export default async function Hub({
 
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-6 sm:px-10">
+      <JsonLd
+        data={organizationLd({
+          hubOrigin: hubOrigin(),
+          name: SITE_NAME,
+          email: CONTACT_EMAIL,
+        })}
+      />
+      <JsonLd
+        data={websiteLd({
+          hubOrigin: hubOrigin(),
+          name: SITE_NAME,
+          langTag: LANG_TAG[locale],
+          description: dict.meta.description,
+        })}
+      />
+      <JsonLd
+        data={hubItemListLd(
+          records.map((a) => ({
+            name: localized(a, locale).storeName,
+            url: `${appOrigin(a.slug)}${localePrefix(locale)}`,
+          })),
+        )}
+      />
       {/* Masthead */}
       <header className="flex items-baseline justify-between gap-4 pt-10">
         <span className="spec-label">{dict.hub.location}</span>

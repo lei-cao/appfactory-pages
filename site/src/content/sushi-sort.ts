@@ -603,6 +603,7 @@ export const sushiSort: AppContent = {
     "https://apps.apple.com/us/app/sushi-sort-zen-puzzle-game/id6792529319",
   platforms: ["iOS", "Android"],
   icon: "/apps/sushi-sort/icon.png",
+  category: "game",
   ogImage: "/apps/sushi-sort/og.png",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

@@ -23,6 +23,10 @@ export async function generateMetadata({
       languages: languageAlternates(appOrigin(slug), "/privacy"),
     },
     icons: { icon: app.icon },
+    openGraph: {
+      title: `${loc.name} — ${dict.privacy.title}`,
+      url: `${appOrigin(slug)}${localePrefix(locale)}/privacy`,
+    },
   };
 }
 

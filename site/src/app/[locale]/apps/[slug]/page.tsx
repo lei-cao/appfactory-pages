@@ -5,11 +5,20 @@ import { getApp, localized } from "@/content/apps";
 import { SushiSortLandingPage } from "@/components/sushi-sort/landing";
 import { TracesheetLandingPage } from "@/components/tracesheet/landing";
 import { EmberDeckLandingPage } from "@/components/ember-deck/landing";
+import { JsonLd } from "@/components/json-ld";
 import { StatusBadge } from "@/components/status";
 import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
-import { isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
-import { appOrigin } from "@/lib/site";
+import {
+  LANG_TAG,
+  LOCALES,
+  OG_LOCALE,
+  isLocale,
+  languageAlternates,
+  localePrefix,
+} from "@/lib/i18n";
+import { absUrl, appLd, breadcrumbLd, ogImagePath } from "@/lib/seo";
+import { appOrigin, hubOrigin, SITE_NAME } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -22,7 +31,7 @@ export async function generateMetadata({
   const loc = localized(app, locale);
   const title = loc.metaTitle ?? loc.storeName;
   const description = loc.metaDescription ?? loc.oneLiner;
-  const image = app.ogImage ?? loc.screenshots[0]?.src ?? app.icon;
+  const image = absUrl(appOrigin(slug), ogImagePath(app));
   return {
     title: { absolute: title },
     description,
@@ -30,7 +39,7 @@ export async function generateMetadata({
       canonical: `${appOrigin(slug)}${localePrefix(locale)}`,
       languages: languageAlternates(appOrigin(slug), "/"),
     },
-    icons: { icon: app.icon },
+    icons: { icon: app.icon, apple: app.icon },
     ...(app.appStoreId && { itunes: { appId: app.appStoreId } }),
     openGraph: {
       title,
@@ -38,9 +47,11 @@ export async function generateMetadata({
       url: `${appOrigin(slug)}${localePrefix(locale)}`,
       siteName: loc.name,
       type: "website",
-      images: app.ogImage
-        ? [{ url: image, width: 1200, height: 630, alt: loc.storeName }]
-        : [image],
+      locale: OG_LOCALE[locale],
+      alternateLocale: LOCALES.filter((l) => l !== locale).map(
+        (l) => OG_LOCALE[l],
+      ),
+      images: [{ url: image, width: 1200, height: 630, alt: loc.storeName }],
     },
     twitter: {
       card: "summary_large_image",
@@ -61,15 +72,63 @@ export default async function AppLanding({
   const app = getApp(slug);
   if (!app) notFound();
 
-  // Apps with a bespoke landing page render it instead of the template.
-  if (slug === "sushi-sort") return <SushiSortLandingPage locale={locale} />;
-  if (slug === "tracesheet") return <TracesheetLandingPage locale={locale} />;
-  if (slug === "ember-deck") return <EmberDeckLandingPage locale={locale} />;
-
   const loc = localized(app, locale);
   const dict = getDict(locale);
+  const origin = appOrigin(slug);
+  const url = `${origin}${localePrefix(locale)}`;
+
+  // Bespoke landings emit their own, richer app entity (and FAQ); adding the
+  // generic one too would declare the same app twice on the page.
+  const bespoke = ["sushi-sort", "tracesheet", "ember-deck"].includes(slug);
+  const ld = (
+    <>
+      {!bespoke && (
+        <JsonLd
+          data={appLd({
+            app,
+            loc,
+            langTag: LANG_TAG[locale],
+            origin,
+            url,
+            hubOrigin: hubOrigin(),
+          })}
+        />
+      )}
+      <JsonLd
+        data={breadcrumbLd([
+          { name: SITE_NAME, url: `${hubOrigin()}${localePrefix(locale)}` },
+          { name: loc.name, url },
+        ])}
+      />
+    </>
+  );
+
+  // Apps with a bespoke landing page render it instead of the template.
+  if (slug === "sushi-sort")
+    return (
+      <>
+        {ld}
+        <SushiSortLandingPage locale={locale} />
+      </>
+    );
+  if (slug === "tracesheet")
+    return (
+      <>
+        {ld}
+        <TracesheetLandingPage locale={locale} />
+      </>
+    );
+  if (slug === "ember-deck")
+    return (
+      <>
+        {ld}
+        <EmberDeckLandingPage locale={locale} />
+      </>
+    );
 
   return (
+    <>
+    {ld}
     <main>
       {/* Hero */}
       <section className="grid items-center gap-12 pt-20 pb-16 sm:grid-cols-[3fr_2fr] sm:pt-28 sm:pb-24">
@@ -157,5 +216,6 @@ export default async function AppLanding({
         </section>
       )}
     </main>
+    </>
   );
 }

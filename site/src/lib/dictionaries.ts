@@ -64,7 +64,8 @@ export interface Dict {
 
 const en: Dict = {
   meta: {
-    title: "appfactory — small apps, off the line",
+    title:
+      "appfactory — small, focused apps & games for iOS and Android, built in Singapore",
     description:
       "appfactory is a one-person studio in Singapore where AI agents build, test, and ship small, focused mobile apps.",
   },
@@ -131,7 +132,8 @@ const en: Dict = {
 
 const zhCn: Dict = {
   meta: {
-    title: "appfactory — 小而专的 App，一个个下线",
+    title:
+      "appfactory — 新加坡出品，小而专的 iOS 与 Android App 和游戏",
     description:
       "appfactory 是一间位于新加坡的一人工作室，AI 智能体在这里构建、测试并发布小而专的手机应用。",
   },
@@ -195,7 +197,8 @@ const zhCn: Dict = {
 
 const zhTw: Dict = {
   meta: {
-    title: "appfactory — 小而專的 App，一個個下線",
+    title:
+      "appfactory — 新加坡出品，小而專的 iOS 與 Android App 和遊戲",
     description:
       "appfactory 是一間位於新加坡的一人工作室，AI 代理在這裡打造、測試並發布小而專的手機應用程式。",
   },

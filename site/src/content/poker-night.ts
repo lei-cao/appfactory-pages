@@ -423,5 +423,6 @@ export const pokerNight: AppContent = {
     "https://apps.apple.com/us/app/poker-night-home-game-ledger/id6788786222",
   platforms: ["iOS", "Android"],
   icon: "/apps/poker-night/icon.png",
+  category: "lifestyle",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

@@ -13,6 +13,13 @@ export const LANG_TAG: Record<Locale, string> = {
   "zh-tw": "zh-TW",
 };
 
+/** Open Graph locale for og:locale. */
+export const OG_LOCALE: Record<Locale, string> = {
+  en: "en_US",
+  "zh-cn": "zh_CN",
+  "zh-tw": "zh_TW",
+};
+
 /** Short label shown in the language switcher. */
 export const LOCALE_LABEL: Record<Locale, string> = {
   en: "EN",

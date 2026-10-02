@@ -24,6 +24,10 @@ export async function generateMetadata({
       languages: languageAlternates(appOrigin(slug), "/terms"),
     },
     icons: { icon: app.icon },
+    openGraph: {
+      title: `${loc.name} — ${dict.terms.title}`,
+      url: `${appOrigin(slug)}${localePrefix(locale)}/terms`,
+    },
   };
 }
 

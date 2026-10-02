@@ -634,6 +634,7 @@ export const tracesheet: AppContent = {
   appStoreUrl: "https://apps.apple.com/app/id6816287607?pt=119559267&ct=site&mt=8",
   appStoreId: "6816287607",
   icon: `${ASSETS}/icon.png`,
+  category: "education",
   ogImage: `${ASSETS}/og.png`,
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

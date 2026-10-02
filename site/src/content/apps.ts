@@ -6,6 +6,13 @@ import type { Locale } from "@/lib/i18n";
 
 export type AppStatus = "building" | "testflight" | "in-review" | "live";
 
+export type AppCategory =
+  | "game"
+  | "utility"
+  | "education"
+  | "lifestyle"
+  | "productivity";
+
 export interface Screenshot {
   src: string;
   alt: string;
@@ -30,8 +37,10 @@ export interface AppBase {
   appStoreId?: string;
   playStoreUrl?: string;
   icon: string;
-  /** 1200×630 social card; falls back to the first screenshot. */
+  /** 1200×630 social card; falls back to the generated /og/<slug>.png card. */
   ogImage?: string;
+  /** Honest product category; drives the schema.org applicationCategory. */
+  category?: AppCategory;
 }
 
 /** Everything language-specific, provided once per locale. */

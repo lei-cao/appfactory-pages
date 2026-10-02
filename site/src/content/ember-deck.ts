@@ -695,6 +695,7 @@ export const emberDeck: AppContent = {
   playStoreUrl: RELEASED.android ? PLAY_STORE_URL : undefined,
   platforms: ["iOS", "Android"],
   icon: "/apps/ember-deck/icon.png",
+  category: "game",
   ogImage: "/apps/ember-deck/og.jpg",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
