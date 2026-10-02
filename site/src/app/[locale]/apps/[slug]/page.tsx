@@ -31,13 +31,16 @@ export async function generateMetadata({
       languages: languageAlternates(appOrigin(slug), "/"),
     },
     icons: { icon: app.icon },
+    ...(app.appStoreId && { itunes: { appId: app.appStoreId } }),
     openGraph: {
       title,
       description,
       url: `${appOrigin(slug)}${localePrefix(locale)}`,
       siteName: loc.name,
       type: "website",
-      images: [image],
+      images: app.ogImage
+        ? [{ url: image, width: 1200, height: 630, alt: loc.storeName }]
+        : [image],
     },
     twitter: {
       card: "summary_large_image",

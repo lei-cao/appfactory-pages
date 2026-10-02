@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "node --test scripts/*.test.mts",
     "setup-infra": "node scripts/setup-infra.mjs",
     "add-app": "node scripts/add-app.mjs",
     "deploy": "npx vercel deploy --prod"
