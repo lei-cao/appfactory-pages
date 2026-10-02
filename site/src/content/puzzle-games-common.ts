@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n";
 import type { AppLocalized, PrivacySection } from "./apps";
 
 export const PUZZLE_GAMES_CONTACT = "lei.cao.life@gmail.com";
-const UPDATED = "2026-09-26";
+const UPDATED = "2026-10-02";
 
 interface Names {
   /** Short display name, e.g. "Courtyard Arrows". */
@@ -23,9 +23,9 @@ const privacyEn = ({ name }: Names): PrivacySection[] => [
     heading: "What we collect",
     body: [
       [
-        "Usage analytics (Google Firebase Analytics): gameplay events such as level start, complete and fail, boosters used, shop views and purchases, plus an app-instance identifier used by Firebase. We use this to understand how the game is played and to tune levels. It is not linked to your identity.",
-        "Crash reports (Firebase Crashlytics): technical crash and diagnostic data (stack traces, device model, OS version) so we can fix bugs. Not linked to your identity.",
-        "Advertising data (Google AdMob): when ads are shown, Google's SDK may use your device's advertising identifier to serve and measure ads. On iOS we ask permission first with App Tracking Transparency; in regions that require it (such as the EEA and UK) Google's consent form (UMP) is shown before personalised ads load.",
+        "Usage analytics (Google Firebase Analytics): gameplay events such as level start, complete and fail, boosters used, shop views and purchases (product interaction), plus an app-instance identifier used by Firebase. We use this to understand how the game is played and to tune levels. It is not linked to your identity.",
+        "Crash reports (Firebase Crashlytics): technical crash, performance and other diagnostic data (stack traces, device model, OS version) so we can fix bugs. Not linked to your identity.",
+        "Advertising data (Google AdMob): when ads are shown, Google's SDK may use your device's advertising identifier to serve and measure ads. On iOS we ask permission first with App Tracking Transparency; in regions that require it (such as the EEA and UK) Google's consent form (UMP) is shown before personalised ads load. Device ID and advertising data are the only data used for tracking, and only if you allow it.",
         "Purchase history: the App Store or Google Play tells the app which in-app purchases you own so they can be granted and restored. Purchases are also logged as analytics events, without any payment details.",
       ],
     ],
@@ -81,7 +81,7 @@ const privacyZhCn = ({ name }: Names): PrivacySection[] => [
       [
         "使用分析（Google Firebase Analytics）：关卡开始、完成与失败、道具使用、商店浏览与购买等游戏事件，以及 Firebase 使用的应用实例标识符。用于了解游戏玩法并调整关卡，不与你的身份关联。",
         "崩溃报告（Firebase Crashlytics）：技术性崩溃与诊断数据（堆栈、设备型号、系统版本），用于修复问题，不与你的身份关联。",
-        "广告数据（Google AdMob）：展示广告时，Google 的 SDK 可能使用设备的广告标识符来投放和衡量广告。在 iOS 上我们会先通过「App 跟踪透明度」征求许可；在需要的地区（如欧洲经济区和英国）会在加载个性化广告前显示 Google 的同意表单（UMP）。",
+        "广告数据（Google AdMob）：展示广告时，Google 的 SDK 可能使用设备的广告标识符来投放和衡量广告。在 iOS 上我们会先通过「App 跟踪透明度」征求许可；在需要的地区（如欧洲经济区和英国）会在加载个性化广告前显示 Google 的同意表单（UMP）。设备 ID 和广告数据是仅有的用于跟踪的数据，且仅在你允许时使用。",
         "购买记录：App Store 或 Google Play 会告知应用你拥有哪些内购项目，以便发放和恢复。购买也会作为分析事件记录，但不含任何支付信息。",
       ],
     ],
@@ -131,7 +131,7 @@ const privacyZhTw = ({ name }: Names): PrivacySection[] => [
       [
         "使用分析（Google Firebase Analytics）：關卡開始、完成與失敗、道具使用、商店瀏覽與購買等遊戲事件，以及 Firebase 使用的應用程式實例識別碼。用於了解遊戲玩法並調整關卡，不與你的身分連結。",
         "當機報告（Firebase Crashlytics）：技術性當機與診斷資料（堆疊、裝置型號、系統版本），用於修正問題，不與你的身分連結。",
-        "廣告資料（Google AdMob）：顯示廣告時，Google 的 SDK 可能使用裝置的廣告識別碼來投放與衡量廣告。在 iOS 上我們會先透過「App 追蹤透明度」徵求許可；在需要的地區（如歐洲經濟區和英國）會在載入個人化廣告前顯示 Google 的同意表單（UMP）。",
+        "廣告資料（Google AdMob）：顯示廣告時，Google 的 SDK 可能使用裝置的廣告識別碼來投放與衡量廣告。在 iOS 上我們會先透過「App 追蹤透明度」徵求許可；在需要的地區（如歐洲經濟區和英國）會在載入個人化廣告前顯示 Google 的同意表單（UMP）。裝置 ID 和廣告資料是僅有的用於追蹤的資料，且僅在你允許時使用。",
         "購買紀錄：App Store 或 Google Play 會告知應用程式你擁有哪些內購項目，以便發放和恢復。購買也會作為分析事件記錄，但不含任何付款資訊。",
       ],
     ],

@@ -17,6 +17,15 @@ export interface PrivacySection {
   body: (string | string[])[];
 }
 
+/** Music + sound credits a game's landing page must show (licence terms). */
+export interface AppCredits {
+  /** Verbatim composer credit line, e.g. "Music: … — MOMIZizm MUSiC https://…". */
+  musicLine: string;
+  musicUrl: string;
+  tracks: { title: string; style: string; url: string }[];
+  sfx: { line: string; url: string; licence: string };
+}
+
 /** Locale-independent facts about an app. */
 export interface AppBase {
   slug: string;
@@ -34,6 +43,8 @@ export interface AppBase {
   ogImage?: string;
   /** Support contact for this app; defaults to the site-wide CONTACT_EMAIL. */
   contactEmail?: string;
+  /** Music & SFX credits; the generic landing renders them when set. */
+  credits?: AppCredits;
 }
 
 /** Everything language-specific, provided once per locale. */
