@@ -1,0 +1,32 @@
+assets/strokes/ja.json.gz -- Japanese stroke data for Write (TraceSheet v4)
+
+Modified by TraceSheet on 2026-09-27 (tool/make_stroke_packs.py): a subset of AnimCJK graphicsJaKana.txt + graphicsJa.txt (github.com/parsimonhi/animCJK commit ec5e17cca76c87587790bcbce5ea0b4d4fb753d6) -- all kana plus the selected kanji -- repacked from one-JSON-object-per-line files into one gzipped JSON object keyed by character; each character's `strokes` and `medians` are unchanged (the redundant `character` key is dropped). Distributed under the Arphic Public License (ARPHICPL.TXT); see ANIMCJK_NOTICE.txt.
+
+Kana: 177. Kanji: 2160 (jouyou set; includes all 1026 kyouiku kanji).
+
+AnimCJK's own licence notice (licenses/COPYING.txt at that commit), verbatim:
+
+AnimCJK project - Copyright 2016-2026 - FM&SH
+See <https://github.com/parsimonhi/animCJK> for more details about AnimCJK.
+
+AnimCJK is derived from:
+- Arphic PL KaitiM GB font (parts of text files prefixed by "graphics" and SVG files),
+- Arphic PL KaitiM Big5 font (parts of text files prefixed by "graphics" and SVG files),
+- Makemeahanzi project (parts of text files prefixed by "graphics" and SVG files),
+	<https://github.com/skishore/makemeahanzi>,
+- Unihan dictionary (parts of text files prefixed by "dictionary"),
+	<http://unicode.org/charts/unihan.html>,
+- Animated_GIF project (parts of magicAcjk.js script)
+	<https://github.com/sole/Animated_GIF>.
+
+You can redistribute and/or modify text files prefixed by "graphics" and SVG files of
+AnimCJK project representing a character under the terms of the Arphic Public License
+as published by Arphic Technology Co., Ltd. You should have received a copy of this
+license (the directory "APL") along with these files; if not, see
+<https://ftp.gnu.org/non-gnu/chinese-fonts-truetype/LICENSE>.
+
+You can redistribute and/or modify all other files (including SVG files of AnimCJK project
+representing kana or strokes) under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation, either version 3 of the license, or (at your
+option) any later version. You should have received a copy of this license (the file
+"LGPL.txt") along with these files; if not, see <http://www.gnu.org/licenses/>.

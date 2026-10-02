@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { APEX_DOMAIN } from "@/lib/site";
 import { DEFAULT_LOCALE, isLocale, localePrefix, type Locale } from "@/lib/i18n";
+import { isGoPath, resolveGoLink } from "@/lib/go-link";
+import { getApp } from "@/content/apps";
 
 // Hosts whose subdomains map to per-app sites. `localhost` makes
 // poker-night.localhost:3000 work in `next dev` with zero config.
@@ -37,6 +39,19 @@ function splitLocale(pathname: string): { locale: Locale | null; rest: string } 
 export function middleware(req: NextRequest) {
   const host = (req.headers.get("host") ?? "").split(":")[0].toLowerCase();
   const url = req.nextUrl;
+
+  // Short links answer on every host and skip locale handling entirely.
+  if (isGoPath(url.pathname)) {
+    const res = NextResponse.redirect(
+      resolveGoLink(url.pathname, req.headers.get("user-agent") ?? "", {
+        apex: APEX_DOMAIN,
+        getApp,
+      }),
+      302,
+    );
+    res.headers.set("Cache-Control", "no-store");
+    return res;
+  }
 
   if (host === `www.${APEX_DOMAIN}`) {
     return NextResponse.redirect(

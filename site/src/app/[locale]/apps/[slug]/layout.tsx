@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { apps, getApp, localized } from "@/content/apps";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { emberDeckFontClass } from "@/components/ember-deck/fonts";
+import { sushiSortFontClass } from "@/components/sushi-sort/fonts";
 import { getDict } from "@/lib/dictionaries";
 import { isGuideLocale } from "@/lib/guide";
 import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
@@ -37,7 +38,12 @@ export default async function AppLayout({
   const base = `${localePrefix(locale)}/apps/${slug}`;
 
   // Apps with their own typefaces (bespoke themes in globals.css).
-  const fontClass = slug === "ember-deck" ? emberDeckFontClass : undefined;
+  const fontClass =
+    slug === "ember-deck"
+      ? emberDeckFontClass
+      : slug === "sushi-sort"
+        ? sushiSortFontClass
+        : undefined;
 
   // The home-game guide only exists for Poker Night, and only in the two
   // locales its content pack has been written for (see lib/guide.ts).
@@ -141,7 +147,7 @@ export default async function AppLayout({
               </Link>
             )}
             <a
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={`mailto:${app.contactEmail ?? CONTACT_EMAIL}`}
               className="spec-label transition-colors hover:text-indigo-soft"
             >
               {dict.app.footContact}

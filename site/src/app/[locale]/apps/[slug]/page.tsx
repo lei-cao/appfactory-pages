@@ -11,6 +11,30 @@ import { getDict } from "@/lib/dictionaries";
 import { isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
 import { appOrigin } from "@/lib/site";
 
+const CREDITS_COPY = {
+  en: {
+    title: "Music & sound credits",
+    intro: "The music and sound effects in this game come from these sources, used under their licences.",
+    music: "Music",
+    sfx: "Sound effects",
+    tracks: "Tracks",
+  },
+  "zh-cn": {
+    title: "音乐与音效致谢",
+    intro: "本游戏的音乐与音效来自以下来源，并按其许可使用。",
+    music: "音乐",
+    sfx: "音效",
+    tracks: "曲目",
+  },
+  "zh-tw": {
+    title: "音樂與音效致謝",
+    intro: "本遊戲的音樂與音效來自以下來源，並依其授權使用。",
+    music: "音樂",
+    sfx: "音效",
+    tracks: "曲目",
+  },
+} as const;
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,13 +55,16 @@ export async function generateMetadata({
       languages: languageAlternates(appOrigin(slug), "/"),
     },
     icons: { icon: app.icon },
+    ...(app.appStoreId && { itunes: { appId: app.appStoreId } }),
     openGraph: {
       title,
       description,
       url: `${appOrigin(slug)}${localePrefix(locale)}`,
       siteName: loc.name,
       type: "website",
-      images: [image],
+      images: app.ogImage
+        ? [{ url: image, width: 1200, height: 630, alt: loc.storeName }]
+        : [image],
     },
     twitter: {
       card: "summary_large_image",
@@ -65,6 +92,7 @@ export default async function AppLanding({
 
   const loc = localized(app, locale);
   const dict = getDict(locale);
+  const credits = CREDITS_COPY[locale];
 
   return (
     <main>
@@ -137,6 +165,61 @@ export default async function AppLanding({
               />
             ))}
           </div>
+        </section>
+      )}
+
+      {/* Music & sound credits (licence condition) */}
+      {app.credits && (
+        <section id="credits" aria-label={credits.title} className="pb-20">
+          <h2 className="spec-label border-line border-b pb-3">
+            {credits.title}
+          </h2>
+          <p className="text-slate mt-6 max-w-2xl leading-relaxed">
+            {credits.intro}
+          </p>
+          <h3 className="font-display mt-8 text-lg font-semibold">
+            {credits.music}
+          </h3>
+          <p className="mt-2 leading-relaxed">
+            Music: もみじば (Momijiba) —{" "}
+            <a
+              href={app.credits.musicUrl}
+              className="underline underline-offset-4 hover:text-indigo"
+            >
+              MOMIZizm MUSiC
+            </a>{" "}
+            <a
+              href={app.credits.musicUrl}
+              className="text-slate break-all underline underline-offset-4 hover:text-indigo"
+            >
+              {app.credits.musicUrl}
+            </a>
+          </p>
+          <p className="spec-label mt-5">{credits.tracks}</p>
+          <ul className="text-slate mt-3 grid gap-x-10 gap-y-1.5 text-sm leading-relaxed sm:grid-cols-2">
+            {app.credits.tracks.map((t) => (
+              <li key={t.url}>
+                {t.style}{" "}
+                <a
+                  href={t.url}
+                  className="underline underline-offset-4 hover:text-indigo"
+                >
+                  “{t.title}”
+                </a>
+              </li>
+            ))}
+          </ul>
+          <h3 className="font-display mt-8 text-lg font-semibold">
+            {credits.sfx}
+          </h3>
+          <p className="mt-2 leading-relaxed">
+            <a
+              href={app.credits.sfx.url}
+              className="underline underline-offset-4 hover:text-indigo"
+            >
+              {app.credits.sfx.line}
+            </a>
+          </p>
         </section>
       )}
 
