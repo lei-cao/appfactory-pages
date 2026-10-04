@@ -1,5 +1,5 @@
 // Shared privacy / terms / FAQ / credits copy for the three games3d games
-// (Can Swap: Bottle Match, Crowd Siege, Harvest Town). They share one services
+// (Can Swap: Bottle Match, Crowd Siege, Haystack Hollow: Farm Town). They share one services
 // facade (games3d/packages/game_services: Google AdMob + UMP + ATT, Firebase
 // Analytics / Crashlytics / Remote Config, Apple StoreKit via in_app_purchase,
 // on-device saves), so their data practices are identical; the per-app files
@@ -29,7 +29,7 @@ export const games3dCredits: AppCredits = {
 };
 
 export interface Names {
-  /** Short display name, e.g. "Harvest Town". */
+  /** Short display name, e.g. "Haystack Hollow". */
   name: string;
   /** True when the game shows a full-screen ad after a win. */
   interstitials: boolean;

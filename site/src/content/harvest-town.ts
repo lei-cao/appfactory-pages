@@ -1,4 +1,5 @@
-// Harvest Town (games3d/apps/harvest-town, bundle id com.appfactory.harvestTown)
+// Haystack Hollow: Farm Town (games3d/apps/harvest-town, slug harvest-town, bundle id
+// com.appfactory.harvestTown)
 // — generic landing template, shared games3d privacy/terms/FAQ copy
 // (./games3d-common.ts). Unreleased: status "building", no store links, no
 // screenshots/icon yet. The final store name is undecided: the display names
@@ -15,9 +16,9 @@ import {
 } from "./games3d-common";
 
 /** Short display name. */
-const NAME = "Harvest Town";
+const NAME = "Haystack Hollow";
 /** Full store listing name (not final). */
-const STORE_NAME = "Harvest Town";
+const STORE_NAME = "Haystack Hollow: Farm Town";
 
 const names = { name: NAME, interstitials: false };
 
@@ -25,7 +26,7 @@ const en: AppLocalized = {
   name: NAME,
   storeName: STORE_NAME,
   tagline: "Plant. Produce. Grow the town.",
-  subtitle: "A Cozy 3D Farm Town Builder",
+  subtitle: "Cozy 3D Farm Town Builder",
   oneLiner:
     "A cozy 3D farm town builder: plant crops, run factories, fill orders and grow a small farm into a busy town.",
   statusNote: "In development. Coming to the App Store.",
