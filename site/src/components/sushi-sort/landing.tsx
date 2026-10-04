@@ -499,7 +499,7 @@ export async function SushiSortLandingPage({ locale }: { locale: Locale }) {
         <div className="bg-panel-2 rounded-3xl border-t-4 border-[var(--ss-vermilion)] px-8 py-12 text-center sm:px-16 sm:py-16">
           <div className="flex flex-col items-center">
             <Image
-              src={app.icon}
+              src={app.icon!}
               alt=""
               width={72}
               height={72}

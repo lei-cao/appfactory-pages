@@ -174,7 +174,7 @@ export async function TracesheetLandingPage({ locale }: { locale: Locale }) {
     inLanguage: LANG_TAG[locale],
     applicationCategory: "EducationalApplication",
     operatingSystem: "iOS",
-    image: `${origin}${app.icon}`,
+    image: `${origin}${app.icon!}`,
     screenshot: loc.screenshots.map((s) => `${origin}${s.src}`),
     installUrl: app.appStoreUrl,
     offers: [

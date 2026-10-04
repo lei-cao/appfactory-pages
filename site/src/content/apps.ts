@@ -38,7 +38,8 @@ export interface AppBase {
   /** Numeric App Store id; emits the apple-itunes-app Smart App Banner. */
   appStoreId?: string;
   playStoreUrl?: string;
-  icon: string;
+  /** App icon; omit while the app has no artwork yet (a plain initial tile shows instead). */
+  icon?: string;
   /** 1200×630 social card; falls back to the first screenshot. */
   ogImage?: string;
   /** Support contact for this app; defaults to the site-wide CONTACT_EMAIL. */
@@ -84,6 +85,9 @@ import { emberDeck } from "./ember-deck";
 import { courtyardArrows } from "./courtyard-arrows";
 import { porcelainTrio } from "./porcelain-trio";
 import { glossyBlocks } from "./glossy-blocks";
+import { bottleGuess } from "./bottle-guess";
+import { crowdSiege } from "./crowd-siege";
+import { harvestTown } from "./harvest-town";
 
 export const apps: AppContent[] = [
   pokerNight,
@@ -93,6 +97,9 @@ export const apps: AppContent[] = [
   courtyardArrows,
   porcelainTrio,
   glossyBlocks,
+  bottleGuess,
+  crowdSiege,
+  harvestTown,
 ];
 
 export function getApp(slug: string): AppContent | undefined {

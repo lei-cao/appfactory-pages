@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { apps, localized } from "@/content/apps";
+import { AppIcon } from "@/components/app-icon";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { StatusBadge } from "@/components/status";
 import { getDict } from "@/lib/dictionaries";
@@ -66,12 +66,10 @@ export default async function Hub({
                   <span className="spec-label col-span-2 sm:col-span-1">
                     {dict.hub.build} {pad3(app.buildNumber)}
                   </span>
-                  <Image
-                    src={app.icon}
-                    alt=""
-                    width={56}
-                    height={56}
-                    priority
+                  <AppIcon
+                    icon={app.icon}
+                    name={loc.name}
+                    size={56}
                     className="border-line bg-panel-2 row-span-1 rounded-xl border"
                   />
                   <div className="min-w-0">

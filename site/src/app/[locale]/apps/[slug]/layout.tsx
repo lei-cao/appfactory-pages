@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { apps, getApp, localized } from "@/content/apps";
+import { AppIcon } from "@/components/app-icon";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { emberDeckFontClass } from "@/components/ember-deck/fonts";
 import { sushiSortFontClass } from "@/components/sushi-sort/fonts";
@@ -52,11 +52,10 @@ export default async function AppLayout({
           href={base}
           className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo"
         >
-          <Image
-            src={app.icon}
-            alt=""
-            width={36}
-            height={36}
+          <AppIcon
+            icon={app.icon}
+            name={loc.name}
+            size={36}
             className="border-line rounded-lg border"
           />
           <span className="font-display text-lg font-semibold">

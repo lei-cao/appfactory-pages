@@ -677,7 +677,7 @@ export async function EmberDeckLandingPage({ locale }: { locale: Locale }) {
               className="w-20 translate-x-3 -rotate-12 rounded-md shadow-xl"
             />
             <Image
-              src={app.icon}
+              src={app.icon!}
               alt=""
               width={112}
               height={112}

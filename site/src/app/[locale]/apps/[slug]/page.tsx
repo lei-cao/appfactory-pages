@@ -54,7 +54,7 @@ export async function generateMetadata({
       canonical: `${appOrigin(slug)}${localePrefix(locale)}`,
       languages: languageAlternates(appOrigin(slug), "/"),
     },
-    icons: { icon: app.icon },
+    ...(app.icon && { icons: { icon: app.icon } }),
     ...(app.appStoreId && { itunes: { appId: app.appStoreId } }),
     openGraph: {
       title,
@@ -62,15 +62,17 @@ export async function generateMetadata({
       url: `${appOrigin(slug)}${localePrefix(locale)}`,
       siteName: loc.name,
       type: "website",
-      images: app.ogImage
-        ? [{ url: image, width: 1200, height: 630, alt: loc.storeName }]
-        : [image],
+      ...(image && {
+        images: app.ogImage
+          ? [{ url: image, width: 1200, height: 630, alt: loc.storeName }]
+          : [image],
+      }),
     },
     twitter: {
-      card: "summary_large_image",
+      card: image ? "summary_large_image" : "summary",
       title,
       description,
-      images: [image],
+      ...(image && { images: [image] }),
     },
   };
 }
@@ -195,20 +197,24 @@ export default async function AppLanding({
               {app.credits.musicUrl}
             </a>
           </p>
-          <p className="spec-label mt-5">{credits.tracks}</p>
-          <ul className="text-slate mt-3 grid gap-x-10 gap-y-1.5 text-sm leading-relaxed sm:grid-cols-2">
-            {app.credits.tracks.map((t) => (
-              <li key={t.url}>
-                {t.style}{" "}
-                <a
-                  href={t.url}
-                  className="underline underline-offset-4 hover:text-indigo"
-                >
-                  “{t.title}”
-                </a>
-              </li>
-            ))}
-          </ul>
+          {app.credits.tracks.length > 0 && (
+            <>
+              <p className="spec-label mt-5">{credits.tracks}</p>
+              <ul className="text-slate mt-3 grid gap-x-10 gap-y-1.5 text-sm leading-relaxed sm:grid-cols-2">
+                {app.credits.tracks.map((t) => (
+                  <li key={t.url}>
+                    {t.style}{" "}
+                    <a
+                      href={t.url}
+                      className="underline underline-offset-4 hover:text-indigo"
+                    >
+                      “{t.title}”
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
           <h3 className="font-display mt-8 text-lg font-semibold">
             {credits.sfx}
           </h3>

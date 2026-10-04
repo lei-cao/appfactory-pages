@@ -22,7 +22,7 @@ export async function generateMetadata({
       canonical: `${appOrigin(slug)}${localePrefix(locale)}/support`,
       languages: languageAlternates(appOrigin(slug), "/support"),
     },
-    icons: { icon: app.icon },
+    ...(app.icon && { icons: { icon: app.icon } }),
   };
 }
 
