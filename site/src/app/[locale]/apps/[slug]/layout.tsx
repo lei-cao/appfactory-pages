@@ -10,8 +10,10 @@ import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
 import { APEX_DOMAIN, CONTACT_EMAIL, hubOrigin } from "@/lib/site";
 
 export function generateStaticParams() {
+  // External apps have no subdomain site; exclude them from static generation.
+  const internalApps = apps.filter((app) => !app.externalUrls);
   return LOCALES.flatMap((locale) =>
-    apps.map((app) => ({ locale, slug: app.slug })),
+    internalApps.map((app) => ({ locale, slug: app.slug })),
   );
 }
 

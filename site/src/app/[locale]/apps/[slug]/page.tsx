@@ -242,6 +242,23 @@ export default async function AppLanding({
           </div>
         </section>
       )}
+
+      {/* Studio cross-promo (e.g. Poker Night → TiltFree) */}
+      {app.studioLink && (
+        <section className="pb-24">
+          <p className="spec-label border-line border-t pt-6">
+            <a
+              href={app.studioLink.urls[locale] ?? app.studioLink.urls.en}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-indigo-soft"
+            >
+              {app.studioLink.text[locale]}{" "}
+              <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </p>
+        </section>
+      )}
     </main>
   );
 }

@@ -46,6 +46,21 @@ export interface AppBase {
   contactEmail?: string;
   /** Music & SFX credits; the generic landing renders them when set. */
   credits?: AppCredits;
+  /**
+   * When set, this app is hosted externally. The home-page card links to the
+   * locale-appropriate URL and no subdomain site is generated.
+   */
+  externalUrls?: Partial<Record<Locale, string>>;
+  /** Display hostname shown in the home card when externalUrls is set (e.g. "pokertools.ai"). */
+  externalDomain?: string;
+  /**
+   * Optional cross-promo block rendered at the bottom of a sibling app's
+   * generic landing page (e.g. Poker Night → TiltFree).
+   */
+  studioLink?: {
+    urls: Partial<Record<Locale, string>>;
+    text: Record<Locale, string>;
+  };
 }
 
 /** Everything language-specific, provided once per locale. */
@@ -79,6 +94,7 @@ export interface AppContent extends AppBase {
 }
 
 import { pokerNight } from "./poker-night";
+import { tiltFree } from "./tiltfree";
 import { sushiSort } from "./sushi-sort";
 import { tracesheet } from "./tracesheet";
 import { emberDeck } from "./ember-deck";
@@ -91,6 +107,7 @@ import { harvestTown } from "./harvest-town";
 
 export const apps: AppContent[] = [
   pokerNight,
+  tiltFree,
   sushiSort,
   tracesheet,
   emberDeck,
