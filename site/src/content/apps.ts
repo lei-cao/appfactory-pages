@@ -81,6 +81,7 @@ export interface AppContent extends AppBase {
 import { pokerNight } from "./poker-night";
 import { sushiSort } from "./sushi-sort";
 import { tracesheet } from "./tracesheet";
+import { tiltfree } from "./tiltfree";
 import { emberDeck } from "./ember-deck";
 import { courtyardArrows } from "./courtyard-arrows";
 import { porcelainTrio } from "./porcelain-trio";
@@ -93,6 +94,7 @@ export const apps: AppContent[] = [
   pokerNight,
   sushiSort,
   tracesheet,
+  tiltfree,
   emberDeck,
   courtyardArrows,
   porcelainTrio,
