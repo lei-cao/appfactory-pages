@@ -24,6 +24,8 @@ function entriesFor(
 export default function sitemap(): MetadataRoute.Sitemap {
   const out: MetadataRoute.Sitemap = [...entriesFor(hubOrigin(), "/")];
   for (const app of apps) {
+    // External apps live on their own domain — skip subdomain sitemap entries.
+    if (app.externalUrls) continue;
     const origin = appOrigin(app.slug);
     const en = localized(app, "en");
     out.push(...entriesFor(origin, "/"));

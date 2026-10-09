@@ -57,10 +57,20 @@ export default async function Hub({
         <ul>
           {records.map((app) => {
             const loc = localized(app, locale);
+            const isExternal = !!app.externalUrls;
+            const href = isExternal
+              ? (app.externalUrls?.[locale] ?? app.externalUrls?.en ?? "#")
+              : `${appOrigin(app.slug)}${localePrefix(locale)}`;
+            const displayDomain = isExternal
+              ? (app.externalDomain ?? "")
+              : `${app.slug}.${APEX_DOMAIN}`;
             return (
               <li key={app.slug} className="border-line border-b">
                 <a
-                  href={`${appOrigin(app.slug)}${localePrefix(locale)}`}
+                  href={href}
+                  {...(isExternal
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="group grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-4 py-8 sm:grid-cols-[7rem_auto_1fr_auto] sm:gap-x-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo"
                 >
                   <span className="spec-label col-span-2 sm:col-span-1">
@@ -89,7 +99,7 @@ export default async function Hub({
                       label={dict.status[app.status]}
                     />
                     <span className="spec-label transition-colors group-hover:text-indigo-soft">
-                      {app.slug}.{APEX_DOMAIN}{" "}
+                      {displayDomain}{" "}
                       <span
                         aria-hidden
                         className="inline-block transition-transform group-hover:translate-x-1"

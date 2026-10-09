@@ -414,6 +414,9 @@ const zhTw: AppLocalized = {
   },
 };
 
+const PN_UTM =
+  "utm_source=poker-night.appfactory.sg&utm_medium=referral&utm_campaign=crosspromo";
+
 export const pokerNight: AppContent = {
   slug: "poker-night",
   buildNumber: 1,
@@ -423,5 +426,20 @@ export const pokerNight: AppContent = {
     "https://apps.apple.com/us/app/poker-night-home-game-ledger/id6788786222",
   platforms: ["iOS", "Android"],
   icon: "/apps/poker-night/icon.png",
+  // Cross-promo: surface TiltFree to players who also want to study hands.
+  studioLink: {
+    urls: {
+      en: `https://pokertools.ai?${PN_UTM}`,
+      "zh-cn": `https://pokertools.ai/zh-Hans?${PN_UTM}`,
+      "zh-tw": `https://pokertools.ai/zh-Hant?${PN_UTM}`,
+    },
+    text: {
+      en: "Want to study the hands you play? TiltFree is a hand journal for live players.",
+      "zh-cn":
+        "想复盘自己打过的牌？TiltFree 是一款专为现场玩家设计的手牌记录本。",
+      "zh-tw":
+        "想復盤自己打過的牌？TiltFree 是一款專為現場玩家設計的手牌記錄本。",
+    },
+  },
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
