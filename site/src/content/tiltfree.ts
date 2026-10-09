@@ -9,7 +9,7 @@ const UTM = "utm_source=appfactory.sg&utm_medium=referral&utm_campaign=crossprom
 
 const en: AppLocalized = {
   name: "TiltFree",
-  storeName: "TiltFree: Poker Hand Journal",
+  storeName: "TiltFree: Poker Hand Tracker",
   tagline: "Study every hand you play.",
   subtitle: "Live poker hand journal & AI coach",
   oneLiner:
@@ -30,7 +30,7 @@ const en: AppLocalized = {
 
 const zhCn: AppLocalized = {
   name: "TiltFree",
-  storeName: "TiltFree：扑克记牌本",
+  storeName: "TiltFree：德州扑克记录与AI教练",
   tagline: "复盘每一手牌。",
   subtitle: "现场手牌记录与 AI 复盘",
   oneLiner: "几下就能记下现场手牌，逐街回放，把打错的牌练回来。",
@@ -47,7 +47,7 @@ const zhCn: AppLocalized = {
 
 const zhTw: AppLocalized = {
   name: "TiltFree",
-  storeName: "TiltFree：撲克記牌本",
+  storeName: "TiltFree：德州撲克記錄與AI教練",
   tagline: "復盤每一手牌。",
   subtitle: "現場手牌記錄與 AI 復盤",
   oneLiner: "幾下就能記下現場手牌，逐街回放，把打錯的牌練回來。",
