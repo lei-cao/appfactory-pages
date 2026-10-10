@@ -10,6 +10,7 @@ import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
 import { isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
 import { appOrigin } from "@/lib/site";
+import { ldJson, softwareApplicationLd } from "@/lib/seo";
 
 const CREDITS_COPY = {
   en: {
@@ -46,7 +47,12 @@ export async function generateMetadata({
   const loc = localized(app, locale);
   const title = loc.metaTitle ?? loc.storeName;
   const description = loc.metaDescription ?? loc.oneLiner;
-  const image = app.ogImage ?? loc.screenshots[0]?.src ?? app.icon;
+  // Absolute on the app's own subdomain: relative paths would resolve against
+  // the apex metadataBase, which is not the canonical host.
+  const image = new URL(
+    app.ogImage ?? loc.screenshots[0]?.src ?? app.icon,
+    appOrigin(slug),
+  ).toString();
   return {
     title: { absolute: title },
     description,
@@ -96,6 +102,14 @@ export default async function AppLanding({
 
   return (
     <main>
+      {slug === "poker-night" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: ldJson(softwareApplicationLd(app, loc, locale)),
+          }}
+        />
+      )}
       {/* Hero */}
       <section className="grid items-center gap-12 pt-20 pb-16 sm:grid-cols-[3fr_2fr] sm:pt-28 sm:pb-24">
         <div>

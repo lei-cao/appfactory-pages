@@ -16,10 +16,13 @@ import type { AppContent, AppLocalized } from "./apps";
 const en: AppLocalized = {
   name: "Poker Night",
   storeName: "Poker Night: Home Game Ledger",
-  tagline: "Every buy-in tracked. One tap to settle. Ready to share.",
+  tagline: "Your poker home game, from first buy-in to final transfer.",
+  metaTitle: "Poker Night: Home Game Ledger, Blinds Clock & Odds",
+  metaDescription:
+    "Track poker buy-ins, run a blinds clock and settle up in the fewest transfers. Odds tools and trainers too. No ads, no account, one-time Pro.",
   subtitle: "Home game ledger & settle-up",
   oneLiner:
-    "Track buy-ins and rebuys as you play, settle the night in the fewest transfers with dollars and chips side by side, then share a results card built for the group chat.",
+    "The home game host's toolkit: track buy-ins and rebuys, run the blinds clock, settle the night in the fewest transfers, and share a results card with the group chat. Plus odds tools and trainers. No ads, no subscription.",
   statusNote: "Live now on the App Store. Android release in progress.",
   features: [
     {
@@ -68,7 +71,11 @@ const en: AppLocalized = {
     },
     {
       title: "Study: odds, ranges and saved spots",
-      body: "Hand vs. hand, hand vs. range and up to three boards, with ESG mode, a full range editor (text and slider) and three saved spots free. Pro adds GTO presets, the equity graph and hand categories.",
+      body: "An equity calculator for Hold'em, Omaha and ESG with up to three boards, a range editor (text and slider), pot odds, outs, implied odds, fold equity, MDF, SPR and 40+ common situations. Pro adds GTO presets, the equity graph and unlimited saved spots.",
+    },
+    {
+      title: "Odds trainers you can play one-handed",
+      body: "Practise pot odds, outs, equity and more in quick questions: 10 free a day, with your recent answers kept. Pro unlocks unlimited questions, accuracy stats and weak spots.",
     },
     {
       title: "Hand log",
@@ -80,7 +87,7 @@ const en: AppLocalized = {
     },
     {
       title: "Poker Night Pro",
-      body: "One optional purchase (US$7.99), yours forever, no subscription. Pro adds the blinds timer, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, hand-vs-range odds with GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
+      body: "One optional purchase (US$7.99), yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
     },
   ],
   screenshots: [
@@ -215,10 +222,13 @@ const en: AppLocalized = {
 const zhCn: AppLocalized = {
   name: "扑克之夜",
   storeName: "扑克之夜 — 牌局记账",
-  tagline: "买入实时记，结算一键清，战报随手发。",
+  tagline: "家庭德州扑克局，从第一笔买入到最后一笔转账。",
+  metaTitle: "扑克之夜：德州扑克计分、盲注计时与胜率计算 | iPhone",
+  metaDescription:
+    "记录德州扑克买入补码，盲注计时，用最少笔数结算，还有胜率工具与训练。无广告、免注册，Pro 一次买断。",
   subtitle: "买入补码随手记，散场一键结算",
   oneLiner:
-    "牌局进行时随手记录买入和补码，散场时用最少笔数完成转账、金额与筹码并列显示，再生成一张战报卡片发到群里。",
+    "家庭牌局主持人的工具箱：随手记录买入和补码，盲注计时，散场用最少笔数结算，再把战报卡片发到群里。另有胜率工具与训练。无广告，无订阅。",
   statusNote: "已在 App Store 上线，Android 版本即将推出。",
   features: [
     {
@@ -267,7 +277,11 @@ const zhCn: AppLocalized = {
     },
     {
       title: "研习：胜率、范围与保存局面",
-      body: "手牌对手牌、手牌对范围，最多三块牌面，支持 ESG 模式、文字与滑杆的完整范围编辑器，免费可保存 3 个局面。Pro 增加 GTO 预设、胜率曲线与牌型分布。",
+      body: "德州、奥马哈与 ESG 胜率计算器，最多三块牌面，文字与滑杆的范围编辑器，底池赔率、补牌、隐含赔率、弃牌率、最小防守频率、筹码底池比，以及 40 多个常见局面。Pro 增加 GTO 预设、胜率曲线与无限保存局面。",
+    },
+    {
+      title: "可单手操作的赔率训练",
+      body: "用快问快答练底池赔率、补牌、胜率等：每天 10 题免费，并保留最近的答题记录。Pro 解锁不限题数、正确率统计与薄弱项。",
     },
     {
       title: "牌谱",
@@ -279,7 +293,7 @@ const zhCn: AppLocalized = {
     },
     {
       title: "扑克之夜 Pro",
-      body: "一次性可选购买（7.99 美元），永久拥有，不是订阅。Pro 解锁盲注计时器、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、手牌对范围胜率与 GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
+      body: "一次性可选购买（7.99 美元），永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
     },
   ],
   screenshots: [
@@ -412,10 +426,13 @@ const zhCn: AppLocalized = {
 const zhTw: AppLocalized = {
   name: "撲克之夜",
   storeName: "撲克之夜 — 牌局記帳",
-  tagline: "買入即時記，結算一鍵清，戰報隨手發。",
+  tagline: "家庭德州撲克局，從第一筆買入到最後一筆轉帳。",
+  metaTitle: "撲克之夜：德州撲克計分、盲注計時與勝率計算 | iPhone",
+  metaDescription:
+    "記錄德州撲克買入補碼，盲注計時，用最少筆數結算，還有勝率工具與訓練。無廣告、免註冊，Pro 一次買斷。",
   subtitle: "買入補碼隨手記，散場一鍵結算",
   oneLiner:
-    "牌局進行時隨手記錄買入和補碼，散場時用最少筆數完成轉帳、金額與籌碼並列顯示，再產生一張戰報卡片發到群組。",
+    "家庭牌局主持人的工具箱：隨手記錄買入和補碼，盲注計時，散場用最少筆數結算，再把戰報卡片發到群組。另有勝率工具與訓練。無廣告，無訂閱。",
   statusNote: "已在 App Store 上線，Android 版本即將推出。",
   features: [
     {
@@ -464,7 +481,11 @@ const zhTw: AppLocalized = {
     },
     {
       title: "研習：勝率、範圍與儲存局面",
-      body: "手牌對手牌、手牌對範圍，最多三塊牌面，支援 ESG 模式、文字與滑桿的完整範圍編輯器，免費可儲存 3 個局面。Pro 增加 GTO 預設、勝率曲線與牌型分布。",
+      body: "德州、奧馬哈與 ESG 勝率計算器，最多三塊牌面，文字與滑桿的範圍編輯器，底池賠率、補牌、隱含賠率、棄牌率、最小防守頻率、籌碼底池比，以及 40 多個常見局面。Pro 增加 GTO 預設、勝率曲線與無限儲存局面。",
+    },
+    {
+      title: "可單手操作的賠率訓練",
+      body: "用快問快答練底池賠率、補牌、勝率等：每天 10 題免費，並保留最近的答題記錄。Pro 解鎖不限題數、正確率統計與弱項。",
     },
     {
       title: "牌譜",
@@ -476,7 +497,7 @@ const zhTw: AppLocalized = {
     },
     {
       title: "撲克之夜 Pro",
-      body: "一次性選購（7.99 美元），永久擁有，不是訂閱。Pro 解鎖盲注計時器、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、手牌對範圍勝率與 GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
+      body: "一次性選購（7.99 美元），永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
     },
   ],
   screenshots: [
@@ -612,5 +633,7 @@ export const pokerNight: AppContent = {
     "https://apps.apple.com/us/app/poker-night-home-game-ledger/id6788786222",
   platforms: ["iOS", "Android"],
   icon: "/apps/poker-night/icon.png",
+  ogImage: "/apps/poker-night/og.png",
+  appStoreId: "6788786222",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
