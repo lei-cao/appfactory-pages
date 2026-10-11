@@ -6,6 +6,7 @@ import { LocaleSwitcher } from "@/components/locale-switcher";
 import { emberDeckFontClass } from "@/components/ember-deck/fonts";
 import { sushiSortFontClass } from "@/components/sushi-sort/fonts";
 import { getDict } from "@/lib/dictionaries";
+import { isGuideLocale } from "@/lib/guide";
 import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
 import { APEX_DOMAIN, CONTACT_EMAIL, hubOrigin } from "@/lib/site";
 
@@ -46,6 +47,10 @@ export default async function AppLayout({
         ? sushiSortFontClass
         : undefined;
 
+  // The home-game guide only exists for Poker Night, and only in the two
+  // locales its content pack has been written for (see lib/guide.ts).
+  const hasGuide = slug === "poker-night" && isGuideLocale(locale);
+
   return (
     <div data-app={slug} className={fontClass}>
       <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col px-6 sm:px-10">
@@ -83,6 +88,14 @@ export default async function AppLayout({
               className="text-slate hidden text-sm transition-colors hover:text-paper sm:inline"
             >
               {dict.app.navTerms}
+            </Link>
+          )}
+          {hasGuide && (
+            <Link
+              href={`${base}/guide`}
+              className="text-slate hidden text-sm transition-colors hover:text-paper sm:inline"
+            >
+              {dict.app.navGuide}
             </Link>
           )}
           <LocaleSwitcher current={locale} />
@@ -124,6 +137,14 @@ export default async function AppLayout({
                 className="spec-label transition-colors hover:text-indigo-soft"
               >
                 {dict.app.footTerms}
+              </Link>
+            )}
+            {hasGuide && (
+              <Link
+                href={`${base}/guide`}
+                className="spec-label transition-colors hover:text-indigo-soft"
+              >
+                {dict.app.footGuide}
               </Link>
             )}
             <a

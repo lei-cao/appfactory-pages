@@ -1,73 +1,145 @@
+// Poker Night — v2.x "final" copy (no ads, one-time Pro). Sourced from the app's own fastlane metadata
+// (apps/poker-night/fastlane/metadata/ios/{en-US,zh-Hans}/*.txt) and the
+// home-game guide content pack (apps/poker-night/docs/content/web/*), not
+// copied verbatim — rewritten for the site's shorter, feature-card format.
+// zh-Hans copy is adapted from the app's own zh-Hans App Store listing;
+// zh-Hant is a Traditional-characters / Taiwan-convention rewrite of it.
+//
+// HARD RULE: no wagering vocabulary anywhere in this file (bet, betting,
+// gamble, gambling, casino, real money; zh 赌/下注/押) — Poker Night is a
+// scorekeeper, not a gambling app, and the App Store listing is 17+ only for
+// the presence of chips/wagers as a concept, not because the app itself
+// takes wagers.
+
 import type { AppContent, AppLocalized } from "./apps";
 
 const en: AppLocalized = {
   name: "Poker Night",
   storeName: "Poker Night: Home Game Ledger",
-  tagline: "Poker night, handled.",
-  subtitle: "Chip ledger & equity odds",
+  tagline: "Your poker home game, from first buy-in to final transfer.",
+  metaTitle: "Poker Night: Home Game Ledger, Blinds Clock & Odds",
+  metaDescription:
+    "Track poker buy-ins, run a blinds clock and settle up in the fewest transfers. Odds tools and trainers too. No ads, no account, one-time Pro.",
+  subtitle: "Home game ledger & settle-up",
   oneLiner:
-    "The scorekeeper for your home cash game: track every buy-in live, settle the night in one tap, and check hand equity between hands.",
+    "The home game host's toolkit: track buy-ins and rebuys, run the blinds clock, settle the night in the fewest transfers, and share a results card with the group chat. Plus odds tools and trainers. No ads, no subscription.",
   statusNote: "Live now on the App Store. Android release in progress.",
   features: [
     {
-      title: "Live ledger",
-      body: "Seat your regulars from a saved roster and track names, buy-ins, end chips, and profit/loss per player — always in sync. Each rebuy is one tap.",
+      title: "Money-first ledger",
+      body: "Set what a buy-in is worth once, and every buy-in, rebuy and transfer shows dollars and chips side by side — no converting in your head at 1am.",
     },
     {
-      title: "The table balances itself",
-      body: "Total up, total down, and the exact discrepancy if the counts are off — spotted before anyone goes home.",
+      title: "A results card for the group chat",
+      body: "End the night with a clean summary — the winner, the standings and every transfer — ready to share straight to the group chat.",
     },
     {
-      title: "One-tap settlement",
-      body: "End the game and get who-pays-whom instantly: minimal direct transfers between players, or banker mode where everyone settles with one person.",
+      title: "Settle up, then just tap Pay",
+      body: "Get the fewest possible transfers, or have everyone square up with one banker. Pay copies the line or opens your own Venmo, PayPal, Cash App, WeChat or Alipay — Poker Night never touches the money.",
     },
     {
-      title: "Equity calculator",
-      body: "Hold'em and PLO win/tie odds for up to 6 hands, exact or Monte Carlo — checked between hands, not mid-hand.",
+      title: "Leaderboard & seasons",
+      body: "Net results, wins, streaks and biggest nights by month, season or all time, plus head-to-head between any two regulars.",
     },
     {
-      title: "History & roster stats",
-      body: "Every settled night saved with a shareable summary image for the group chat, plus lifetime nights played and net result per player.",
+      title: "Blinds timer on your Lock Screen",
+      body: "Ready-made or custom blind structures with level alerts, and on iOS a Live Activity on the Lock Screen and Dynamic Island, plus widgets for tonight's game.",
     },
     {
-      title: "Offline-first, bilingual",
-      body: "No account, no sign-up — everything stays on your device. English and 简体中文, with locale-aware profit/loss colors.",
+      title: "A home-game guide, built in",
+      body: "17 short articles on rules, hand rankings, hosting and etiquette, plus an English–中文 glossary — nothing to search for mid-hand.",
+    },
+    {
+      title: "Four tabs: Tonight, Players, Study, History",
+      body: "Tonight holds the live game and your host tools, Players the roster and leaderboard, Study the odds tools and the guide, History every past night — one tap each.",
+    },
+    {
+      title: "Host tools",
+      body: "Random seats and a high-card draw for the button, a chip-set calculator for starting chips, tournament payouts with bounties, and a dealer's choice wheel for picking the game.",
+    },
+    {
+      title: "Personal limits, never a lock",
+      body: "Set a rebuy cap, a stop-loss or a leave-by time for yourself and get a gentle reminder when you reach it. Poker Night never blocks a rebuy.",
+    },
+    {
+      title: "Player insights & 16 badges",
+      body: "Win rate, streaks and biggest nights for every player, plus 16 badges earned from your own nights. Pro adds deep insights.",
+    },
+    {
+      title: "Wrapped: your group's year",
+      body: "Turn a year or a season into a story to share: nights, hours, the MVP and the rivalries. The group summary is free; Pro unlocks the full story.",
+    },
+    {
+      title: "Study: odds, ranges and saved spots",
+      body: "An equity calculator for Hold'em, Omaha and ESG with up to three boards, a range editor (text and slider), pot odds, outs, implied odds, fold equity, MDF, SPR and 40+ common situations. Pro adds GTO presets, the equity graph and unlimited saved spots.",
+    },
+    {
+      title: "Odds trainers you can play one-handed",
+      body: "Practise pot odds, outs, equity and more in quick questions: 10 free a day, with your recent answers kept. Pro unlocks unlimited questions, accuracy stats and weak spots.",
+    },
+    {
+      title: "Hand log",
+      body: "Jot down a hand in seconds for free. With Pro, record the action street by street and replay it later.",
+    },
+    {
+      title: "No ads. No subscription.",
+      body: "Poker Night shows no ads and doesn't track you across apps or websites. No account, no sign-up — your ledger stays on your device. English and 简体中文, with Dynamic Type, VoiceOver, and light and dark themes.",
+    },
+    {
+      title: "Poker Night Pro",
+      body: "One optional purchase (US$7.99), yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
     },
   ],
   screenshots: [
     {
-      src: "/apps/poker-night/shot-live.png",
-      alt: "Live session screen: five players with buy-ins, chip counts, and profit/loss, plus table balance totals",
+      src: "/apps/poker-night/shot-01-share-card.png",
+      alt: "Results card ready to share: the winner, the standings and who pays whom",
     },
     {
-      src: "/apps/poker-night/shot-home.png",
-      alt: "Home screen: resume a live game night, with equity and history shortcuts",
+      src: "/apps/poker-night/shot-02-live.png",
+      alt: "Live session: buy-ins and chip counts shown in dollars and chips, with the table balance at a glance",
     },
     {
-      src: "/apps/poker-night/shot-settle.png",
-      alt: "Settlement screen: who pays whom, in banker mode",
+      src: "/apps/poker-night/shot-03-settle.png",
+      alt: "Settle-up screen: the fewest transfers in dollars and chips, with Pay ready to open a payment app",
     },
     {
-      src: "/apps/poker-night/shot-equity.png",
-      alt: "Equity calculator: aces versus kings win odds at 82.8% to 17.2%",
+      src: "/apps/poker-night/shot-04-leaderboard.png",
+      alt: "Leaderboard: net results, wins and streaks by season",
+    },
+    {
+      src: "/apps/poker-night/shot-05-timer.png",
+      alt: "Blinds timer showing the current level and next blinds, with a Live Activity on the Lock Screen",
+    },
+    {
+      src: "/apps/poker-night/shot-06-equity.png",
+      alt: "Equity calculator: a hand's odds against a full range in Hold'em",
+    },
+    {
+      src: "/apps/poker-night/shot-07-guide.png",
+      alt: "Home-game guide: hand rankings, hosting and etiquette articles",
     },
   ],
   trust: {
-    title: "No real money, ever",
-    body: "Poker Night never moves money and offers no gambling. It is a calculator and scorekeeper: it does the arithmetic and shows who owes whom; settling up happens entirely outside the app, between you and your friends.",
+    title: "Money stays between friends",
+    body: "Poker Night keeps score — it never touches your money. Settle-up works out the fewest transfers to get everyone even, and tapping Pay just opens the payment app you already use — Venmo, PayPal, Cash App, WeChat, Alipay or similar — with nothing filled in. Paying each other happens the same way it always has, between you and your friends.",
   },
   faqs: [
     {
       q: "Where is my data stored?",
-      a: "On your device, and nowhere else. Player names, buy-ins, chip counts, and session history never leave your phone — the app has no backend and no account system.",
+      a: "On your device. Player names, buy-ins, chip counts and session history stay on your phone, and there is no account system. The one exception is optional: if you choose to share a night live with your table, a temporary copy of that night is sent so guests can follow along.",
     },
     {
-      q: "Does the app handle payments between players?",
-      a: "No. Poker Night only does the arithmetic and shows who owes whom. Any settling-up happens outside the app, between you and your friends.",
+      q: "Does Poker Night move money?",
+      a: "No — never. Settle-up just works out who pays whom; tapping Pay only opens a payment app you already have installed, with nothing filled in. Poker Night never sees or processes a payment.",
     },
     {
-      q: "How do I remove ads?",
-      a: "Settings → Remove ads. It's a one-time purchase processed by the App Store or Google Play, and it's permanent.",
+      q: "Does Poker Night show ads or track me?",
+      a: "No. There are no ads at all, and the app doesn't track you across other apps or websites, so there's no tracking prompt either.",
+    },
+    {
+      q: "What does Poker Night Pro cost, and is it a subscription?",
+      a: "Pro is a single optional purchase of US$7.99, yours forever. There is no subscription. The ledger, settle-up, share card, host tools and quick hand log stay free. Pro adds depth: the blinds timer, past and custom seasons, deep insights, the full Wrapped story, ICM deal calculator, GTO presets, hand replays and CSV export. Already bought Remove Ads? You already have every Pro feature, at no extra cost.",
     },
     {
       q: "The chip counts don't balance — what now?",
@@ -79,44 +151,50 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-07-09",
+    updated: "2026-10-02",
     sections: [
       {
         heading: "What we collect",
         body: [
           [
-            "Usage analytics (Google Firebase Analytics): anonymous usage events such as session created/settled, players added, equity calculations run, and screen views, plus device identifiers used by Firebase. We use this to understand how the app is used and improve it.",
+            "Usage analytics (Google Firebase Analytics): anonymous usage events such as session created/settled, players added, equity calculations run, and screen views, plus device identifiers used by Firebase. In-app purchase events are counted anonymously for analytics too. We use this to understand how the app is used and improve it.",
             "Crash reports (Firebase Crashlytics): technical crash data (stack traces, device model, OS version) to fix bugs. Not linked to your identity.",
-            "Advertising data (Google AdMob): when ads are shown, Google's SDK may use your device's advertising identifier to serve and measure ads. On iOS we ask permission via App Tracking Transparency first; in regions covered by GDPR we show Google's consent form (UMP) before any ads load.",
+            "App configuration and guide updates (Firebase Remote Config and Firebase Hosting): the app checks for configuration such as which features are switched on and the current version of the home-game guide, using the same installation identifier as the analytics line above. If the guide has new content, it's downloaded as a plain static file from Firebase Hosting — a normal web request that carries nothing about you or your games.",
           ],
         ],
       },
       {
         heading: "What we don't collect",
         body: [
-          "No accounts, no emails, no contacts, no location, no photos, no messages. Your game ledger — player names, buy-ins, chip counts, session history — is stored only on your device and never uploaded anywhere. The app has no backend.",
+          "No ads and no tracking: Poker Night shows no advertising, does not use your device's advertising identifier, does not track you across other apps or websites, and never asks for App Tracking Transparency permission. No accounts, no emails, no contacts, no location, no photos, no messages. Your game ledger — player names, buy-ins, chip counts, session history — is stored only on your device. Your ledger is never uploaded unless you choose to share a night live (see below); the app has no accounts. Live Activities, widgets and blinds-timer alerts are generated entirely on your device — nothing about a running game or a timer is ever sent anywhere.",
         ],
       },
       {
-        heading: "No real money",
+        heading: "Live sharing (optional)",
         body: [
-          "Poker Night never moves money. It is a scorekeeping calculator: it does the arithmetic and shows who owes whom; any settling-up happens entirely outside the app between you and your friends.",
+          "If you tap Share live during a night, Poker Night uploads a read-only snapshot of that night so the people at your table can follow it on their own phones: the display names you typed for tonight's players, buy-ins, chip counts, results, the chip value, who pays whom once settled, and the night's title if you gave it one. It is stored in Google Cloud Firestore (Firebase) under a random 128-bit link, together with an anonymous Firebase sign-in id that lets only your device update or stop it. It is not linked to any account, email, advertising id or analytics id.",
+          "Anyone with the link or QR code can view the snapshot; it can't be searched or listed. It's no longer viewable after 48 hours from its last update (or 24 hours after the night settles) — reads are refused past that point. It's deleted outright when you tap Stop sharing, when you delete the night, or automatically 24 hours after the night settles (checked the next time the app runs); there's no separate server-side deletion guarantee beyond that. Nothing is uploaded for nights you don't share, and guests who open the link in a browser are not asked for anything.",
+        ],
+      },
+      {
+        heading: "Money stays between friends",
+        body: [
+          "Poker Night never sees or processes a payment. Settle-up works out who pays whom; tapping Pay only opens a payment app you already have installed — Venmo, PayPal, Cash App, WeChat, Alipay or similar — with no amount filled in. Paying each other happens the same way it always has, between you and your friends.",
         ],
       },
       {
         heading: "Purchases",
         body: [
-          "The one-time \"Remove ads\" purchase is processed entirely by Apple App Store / Google Play. We never see your payment details.",
+          "Poker Night Pro and the earlier Remove ads purchase (which unlocks all of Pro) are one-time, optional purchases processed entirely by Apple App Store / Google Play. We never see your payment details.",
         ],
       },
       {
         heading: "Your choices",
         body: [
           [
-            "Decline tracking in the iOS permission prompt — the app works identically.",
-            "Change ad-consent choices anytime in Settings → \"Manage privacy consent\".",
-            "Remove ads permanently via the in-app purchase.",
+            "Turn off blinds-timer notifications and Live Activities anytime in your device's notification settings.",
             "Delete any player or session in the app to remove it from your device.",
+            "Stop sharing a live night anytime; the link stops working and the snapshot is deleted.",
           ],
         ],
       },
@@ -144,71 +222,130 @@ const en: AppLocalized = {
 const zhCn: AppLocalized = {
   name: "扑克之夜",
   storeName: "扑克之夜 — 牌局记账",
-  tagline: "牌局，一手搞定。",
-  subtitle: "记账结算 · 胜率计算",
+  tagline: "家庭德州扑克局，从第一笔买入到最后一笔转账。",
+  metaTitle: "扑克之夜：德州扑克计分、盲注计时与胜率计算 | iPhone",
+  metaDescription:
+    "记录德州扑克买入补码，盲注计时，用最少笔数结算，还有胜率工具与训练。无广告、免注册，Pro 一次买断。",
+  subtitle: "买入补码随手记，散场一键结算",
   oneLiner:
-    "家庭现金局的记账管家：实时记录每一次买入和码量，散场一键算清谁转谁多少，局间还能顺手算一把胜率。",
+    "家庭牌局主持人的工具箱：随手记录买入和补码，盲注计时，散场用最少笔数结算，再把战报卡片发到群里。另有胜率工具与训练。无广告，无订阅。",
   statusNote: "已在 App Store 上线，Android 版本即将推出。",
   features: [
     {
-      title: "实时账本",
-      body: "常用玩家一键上桌，新朋友输入一次名字即可。姓名、手数、码量与盈亏实时同步，每次补码只需点一下。",
+      title: "金额优先的账本",
+      body: "先设定一手买入值多少钱，之后每一次买入、补码和转账都会同时显示金额与筹码，凌晨也不用心算换算。",
     },
     {
-      title: "账目自动核对",
-      body: "总水上、总水下、差额一目了然，帐不平立刻提醒——散场前就能找到少掉的码。",
+      title: "战报卡片，直接发群",
+      body: "散场后自动生成一张清爽的战报：赢家、排名和每一笔转账，直接分享到群聊。",
     },
     {
-      title: "一键结算",
-      body: "结束游戏即刻出结算方案：玩家间最少笔数直接互转，或银行家模式——指定一人，所有人与其结算。",
+      title: "结算之后，点「支付」就好",
+      body: "最少笔数互转，或者指定一人代收代付。点「支付」可以复制收款信息，或打开你自己的微信、支付宝——扑克之夜完全不经手这笔钱。",
     },
     {
-      title: "胜率计算器",
-      body: "德州与奥马哈（PLO），最多 6 手牌，精确枚举或蒙特卡洛，局间顺手算一把。",
+      title: "排行榜与赛季",
+      body: "按月、按赛季或全部时间查看净结果、胜场与连胜，还能看任意两人的对战记录。",
     },
     {
-      title: "历史与战绩",
-      body: "每一局都存入历史，可生成清爽的战报图片分享到群里；名单页显示每位玩家的场次与净盈亏。",
+      title: "盲注计时器，锁屏可见",
+      body: "内置或自定义盲注结构，升盲有提醒；iOS 上支持锁屏与灵动岛的实时活动，还有桌面小组件显示今晚牌局。",
     },
     {
-      title: "完全离线 · 中英双语",
-      body: "无需账号注册，所有数据只存在你的设备上。中英双语，盈亏颜色随语言习惯自动调整。",
+      title: "内置家庭牌局指南",
+      body: "17 篇规则、牌型、组局与礼仪短文，附中英术语表——牌局进行到一半也不用去搜索引擎查。",
+    },
+    {
+      title: "四个标签：今晚、玩家、研习、历史",
+      body: "「今晚」放着进行中的牌局和主持工具，「玩家」是名单与排行榜，「研习」是胜率工具与指南，「历史」是所有往期牌局——一键直达。",
+    },
+    {
+      title: "主持工具",
+      body: "随机座位与比大小定庄、按你的筹码套装算出每人起始筹码、含赏金的锦标赛奖金分配，还有选游戏的转盘。",
+    },
+    {
+      title: "个人限额，只提醒不阻止",
+      body: "给自己设补码上限、止损或离场时间，到点会轻轻提醒。扑克之夜从不阻止补码。",
+    },
+    {
+      title: "玩家洞察与 16 枚徽章",
+      body: "每位玩家的胜率、连胜与最大的一晚，以及根据你的牌局自动获得的 16 枚徽章。Pro 解锁深度洞察。",
+    },
+    {
+      title: "年度回顾：牌友的一年",
+      body: "把一年（或一个赛季）的牌局做成可分享的故事：场次、时长、MVP 与宿敌。群组总览免费，Pro 解锁完整故事。",
+    },
+    {
+      title: "研习：胜率、范围与保存局面",
+      body: "德州、奥马哈与 ESG 胜率计算器，最多三块牌面，文字与滑杆的范围编辑器，底池赔率、补牌、隐含赔率、弃牌率、最小防守频率、筹码底池比，以及 40 多个常见局面。Pro 增加 GTO 预设、胜率曲线与无限保存局面。",
+    },
+    {
+      title: "可单手操作的赔率训练",
+      body: "用快问快答练底池赔率、补牌、胜率等：每天 10 题免费，并保留最近的答题记录。Pro 解锁不限题数、正确率统计与薄弱项。",
+    },
+    {
+      title: "牌谱",
+      body: "几秒记下一手牌，免费使用。升级 Pro 后可逐条街录入动作，之后随时回放。",
+    },
+    {
+      title: "无广告，无订阅",
+      body: "扑克之夜没有任何广告，也不会跨应用或跨网站跟踪你。无需注册账号，账本只存在你的设备上。中英双语，支持大字体、旁白朗读，浅色深色主题都有。",
+    },
+    {
+      title: "扑克之夜 Pro",
+      body: "一次性可选购买（7.99 美元），永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
     },
   ],
   screenshots: [
     {
-      src: "/apps/poker-night/zh/shot-live.png",
-      alt: "进行中界面：五位玩家的手数、码量与盈亏，底部是总水上、总水下与差额",
+      src: "/apps/poker-night/zh/shot-01-share-card.png",
+      alt: "战报卡片：赢家、排名与谁转给谁，随手可分享",
     },
     {
-      src: "/apps/poker-night/zh/shot-home.png",
-      alt: "主页：继续进行中的牌局，下方是胜率与历史入口",
+      src: "/apps/poker-night/zh/shot-02-live.png",
+      alt: "进行中界面：金额与筹码并列显示的买入与码量，底部是账目核对",
     },
     {
-      src: "/apps/poker-night/zh/shot-settle.png",
-      alt: "结算界面：银行家模式下谁转谁多少",
+      src: "/apps/poker-night/zh/shot-03-settle.png",
+      alt: "结算界面：最少笔数的转账，金额与筹码并列，点「支付」即可打开支付应用",
     },
     {
-      src: "/apps/poker-night/zh/shot-equity.png",
-      alt: "胜率计算器：AA 对 KK，胜率 82.8% 对 17.2%",
+      src: "/apps/poker-night/zh/shot-04-leaderboard.png",
+      alt: "排行榜：按赛季查看净结果、胜场与连胜",
+    },
+    {
+      src: "/apps/poker-night/zh/shot-05-timer.png",
+      alt: "盲注计时器：当前级别、下一级盲注，并支持锁屏实时活动",
+    },
+    {
+      src: "/apps/poker-night/zh/shot-06-equity.png",
+      alt: "胜率计算器：德州扑克手牌对范围的胜率",
+    },
+    {
+      src: "/apps/poker-night/zh/shot-07-guide.png",
+      alt: "家庭牌局指南：牌型、组局与礼仪文章",
     },
   ],
   trust: {
-    title: "不涉及真钱",
-    body: "扑克之夜不转账、不涉赌。它只是一个计算器和记分器：帮你算清谁欠谁多少；实际结算完全在应用之外、由你和朋友们自行完成。",
+    title: "钱，只在朋友之间转",
+    body: "扑克之夜只负责算账，从不经手你的钱。结算页面给出最少笔数的转账方案；点「支付」只会打开你已经在用的微信、支付宝等应用，金额不会预先填好。朋友之间怎么转账，还是一如既往。",
   },
   faqs: [
     {
       q: "我的数据存在哪里？",
-      a: "只存在你的设备上，别处都没有。玩家姓名、买入、码量与历史记录都不会离开你的手机——应用没有后端，也没有账号系统。",
+      a: "只存在你的设备上。玩家姓名、买入、码量与历史记录都留在你的手机里，也没有账号系统。唯一的例外由你决定：如果你选择与牌桌实时共享某一局，会上传这一局的临时副本，方便牌友同步查看。",
     },
     {
-      q: "应用会帮玩家之间转账吗？",
-      a: "不会。扑克之夜只做算术，算清谁欠谁多少；实际结算在应用之外，由你和朋友们自行完成。",
+      q: "扑克之夜会经手资金吗？",
+      a: "不会，从来不会。结算页面只是算出谁该转给谁多少；点「支付」只会打开你自己已经安装的微信、支付宝等应用，金额不会预先填好。扑克之夜从不接触、也不处理任何一笔支付。",
     },
     {
-      q: "如何移除广告？",
-      a: "设置 → 移除广告。一次性内购，由 App Store 或 Google Play 处理，永久有效。",
+      q: "扑克之夜有广告吗？会跟踪我吗？",
+      a: "没有。应用里完全没有广告，也不会跨其他应用或网站跟踪你，所以也没有跟踪授权弹窗。",
+    },
+    {
+      q: "扑克之夜 Pro 多少钱？是订阅吗？",
+      a: "Pro 是一次性可选购买，7.99 美元，永久拥有，不是订阅。账本、结算、战报卡片、主持工具和快速牌谱始终免费；Pro 增加深度功能：盲注计时器、往季与自定义赛季、深度洞察、完整年度回顾、ICM 分配计算器、GTO 预设、牌谱回放和 CSV 导出。之前买过「移除广告」的话，已经自动拥有全部 Pro 功能，无需重复购买。",
     },
     {
       q: "码量对不上怎么办？",
@@ -220,50 +357,58 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-07-09",
+    updated: "2026-10-02",
     sections: [
       {
         heading: "我们收集什么",
         body: [
           [
-            "使用分析（Google Firebase Analytics）：匿名使用事件，如创建/结算牌局、添加玩家、运行胜率计算、页面浏览，以及 Firebase 使用的设备标识符。用于了解应用的使用情况并加以改进。",
+            "使用分析（Google Firebase Analytics）：匿名使用事件，如创建/结算牌局、添加玩家、运行胜率计算、页面浏览，以及 Firebase 使用的设备标识符；内购事件也会被匿名计数用于分析。用于了解应用的使用情况并加以改进。",
             "崩溃报告（Firebase Crashlytics）：技术性崩溃数据（堆栈、设备型号、系统版本），用于修复问题，不与你的身份关联。",
-            "广告数据（Google AdMob）：展示广告时，Google 的 SDK 可能使用设备的广告标识符来投放和衡量广告。iOS 上会先通过 App 跟踪透明度（ATT）征求许可；在 GDPR 适用地区，加载任何广告前会先显示 Google 的同意表单（UMP）。",
+            "应用配置与指南更新（Firebase Remote Config / Firebase Hosting）：应用会用与上面分析功能相同的安装标识符，检查诸如“哪些功能已开启”之类的配置，以及家庭牌局指南的最新版本号；如果指南有更新，会从 Firebase Hosting 下载静态文件——这只是一次普通的网络请求，不会携带任何与你或你的牌局有关的信息。",
           ],
         ],
       },
       {
         heading: "我们不收集什么",
         body: [
-          "没有账号、邮箱、通讯录、位置、照片或消息。你的牌局账本——玩家姓名、买入、码量、历史记录——只保存在你的设备上，从不上传。应用没有后端。",
+          "没有广告，也不跟踪：扑克之夜不展示任何广告，不使用设备的广告标识符，不跨其他应用或网站跟踪你，也从不请求 App 跟踪透明度（ATT）权限。没有账号、邮箱、通讯录、位置、照片或消息。你的牌局账本——玩家姓名、买入、码量、历史记录——只保存在你的设备上；除非你主动选择实时共享某一局（见下文），否则从不上传。应用没有账号系统。锁屏实时活动、桌面小组件与盲注计时器的提醒完全在设备本地生成——不会有任何牌局或计时信息被发送出去。",
         ],
       },
       {
-        heading: "不涉及真钱",
+        heading: "实时共享（可选）",
         body: [
-          "扑克之夜从不转账。它只是一个记分计算器：帮你算清谁欠谁多少；实际结算完全在应用之外、由你和朋友们自行完成。",
+          "如果你在牌局中点了「实时共享」，扑克之夜会上传这一局的只读快照，让同桌的朋友用自己的手机查看：你为今晚玩家填写的显示名字、买入、筹码数、盈亏、筹码折算金额、结算后的转账明细，以及你设置的牌局名称（如有）。快照存放在 Google Cloud Firestore（Firebase）中，以一个 128 位随机链接标识，并附带一个匿名的 Firebase 登录标识，只有你的设备才能更新或停止共享。它不与任何账号、邮箱、广告标识或分析标识关联。",
+          "拿到链接或二维码的人都可以查看快照，但无法被搜索或列出。最后一次更新后满 48 小时（或牌局结算后满 24 小时），快照即不再可查看——之后的读取请求会被拒绝。你点击「停止共享」、删除该局，或结算后 24 小时（由应用自动完成，需应用再次运行时触发）都会直接删除快照；除此之外没有额外的服务器端删除保证。没有共享的牌局不会上传任何内容；客人在浏览器中打开链接时也不需要提供任何信息。",
+        ],
+      },
+      {
+        heading: "钱，只在朋友之间转",
+        body: [
+          "扑克之夜不会接触或处理任何一笔支付。结算页面会算出谁该转给谁多少；点「支付」只会打开你已经安装的微信、支付宝、Venmo、PayPal 等应用，金额不会预先填好。朋友之间怎么转账，还是一如既往。",
         ],
       },
       {
         heading: "内购",
         body: [
-          "一次性的“移除广告”内购完全由 Apple App Store / Google Play 处理，我们不会接触你的付款信息。",
+          "「扑克之夜 Pro」与之前的「移除广告」（购买后即自动解锁全部 Pro 功能）都是可选的一次性内购，完全由 Apple App Store 或 Google Play 处理，我们不会接触你的付款信息。",
         ],
       },
       {
         heading: "你的选择",
         body: [
           [
-            "在 iOS 权限弹窗中拒绝跟踪——应用功能完全不受影响。",
-            "随时在 设置 →“管理隐私许可”中更改广告同意选项。",
-            "通过内购永久移除广告。",
+            "随时在系统设置中关闭盲注计时器的通知与实时活动。",
             "在应用内删除任意玩家或牌局，即从设备上移除。",
+            "随时停止实时共享；链接立即失效，快照随之删除。",
           ],
         ],
       },
       {
         heading: "儿童",
-        body: ["扑克之夜不面向 13 岁以下儿童，也不会有意收集他们的个人信息。"],
+        body: [
+          "扑克之夜不面向 13 岁以下儿童，也不会有意收集他们的个人信息。",
+        ],
       },
       {
         heading: "联系方式",
@@ -281,71 +426,130 @@ const zhCn: AppLocalized = {
 const zhTw: AppLocalized = {
   name: "撲克之夜",
   storeName: "撲克之夜 — 牌局記帳",
-  tagline: "牌局，一手搞定。",
-  subtitle: "記帳結算 · 勝率計算",
+  tagline: "家庭德州撲克局，從第一筆買入到最後一筆轉帳。",
+  metaTitle: "撲克之夜：德州撲克計分、盲注計時與勝率計算 | iPhone",
+  metaDescription:
+    "記錄德州撲克買入補碼，盲注計時，用最少筆數結算，還有勝率工具與訓練。無廣告、免註冊，Pro 一次買斷。",
+  subtitle: "買入補碼隨手記，散場一鍵結算",
   oneLiner:
-    "家庭現金局的記帳管家：即時記錄每一次買入和碼量，散場一鍵算清誰轉誰多少，局間還能順手算一把勝率。",
+    "家庭牌局主持人的工具箱：隨手記錄買入和補碼，盲注計時，散場用最少筆數結算，再把戰報卡片發到群組。另有勝率工具與訓練。無廣告，無訂閱。",
   statusNote: "已在 App Store 上線，Android 版本即將推出。",
   features: [
     {
-      title: "即時帳本",
-      body: "常用玩家一鍵上桌，新朋友輸入一次名字即可。姓名、手數、碼量與盈虧即時同步，每次補碼只需點一下。",
+      title: "金額優先的帳本",
+      body: "先設定一手買入值多少錢，之後每一次買入、補碼和轉帳都會同時顯示金額與籌碼，半夜也不用心算換算。",
     },
     {
-      title: "帳目自動核對",
-      body: "總水上、總水下、差額一目瞭然，帳不平立刻提醒——散場前就能找到少掉的碼。",
+      title: "戰報卡片，直接發群組",
+      body: "散場後自動產生一張清爽的戰報：贏家、排名和每一筆轉帳，直接分享到群組。",
     },
     {
-      title: "一鍵結算",
-      body: "結束遊戲立即產生結算方案：玩家間最少筆數直接互轉，或銀行家模式——指定一人，所有人與其結算。",
+      title: "結算之後，點「支付」就好",
+      body: "最少筆數互轉，或者指定一人代收代付。點「支付」可以複製收款資訊，或開啟你自己的微信、支付寶——撲克之夜完全不經手這筆錢。",
     },
     {
-      title: "勝率計算器",
-      body: "德州與奧馬哈（PLO），最多 6 手牌，精確枚舉或蒙地卡羅，局間順手算一把。",
+      title: "排行榜與賽季",
+      body: "按月、按賽季或全部時間查看淨結果、勝場與連勝，還能看任兩人的對戰紀錄。",
     },
     {
-      title: "歷史與戰績",
-      body: "每一局都存入歷史，可產生清爽的戰報圖片分享到群組；名單頁顯示每位玩家的場次與淨盈虧。",
+      title: "盲注計時器，鎖定畫面就看得到",
+      body: "內建或自訂盲注結構，升盲有提醒；iOS 上支援鎖定畫面與動態島的即時動態，還有桌面小工具顯示今晚牌局。",
     },
     {
-      title: "完全離線 · 中英雙語",
-      body: "無需帳號註冊，所有資料只存在你的裝置上。中英雙語，盈虧顏色隨語言習慣自動調整。",
+      title: "內建家庭牌局指南",
+      body: "17 篇規則、牌型、組局與禮儀短文，附中英術語表——牌局進行到一半也不用上網查。",
+    },
+    {
+      title: "四個分頁：今晚、玩家、研習、歷史",
+      body: "「今晚」放著進行中的牌局和主持工具，「玩家」是名單與排行榜，「研習」是勝率工具與指南，「歷史」是所有過往牌局——一鍵直達。",
+    },
+    {
+      title: "主持工具",
+      body: "隨機座位與比大小定莊、依你的籌碼套組算出每人起始籌碼、含賞金的錦標賽獎金分配，還有選遊戲的轉盤。",
+    },
+    {
+      title: "個人限額，只提醒不阻止",
+      body: "替自己設補碼上限、止損或離場時間，到點會輕輕提醒。撲克之夜從不阻止補碼。",
+    },
+    {
+      title: "玩家洞察與 16 枚徽章",
+      body: "每位玩家的勝率、連勝與最大的一晚，以及依你的牌局自動獲得的 16 枚徽章。Pro 解鎖深度洞察。",
+    },
+    {
+      title: "年度回顧：牌友的一年",
+      body: "把一年（或一個賽季）的牌局做成可分享的故事：場次、時數、MVP 與宿敵。群組總覽免費，Pro 解鎖完整故事。",
+    },
+    {
+      title: "研習：勝率、範圍與儲存局面",
+      body: "德州、奧馬哈與 ESG 勝率計算器，最多三塊牌面，文字與滑桿的範圍編輯器，底池賠率、補牌、隱含賠率、棄牌率、最小防守頻率、籌碼底池比，以及 40 多個常見局面。Pro 增加 GTO 預設、勝率曲線與無限儲存局面。",
+    },
+    {
+      title: "可單手操作的賠率訓練",
+      body: "用快問快答練底池賠率、補牌、勝率等：每天 10 題免費，並保留最近的答題記錄。Pro 解鎖不限題數、正確率統計與弱項。",
+    },
+    {
+      title: "牌譜",
+      body: "幾秒記下一手牌，免費使用。升級 Pro 後可逐條街錄入動作，之後隨時回放。",
+    },
+    {
+      title: "無廣告，無訂閱",
+      body: "撲克之夜沒有任何廣告，也不會跨 App 或跨網站追蹤你。無需註冊帳號，帳本只存在你的裝置上。中英雙語，支援大字體、旁白朗讀，淺色深色主題都有。",
+    },
+    {
+      title: "撲克之夜 Pro",
+      body: "一次性選購（7.99 美元），永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
     },
   ],
   screenshots: [
     {
-      src: "/apps/poker-night/zh/shot-live.png",
-      alt: "進行中畫面：五位玩家的手數、碼量與盈虧，底部是總水上、總水下與差額",
+      src: "/apps/poker-night/zh/shot-01-share-card.png",
+      alt: "戰報卡片：贏家、排名與誰轉誰多少，隨手可分享",
     },
     {
-      src: "/apps/poker-night/zh/shot-home.png",
-      alt: "主頁：繼續進行中的牌局，下方是勝率與歷史入口",
+      src: "/apps/poker-night/zh/shot-02-live.png",
+      alt: "進行中畫面：金額與籌碼並列顯示的買入與碼量，底部是帳目核對",
     },
     {
-      src: "/apps/poker-night/zh/shot-settle.png",
-      alt: "結算畫面：銀行家模式下誰轉誰多少",
+      src: "/apps/poker-night/zh/shot-03-settle.png",
+      alt: "結算畫面：最少筆數的轉帳，金額與籌碼並列，點「支付」即可開啟支付 App",
     },
     {
-      src: "/apps/poker-night/zh/shot-equity.png",
-      alt: "勝率計算器：AA 對 KK，勝率 82.8% 對 17.2%",
+      src: "/apps/poker-night/zh/shot-04-leaderboard.png",
+      alt: "排行榜：按賽季查看淨結果、勝場與連勝",
+    },
+    {
+      src: "/apps/poker-night/zh/shot-05-timer.png",
+      alt: "盲注計時器：目前級別、下一級盲注，並支援鎖定畫面即時動態",
+    },
+    {
+      src: "/apps/poker-night/zh/shot-06-equity.png",
+      alt: "勝率計算器：德州撲克手牌對範圍的勝率",
+    },
+    {
+      src: "/apps/poker-night/zh/shot-07-guide.png",
+      alt: "家庭牌局指南：牌型、組局與禮儀文章",
     },
   ],
   trust: {
-    title: "不涉及真錢",
-    body: "撲克之夜不轉帳、不涉賭。它只是一個計算器和記分器：幫你算清誰欠誰多少；實際結算完全在 App 之外、由你和朋友們自行完成。",
+    title: "錢，只在朋友之間轉",
+    body: "撲克之夜只負責算帳，從不經手你的錢。結算頁面給出最少筆數的轉帳方案；點「支付」只會開啟你已經在用的微信、支付寶等 App，金額不會預先填好。朋友之間怎麼轉帳，還是一如既往。",
   },
   faqs: [
     {
       q: "我的資料存在哪裡？",
-      a: "只存在你的裝置上，別處都沒有。玩家姓名、買入、碼量與歷史記錄都不會離開你的手機——App 沒有後端，也沒有帳號系統。",
+      a: "只存在你的裝置上。玩家姓名、買入、碼量與歷史記錄都留在你的手機裡，也沒有帳號系統。唯一的例外由你決定：如果你選擇與牌桌即時共享某一局，會上傳這一局的暫時副本，方便牌友同步查看。",
     },
     {
-      q: "App 會幫玩家之間轉帳嗎？",
-      a: "不會。撲克之夜只做算術，算清誰欠誰多少；實際結算在 App 之外，由你和朋友們自行完成。",
+      q: "撲克之夜會經手資金嗎？",
+      a: "不會，從來不會。結算頁面只是算出誰該轉給誰多少；點「支付」只會開啟你自己已經安裝的微信、支付寶等 App，金額不會預先填好。撲克之夜從不接觸、也不處理任何一筆付款。",
     },
     {
-      q: "如何移除廣告？",
-      a: "設定 → 移除廣告。一次性內購，由 App Store 或 Google Play 處理，永久有效。",
+      q: "撲克之夜有廣告嗎？會追蹤我嗎？",
+      a: "沒有。App 裡完全沒有廣告，也不會跨其他 App 或網站追蹤你，所以也沒有追蹤授權視窗。",
+    },
+    {
+      q: "撲克之夜 Pro 多少錢？是訂閱嗎？",
+      a: "Pro 是一次性選購，7.99 美元，永久擁有，不是訂閱。帳本、結算、戰報卡片、主持工具和快速牌譜始終免費；Pro 增加深度功能：盲注計時器、往季與自訂賽季、深度洞察、完整年度回顧、ICM 分配計算器、GTO 預設、牌譜回放和 CSV 匯出。之前買過「移除廣告」的話，已經自動擁有全部 Pro 功能，不必重複購買。",
     },
     {
       q: "碼量對不上怎麼辦？",
@@ -357,44 +561,50 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-07-09",
+    updated: "2026-10-02",
     sections: [
       {
         heading: "我們收集什麼",
         body: [
           [
-            "使用分析（Google Firebase Analytics）：匿名使用事件，如建立/結算牌局、新增玩家、執行勝率計算、頁面瀏覽，以及 Firebase 使用的裝置識別碼。用於瞭解 App 的使用情況並加以改進。",
+            "使用分析（Google Firebase Analytics）：匿名使用事件，如建立/結算牌局、新增玩家、執行勝率計算、頁面瀏覽，以及 Firebase 使用的裝置識別碼；內購事件也會被匿名計數用於分析。用於瞭解 App 的使用情況並加以改進。",
             "當機回報（Firebase Crashlytics）：技術性當機資料（堆疊、裝置型號、系統版本），用於修復問題，不與你的身分連結。",
-            "廣告資料（Google AdMob）：顯示廣告時，Google 的 SDK 可能使用裝置的廣告識別碼來投放和衡量廣告。iOS 上會先透過 App 追蹤透明度（ATT）徵求許可；在 GDPR 適用地區，載入任何廣告前會先顯示 Google 的同意表單（UMP）。",
+            "App 設定與指南更新（Firebase Remote Config / Firebase Hosting）：App 會用與上面分析功能相同的安裝識別碼，檢查諸如「哪些功能已開啟」之類的設定，以及家庭牌局指南的最新版本號；如果指南有更新，會從 Firebase Hosting 下載靜態檔案——這只是一次普通的網路請求，不會帶有任何與你或你的牌局相關的資訊。",
           ],
         ],
       },
       {
         heading: "我們不收集什麼",
         body: [
-          "沒有帳號、Email、通訊錄、位置、照片或訊息。你的牌局帳本——玩家姓名、買入、碼量、歷史記錄——只保存在你的裝置上，從不上傳。App 沒有後端。",
+          "沒有廣告，也不追蹤：撲克之夜不顯示任何廣告，不使用裝置的廣告識別碼，不跨其他 App 或網站追蹤你，也從不請求 App 追蹤透明度（ATT）權限。沒有帳號、Email、通訊錄、位置、照片或訊息。你的牌局帳本——玩家姓名、買入、碼量、歷史記錄——只保存在你的裝置上；除非你主動選擇即時分享某一局（見下文），否則從不上傳。App 沒有帳號系統。鎖定畫面即時動態、桌面小工具與盲注計時器的提醒完全在裝置本機產生——不會有任何牌局或計時資訊被送出去。",
         ],
       },
       {
-        heading: "不涉及真錢",
+        heading: "即時分享（選用）",
         body: [
-          "撲克之夜從不轉帳。它只是一個記分計算器：幫你算清誰欠誰多少；實際結算完全在 App 之外、由你和朋友們自行完成。",
+          "如果你在牌局中點了「即時分享」，撲克之夜會上傳這一局的唯讀快照，讓同桌的朋友用自己的手機查看：你為今晚玩家填寫的顯示名稱、買入、籌碼數、盈虧、籌碼換算金額、結算後的轉帳明細，以及你設定的牌局名稱（如有）。快照存放在 Google Cloud Firestore（Firebase）中，以一個 128 位元隨機連結識別，並附帶一個匿名的 Firebase 登入識別碼，只有你的裝置才能更新或停止分享。它不與任何帳號、Email、廣告識別碼或分析識別碼關聯。",
+          "拿到連結或 QR code 的人都可以查看快照，但無法被搜尋或列出。最後一次更新後滿 48 小時（或牌局結算後滿 24 小時），快照即不再可查看——之後的讀取請求會被拒絕。你點擊「停止分享」、刪除該局，或結算後 24 小時（由 App 自動完成，需 App 再次執行時觸發）都會直接刪除快照；除此之外沒有額外的伺服器端刪除保證。沒有分享的牌局不會上傳任何內容；客人在瀏覽器中開啟連結時也不需要提供任何資訊。",
+        ],
+      },
+      {
+        heading: "錢，只在朋友之間轉",
+        body: [
+          "撲克之夜不會接觸或處理任何一筆付款。結算頁面會算出誰該轉給誰多少；點「支付」只會開啟你已經安裝的微信、支付寶、Venmo、PayPal 等 App，金額不會預先填好。朋友之間怎麼轉帳，還是一如既往。",
         ],
       },
       {
         heading: "內購",
         body: [
-          "一次性的「移除廣告」內購完全由 Apple App Store / Google Play 處理，我們不會接觸你的付款資訊。",
+          "「撲克之夜 Pro」與先前的「移除廣告」（購買後會自動解鎖全部 Pro 功能）都是選購的一次性內購，完全由 Apple App Store 或 Google Play 處理，我們不會接觸你的付款資訊。",
         ],
       },
       {
         heading: "你的選擇",
         body: [
           [
-            "在 iOS 權限視窗中拒絕追蹤——App 功能完全不受影響。",
-            "隨時在 設定 →「管理隱私許可」中更改廣告同意選項。",
-            "透過內購永久移除廣告。",
+            "隨時在系統設定中關閉盲注計時器的通知與即時動態。",
             "在 App 內刪除任意玩家或牌局，即從裝置上移除。",
+            "隨時停止即時分享；連結立即失效，快照隨之刪除。",
           ],
         ],
       },
@@ -421,7 +631,7 @@ export const pokerNight: AppContent = {
   slug: "poker-night",
   category: "app",
   buildNumber: 1,
-  version: "1.6.0",
+  version: "2.0.0",
   status: "live",
   appStoreUrl:
     "https://apps.apple.com/us/app/poker-night-home-game-ledger/id6788786222",
@@ -442,5 +652,7 @@ export const pokerNight: AppContent = {
         "想復盤自己打過的牌？TiltFree 是一款專為現場玩家設計的手牌記錄本。",
     },
   },
+  ogImage: "/apps/poker-night/og.png",
+  appStoreId: "6788786222",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

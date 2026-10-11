@@ -4,6 +4,7 @@ import { getApp, localized } from "@/content/apps";
 import { getDict } from "@/lib/dictionaries";
 import { fmt, isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
 import { appOrigin, CONTACT_EMAIL } from "@/lib/site";
+import { faqPageLd, ldJson } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -45,6 +46,12 @@ export default async function Support({
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+      {slug === "poker-night" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(loc, locale)) }}
+        />
+      )}
       <span className="spec-label">{dict.support.eyebrow}</span>
       <h1 className="font-display mt-3 text-4xl font-bold">
         {fmt(dict.support.title, { name: loc.name })}
