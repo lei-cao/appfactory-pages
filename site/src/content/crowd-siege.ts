@@ -132,6 +132,7 @@ const zhTw: AppLocalized = {
 export const crowdSiege: AppContent = {
   slug: "crowd-siege",
   category: "game",
+  ogImage: "/apps/crowd-siege/og.png",
   buildNumber: 14,
   version: "1.0.0",
   status: "building",

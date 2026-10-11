@@ -6,6 +6,7 @@ import { getDict } from "@/lib/dictionaries";
 import { guideLanguageAlternates, isGuideLocale, listGuideArticles } from "@/lib/guide";
 import { fmt, isLocale, localePrefix } from "@/lib/i18n";
 import { appOrigin } from "@/lib/site";
+import { appPageMetadata, breadcrumbLd, JsonLd } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -20,15 +21,15 @@ export async function generateMetadata({
   if (slug !== "poker-night") return {};
   const loc = localized(app, locale);
   const dict = getDict(locale);
-  return {
-    title: { absolute: fmt(dict.guide.title, { name: loc.name }) },
+  return appPageMetadata({
+    app,
+    loc,
+    locale,
+    path: "/guide",
+    title: fmt(dict.guide.title, { name: loc.name }),
     description: dict.guide.intro,
-    alternates: {
-      canonical: `${appOrigin(slug)}${localePrefix(locale)}/guide`,
-      languages: guideLanguageAlternates(appOrigin(slug), "/guide"),
-    },
-    icons: { icon: app.icon },
-  };
+    languages: guideLanguageAlternates(appOrigin(slug), "/guide"),
+  });
 }
 
 export default async function GuideIndex({
@@ -50,6 +51,13 @@ export default async function GuideIndex({
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+      <JsonLd
+        data={[
+          breadcrumbLd(app, loc, locale, [
+            { name: fmt(dict.guide.title, { name: loc.name }), path: "/guide" },
+          ]),
+        ]}
+      />
       <span className="spec-label">{dict.guide.eyebrow}</span>
       <h1 className="font-display mt-3 text-4xl font-bold">
         {fmt(dict.guide.title, { name: loc.name })}

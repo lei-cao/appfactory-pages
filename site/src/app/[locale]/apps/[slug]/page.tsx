@@ -10,7 +10,12 @@ import { StoreBadges } from "@/components/store-badges";
 import { getDict } from "@/lib/dictionaries";
 import { isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
 import { appOrigin } from "@/lib/site";
-import { ldJson, softwareApplicationLd } from "@/lib/seo";
+import {
+  appPageMetadata,
+  JsonLd,
+  organizationLd,
+  softwareApplicationLd,
+} from "@/lib/seo";
 
 const CREDITS_COPY = {
   en: {
@@ -45,42 +50,13 @@ export async function generateMetadata({
   const app = getApp(slug);
   if (!app || !isLocale(locale)) return {};
   const loc = localized(app, locale);
-  const title = loc.metaTitle ?? loc.storeName;
-  const description = loc.metaDescription ?? loc.oneLiner;
-  // Absolute on the app's own subdomain: relative paths would resolve against
-  // the apex metadataBase, which is not the canonical host.
-  const image = new URL(
-    app.ogImage ?? loc.screenshots[0]?.src ?? app.icon,
-    appOrigin(slug),
-  ).toString();
-  return {
-    title: { absolute: title },
-    description,
-    alternates: {
-      canonical: `${appOrigin(slug)}${localePrefix(locale)}`,
-      languages: languageAlternates(appOrigin(slug), "/"),
-    },
-    ...(app.icon && { icons: { icon: app.icon } }),
-    ...(app.appStoreId && { itunes: { appId: app.appStoreId } }),
-    openGraph: {
-      title,
-      description,
-      url: `${appOrigin(slug)}${localePrefix(locale)}`,
-      siteName: loc.name,
-      type: "website",
-      ...(image && {
-        images: app.ogImage
-          ? [{ url: image, width: 1200, height: 630, alt: loc.storeName }]
-          : [image],
-      }),
-    },
-    twitter: {
-      card: image ? "summary_large_image" : "summary",
-      title,
-      description,
-      ...(image && { images: [image] }),
-    },
-  };
+  return appPageMetadata({
+    app,
+    loc,
+    locale,
+    title: loc.metaTitle ?? loc.storeName,
+    description: loc.metaDescription ?? loc.oneLiner,
+  });
 }
 
 export default async function AppLanding({
@@ -104,14 +80,9 @@ export default async function AppLanding({
 
   return (
     <main>
-      {slug === "poker-night" && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: ldJson(softwareApplicationLd(app, loc, locale)),
-          }}
-        />
-      )}
+      <JsonLd
+        data={[softwareApplicationLd(app, loc, locale), organizationLd()]}
+      />
       {/* Hero */}
       <section className="grid items-center gap-12 pt-20 pb-16 sm:grid-cols-[3fr_2fr] sm:pt-28 sm:pb-24">
         <div>

@@ -48,6 +48,10 @@ export interface AppBase {
   ogImage?: string;
   /** Support contact for this app; defaults to the site-wide CONTACT_EMAIL. */
   contactEmail?: string;
+  /** schema.org applicationCategory; defaults by category (Utilities / Game). */
+  schemaCategory?: string;
+  /** One-time in-app purchase listed as a second Offer in JSON-LD. */
+  proOffer?: { name: string; price: string };
   /** Music & SFX credits; the generic landing renders them when set. */
   credits?: AppCredits;
   /**

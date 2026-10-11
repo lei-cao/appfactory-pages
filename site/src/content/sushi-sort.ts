@@ -14,7 +14,7 @@ const en: AppLocalized = {
     "A calm Japanese sorting puzzle where most sushi waits face-down under black lacquer lids. Only the front piece shows, every pour flips the next one, and there are no timers, no energy and no lives.",
   statusNote:
     "On the App Store for iPhone and iPad. Android release in progress.",
-  metaTitle: "Sushi Sort 2.2: The Mystery Tray — a calm sushi sort puzzle with no timers",
+  metaTitle: "Sushi Sort: Calm Sushi Sorting Puzzle, No Timers",
   metaDescription:
     "Sushi Sort 2.2 hides the sushi under black lacquer lids: only the front piece shows and every pour flips the next. 600 machine-verified levels across 30 worlds, racks up to 10 deep, free undo, Zen mode, no timers. One $3.99 purchase removes every ad.",
   features: [

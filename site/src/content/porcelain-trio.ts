@@ -19,7 +19,7 @@ const en: AppLocalized = {
   oneLiner:
     "Pick porcelain tiles into a 7-slot tray and clear them three alike, while an old tea house comes back to life. 600 levels plus a 120-level Master track, and no time limits on regular levels.",
   statusNote: "Coming soon to the App Store and Google Play.",
-  metaTitle: "Porcelain Trio: Tea Tiles — a calm triple-match tile puzzle, 600 levels",
+  metaTitle: "Porcelain Trio: Calm Triple-Match Tile Puzzle",
   metaDescription:
     "Porcelain Trio is a calm, layered triple-match puzzle: porcelain tiles in a hand-painted style, a 7-slot tray, 3 free undos every level, 600 levels plus a 120-level Master track each checked for a solution, and no time limits on regular levels.",
   features: [
@@ -147,6 +147,7 @@ const zhTw: AppLocalized = {
 export const porcelainTrio: AppContent = {
   slug: "tile-trio",
   category: "game",
+  ogImage: "/apps/tile-trio/og.png",
   buildNumber: 11,
   version: "1.0.0",
   status: "building",

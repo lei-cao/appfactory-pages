@@ -1001,7 +1001,7 @@ const landingEn: EmberDeckLanding = {
   pressBody:
     "Use these in coverage, videos and streams. For codes, questions or higher-resolution art, email lei@appfactory.sg.",
   pressFacts: [
-    { label: "Developer", value: "appfactory (Lei Cao), Singapore" },
+    { label: "Developer", value: "App Factory (Lei Cao), Singapore" },
     { label: "Genre", value: "Roguelite deckbuilder" },
     { label: "Platforms", value: "iPhone first, then Android" },
     { label: "Price", value: "Free, optional one-time purchases" },
@@ -1241,7 +1241,7 @@ const landingZhCn: EmberDeckLanding = {
   pressBody:
     "欢迎在报道、视频和直播中使用以下素材。如需兑换码、有任何问题或需要更高分辨率的美术，请发邮件至 lei@appfactory.sg。",
   pressFacts: [
-    { label: "开发者", value: "appfactory（Lei Cao），新加坡" },
+    { label: "开发者", value: "App Factory（Lei Cao），新加坡" },
     { label: "类型", value: "卡牌肉鸽" },
     { label: "平台", value: "先登陆 iPhone，随后 Android" },
     { label: "价格", value: "免费，含可选一次性内购" },
@@ -1481,7 +1481,7 @@ const landingZhTw: EmberDeckLanding = {
   pressBody:
     "歡迎在報道、影片和直播中使用以下素材。如需兌換碼、有任何問題或需要更高解析度的美術，請發郵件至 lei@appfactory.sg。",
   pressFacts: [
-    { label: "開發者", value: "appfactory（Lei Cao），新加坡" },
+    { label: "開發者", value: "App Factory（Lei Cao），新加坡" },
     { label: "型別", value: "Roguelite 牌組構築" },
     { label: "平臺", value: "先登陸 iPhone，隨後 Android" },
     { label: "價格", value: "免費，含可選一次性內購" },

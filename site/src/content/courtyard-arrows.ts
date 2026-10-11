@@ -149,6 +149,7 @@ const zhTw: AppLocalized = {
 export const courtyardArrows: AppContent = {
   slug: "arrow-out",
   category: "game",
+  ogImage: "/apps/arrow-out/og.png",
   buildNumber: 10,
   version: "1.0.0",
   status: "building",

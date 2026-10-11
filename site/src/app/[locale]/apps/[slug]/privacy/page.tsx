@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
 import { getDict } from "@/lib/dictionaries";
-import { fmt, isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
-import { appOrigin } from "@/lib/site";
+import { fmt, isLocale } from "@/lib/i18n";
+import { appPageMetadata, breadcrumbLd, JsonLd } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -15,15 +15,14 @@ export async function generateMetadata({
   if (!app || !isLocale(locale)) return {};
   const loc = localized(app, locale);
   const dict = getDict(locale);
-  return {
-    title: { absolute: `${loc.name} — ${dict.privacy.title}` },
-    description: `${loc.storeName} · ${dict.privacy.title}`,
-    alternates: {
-      canonical: `${appOrigin(slug)}${localePrefix(locale)}/privacy`,
-      languages: languageAlternates(appOrigin(slug), "/privacy"),
-    },
-    ...(app.icon && { icons: { icon: app.icon } }),
-  };
+  return appPageMetadata({
+    app,
+    loc,
+    locale,
+    path: "/privacy",
+    title: `${loc.name} — ${dict.privacy.title}`,
+    description: fmt(dict.privacy.meta, { name: loc.storeName }),
+  });
 }
 
 export default async function Privacy({
@@ -40,6 +39,13 @@ export default async function Privacy({
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+      <JsonLd
+        data={[
+          breadcrumbLd(app, loc, locale, [
+            { name: dict.privacy.title, path: "/privacy" },
+          ]),
+        ]}
+      />
       <span className="spec-label">
         {fmt(dict.privacy.updated, { date: loc.privacy.updated })}
       </span>

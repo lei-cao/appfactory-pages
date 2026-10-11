@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
 import { getDict } from "@/lib/dictionaries";
-import { fmt, isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
-import { appOrigin } from "@/lib/site";
+import { fmt, isLocale } from "@/lib/i18n";
+import { appPageMetadata, breadcrumbLd, JsonLd } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,15 +16,14 @@ export async function generateMetadata({
   const loc = localized(app, locale);
   if (!loc.terms) return {};
   const dict = getDict(locale);
-  return {
-    title: { absolute: `${loc.name} — ${dict.terms.title}` },
-    description: `${loc.storeName} · ${dict.terms.title}`,
-    alternates: {
-      canonical: `${appOrigin(slug)}${localePrefix(locale)}/terms`,
-      languages: languageAlternates(appOrigin(slug), "/terms"),
-    },
-    ...(app.icon && { icons: { icon: app.icon } }),
-  };
+  return appPageMetadata({
+    app,
+    loc,
+    locale,
+    path: "/terms",
+    title: `${loc.name} — ${dict.terms.title}`,
+    description: fmt(dict.terms.meta, { name: loc.storeName }),
+  });
 }
 
 export default async function Terms({
@@ -42,6 +41,13 @@ export default async function Terms({
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+      <JsonLd
+        data={[
+          breadcrumbLd(app, loc, locale, [
+            { name: dict.terms.title, path: "/terms" },
+          ]),
+        ]}
+      />
       <span className="spec-label">
         {fmt(dict.terms.updated, { date: loc.terms.updated })}
       </span>

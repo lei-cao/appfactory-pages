@@ -640,9 +640,9 @@ export const pokerNight: AppContent = {
   // Cross-promo: surface TiltFree to players who also want to study hands.
   studioLink: {
     urls: {
-      en: `https://pokertools.ai?${PN_UTM}`,
-      "zh-cn": `https://pokertools.ai/zh-Hans?${PN_UTM}`,
-      "zh-tw": `https://pokertools.ai/zh-Hant?${PN_UTM}`,
+      en: `https://www.pokertools.ai?${PN_UTM}`,
+      "zh-cn": `https://www.pokertools.ai/zh-Hans?${PN_UTM}`,
+      "zh-tw": `https://www.pokertools.ai/zh-Hant?${PN_UTM}`,
     },
     text: {
       en: "Want to study the hands you play? TiltFree is a hand journal for live players.",
@@ -653,6 +653,7 @@ export const pokerNight: AppContent = {
     },
   },
   ogImage: "/apps/poker-night/og.png",
+  proOffer: { name: "Poker Night Pro (one-time in-app purchase)", price: "7.99" },
   appStoreId: "6788786222",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

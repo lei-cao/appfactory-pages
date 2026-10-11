@@ -72,16 +72,19 @@ export interface Dict {
     hint: string;
     faqTitle: string;
     mailSubject: string; // {name} {version}
+    meta: string; // {name} — meta description
   };
   privacy: {
     updated: string; // {date}
     title: string;
     intro: string; // {name}
+    meta: string; // {name} — meta description
   };
   terms: {
     updated: string; // {date}
     title: string;
     intro: string; // {name}
+    meta: string; // {name} — meta description
   };
   notFound: {
     eyebrow: string;
@@ -173,18 +176,21 @@ const en: Dict = {
     hint: "Include your device model and what you tapped right before the problem — it usually cuts a round-trip.",
     faqTitle: "common questions",
     mailSubject: "{name} support (v{version})",
+    meta: "Help for {name}: answers to common questions and how to reach a real person at App Factory.",
   },
   privacy: {
     updated: "last updated {date}",
     title: "Privacy Policy",
     intro:
       '{name} is developed by lei cao ("we"). This policy explains what data the app handles and why.',
+    meta: "{name} privacy policy: what data the app handles, why, and the choices you have.",
   },
   terms: {
     updated: "last updated {date}",
     title: "Terms of Use",
     intro:
       "These terms govern your use of {name}. By downloading or using the app you agree to them.",
+    meta: "Terms of Use for {name}: the rules for using the app and what you can expect from App Factory.",
   },
   notFound: {
     eyebrow: "status 404",
@@ -272,16 +278,19 @@ const zhCn: Dict = {
     hint: "请附上设备型号，以及出问题前你点了什么——通常能省一个来回。",
     faqTitle: "常见问题",
     mailSubject: "{name} 支持（v{version}）",
+    meta: "{name} 帮助中心：常见问题解答，以及如何联系 App Factory 的真人客服。",
   },
   privacy: {
     updated: "最近更新 {date}",
     title: "隐私政策",
     intro: "{name} 由 lei cao（“我们”）开发。本政策说明应用会处理哪些数据以及原因。",
+    meta: "{name} 隐私政策：应用会处理哪些数据、为什么，以及你可以做的选择。",
   },
   terms: {
     updated: "最近更新 {date}",
     title: "使用条款",
     intro: "本条款约束你对 {name} 的使用。下载或使用本应用即表示你同意这些条款。",
+    meta: "{name} 使用条款：使用本应用的规则，以及 App Factory 的承诺。",
   },
   notFound: {
     eyebrow: "状态 404",
@@ -369,17 +378,20 @@ const zhTw: Dict = {
     hint: "請附上裝置型號，以及出問題前你點了什麼——通常能省一個來回。",
     faqTitle: "常見問題",
     mailSubject: "{name} 支援（v{version}）",
+    meta: "{name} 說明中心：常見問題解答，以及如何聯絡 App Factory 的真人客服。",
   },
   privacy: {
     updated: "最近更新 {date}",
     title: "隱私權政策",
     intro:
       "{name} 由 lei cao（「我們」）開發。本政策說明應用程式會處理哪些資料以及原因。",
+    meta: "{name} 隱私權政策：應用會處理哪些資料、為什麼，以及你可以做的選擇。",
   },
   terms: {
     updated: "最近更新 {date}",
     title: "使用條款",
     intro: "本條款規範你對 {name} 的使用。下載或使用本應用程式即表示你同意這些條款。",
+    meta: "{name} 使用條款：使用本 App 的規則，以及 App Factory 的承諾。",
   },
   notFound: {
     eyebrow: "狀態 404",

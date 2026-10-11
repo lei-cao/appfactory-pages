@@ -11,8 +11,9 @@ import {
   isGuideLocale,
   type GuideArticleId,
 } from "@/lib/guide";
-import { fmt, isLocale, localePrefix } from "@/lib/i18n";
-import { appOrigin } from "@/lib/site";
+import { fmt, isLocale, LANG_TAG, localePrefix } from "@/lib/i18n";
+import { appOrigin, hubOrigin } from "@/lib/site";
+import { appPageMetadata, appPageUrl, breadcrumbLd, JsonLd } from "@/lib/seo";
 
 function isGuideArticleId(x: string): x is GuideArticleId {
   return (GUIDE_ARTICLE_IDS as readonly string[]).includes(x);
@@ -53,18 +54,16 @@ export async function generateMetadata({
 
   const loc = localized(app, locale);
   const article = getGuideArticle(locale, articleId, slug);
-  return {
-    title: { absolute: `${article.title} — ${loc.name}` },
+  return appPageMetadata({
+    app,
+    loc,
+    locale,
+    path: `/guide/${articleId}`,
+    title: `${article.title} — ${loc.name}`,
     description: article.description,
-    alternates: {
-      canonical: `${appOrigin(slug)}${localePrefix(locale)}/guide/${articleId}`,
-      languages: guideLanguageAlternates(
-        appOrigin(slug),
-        `/guide/${articleId}`,
-      ),
-    },
-    icons: { icon: app.icon },
-  };
+    languages: guideLanguageAlternates(appOrigin(slug), `/guide/${articleId}`),
+    type: "article",
+  });
 }
 
 export default async function GuideArticlePage({
@@ -83,9 +82,33 @@ export default async function GuideArticlePage({
   const dict = getDict(locale);
   const article = getGuideArticle(locale, articleId, slug);
   const base = `${localePrefix(locale)}/apps/${slug}/guide`;
+  const loc = localized(app, locale);
+  const url = appPageUrl(slug, locale, `/guide/${articleId}`);
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.description,
+            inLanguage: LANG_TAG[locale],
+            url,
+            mainEntityOfPage: url,
+            ...(article.updated && { dateModified: article.updated }),
+            ...(app.ogImage && { image: new URL(app.ogImage, url).toString() }),
+            author: { "@id": `${hubOrigin()}/#org` },
+            publisher: { "@id": `${hubOrigin()}/#org` },
+            about: { "@id": `${appPageUrl(slug, locale)}#app` },
+          },
+          breadcrumbLd(app, loc, locale, [
+            { name: fmt(dict.guide.title, { name: loc.name }), path: "/guide" },
+            { name: article.title, path: `/guide/${articleId}` },
+          ]),
+        ]}
+      />
       <Link
         href={base}
         className="spec-label transition-colors hover:text-indigo-soft"

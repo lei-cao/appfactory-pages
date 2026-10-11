@@ -75,9 +75,9 @@ export const tiltFree: AppContent = {
   icon: "/apps/tiltfree/icon.png",
   // External app: the card links out; no subdomain site is generated.
   externalUrls: {
-    en: `https://pokertools.ai?${UTM}`,
-    "zh-cn": `https://pokertools.ai/zh-Hans?${UTM}`,
-    "zh-tw": `https://pokertools.ai/zh-Hant?${UTM}`,
+    en: `https://www.pokertools.ai?${UTM}`,
+    "zh-cn": `https://www.pokertools.ai/zh-Hans?${UTM}`,
+    "zh-tw": `https://www.pokertools.ai/zh-Hant?${UTM}`,
   },
   externalDomain: "pokertools.ai",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getApp, localized } from "@/content/apps";
 import { getDict } from "@/lib/dictionaries";
-import { fmt, isLocale, languageAlternates, localePrefix } from "@/lib/i18n";
-import { appOrigin, CONTACT_EMAIL } from "@/lib/site";
-import { faqPageLd, ldJson } from "@/lib/seo";
+import { fmt, isLocale } from "@/lib/i18n";
+import { CONTACT_EMAIL } from "@/lib/site";
+import { appPageMetadata, breadcrumbLd, faqPageLd, JsonLd } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,15 +16,14 @@ export async function generateMetadata({
   if (!app || !isLocale(locale)) return {};
   const loc = localized(app, locale);
   const dict = getDict(locale);
-  return {
-    title: { absolute: `${loc.name} — ${dict.app.navSupport}` },
-    description: fmt(dict.support.title, { name: loc.storeName }),
-    alternates: {
-      canonical: `${appOrigin(slug)}${localePrefix(locale)}/support`,
-      languages: languageAlternates(appOrigin(slug), "/support"),
-    },
-    ...(app.icon && { icons: { icon: app.icon } }),
-  };
+  return appPageMetadata({
+    app,
+    loc,
+    locale,
+    path: "/support",
+    title: `${loc.name} — ${dict.app.navSupport}`,
+    description: fmt(dict.support.meta, { name: loc.storeName }),
+  });
 }
 
 export default async function Support({
@@ -46,12 +45,14 @@ export default async function Support({
 
   return (
     <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
-      {slug === "poker-night" && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: ldJson(faqPageLd(loc, locale)) }}
-        />
-      )}
+      <JsonLd
+        data={[
+          breadcrumbLd(app, loc, locale, [
+            { name: dict.app.navSupport, path: "/support" },
+          ]),
+          ...(loc.faqs.length > 0 ? [faqPageLd(loc, locale)] : []),
+        ]}
+      />
       <span className="spec-label">{dict.support.eyebrow}</span>
       <h1 className="font-display mt-3 text-4xl font-bold">
         {fmt(dict.support.title, { name: loc.name })}

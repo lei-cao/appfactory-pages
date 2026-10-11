@@ -9,6 +9,7 @@ import { getDict, type Dict } from "@/lib/dictionaries";
 import {
   fmt,
   isLocale,
+  LANG_TAG,
   languageAlternates,
   LOCALES,
   localePrefix,
@@ -21,6 +22,7 @@ import {
   hubOrigin,
   SITE_NAME,
 } from "@/lib/site";
+import { JsonLd, OG_LOCALE, organizationLd } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -42,11 +44,12 @@ export async function generateMetadata({
       url,
       siteName: SITE_NAME,
       type: "website",
+      locale: OG_LOCALE[locale],
       images: [
         {
-          url: "/brand/banner.png",
-          width: 2172,
-          height: 724,
+          url: "/brand/og.png",
+          width: 1200,
+          height: 630,
           alt: "App Factory — Small apps. Big possibilities.",
         },
       ],
@@ -55,7 +58,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: dict.meta.title,
       description: dict.meta.description,
-      images: ["/brand/banner.png"],
+      images: ["/brand/og.png"],
     },
   };
 }
@@ -234,15 +237,31 @@ export default async function Hub({
   const shelf = records.filter((a) => a.icon).slice(0, 9);
   const home = localePrefix(locale) || "/";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: hubOrigin(),
-    logo: `${hubOrigin()}/brand/avatar.png`,
-    email: CONTACT_EMAIL,
-    address: { "@type": "PostalAddress", addressCountry: "SG" },
-  };
+  const hubUrl = `${hubOrigin()}${localePrefix(locale)}`;
+  const jsonLd = [
+    organizationLd(),
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${hubOrigin()}/#website`,
+      name: SITE_NAME,
+      url: hubOrigin(),
+      inLanguage: LANG_TAG[locale],
+      publisher: { "@id": `${hubOrigin()}/#org` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: dict.meta.title,
+      url: hubUrl,
+      itemListElement: records.map((app, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: localized(app, locale).storeName,
+        url: appLink(app, locale).href.split("?")[0],
+      })),
+    },
+  ];
 
   const nav = [
     { href: "#apps", label: dict.hub.nav.apps },
@@ -253,10 +272,7 @@ export default async function Hub({
 
   return (
     <main className="brand-hub min-h-dvh">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
 
       {/* Masthead */}
       <header className="border-line bg-ink/95 sticky top-0 z-30 border-b backdrop-blur-sm">
