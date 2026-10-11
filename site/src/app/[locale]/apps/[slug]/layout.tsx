@@ -5,6 +5,7 @@ import { AppIcon } from "@/components/app-icon";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { emberDeckFontClass } from "@/components/ember-deck/fonts";
 import { sushiSortFontClass } from "@/components/sushi-sort/fonts";
+import { pokerNightFontClass } from "@/components/poker-night/fonts";
 import { getDict } from "@/lib/dictionaries";
 import { isGuideLocale } from "@/lib/guide";
 import { fmt, isLocale, localePrefix, LOCALES } from "@/lib/i18n";
@@ -45,7 +46,9 @@ export default async function AppLayout({
       ? emberDeckFontClass
       : slug === "sushi-sort"
         ? sushiSortFontClass
-        : undefined;
+        : slug === "poker-night"
+          ? pokerNightFontClass
+          : undefined;
 
   // The home-game guide only exists for Poker Night, and only in the two
   // locales its content pack has been written for (see lib/guide.ts).

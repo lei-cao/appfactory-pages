@@ -178,6 +178,26 @@ export function faqPageLd(loc: AppLocalized, locale: Locale) {
   };
 }
 
+/** schema.org VideoObject for a promo video on an app page (video rich results). */
+export function videoObjectLd(
+  slug: string,
+  locale: Locale,
+  v: { name: string; description: string; src: string; poster: string; duration: number; uploadDate: string },
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: v.name,
+    description: v.description,
+    thumbnailUrl: abs(slug, v.poster),
+    contentUrl: abs(slug, v.src),
+    uploadDate: v.uploadDate,
+    duration: `PT${Math.round(v.duration)}S`,
+    inLanguage: LANG_TAG[locale],
+    publisher: { "@id": `${hubOrigin()}/#org` },
+  };
+}
+
 /** Studio › App › Page trail for subpages of an app site. */
 export function breadcrumbLd(
   app: AppContent,
