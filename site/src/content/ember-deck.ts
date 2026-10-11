@@ -696,6 +696,7 @@ const zhTw: AppLocalized = {
 
 export const emberDeck: AppContent = {
   slug: "ember-deck",
+  category: "game",
   buildNumber: 9,
   version: "2.0.0",
   status: anyReleased ? "live" : "testflight",

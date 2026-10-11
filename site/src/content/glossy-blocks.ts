@@ -147,6 +147,7 @@ const zhTw: AppLocalized = {
 
 export const glossyBlocks: AppContent = {
   slug: "slide-jam",
+  category: "game",
   buildNumber: 12,
   version: "1.0.0",
   status: "building",

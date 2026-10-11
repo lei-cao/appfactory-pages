@@ -626,6 +626,7 @@ const zhTw: AppLocalized = {
 
 export const tracesheet: AppContent = {
   slug: "tracesheet",
+  category: "app",
   buildNumber: 8,
   version: "1.0.0",
   status: "live",

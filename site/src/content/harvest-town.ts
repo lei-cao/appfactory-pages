@@ -119,6 +119,7 @@ const zhTw: AppLocalized = {
 
 export const harvestTown: AppContent = {
   slug: "harvest-town",
+  category: "game",
   buildNumber: 15,
   version: "1.0.0",
   status: "building",

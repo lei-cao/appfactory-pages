@@ -135,6 +135,7 @@ const zhTw: AppLocalized = {
 
 export const bottleGuess: AppContent = {
   slug: "bottle-guess",
+  category: "game",
   buildNumber: 13,
   version: "1.0.0",
   status: "building",

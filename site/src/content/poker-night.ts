@@ -419,6 +419,7 @@ const PN_UTM =
 
 export const pokerNight: AppContent = {
   slug: "poker-night",
+  category: "app",
   buildNumber: 1,
   version: "1.6.0",
   status: "live",

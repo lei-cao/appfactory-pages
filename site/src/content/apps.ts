@@ -6,6 +6,9 @@ import type { Locale } from "@/lib/i18n";
 
 export type AppStatus = "building" | "testflight" | "in-review" | "live";
 
+/** Which shelf the hub puts an app on. */
+export type AppCategory = "app" | "game";
+
 export interface Screenshot {
   src: string;
   alt: string;
@@ -29,6 +32,7 @@ export interface AppCredits {
 /** Locale-independent facts about an app. */
 export interface AppBase {
   slug: string;
+  category: AppCategory;
   /** Sequential factory build number (order the apps left the line). */
   buildNumber: number;
   version: string;

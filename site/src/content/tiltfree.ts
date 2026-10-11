@@ -1,6 +1,6 @@
 // TiltFree is an externally-hosted studio app (pokertools.ai). It appears on
 // the appfactory.sg home page as a linked card but has no subdomain site here.
-// Only name, subtitle, oneLiner, features, and statusNote are rendered;
+// Only name, subtitle, oneLiner, the first screenshot and statusNote are rendered;
 // the other AppLocalized fields are stubs required by the type.
 
 import type { AppContent, AppLocalized } from "./apps";
@@ -23,7 +23,7 @@ const en: AppLocalized = {
       body: "",
     },
   ],
-  screenshots: [],
+  screenshots: [{ src: "/apps/tiltfree/shot-home.png", alt: "TiltFree home: last-session recap, review queue, 7-day results and the top leak of the week" }],
   faqs: [],
   privacy: { updated: "2026-10-08", sections: [] },
 };
@@ -40,7 +40,7 @@ const zhCn: AppLocalized = {
     { title: "逐街回放与 AI 复盘", body: "" },
     { title: "内置 6-max 翻前图表与胜率计算器", body: "" },
   ],
-  screenshots: [],
+  screenshots: [{ src: "/apps/tiltfree/zh/shot-home.png", alt: "TiltFree 首页：上一场回顾、待复盘手牌、近 7 天战绩与本周最大漏洞" }],
   faqs: [],
   privacy: { updated: "2026-10-08", sections: [] },
 };
@@ -57,13 +57,14 @@ const zhTw: AppLocalized = {
     { title: "逐街回放與 AI 復盤", body: "" },
     { title: "內建 6-max 翻前圖表與勝率計算器", body: "" },
   ],
-  screenshots: [],
+  screenshots: [{ src: "/apps/tiltfree/zh/shot-home.png", alt: "TiltFree 首頁：上一場回顧、待復盤手牌、近 7 天戰績與本週最大漏洞" }],
   faqs: [],
   privacy: { updated: "2026-10-08", sections: [] },
 };
 
 export const tiltFree: AppContent = {
   slug: "tiltfree",
+  category: "app",
   // Build slot 2 — sits right after Poker Night, its sibling poker app.
   buildNumber: 2,
   version: "1.0",

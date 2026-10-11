@@ -1,5 +1,5 @@
 export const APEX_DOMAIN = "appfactory.sg";
-export const SITE_NAME = "appfactory";
+export const SITE_NAME = "App Factory";
 export const CONTACT_EMAIL = "lei@appfactory.sg";
 
 /** Canonical origin for an app's subdomain site. */

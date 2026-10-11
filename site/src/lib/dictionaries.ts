@@ -10,13 +10,30 @@ export interface Dict {
     location: string;
     est: string;
     headline: [string, string];
-    /** Sentence-final punctuation rendered as the indigo accent. */
+    /** Sentence-final punctuation rendered as the brand accent. */
     period: string;
     intro: string;
-    ledger: string;
-    counts: string; // {n} live-ish apps, {m} in the works
-    build: string; // word before the build number
-    nextSlot: string;
+    explore: string;
+    contact: string;
+    nav: { apps: string; games: string; soon: string; studio: string };
+    statLive: string;
+    statSoon: string;
+    statLangs: string;
+    appsTitle: string;
+    appsIntro: string;
+    gamesTitle: string;
+    gamesIntro: string;
+    soonTitle: string;
+    soonIntro: string;
+    visit: string;
+    appStore: string;
+    kind: { app: string; game: string };
+    studioEyebrow: string;
+    studioTitle: string;
+    studioBody: string;
+    principles: { title: string; body: string }[];
+    contactTitle: string;
+    contactBody: string;
     copyright: string; // {year}
   };
   status: Record<AppStatus, string>;
@@ -64,22 +81,47 @@ export interface Dict {
 
 const en: Dict = {
   meta: {
-    title: "appfactory — small apps, off the line",
+    title: "App Factory — Useful Apps and Playful Games",
     description:
-      "appfactory is a one-person studio in Singapore where AI agents build, test, and ship small, focused mobile apps.",
+      "Discover useful apps and playful games from App Factory, an independent studio building for mobile and web.",
   },
   hub: {
     location: "appfactory.sg · singapore",
     est: "est. 2026",
-    headline: ["Small apps,", "off the line"],
+    headline: ["Small apps.", "Big possibilities"],
     period: ".",
     intro:
-      "appfactory is a one-person studio where AI agents build, test, and ship focused mobile apps — each one small enough to be good at one thing. This page is the line: every app, its build number, and where it is right now.",
-    ledger: "build ledger",
-    counts: "{n} on the line · {m} in the works",
-    build: "build",
-    nextSlot: "In the works — the next app is on the line.",
-    copyright: "© {year} appfactory · lei cao, singapore",
+      "Useful tools. Playful games. Made for your everyday. We turn everyday ideas into apps you can use and games you can enjoy.",
+    explore: "Explore our apps",
+    contact: "Say hello",
+    nav: { apps: "Apps", games: "Games", soon: "Coming soon", studio: "Studio" },
+    statLive: "on the App Store",
+    statSoon: "in the works",
+    statLangs: "languages",
+    appsTitle: "Useful apps",
+    appsIntro:
+      "Tools that do one job well — at the poker table, at the practice desk, wherever you need them.",
+    gamesTitle: "Playful games",
+    gamesIntro:
+      "Calm puzzles and quick runs, built for a few good minutes at a time.",
+    soonTitle: "Coming soon",
+    soonIntro:
+      "Next off the line. Each one already has its own page — tap in to see where it's at.",
+    visit: "Visit site",
+    appStore: "App Store",
+    kind: { app: "App", game: "Game" },
+    studioEyebrow: "The studio",
+    studioTitle: "One small studio in Singapore.",
+    studioBody:
+      "App Factory is an independent studio building for mobile and web. Every app stays small enough to be good at one thing, and ships properly: its own site, support page and privacy policy.",
+    principles: [
+      { title: "Focused", body: "One app, one job. No feature soup." },
+      { title: "Three languages", body: "English, 简体中文 and 繁體中文 from the first release." },
+      { title: "Looked after", body: "A real support page for every app, and a person who answers email." },
+    ],
+    contactTitle: "Have an idea, a bug, or a partnership in mind?",
+    contactBody: "We read every message.",
+    copyright: "© {year} App Factory · Singapore",
   },
   status: {
     building: "In the works",
@@ -131,22 +173,44 @@ const en: Dict = {
 
 const zhCn: Dict = {
   meta: {
-    title: "appfactory — 小而专的 App，一个个下线",
+    title: "App Factory — 实用应用与趣味游戏",
     description:
-      "appfactory 是一间位于新加坡的一人工作室，AI 智能体在这里构建、测试并发布小而专的手机应用。",
+      "探索 App Factory 的实用应用与趣味游戏。我们是一间为手机和网页打造产品的独立工作室。",
   },
   hub: {
     location: "appfactory.sg · 新加坡",
     est: "始于 2026",
-    headline: ["小而专的 App，", "一个个下线"],
+    headline: ["小小应用，", "无限可能"],
     period: "。",
     intro:
-      "appfactory 是一间一人工作室：AI 智能体在这里构建、测试并发布小而专的手机应用——每一个都只做好一件事。这个页面就是产线：每个应用的编号、版本，以及它现在走到了哪一步。",
-    ledger: "生产台账",
-    counts: "{n} 个在产线 · {m} 个在制",
-    build: "编号",
-    nextSlot: "在制中——下一个应用正在产线上。",
-    copyright: "© {year} appfactory · lei cao · 新加坡",
+      "实用工具，趣味游戏，为日常生活而造。我们把日常灵感变成好用的应用和好玩的游戏。",
+    explore: "探索我们的应用",
+    contact: "联系我们",
+    nav: { apps: "应用", games: "游戏", soon: "即将推出", studio: "工作室" },
+    statLive: "已上架 App Store",
+    statSoon: "开发中",
+    statLangs: "种语言",
+    appsTitle: "实用应用",
+    appsIntro: "把一件事做好的工具——牌桌上、练字桌前，需要时就在手边。",
+    gamesTitle: "趣味游戏",
+    gamesIntro: "安静的解谜与快节奏的闯关，几分钟就能玩得尽兴。",
+    soonTitle: "即将推出",
+    soonIntro: "产线上的下一批。每一款都已有自己的页面，点进去看看进度。",
+    visit: "访问网站",
+    appStore: "App Store",
+    kind: { app: "应用", game: "游戏" },
+    studioEyebrow: "关于工作室",
+    studioTitle: "新加坡的一间小工作室。",
+    studioBody:
+      "App Factory 是一间为手机和网页打造产品的独立工作室。每个应用都保持小而专，只做好一件事；上线时也做足功课：独立网站、支持页面与隐私政策一应俱全。",
+    principles: [
+      { title: "专注", body: "一个应用，一件事。不堆砌功能。" },
+      { title: "三种语言", body: "从第一版起就支持 English、简体中文与繁體中文。" },
+      { title: "有人照看", body: "每个应用都有支持页面，邮件有真人回复。" },
+    ],
+    contactTitle: "有想法、发现问题，或想谈合作？",
+    contactBody: "每一封邮件我们都会读。",
+    copyright: "© {year} App Factory · 新加坡",
   },
   status: {
     building: "开发中",
@@ -195,22 +259,44 @@ const zhCn: Dict = {
 
 const zhTw: Dict = {
   meta: {
-    title: "appfactory — 小而專的 App，一個個下線",
+    title: "App Factory — 實用 App 與趣味遊戲",
     description:
-      "appfactory 是一間位於新加坡的一人工作室，AI 代理在這裡打造、測試並發布小而專的手機應用程式。",
+      "探索 App Factory 的實用 App 與趣味遊戲。我們是一間為手機與網頁打造產品的獨立工作室。",
   },
   hub: {
     location: "appfactory.sg · 新加坡",
     est: "始於 2026",
-    headline: ["小而專的 App，", "一個個下線"],
+    headline: ["小小 App，", "無限可能"],
     period: "。",
     intro:
-      "appfactory 是一間一人工作室：AI 代理在這裡打造、測試並發布小而專的手機應用程式——每一個都只做好一件事。這個頁面就是產線：每個 App 的編號、版本，以及它現在走到哪一步。",
-    ledger: "生產台帳",
-    counts: "{n} 個在產線 · {m} 個製作中",
-    build: "編號",
-    nextSlot: "製作中——下一個 App 正在產線上。",
-    copyright: "© {year} appfactory · lei cao · 新加坡",
+      "實用工具，趣味遊戲，為日常生活而造。我們把日常靈感變成好用的 App 和好玩的遊戲。",
+    explore: "探索我們的 App",
+    contact: "聯絡我們",
+    nav: { apps: "App", games: "遊戲", soon: "即將推出", studio: "工作室" },
+    statLive: "已上架 App Store",
+    statSoon: "製作中",
+    statLangs: "種語言",
+    appsTitle: "實用 App",
+    appsIntro: "把一件事做好的工具——牌桌上、練字桌前，需要時就在手邊。",
+    gamesTitle: "趣味遊戲",
+    gamesIntro: "安靜的解謎與快節奏的闖關，幾分鐘就能玩得盡興。",
+    soonTitle: "即將推出",
+    soonIntro: "產線上的下一批。每一款都已有自己的頁面，點進去看看進度。",
+    visit: "前往網站",
+    appStore: "App Store",
+    kind: { app: "App", game: "遊戲" },
+    studioEyebrow: "關於工作室",
+    studioTitle: "新加坡的一間小工作室。",
+    studioBody:
+      "App Factory 是一間為手機與網頁打造產品的獨立工作室。每個 App 都保持小而專，只做好一件事；上架時也做足功課：獨立網站、支援頁面與隱私權政策一應俱全。",
+    principles: [
+      { title: "專注", body: "一個 App，一件事。不堆砌功能。" },
+      { title: "三種語言", body: "從第一版起就支援 English、简体中文與繁體中文。" },
+      { title: "有人照看", body: "每個 App 都有支援頁面，郵件有真人回覆。" },
+    ],
+    contactTitle: "有想法、發現問題，或想談合作？",
+    contactBody: "每一封郵件我們都會讀。",
+    copyright: "© {year} App Factory · 新加坡",
   },
   status: {
     building: "開發中",

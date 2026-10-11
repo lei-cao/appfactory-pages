@@ -38,6 +38,32 @@ html {
   color: var(--color-paper);
 }
 
+/* Studio branding is scoped to the hub; product sites keep their themes. */
+.brand-hub {
+  --color-ink: #fff7ef;
+  --color-panel: #ffffff;
+  --color-panel-2: #f7eee5;
+  --color-line: #dfd4ca;
+  --color-paper: #171a22;
+  --color-slate: #5f626c;
+  --color-indigo: #ff6b35;
+  --color-indigo-soft: #a83b16;
+  --color-live: #21704e;
+  --color-review: #855c10;
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Keep overscroll and the area under the sticky header on-brand too. */
+:root:has(.brand-hub) {
+  background: #fff7ef;
+}
+
+.brand-hub ::selection {
+  background: var(--color-indigo);
+  color: var(--color-paper);
+}
+
 /* Spec-sheet label: the mono eyebrow used across the site */
 .spec-label {
   font-family: var(--font-mono), monospace;

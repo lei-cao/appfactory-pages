@@ -146,6 +146,7 @@ const zhTw: AppLocalized = {
 
 export const porcelainTrio: AppContent = {
   slug: "tile-trio",
+  category: "game",
   buildNumber: 11,
   version: "1.0.0",
   status: "building",

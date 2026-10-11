@@ -148,6 +148,7 @@ const zhTw: AppLocalized = {
 
 export const courtyardArrows: AppContent = {
   slug: "arrow-out",
+  category: "game",
   buildNumber: 10,
   version: "1.0.0",
   status: "building",

@@ -633,6 +633,7 @@ const zhTw: AppLocalized = {
 
 export const sushiSort: AppContent = {
   slug: "sushi-sort",
+  category: "game",
   buildNumber: 7,
   version: "2.2.0",
   status: "live",
