@@ -2,84 +2,88 @@ import type { AppContent, AppLocalized } from "./apps";
 
 const en: AppLocalized = {
   name: "TiltFree",
-  storeName: "TiltFree: Poker Tracker & HUD",
-  tagline: "Record every hand. Remember every leak.",
-  subtitle: "Poker tracker & HUD for live play",
+  storeName: "TiltFree: Poker Hand Tracker",
+  tagline: "Record a live hand with one hand, right at the table.",
+  subtitle: "Poker hand tracker & AI coach",
   oneLiner:
-    "The complete kit for winning live poker players: record every hand at the table, build opponent profiles, track real HUD stats, and get AI hand reviews.",
-  statusNote: "Live now on the App Store — free for iPhone and iPad.",
+    "Record every hand at the table with one-thumb input, then ask the AI coach for a second opinion. Built for live players by the thinking.poker team.",
+  statusNote: "Live now on the App Store — free to start, Pro plan available.",
   features: [
     {
-      title: "Hand Recording",
-      body: "Record every hand at the table — hole cards, board, positions, bet sizing, and action on every street. Quick input designed for live play, so you can log a hand between deals.",
+      title: "One-Handed Recording",
+      body: "Set stacks on a built-in number pad with shortcuts, fold/check/call/bet/raise buttons at the edge for one-thumb use, and landscape mode that keeps every input beside the table. No system keyboard covering the action.",
     },
     {
-      title: "Opponent Memory",
-      body: "Build a profile on every player you face. Tag reads and tendencies, add notes and photos, and search them before your next session to prepare for the table.",
+      title: "AI Coach That Knows Your Game",
+      body: "Ask for a street-by-street review of any hand. The coach reads the hand together with your stats, your notes and the villain's file, then gives you one takeaway. It's a second opinion, not a verdict.",
     },
     {
-      title: "Live HUD",
-      body: "TiltFree calculates real HUD stats from the hands you recorded — VPIP, PFR, 3-Bet, Aggression Factor, and more. Know exactly who you are up against, from your own data.",
+      title: "Opponent Profiles",
+      body: "Build files on the regulars you face with exploit notes, style labels and optional photos. Stats built from your recorded hands: VPIP, PFR, 3-bet and c-bet.",
     },
     {
-      title: "AI Hand Review",
-      body: "An AI coach walks your hand street by street, names the mistake, and explains the better line. Reviews are pay-per-use credits — no subscription needed to try one.",
+      title: "Session Insights",
+      body: "Profit trends, win rate, BB per hour, and results by stakes, venue and day. See how mood and tilt line up with your results. Import past sessions from CSV exports.",
     },
     {
-      title: "Sessions & Insights",
-      body: "Track buy-ins, rebuys, hours and location. See profit trends, hourly rate, and performance broken down by stakes, location and day of week — plus the mistake patterns that keep repeating.",
+      title: "Chart Trainer & Drills",
+      body: "Chart trainer with instant feedback, built-in thinking.poker 6-max charts or import your own. Whole-hand drills against AI opponents (TAG, LAG, nit, calling station, maniac) graded against your preflop chart.",
     },
     {
-      title: "Warmup & Tilt SOS",
-      body: "A pre-session warmup, breathing exercises and meditations, and a one-tap Tilt SOS for the moment it goes wrong. Bring your A-game to the table and keep it there.",
+      title: "Equity Calculator",
+      body: "Hold'em (cards or ranges), PLO and ESG, with up to three boards for double-board and bomb-pot spots. Free and unlimited.",
     },
     {
-      title: "Drills",
-      body: "Preflop range and decision drills to sharpen the spots you get wrong most.",
+      title: "Mental Game Tools",
+      body: "A 60-second reset for when a hand gets under your skin. Warm-up before you sit down and cool-down after. Guided meditations in natural English and Chinese voices.",
     },
   ],
   screenshots: [
     {
       src: "/apps/tiltfree/shot-01.jpg",
-      alt: "Hand recording interface showing hole cards, board, positions, and action tracking",
+      alt: "One-handed hand recording interface at the poker table",
     },
     {
       src: "/apps/tiltfree/shot-02.jpg",
-      alt: "Live HUD stats display with VPIP, PFR, 3-Bet, and Aggression Factor metrics",
+      alt: "Stack entry with built-in number pad and shortcuts",
     },
     {
       src: "/apps/tiltfree/shot-03.jpg",
-      alt: "Session tracking with buy-ins, profit trends, and performance insights",
+      alt: "Hand replay showing street-by-street action",
+    },
+    {
+      src: "/apps/tiltfree/shot-04.jpg",
+      alt: "Chart trainer with instant feedback",
     },
   ],
   trust: {
-    title: "Built by a live poker player",
-    body: "TiltFree was built by a live poker player, for live poker players. Designed for the realities of live play — record hands between deals, remember every opponent, and track every session.",
+    title: "Made by the thinking.poker team",
+    body: "TiltFree is built for live players who want to get better. Record hands between deals, ask the AI coach for a second opinion, and train the spots you get wrong most. One app, built for live play.",
   },
   faqs: [
     {
-      q: "Does TiltFree work for both cash games and tournaments?",
-      a: "Yes. TiltFree supports both cash games and tournaments. Every hand you record becomes evidence you are improving.",
+      q: "What's included in the free version?",
+      a: "Free includes 30 recorded hands a day, 3 AI hand reviews (plus 1 more for every 25 hands you record), 50 practice reps a day (drills and chart trainer combined), 1 custom chart pack, 3 saved equity scenarios, the full equity calculator, the learning library and the mental-game tools.",
     },
     {
-      q: "Is there a subscription?",
-      a: "No. The app is free to download and use. AI hand reviews are pay-per-use credits — no subscription needed to try one.",
+      q: "What does Pro unlock?",
+      a: "Pro removes the daily limits and unlocks unlimited chart packs and saved scenarios. Pro also gives you 20 AI hand reviews every month, on both the monthly and the yearly plan.",
     },
     {
       q: "Where is my data stored?",
-      a: "On your device. All hands, opponent profiles, and session history stay on your iPhone or iPad — nothing is uploaded to the cloud.",
+      a: "On your device. All hands, opponent profiles, and session history stay on your iPhone or iPad. When you request an AI hand review, that hand is sent to our servers to generate the review.",
     },
     {
-      q: "Can I use TiltFree offline?",
-      a: "Yes. TiltFree works completely offline. Record hands, review stats, and prepare for sessions without an internet connection. AI reviews require internet.",
+      q: "Can I import past sessions?",
+      a: "Yes. You can import past sessions from a CSV export from other tracking apps.",
     },
     {
-      q: "Can I export my data?",
-      a: "Yes. You can export your hand history and session data from the app.",
+      q: "Does TiltFree involve real money?",
+      a: "No. TiltFree is a tracking and study tool. There is no real-money gambling.",
     },
   ],
   privacy: {
-    updated: "2026-10-08",
+    updated: "2026-10-11",
     sections: [
       {
         heading: "What we collect",
@@ -93,13 +97,13 @@ const en: AppLocalized = {
       {
         heading: "What we don't collect",
         body: [
-          "No accounts, no emails, no contacts, no location, no photos (unless you add them to opponent profiles). Your hand history, opponent profiles, and session data are stored only on your device and never uploaded.",
+          "No contacts, no location. Your hand history, opponent profiles, and session data are stored only on your device. When you request an AI hand review, that hand is sent to our servers to generate the review.",
         ],
       },
       {
-        heading: "AI hand reviews",
+        heading: "Subscriptions",
         body: [
-          "When you request an AI hand review, the hand data is sent to our servers to generate the review. Reviews are pay-per-use credits.",
+          "Pro subscriptions (monthly or yearly) are processed entirely by Apple. We never see your payment details. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Manage or cancel any time in your Apple ID account settings.",
         ],
       },
       {
@@ -108,7 +112,7 @@ const en: AppLocalized = {
           [
             "Decline tracking in the iOS permission prompt — the app works identically.",
             "Delete any hand, opponent, or session in the app to remove it from your device.",
-            "Export your data at any time.",
+            "Import or export your data at any time.",
           ],
         ],
       },
@@ -134,90 +138,94 @@ const en: AppLocalized = {
 
 const zhCn: AppLocalized = {
   name: "TiltFree",
-  storeName: "TiltFree：扑克追踪器与抬头显示",
-  tagline: "记录每一手牌。记住每一个漏洞。",
-  subtitle: "线下扑克追踪器与抬头显示",
+  storeName: "TiltFree：德州扑克记录与AI教练",
+  tagline: "在牌桌上用一只手记完一手牌。",
+  subtitle: "扑克手牌记录与 AI 教练",
   oneLiner:
-    "致胜现场牌手的完整工具包：在牌桌上记录每一手牌，建立对手档案，追踪真实的抬头显示统计数据，并获得 AI 牌局复盘。",
-  statusNote: "已在 App Store 上线 — iPhone 和 iPad 免费下载。",
+    "在牌桌上用单手输入记录每一手牌，再请 AI 教练给你第二意见。由 thinking.poker 团队为现场牌手打造。",
+  statusNote: "已在 App Store 上线 — 免费开始，Pro 方案可选。",
   features: [
     {
-      title: "牌局记录",
-      body: "在牌桌上记录每一手牌 — 底牌、公共牌、位置、下注大小以及每条街的动作。为现场扑克设计的快速输入，让你在发牌间隙就能记录完一手牌。",
+      title: "单手记牌",
+      body: "籌码用内建数字键盘输入，带快捷键；棄牌、过牌、跟注、下注、加注、全下按钮贴在边缘，一只拇指就按得到；横向记牌时，所有输入面板都在牌桌旁边。系统键盘不会挡住牌桌。",
     },
     {
-      title: "对手记忆",
-      body: "为每一位你遇到的玩家建立档案。标记解读和倾向，添加笔记和照片，在下一次对局前搜索它们，为牌桌做好准备。",
+      title: "读得懂你打法的 AI 教练",
+      body: "任何一手牌都能请它逐街复盘。教练会结合这手牌、你的统计、你的笔记和对手档案，给出一个重点。它是第二意见，不是裁决。",
     },
     {
-      title: "实时抬头显示",
-      body: "TiltFree 从你记录的牌局中计算真实的抬头显示统计数据 — VPIP、PFR、3-Bet、侵略因子等。从你自己的数据中准确了解你的对手。",
+      title: "对手档案",
+      body: "为常遇到的对手建立档案，包含剥削笔记、风格标签和可选照片。用你记下的手牌统计对手的入池率、翻前加注率、三次加注率和持续下注率。",
     },
     {
-      title: "AI 牌局复盘",
-      body: "AI 教练逐条街分析你的牌局，指出错误，并解释更好的打法。复盘采用按次付费的积分制 — 无需订阅即可尝试。",
+      title: "牌局洞察",
+      body: "盈亏走势、胜率、每小时 BB 数，以及按盲注、场地和星期拆开的成绩。看情绪、上头和成绩之间的关系。可从其他应用的表格文件导入以前的牌局。",
     },
     {
-      title: "对局与洞察",
-      body: "追踪买入、补码、时长和地点。查看盈利趋势、时薪，以及按注额、地点和星期几细分的表现 — 还有不断重复的错误模式。",
+      title: "图表训练与对练",
+      body: "图表训练提供即时反馈，内建 thinking.poker 的 6 人桌图表或导入自己的。与 AI 对手（紧凶、松凶、岩石、跟注站、疯子）打整手牌训练，翻前决策依你的图表评分。",
     },
     {
-      title: "热身与防上头 SOS",
-      body: "对局前热身、呼吸练习和冥想，以及在关键时刻一键启动的防上头 SOS。将你的 A 级状态带到牌桌并保持下去。",
+      title: "胜率计算器",
+      body: "德州（指定手牌或范围）、底池限注奥马哈和 ESG，最多三组公共牌，算双板和炸弹底池。免费，不限次数。",
     },
     {
-      title: "训练",
-      body: "翻牌前范围和决策训练，磨练你最常犯错的情况。",
+      title: "心态工具",
+      body: "被一手牌搞到上头时，先做 60 秒重置。上桌前热身、下桌后冷却。引导冥想，配有自然的中文和英文语音。",
     },
   ],
   screenshots: [
     {
       src: "/apps/tiltfree/shot-01.jpg",
-      alt: "牌局记录界面，显示底牌、公共牌、位置和动作追踪",
+      alt: "在牌桌上单手记录手牌的界面",
     },
     {
       src: "/apps/tiltfree/shot-02.jpg",
-      alt: "实时抬头显示统计数据，包含 VPIP、PFR、3-Bet 和侵略因子指标",
+      alt: "带快捷键的内建数字键盘输入籌码",
     },
     {
       src: "/apps/tiltfree/shot-03.jpg",
-      alt: "对局追踪，显示买入、盈利趋势和表现洞察",
+      alt: "逐街回放手牌动作",
+    },
+    {
+      src: "/apps/tiltfree/shot-04.jpg",
+      alt: "图表训练提供即时反馈",
     },
   ],
   trust: {
-    title: "由现场牌手打造",
-    body: "TiltFree 由一位现场扑克玩家为现场扑克玩家打造。专为现场扑克的实际情况设计 — 在发牌间隙记录牌局，记住每一位对手，追踪每一次对局。",
+    title: "由 thinking.poker 团队制作",
+    body: "TiltFree 为想进步的现场牌手打造。在发牌间隙记牌、请 AI 教练给第二意见、针对最常犯错的情况训练。专为现场扑克打造的一个应用。",
   },
   faqs: [
     {
-      q: "TiltFree 支持现金局和锦标赛吗？",
-      a: "是的。TiltFree 同时支持现金局和锦标赛。你记录的每一手牌都成为你进步的证据。",
+      q: "免费版包含什么？",
+      a: "免费版每天可记 30 手牌、可用 3 次 AI 复盘（每记满 25 手牌再多 1 次）、练习 50 次（训练和图表训练合计），可建立 1 个自定义图表包、保存 3 个胜率情境；胜率计算器、学习文章和心态工具全部可用。",
     },
     {
-      q: "需要订阅吗？",
-      a: "不需要。应用免费下载和使用。AI 牌局复盘采用按次付费的积分制 — 无需订阅即可尝试。",
+      q: "Pro 解锁什么？",
+      a: "Pro 取消每日上限，图表包和胜率情境不限数量；Pro 同时每月含 20 次 AI 复盘，月费和年费方案都一样。",
     },
     {
       q: "我的数据存储在哪里？",
-      a: "在你的设备上。所有牌局、对手档案和对局历史都保存在你的 iPhone 或 iPad 上 — 不会上传到云端。",
+      a: "在你的设备上。所有手牌、对手档案和对局历史都保存在你的 iPhone 或 iPad 上。请求 AI 复盘时，该手牌会发送到我们的服务器以生成复盘。",
     },
     {
-      q: "TiltFree 可以离线使用吗？",
-      a: "可以。TiltFree 完全支持离线使用。记录牌局、查看统计数据和准备对局都无需互联网连接。AI 复盘需要联网。",
+      q: "可以导入以前的对局吗？",
+      a: "可以。你可以从其他记账应用导出的表格文件导入以前的对局。",
     },
     {
-      q: "可以导出数据吗？",
-      a: "可以。你可以从应用中导出牌局历史和对局数据。",
+      q: "TiltFree 涉及真钱吗？",
+      a: "不涉及。TiltFree 是记录和学习工具，不涉及真钱游戏。",
     },
   ],
   privacy: {
-    updated: "2026-10-08",
+    updated: "2026-10-11",
     sections: [
       {
         heading: "我们收集什么",
         body: [
           [
-            "使用分析：匿名使用事件，如记录的牌局数、创建的对局数、请求的 AI 复盘数和页面浏览。用于了解应用的使用情况并加以改进。",
+            "使用分析：匿名使用事件，如记录的手牌数、创建的对局数、请求的 AI 复盘数和页面浏览。用于了解应用的使用情况并加以改进。",
             "崩溃报告：技术性崩溃数据（堆栈、设备型号、系统版本），用于修复问题，不与你的身份关联。",
           ],
         ],
@@ -225,13 +233,13 @@ const zhCn: AppLocalized = {
       {
         heading: "我们不收集什么",
         body: [
-          "没有账号、邮箱、通讯录、位置、照片（除非你将它们添加到对手档案中）。你的牌局历史、对手档案和对局数据只保存在你的设备上，从不上传。",
+          "没有通讯录、位置。你的手牌历史、对手档案和对局数据只保存在你的设备上。请求 AI 复盘时，该手牌会发送到我们的服务器以生成复盘。",
         ],
       },
       {
-        heading: "AI 牌局复盘",
+        heading: "订阅",
         body: [
-          "当你请求 AI 牌局复盘时，牌局数据会发送到我们的服务器以生成复盘。复盘采用按次付费的积分制。",
+          "Pro 订阅（月费或年费）完全由 Apple 处理，我们不会接触你的付款信息。订阅会自动续订，除非在当前周期结束前至少 24 小时取消。你可以随时在 Apple ID 账号设置中管理或取消订阅。",
         ],
       },
       {
@@ -239,8 +247,8 @@ const zhCn: AppLocalized = {
         body: [
           [
             "在 iOS 权限弹窗中拒绝跟踪 — 应用功能完全不受影响。",
-            "在应用内删除任意牌局、对手或对局，即从设备上移除。",
-            "随时导出你的数据。",
+            "在应用内删除任意手牌、对手或对局，即从设备上移除。",
+            "随时导入或导出你的数据。",
           ],
         ],
       },
@@ -262,90 +270,94 @@ const zhCn: AppLocalized = {
 
 const zhTw: AppLocalized = {
   name: "TiltFree",
-  storeName: "TiltFree：撲克追蹤器與抬頭顯示",
-  tagline: "記錄每一手牌。記住每一個漏洞。",
-  subtitle: "線下撲克追蹤器與抬頭顯示",
+  storeName: "TiltFree：德州撲克記錄與AI教練",
+  tagline: "在牌桌上用一隻手記完一手牌。",
+  subtitle: "撲克手牌記錄與 AI 教練",
   oneLiner:
-    "致勝現場牌手的完整工具包：在牌桌上記錄每一手牌，建立對手檔案，追蹤真實的抬頭顯示統計資料，並獲得 AI 牌局複盤。",
-  statusNote: "已在 App Store 上線 — iPhone 和 iPad 免費下載。",
+    "在牌桌上用單手輸入記錄每一手牌，再請 AI 教練給你第二意見。由 thinking.poker 團隊為現場牌手打造。",
+  statusNote: "已在 App Store 上線 — 免費開始，Pro 方案可選。",
   features: [
     {
-      title: "牌局記錄",
-      body: "在牌桌上記錄每一手牌 — 底牌、公共牌、位置、下注大小以及每條街的動作。為現場撲克設計的快速輸入，讓你在發牌間隙就能記錄完一手牌。",
+      title: "單手記牌",
+      body: "籌碼用內建數字鍵盤輸入，帶快捷鍵；棄牌、過牌、跟注、下注、加注、全下按鈕貼在邊緣，一隻拇指就按得到；橫向記牌時，所有輸入面板都在牌桌旁邊。系統鍵盤不會擋住牌桌。",
     },
     {
-      title: "對手記憶",
-      body: "為每一位你遇到的玩家建立檔案。標記解讀和傾向，新增筆記和照片，在下一次對局前搜尋它們，為牌桌做好準備。",
+      title: "讀得懂你打法的 AI 教練",
+      body: "任何一手牌都能請它逐街複盤。教練會結合這手牌、你的統計、你的筆記和對手檔案，給出一個重點。它是第二意見，不是裁決。",
     },
     {
-      title: "即時抬頭顯示",
-      body: "TiltFree 從你記錄的牌局中計算真實的抬頭顯示統計資料 — VPIP、PFR、3-Bet、侵略因子等。從你自己的資料中準確了解你的對手。",
+      title: "對手檔案",
+      body: "為常遇到的對手建立檔案，包含剝削筆記、風格標籤和可選照片。用你記下的手牌統計對手的入池率、翻前加注率、三次加注率和持續下注率。",
     },
     {
-      title: "AI 牌局複盤",
-      body: "AI 教練逐條街分析你的牌局，指出錯誤，並解釋更好的打法。複盤採用按次付費的積分制 — 無需訂閱即可嘗試。",
+      title: "牌局洞察",
+      body: "盈虧走勢、勝率、每小時 BB 數，以及按盲注、場地和星期拆開的成績。看情緒、上頭和成績之間的關係。可從其他應用的表格檔匯入以前的牌局。",
     },
     {
-      title: "對局與洞察",
-      body: "追蹤買入、補碼、時長和地點。檢視盈利趨勢、時薪，以及按注額、地點和星期幾細分的表現 — 還有不斷重複的錯誤模式。",
+      title: "圖表訓練與對練",
+      body: "圖表訓練提供即時回饋，內建 thinking.poker 的 6 人桌圖表或匯入自己的。與 AI 對手（緊凶、鬆凶、岩石、跟注站、瘋子）打整手牌訓練，翻前決策依你的圖表評分。",
     },
     {
-      title: "熱身與防上頭 SOS",
-      body: "對局前熱身、呼吸練習和冥想，以及在關鍵時刻一鍵啟動的防上頭 SOS。將你的 A 級狀態帶到牌桌並保持下去。",
+      title: "勝率計算器",
+      body: "德州（指定手牌或範圍）、底池限注奧馬哈和 ESG，最多三組公共牌，算雙板和炸彈底池。免費，不限次數。",
     },
     {
-      title: "訓練",
-      body: "翻牌前範圍和決策訓練，磨練你最常犯錯的情況。",
+      title: "心態工具",
+      body: "被一手牌搞到上頭時，先做 60 秒重置。上桌前熱身、下桌後冷卻。引導冥想，配有自然的中文和英文語音。",
     },
   ],
   screenshots: [
     {
       src: "/apps/tiltfree/shot-01.jpg",
-      alt: "牌局記錄介面，顯示底牌、公共牌、位置和動作追蹤",
+      alt: "在牌桌上單手記錄手牌的介面",
     },
     {
       src: "/apps/tiltfree/shot-02.jpg",
-      alt: "即時抬頭顯示統計資料，包含 VPIP、PFR、3-Bet 和侵略因子指標",
+      alt: "帶快捷鍵的內建數字鍵盤輸入籌碼",
     },
     {
       src: "/apps/tiltfree/shot-03.jpg",
-      alt: "對局追蹤，顯示買入、盈利趨勢和表現洞察",
+      alt: "逐街回放手牌動作",
+    },
+    {
+      src: "/apps/tiltfree/shot-04.jpg",
+      alt: "圖表訓練提供即時回饋",
     },
   ],
   trust: {
-    title: "由現場牌手打造",
-    body: "TiltFree 由一位現場撲克玩家為現場撲克玩家打造。專為現場撲克的實際情況設計 — 在發牌間隙記錄牌局，記住每一位對手，追蹤每一次對局。",
+    title: "由 thinking.poker 團隊製作",
+    body: "TiltFree 為想進步的現場牌手打造。在發牌間隙記牌、請 AI 教練給第二意見、針對最常犯錯的情況訓練。專為現場撲克打造的一個 App。",
   },
   faqs: [
     {
-      q: "TiltFree 支援現金局和錦標賽嗎？",
-      a: "是的。TiltFree 同時支援現金局和錦標賽。你記錄的每一手牌都成為你進步的證據。",
+      q: "免費版包含什麼？",
+      a: "免費版每天可記 30 手牌、可用 3 次 AI 複盤（每記滿 25 手牌再多 1 次）、練習 50 次（訓練和圖表訓練合計），可建立 1 個自訂圖表包、儲存 3 個勝率情境；勝率計算器、學習文章和心態工具全部可用。",
     },
     {
-      q: "需要訂閱嗎？",
-      a: "不需要。應用免費下載和使用。AI 牌局複盤採用按次付費的積分制 — 無需訂閱即可嘗試。",
+      q: "Pro 解鎖什麼？",
+      a: "Pro 取消每日上限，圖表包和勝率情境不限數量；Pro 同時每月含 20 次 AI 複盤，月費和年費方案都一樣。",
     },
     {
       q: "我的資料儲存在哪裡？",
-      a: "在你的裝置上。所有牌局、對手檔案和對局歷史都儲存在你的 iPhone 或 iPad 上 — 不會上傳到雲端。",
+      a: "在你的裝置上。所有手牌、對手檔案和對局歷史都儲存在你的 iPhone 或 iPad 上。請求 AI 複盤時，該手牌會傳送到我們的伺服器以產生複盤。",
     },
     {
-      q: "TiltFree 可以離線使用嗎？",
-      a: "可以。TiltFree 完全支援離線使用。記錄牌局、檢視統計資料和準備對局都無需網際網路連線。AI 複盤需要聯網。",
+      q: "可以匯入以前的對局嗎？",
+      a: "可以。你可以從其他記帳應用匯出的表格檔匯入以前的對局。",
     },
     {
-      q: "可以匯出資料嗎？",
-      a: "可以。你可以從應用中匯出牌局歷史和對局資料。",
+      q: "TiltFree 涉及真錢嗎？",
+      a: "不涉及。TiltFree 是記錄和學習工具，不涉及真錢遊戲。",
     },
   ],
   privacy: {
-    updated: "2026-10-08",
+    updated: "2026-10-11",
     sections: [
       {
         heading: "我們收集什麼",
         body: [
           [
-            "使用分析：匿名使用事件，如記錄的牌局數、建立的對局數、請求的 AI 複盤數和頁面瀏覽。用於了解應用的使用情況並加以改進。",
+            "使用分析：匿名使用事件，如記錄的手牌數、建立的對局數、請求的 AI 複盤數和頁面瀏覽。用於了解應用的使用情況並加以改進。",
             "當機回報：技術性當機資料（堆疊、裝置型號、系統版本），用於修復問題，不與你的身分連結。",
           ],
         ],
@@ -353,13 +365,13 @@ const zhTw: AppLocalized = {
       {
         heading: "我們不收集什麼",
         body: [
-          "沒有帳號、Email、通訊錄、位置、照片（除非你將它們新增到對手檔案中）。你的牌局歷史、對手檔案和對局資料只儲存在你的裝置上，從不上傳。",
+          "沒有通訊錄、位置。你的手牌歷史、對手檔案和對局資料只儲存在你的裝置上。請求 AI 複盤時，該手牌會傳送到我們的伺服器以產生複盤。",
         ],
       },
       {
-        heading: "AI 牌局複盤",
+        heading: "訂閱",
         body: [
-          "當你請求 AI 牌局複盤時，牌局資料會傳送到我們的伺服器以產生複盤。複盤採用按次付費的積分制。",
+          "Pro 訂閱（月費或年費）完全由 Apple 處理，我們不會接觸你的付款資訊。訂閱會自動續訂，除非在目前週期結束前至少 24 小時取消。你可以隨時在 Apple ID 帳號設定中管理或取消訂閱。",
         ],
       },
       {
@@ -367,8 +379,8 @@ const zhTw: AppLocalized = {
         body: [
           [
             "在 iOS 權限視窗中拒絕追蹤 — 應用功能完全不受影響。",
-            "在應用內刪除任意牌局、對手或對局，即從裝置上移除。",
-            "隨時匯出你的資料。",
+            "在應用內刪除任意手牌、對手或對局，即從裝置上移除。",
+            "隨時匯入或匯出你的資料。",
           ],
         ],
       },
@@ -382,7 +394,7 @@ const zhTw: AppLocalized = {
       },
       {
         heading: "政策變更",
-        body: ["政策變更時我們會更新本頁面；重大變更會在應用的更新說明中註明。"],
+        body: ["政策變更時我們會更新本頁面；重大變更會在 App 的更新說明中註明。"],
       },
     ],
   },
@@ -392,10 +404,10 @@ export const tiltfree: AppContent = {
   slug: "tiltfree",
   // TODO: Assign proper sequential build number in the factory
   buildNumber: 0,
-  version: "4.11",
+  version: "4.15",
   status: "live",
   appStoreUrl:
-    "https://apps.apple.com/us/app/tiltfree-poker-tracker-hud/id6758140114?pt=119559267&ct=site&mt=8",
+    "https://apps.apple.com/app/apple-store/id6758140114?pt=119559267&ct=site&mt=8",
   appStoreId: "6758140114",
   platforms: ["iOS"],
   icon: "/apps/tiltfree/icon.jpg",
