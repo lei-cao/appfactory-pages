@@ -59,3 +59,48 @@ export function fmt(
 ): string {
   return template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
 }
+
+/** Only "en" and "zh-cn" have Poker Night guide content; zh-Hant isn't written. */
+export type GuideLocale = "en" | "zh-cn";
+export const GUIDE_LOCALES: GuideLocale[] = ["en", "zh-cn"];
+export function isGuideLocale(locale: Locale): locale is GuideLocale {
+  return locale === "en" || locale === "zh-cn";
+}
+
+/**
+ * Split a browser-visible or internal pathname into the locale-less page path
+ * ("/guide/holdem-basics"), dropping the locale prefix and, when `slug` is
+ * given, the internal "/apps/<slug>" prefix the middleware rewrites to.
+ */
+export function pagePathOf(pathname: string, slug?: string): string {
+  const seg = pathname.split("/")[1];
+  let rest = isLocale(seg) ? pathname.slice(seg.length + 1) || "/" : pathname;
+  if (slug) {
+    const app = `/apps/${slug}`;
+    if (rest === app) rest = "/";
+    else if (rest.startsWith(`${app}/`)) rest = rest.slice(app.length);
+  }
+  return rest;
+}
+
+/** Locales a page exists in (guide pages are en + zh-cn only). */
+export function localesForPage(pagePath: string): readonly Locale[] {
+  return /^\/guide(\/|$)/.test(pagePath) ? GUIDE_LOCALES : LOCALES;
+}
+
+/**
+ * Locale-switcher target. `cleanSubdomain` true means we're on <slug>.<apex>,
+ * where the canonical path has no "/apps/<slug>" segment; otherwise (apex or
+ * preview, path-style) the "/apps/<slug>" prefix is kept.
+ */
+export function switchHref(
+  pathname: string,
+  target: Locale,
+  slug: string | undefined,
+  cleanSubdomain: boolean,
+): string {
+  const page = pagePathOf(pathname, slug);
+  const tail = page === "/" ? "" : page;
+  const base = slug && !cleanSubdomain ? `/apps/${slug}${tail}` : tail;
+  return `${localePrefix(target)}${base}` || "/";
+}

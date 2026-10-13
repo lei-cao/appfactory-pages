@@ -4,7 +4,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
-import { LOCALES, canonicalUrl, languageAlternates } from "../src/lib/i18n.ts";
+import {
+  LOCALES,
+  canonicalUrl,
+  languageAlternates,
+  localesForPage,
+  pagePathOf,
+  switchHref,
+} from "../src/lib/i18n.ts";
 import {
   appSlugFor,
   consentDefaults,
@@ -85,4 +92,21 @@ test("GA id parsing and store click helpers", () => {
   assert.equal(appSlugFor("appfactory.sg", "/zh-cn/apps/poker-night"), "poker-night");
   assert.equal(appSlugFor("appfactory.sg", "/", "ember-deck"), "ember-deck");
   assert.equal(appSlugFor("appfactory.sg", "/"), "hub");
+});
+
+test("locale switcher: only existing locales, canonical hrefs", () => {
+  assert.deepEqual(localesForPage("/guide"), ["en", "zh-cn"]);
+  assert.deepEqual(localesForPage("/guide/holdem-basics"), ["en", "zh-cn"]);
+  assert.deepEqual(localesForPage("/support"), ["en", "zh-cn", "zh-tw"]);
+  assert.equal(pagePathOf("/en/apps/poker-night/guide", "poker-night"), "/guide");
+  assert.equal(pagePathOf("/zh-cn/apps/poker-night", "poker-night"), "/");
+  // subdomain: clean canonical paths
+  assert.equal(switchHref("/en/apps/poker-night/guide", "zh-cn", "poker-night", true), "/zh-cn/guide");
+  assert.equal(switchHref("/zh-cn/apps/poker-night/guide/hand-rankings", "en", "poker-night", true), "/guide/hand-rankings");
+  assert.equal(switchHref("/en/apps/poker-night", "zh-tw", "poker-night", true), "/zh-tw");
+  // apex / path-style keeps /apps/<slug>
+  assert.equal(switchHref("/apps/poker-night/guide", "zh-cn", "poker-night", false), "/zh-cn/apps/poker-night/guide");
+  // hub
+  assert.equal(switchHref("/zh-cn", "en", undefined, false), "/");
+  assert.equal(switchHref("/", "zh-tw", undefined, false), "/zh-tw");
 });
