@@ -11,7 +11,7 @@ import {
   getGuideArticleMeta,
   guideLanguageAlternates,
 } from "@/lib/guide";
-import { languageAlternates, LOCALES, localePrefix } from "@/lib/i18n";
+import { canonicalUrl, languageAlternates, LOCALES } from "@/lib/i18n";
 import { appOrigin, hubOrigin } from "@/lib/site";
 
 function entriesFor(
@@ -19,9 +19,8 @@ function entriesFor(
   path: string,
   lastModified?: string,
 ): MetadataRoute.Sitemap {
-  const p = path === "/" ? "" : path;
   return LOCALES.map((locale) => ({
-    url: `${origin}${localePrefix(locale)}${p || "/"}`,
+    url: canonicalUrl(origin, locale, path),
     lastModified: lastModified ? new Date(lastModified) : undefined,
     alternates: { languages: languageAlternates(origin, path) },
   }));
@@ -35,13 +34,13 @@ function guideEntriesFor(origin: string): MetadataRoute.Sitemap {
   const out: MetadataRoute.Sitemap = [];
   for (const locale of GUIDE_LOCALES) {
     out.push({
-      url: `${origin}${localePrefix(locale)}/guide`,
+      url: canonicalUrl(origin, locale, "/guide"),
       alternates: { languages: guideLanguageAlternates(origin, "/guide") },
     });
     for (const id of GUIDE_ARTICLE_IDS) {
       const meta = getGuideArticleMeta(locale, id);
       out.push({
-        url: `${origin}${localePrefix(locale)}/guide/${id}`,
+        url: canonicalUrl(origin, locale, `/guide/${id}`),
         lastModified: meta.updated ? new Date(meta.updated) : undefined,
         alternates: {
           languages: guideLanguageAlternates(origin, `/guide/${id}`),

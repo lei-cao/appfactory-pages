@@ -59,9 +59,9 @@ export function isGuideLocale(locale: Locale): locale is GuideLocale {
 export function guideLanguageAlternates(origin: string, path: string) {
   const p = path === "/" ? "" : path;
   return {
-    en: `${origin}${p || "/"}`,
+    en: `${origin}${p}`,
     "zh-CN": `${origin}/zh-cn${p}`,
-    "x-default": `${origin}${p || "/"}`,
+    "x-default": `${origin}${p}`,
   };
 }
 

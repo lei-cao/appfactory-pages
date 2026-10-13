@@ -1,13 +1,13 @@
 // SEO for every app subdomain: page metadata (canonical, hreflang, Open Graph,
-// Twitter, Smart App Banner) and JSON-LD builders. Kept honest: no ratings,
-// no review counts, no invented numbers.
+// Twitter, Smart App Banner) and JSON-LD builders. Kept honest: no ratings
+// (no aggregateRating unless a rating is visible on the page), no review counts, no invented numbers.
 
 import type { Metadata } from "next";
 import type { AppContent, AppLocalized } from "@/content/apps";
 import {
   LANG_TAG,
+  canonicalUrl,
   languageAlternates,
-  localePrefix,
   type Locale,
 } from "@/lib/i18n";
 import { appOrigin, CONTACT_EMAIL, hubOrigin, SITE_NAME } from "@/lib/site";
@@ -25,8 +25,7 @@ function abs(slug: string, src: string): string {
 
 /** Canonical URL of a locale-less path ("/support") on an app's subdomain. */
 export function appPageUrl(slug: string, locale: Locale, path = "/"): string {
-  const p = path === "/" ? "" : path;
-  return `${appOrigin(slug)}${localePrefix(locale)}${p}`;
+  return canonicalUrl(appOrigin(slug), locale, path);
 }
 
 /**
@@ -128,28 +127,39 @@ export function softwareApplicationLd(
       store && {
         downloadUrl: store,
         installUrl: store,
-        offers: [
-          {
-            "@type": "Offer",
-            name: "Free download",
-            price: "0",
-            priceCurrency: "USD",
-          },
-          ...(app.proOffer
-            ? [
-                {
-                  "@type": "Offer",
-                  name: app.proOffer.name,
-                  price: app.proOffer.price,
-                  priceCurrency: "USD",
-                },
-              ]
-            : []),
-        ],
       }),
+    // Always present (Google requires offers for a software rich result).
+    // Free to download; apps that aren't in a store yet are pre-order.
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free download",
+        price: "0",
+        priceCurrency: "USD",
+        availability: live
+          ? "https://schema.org/InStock"
+          : "https://schema.org/PreOrder",
+        ...(live && store && { url: store }),
+      },
+      ...(app.proOffer
+        ? [
+            {
+              "@type": "Offer",
+              name: app.proOffer.name,
+              price: app.proOffer.price,
+              priceCurrency: "USD",
+              availability: live
+                ? "https://schema.org/InStock"
+                : "https://schema.org/PreOrder",
+            },
+          ]
+        : []),
+    ],
     publisher: { "@id": `${hubOrigin()}/#org` },
   };
 }
+
+const SAME_AS = ["https://x.com/AppFactorySG"];
 
 /** The studio, referenced by @id from every app's JSON-LD. */
 export function organizationLd() {
@@ -161,6 +171,9 @@ export function organizationLd() {
     url: hubOrigin(),
     logo: `${hubOrigin()}/brand/avatar.png`,
     email: CONTACT_EMAIL,
+    // Only profiles the studio actually runs (marketing/SHARED.md). Add
+    // TikTok/Instagram/YouTube here once those accounts exist and are public.
+    sameAs: SAME_AS,
     address: { "@type": "PostalAddress", addressCountry: "SG" },
   };
 }
@@ -186,7 +199,7 @@ export function breadcrumbLd(
   trail: { name: string; path: string }[],
 ) {
   const items = [
-    { name: SITE_NAME, url: `${hubOrigin()}${localePrefix(locale)}` },
+    { name: SITE_NAME, url: canonicalUrl(hubOrigin(), locale) },
     { name: loc.name, url: appPageUrl(app.slug, locale) },
     ...trail.map((t) => ({
       name: t.name,

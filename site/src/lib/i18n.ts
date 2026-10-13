@@ -30,16 +30,25 @@ export function localePrefix(locale: Locale): string {
 }
 
 /**
+ * The one canonical URL form: no trailing slash, English unprefixed, so the
+ * home page is the bare origin ("https://appfactory.sg"). Canonical tags,
+ * hreflang, the sitemap and JSON-LD must all go through this so they agree.
+ */
+export function canonicalUrl(origin: string, locale: Locale, path = "/"): string {
+  return `${origin}${localePrefix(locale)}${path === "/" ? "" : path}`;
+}
+
+/**
  * hreflang alternates for a page. `path` is the locale-less path ("/support");
  * `origin` the canonical host origin.
  */
 export function languageAlternates(origin: string, path: string) {
   const p = path === "/" ? "" : path;
   return {
-    en: `${origin}${p || "/"}`,
+    en: `${origin}${p}`,
     "zh-CN": `${origin}/zh-cn${p}`,
     "zh-TW": `${origin}/zh-tw${p}`,
-    "x-default": `${origin}${p || "/"}`,
+    "x-default": `${origin}${p}`,
   };
 }
 

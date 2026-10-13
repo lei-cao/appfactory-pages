@@ -70,9 +70,24 @@ export default async function AppLanding({
   if (!app) notFound();
 
   // Apps with a bespoke landing page render it instead of the template.
-  if (slug === "sushi-sort") return <SushiSortLandingPage locale={locale} />;
-  if (slug === "tracesheet") return <TracesheetLandingPage locale={locale} />;
-  if (slug === "ember-deck") return <EmberDeckLandingPage locale={locale} />;
+  // The bespoke pages emit their own app JSON-LD, which references the studio
+  // by @id, so the Organization node is added here.
+  const Bespoke =
+    slug === "sushi-sort"
+      ? SushiSortLandingPage
+      : slug === "tracesheet"
+        ? TracesheetLandingPage
+        : slug === "ember-deck"
+          ? EmberDeckLandingPage
+          : null;
+  if (Bespoke) {
+    return (
+      <>
+        <JsonLd data={[organizationLd()]} />
+        <Bespoke locale={locale} />
+      </>
+    );
+  }
 
   const loc = localized(app, locale);
   const dict = getDict(locale);

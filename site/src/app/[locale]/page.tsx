@@ -10,6 +10,7 @@ import {
   fmt,
   isLocale,
   LANG_TAG,
+  canonicalUrl,
   languageAlternates,
   LOCALES,
   localePrefix,
@@ -32,7 +33,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDict(locale);
-  const url = `${hubOrigin()}${localePrefix(locale)}`;
+  const url = canonicalUrl(hubOrigin(), locale);
   return {
     alternates: {
       canonical: url,
@@ -152,6 +153,7 @@ function FeatureCard({
           {app.appStoreUrl && (
             <a
               href={app.appStoreUrl}
+              data-app={app.slug}
               target="_blank"
               rel="noopener noreferrer"
               className={`group border-line hover:border-paper inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors ${FOCUS}`}
@@ -237,7 +239,7 @@ export default async function Hub({
   const shelf = records.filter((a) => a.icon).slice(0, 9);
   const home = localePrefix(locale) || "/";
 
-  const hubUrl = `${hubOrigin()}${localePrefix(locale)}`;
+  const hubUrl = canonicalUrl(hubOrigin(), locale);
   const jsonLd = [
     organizationLd(),
     {
