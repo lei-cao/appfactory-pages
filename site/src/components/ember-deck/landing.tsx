@@ -189,11 +189,16 @@ export async function EmberDeckLandingPage({ locale }: { locale: Locale }) {
     playMode: "SinglePlayer",
     image: `${origin}${app.ogImage}`,
     screenshot: loc.screenshots.map((s) => `${origin}${s.src}`),
-    ...(emberDeckReleased
-      ? { offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }
-      : {}),
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: emberDeckReleased
+        ? "https://schema.org/InStock"
+        : "https://schema.org/PreOrder",
+    },
     author: { "@type": "Person", name: "Lei Cao" },
-    publisher: { "@type": "Organization", "@id": "https://appfactory.sg/#org", name: "App Factory", url: "https://appfactory.sg" },
+    publisher: { "@id": "https://appfactory.sg/#org" },
   };
 
   const faqLd = {
