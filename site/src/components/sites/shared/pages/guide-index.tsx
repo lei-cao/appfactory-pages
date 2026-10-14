@@ -7,6 +7,7 @@ import { guideLanguageAlternates, isGuideLocale, listGuideArticles } from "@/lib
 import { fmt, isLocale, localePrefix } from "@/lib/i18n";
 import { appOrigin } from "@/lib/site";
 import { appPageMetadata, breadcrumbLd, JsonLd } from "@/lib/seo";
+import { GuideCta } from "@/components/sites/poker-night/guide-cta";
 
 export async function generateMetadata({
   params,
@@ -50,7 +51,7 @@ export default async function GuideIndex({
   const base = `${localePrefix(locale)}/apps/${slug}/guide`;
 
   return (
-    <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+    <main className="pn-guide">
       <JsonLd
         data={[
           breadcrumbLd(app, loc, locale, [
@@ -58,30 +59,26 @@ export default async function GuideIndex({
           ]),
         ]}
       />
-      <span className="spec-label">{dict.guide.eyebrow}</span>
-      <h1 className="font-display mt-3 text-4xl font-bold">
-        {fmt(dict.guide.title, { name: loc.name })}
-      </h1>
-      <p className="text-slate mt-4 leading-relaxed">{dict.guide.intro}</p>
+      <header className="pn-guide__head">
+        <h1 className="pn-guide__h1">{fmt(dict.guide.title, { name: loc.name })}</h1>
+        <p className="pn-lead">{dict.guide.intro}</p>
+      </header>
 
-      <ol className="mt-10 space-y-6">
+      <ol className="pn-guide__list">
         {articles.map((article) => (
-          <li key={article.id} className="border-line border-b pb-6">
-            <Link
-              href={`${base}/${article.id}`}
-              className="font-display text-lg font-semibold transition-colors hover:text-indigo-soft"
-            >
-              {article.order}. {article.title}
+          <li key={article.id}>
+            <Link href={`${base}/${article.id}`}>
+              <strong>{article.title}</strong>
+              <span>
+                {article.description}{" "}
+                {fmt(dict.guide.minutesRead, { n: String(article.readingMinutes) })}
+              </span>
             </Link>
-            <p className="text-slate mt-2 leading-relaxed">
-              {article.description}
-            </p>
-            <p className="spec-label mt-2">
-              {fmt(dict.guide.minutesRead, { n: String(article.readingMinutes) })}
-            </p>
           </li>
         ))}
       </ol>
+
+      <GuideCta locale={locale} slug={slug} name={loc.name} storeUrl={app.appStoreUrl} />
     </main>
   );
 }

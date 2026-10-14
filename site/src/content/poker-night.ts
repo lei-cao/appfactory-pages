@@ -12,7 +12,7 @@
 // takes wagers.
 
 import type { AppContent, AppLocalized } from "./apps";
-import { pokerNightLanding } from "./poker-night-landing";
+import { pnScreens } from "./poker-night-landing";
 
 const en: AppLocalized = {
   name: "Poker Night",
@@ -24,7 +24,7 @@ const en: AppLocalized = {
   subtitle: "Blinds timer, odds & trainer",
   oneLiner:
     "Poker Night runs your home game and sharpens your play: track buy-ins and rebuys, run the blinds timer, settle the night in the fewest transfers and share a results card with the group chat. Between nights, an equity calculator, pot odds and one-handed trainers. No ads, no subscription.",
-  statusNote: "Live now on the App Store. Android release in progress.",
+  statusNote: "Free on the App Store for iPhone and iPad. Android release in progress.",
   features: [
     {
       title: "Money-first ledger",
@@ -55,8 +55,8 @@ const en: AppLocalized = {
       body: "Tonight holds the live game and your host tools, Players the roster and leaderboard, Study the odds tools and the guide, History every past night — one tap each.",
     },
     {
-      title: "Host tools",
-      body: "Random seats and a high-card draw for the button, a chip-set calculator for starting chips, tournament payouts with bounties, and a dealer's choice wheel for picking the game.",
+      title: "Host tools, tournaments and shared costs",
+      body: "Random seats and a high-card draw for the button, a chip-set calculator for starting stacks that add up, cash game or tournament with entries, bust-outs and payouts, a dealer's choice wheel, and pizza, tips or the table fee split fairly.",
     },
     {
       title: "Personal limits, never a lock",
@@ -91,7 +91,7 @@ const en: AppLocalized = {
       body: "One optional purchase (US$7.99), yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
     },
   ],
-  screenshots: pokerNightLanding.en.screens.shots,
+  screenshots: pnScreens("en"),
   trust: {
     title: "Money stays between friends",
     body: "Poker Night keeps score — it never touches your money. Settle-up works out the fewest transfers to get everyone even, and tapping Pay copies the line and the payee's payment details so you can paste them into the app you already use: Venmo, Zelle, PayPal, WeChat, Alipay or similar. Paying each other happens the same way it always has, between you and your friends.",
@@ -207,13 +207,13 @@ const zhCn: AppLocalized = {
   name: "扑克之夜",
   storeName: "扑克之夜 — 德州扑克牌局记账",
   tagline: "家庭牌局，几秒算清。",
-  metaTitle: "扑克之夜：德州扑克牌局记账、盲注计时、胜率计算器与德扑训练",
+  metaTitle: "扑克之夜：德州扑克牌局记账、盲注计时与胜率训练",
   metaDescription:
     "记录德州扑克朋友局的买入与补码，盲注计时，散场几秒算清谁付谁；还有胜率计算器、底池赔率与德扑训练。无广告，无需账号，Pro 一次买断。",
   subtitle: "盲注计时·胜率计算·德扑训练",
   oneLiner:
     "扑克之夜帮你组好朋友局，也帮你把牌打得更好：随手记录买入和补码，盲注计时，散场用最少笔数结算，再把战报卡片发到群里。牌局之间，用胜率计算器、底池赔率和单手训练练牌。无广告，无订阅。",
-  statusNote: "已在 App Store 上线，Android 版本即将推出。",
+  statusNote: "已在 App Store 上线，iPhone 与 iPad 免费下载；Android 版本即将推出。",
   features: [
     {
       title: "金额优先的账本",
@@ -240,12 +240,12 @@ const zhCn: AppLocalized = {
       body: "17 篇规则、牌型、组局与礼仪短文，附中英术语表——牌局进行到一半也不用去搜索引擎查。",
     },
     {
-      title: "四个标签：今晚、玩家、研习、历史",
-      body: "「今晚」放着进行中的牌局和主持工具，「玩家」是名单与排行榜，「研习」是胜率工具与指南，「历史」是所有往期牌局——一键直达。",
+      title: "四个标签：今晚、玩家、学习、历史",
+      body: "「今晚」放着进行中的牌局和主持工具，「玩家」是名单与排行榜，「学习」是胜率工具与指南，「历史」是所有往期牌局——一键直达。",
     },
     {
-      title: "主持工具",
-      body: "随机座位与比大小定庄、按你的筹码套装算出每人起始筹码、含赏金的锦标赛奖金分配，还有选游戏的转盘。",
+      title: "主持工具、锦标赛与公摊",
+      body: "随机座位与比大小定庄、起始筹码始终等于买入的筹码套装、现金局或锦标赛（报名、淘汰顺序与奖金分配）、选游戏的转盘，外卖、小费和场地费也能分摊。",
     },
     {
       title: "个人限额，只提醒不阻止",
@@ -260,7 +260,7 @@ const zhCn: AppLocalized = {
       body: "把一年（或一个赛季）的牌局做成可分享的故事：场次、时长、MVP 与宿敌。群组总览免费，Pro 解锁完整故事。",
     },
     {
-      title: "研习：胜率、范围与保存局面",
+      title: "学习：胜率、范围与保存局面",
       body: "德州、奥马哈与 ESG 胜率计算器，最多三块牌面，文字与滑杆的范围编辑器，底池赔率、补牌、隐含赔率、弃牌率、最小防守频率、筹码底池比，以及 40 多个常见局面。Pro 增加 GTO 预设、胜率曲线与无限保存局面。",
     },
     {
@@ -280,7 +280,7 @@ const zhCn: AppLocalized = {
       body: "一次性可选购买（7.99 美元），永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
     },
   ],
-  screenshots: pokerNightLanding["zh-cn"].screens.shots,
+  screenshots: pnScreens("zh-cn"),
   trust: {
     title: "钱，只在朋友之间转",
     body: "扑克之夜只负责算账，从不经手你的钱。结算页面给出最少笔数的转账方案；点「支付」会复制转账信息和收款人的收款方式，你粘贴到微信、支付宝等常用应用里即可。朋友之间怎么转账，还是一如既往。",
@@ -288,7 +288,7 @@ const zhCn: AppLocalized = {
   faqs: [
     {
       q: "扑克之夜有胜率计算器吗？",
-      a: "有。「学牌」里有德州、奥马哈与 ESG 胜率计算器（手牌对手牌或对范围，最多三块牌面），配扑克专用选牌键盘；还有底池赔率、补牌、隐含赔率、弃牌率、最小防守频率、筹码底池比和 ICM。计算器都免费。",
+      a: "有。「学习」里有德州、奥马哈与 ESG 胜率计算器（手牌对手牌或对范围，最多三块牌面），配扑克专用选牌键盘；还有底池赔率、补牌、隐含赔率、弃牌率、最小防守频率、筹码底池比和 ICM。计算器都免费。",
     },
     {
       q: "德扑训练免费吗？",
@@ -394,13 +394,13 @@ const zhTw: AppLocalized = {
   name: "撲克之夜",
   storeName: "撲克之夜 — 德州撲克牌局記帳",
   tagline: "家庭牌局，幾秒算清。",
-  metaTitle: "撲克之夜：德州撲克牌局記帳、盲注計時、勝率計算器與德撲訓練",
+  metaTitle: "撲克之夜：德州撲克牌局記帳、盲注計時與勝率訓練",
   metaDescription:
     "記錄德州撲克朋友局的買入與補碼，盲注計時，散場幾秒算清誰付誰；還有勝率計算器、底池賠率與德撲訓練。無廣告，無需帳號，Pro 一次買斷。",
   subtitle: "盲注計時·勝率計算·德撲訓練",
   oneLiner:
     "撲克之夜幫你組好朋友局，也幫你把牌打得更好：隨手記錄買入和補碼，盲注計時，散場用最少筆數結算，再把戰報卡片發到群組。牌局之間，用勝率計算器、底池賠率和單手訓練練牌。無廣告，無訂閱。",
-  statusNote: "已在 App Store 上線，Android 版本即將推出。",
+  statusNote: "已在 App Store 上架，iPhone 與 iPad 免費下載；Android 版本即將推出。",
   features: [
     {
       title: "金額優先的帳本",
@@ -427,12 +427,12 @@ const zhTw: AppLocalized = {
       body: "17 篇規則、牌型、組局與禮儀短文，附中英術語表——牌局進行到一半也不用上網查。",
     },
     {
-      title: "四個分頁：今晚、玩家、研習、歷史",
-      body: "「今晚」放著進行中的牌局和主持工具，「玩家」是名單與排行榜，「研習」是勝率工具與指南，「歷史」是所有過往牌局——一鍵直達。",
+      title: "四個分頁：今晚、玩家、學習、歷史",
+      body: "「今晚」放著進行中的牌局和主持工具，「玩家」是名單與排行榜，「學習」是勝率工具與指南，「歷史」是所有過往牌局——一鍵直達。",
     },
     {
-      title: "主持工具",
-      body: "隨機座位與比大小定莊、依你的籌碼套組算出每人起始籌碼、含賞金的錦標賽獎金分配，還有選遊戲的轉盤。",
+      title: "主持工具、錦標賽與公攤",
+      body: "隨機座位與比大小定莊、起始籌碼始終等於買入的籌碼套組、現金局或錦標賽（報名、淘汰順序與獎金分配）、選遊戲的轉盤，外送、小費和場地費也能分攤。",
     },
     {
       title: "個人限額，只提醒不阻止",
@@ -447,7 +447,7 @@ const zhTw: AppLocalized = {
       body: "把一年（或一個賽季）的牌局做成可分享的故事：場次、時數、MVP 與宿敵。群組總覽免費，Pro 解鎖完整故事。",
     },
     {
-      title: "研習：勝率、範圍與儲存局面",
+      title: "學習：勝率、範圍與儲存局面",
       body: "德州、奧馬哈與 ESG 勝率計算器，最多三塊牌面，文字與滑桿的範圍編輯器，底池賠率、補牌、隱含賠率、棄牌率、最小防守頻率、籌碼底池比，以及 40 多個常見局面。Pro 增加 GTO 預設、勝率曲線與無限儲存局面。",
     },
     {
@@ -467,7 +467,7 @@ const zhTw: AppLocalized = {
       body: "一次性選購（7.99 美元），永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
     },
   ],
-  screenshots: pokerNightLanding["zh-tw"].screens.shots,
+  screenshots: pnScreens("zh-tw"),
   trust: {
     title: "錢，只在朋友之間轉",
     body: "撲克之夜只負責算帳，從不經手你的錢。結算頁面給出最少筆數的轉帳方案；點「支付」會複製轉帳資訊和收款人的收款方式，你貼到常用的支付 App 裡即可。朋友之間怎麼轉帳，還是一如既往。",
@@ -475,7 +475,7 @@ const zhTw: AppLocalized = {
   faqs: [
     {
       q: "撲克之夜有勝率計算器嗎？",
-      a: "有。「學牌」裡有德州、奧馬哈與 ESG 勝率計算器（手牌對手牌或對範圍，最多三塊牌面），配撲克專用選牌鍵盤；還有底池賠率、補牌、隱含賠率、棄牌率、最小防守頻率、籌碼底池比和 ICM。計算器都免費。",
+      a: "有。「學習」裡有德州、奧馬哈與 ESG 勝率計算器（手牌對手牌或對範圍，最多三塊牌面），配撲克專用選牌鍵盤；還有底池賠率、補牌、隱含賠率、棄牌率、最小防守頻率、籌碼底池比和 ICM。計算器都免費。",
     },
     {
       q: "德撲訓練免費嗎？",

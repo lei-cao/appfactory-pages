@@ -78,12 +78,13 @@ export function PnVideo({
     <div
       className={`pn-frame relative w-full overflow-hidden ${ratioClass} ${className}`}
       style={ratioStyle}
+      data-playing={started ? "" : undefined}
     >
       {!started && (
         <picture>
           {both && <source media={NARROW} srcSet={v!.poster} />}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={main.poster} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+          <img src={main.poster} alt="" aria-hidden width={main.width} height={main.height} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
         </picture>
       )}
       <video
@@ -97,14 +98,14 @@ export function PnVideo({
         {both && <source media={NARROW} src={v!.src} type="video/mp4" />}
         <source src={main.src} type="video/mp4" />
       </video>
-      {mode === "card" && !started && (
+      {!started && (
         <button
           type="button"
           onClick={play}
-          className="group absolute inset-0 flex items-end justify-start p-4 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-indigo"
+          className="pn-playbtn group absolute inset-0 flex items-end justify-start p-4"
           aria-label={`${playLabel}: ${label}`}
         >
-          <span className="pn-play flex h-12 w-12 items-center justify-center rounded-full transition-transform group-hover:scale-110">
+          <span className="pn-play flex h-12 w-12 items-center justify-center rounded-full">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden>
               <path d="M8 5.5v13l11-6.5z" fill="currentColor" />
             </svg>
@@ -115,7 +116,7 @@ export function PnVideo({
         <button
           type="button"
           onClick={toggleSound}
-          className="pn-chip absolute right-3 bottom-3 rounded-full px-3.5 py-1.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-indigo"
+          className="pn-chip absolute right-3 bottom-3 rounded-full px-3.5 py-1.5 font-medium"
           aria-pressed={!muted}
         >
           {muted ? soundOn : soundOff}

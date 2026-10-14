@@ -7,6 +7,7 @@ import {
   GUIDE_ARTICLE_IDS,
   GUIDE_LOCALES,
   getGuideArticle,
+  getGuideArticleMeta,
   guideLanguageAlternates,
   isGuideLocale,
   type GuideArticleId,
@@ -14,6 +15,7 @@ import {
 import { fmt, isLocale, LANG_TAG, localePrefix } from "@/lib/i18n";
 import { appOrigin, hubOrigin } from "@/lib/site";
 import { appPageMetadata, appPageUrl, breadcrumbLd, JsonLd } from "@/lib/seo";
+import { GuideCta } from "@/components/sites/poker-night/guide-cta";
 
 function isGuideArticleId(x: string): x is GuideArticleId {
   return (GUIDE_ARTICLE_IDS as readonly string[]).includes(x);
@@ -83,9 +85,12 @@ export default async function GuideArticlePage({
   const base = `${localePrefix(locale)}/apps/${slug}/guide`;
   const loc = localized(app, locale);
   const url = appPageUrl(slug, locale, `/guide/${articleId}`);
+  const at = GUIDE_ARTICLE_IDS.indexOf(articleId);
+  const prev = at > 0 ? getGuideArticleMeta(locale, GUIDE_ARTICLE_IDS[at - 1]) : null;
+  const next = at < GUIDE_ARTICLE_IDS.length - 1 ? getGuideArticleMeta(locale, GUIDE_ARTICLE_IDS[at + 1]) : null;
 
   return (
-    <main className="mx-auto w-full max-w-2xl pt-16 pb-24">
+    <main className="pn-guide">
       <JsonLd
         data={[
           {
@@ -108,24 +113,46 @@ export default async function GuideArticlePage({
           ]),
         ]}
       />
-      <Link
-        href={base}
-        className="spec-label transition-colors hover:text-indigo-soft"
-      >
-        {dict.guide.back}
-      </Link>
-      <h1 className="font-display mt-4 text-4xl font-bold">
-        {article.title}
-      </h1>
-      <p className="spec-label mt-3">
-        {fmt(dict.guide.minutesRead, { n: String(article.readingMinutes) })}
-        {" · "}
-        {fmt(dict.guide.updated, { date: article.updated })}
-      </p>
-      <div
-        className="text-slate mt-8 leading-relaxed [&_a]:text-indigo-soft [&_a]:underline [&_a]:underline-offset-4 [&_blockquote]:border-line [&_blockquote]:mt-4 [&_blockquote]:border-l-2 [&_blockquote]:pl-4 [&_blockquote]:italic [&_h2]:font-display [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-paper [&_h3]:font-display [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-paper [&_li]:leading-relaxed [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_p]:mt-3 [&_strong]:font-semibold [&_strong]:text-paper [&_table]:mt-4 [&_table]:w-full [&_table]:border-collapse [&_td]:border-line [&_td]:border-b [&_td]:py-2 [&_td]:pr-4 [&_th]:border-line [&_th]:border-b [&_th]:pb-2 [&_th]:pr-4 [&_th]:text-left [&_th]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5"
-        dangerouslySetInnerHTML={{ __html: article.html }}
-      />
+      <header className="pn-guide__head">
+        <Link href={base} className="pn-link pn-small">
+          {dict.guide.back}
+        </Link>
+        <h1 className="pn-guide__h1">{article.title}</h1>
+        <p className="pn-lead">{article.description}</p>
+      </header>
+
+      <div className="pn-guide__article">
+        <aside className="pn-guide__aside">
+          <p>
+            {fmt(dict.guide.minutesRead, { n: String(article.readingMinutes) })}
+            <br />
+            {fmt(dict.guide.updated, { date: article.updated })}
+          </p>
+          <p>
+            <Link href={base} className="pn-textlink">
+              {fmt(dict.guide.title, { name: loc.name })}
+            </Link>
+          </p>
+        </aside>
+        <div>
+          <div className="pn-guide__body" dangerouslySetInnerHTML={{ __html: article.html }} />
+          <nav className="pn-guide__next" aria-label={fmt(dict.guide.title, { name: loc.name })}>
+            {prev && (
+              <Link href={`${base}/${prev.id}`}>
+                <small>←</small>
+                <strong>{prev.title}</strong>
+              </Link>
+            )}
+            {next && (
+              <Link href={`${base}/${next.id}`}>
+                <small>→</small>
+                <strong>{next.title}</strong>
+              </Link>
+            )}
+          </nav>
+          <GuideCta locale={locale} slug={slug} name={loc.name} storeUrl={app.appStoreUrl} />
+        </div>
+      </div>
     </main>
   );
 }
