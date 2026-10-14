@@ -78,7 +78,7 @@ export function DefaultShell({
                 {dict.app.navGuide}
               </Link>
             )}
-            <LocaleSwitcher current={locale} />
+            <LocaleSwitcher current={locale} slug={slug} />
           </nav>
         </header>
 

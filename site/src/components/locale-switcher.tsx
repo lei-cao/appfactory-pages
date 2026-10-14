@@ -2,41 +2,54 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   LOCALES,
   LOCALE_LABEL,
-  isLocale,
-  localePrefix,
+  localesForPage,
+  pagePathOf,
+  switchHref,
   type Locale,
 } from "@/lib/i18n";
+import { APEX_DOMAIN } from "@/lib/site";
 
-/** Swap the locale prefix on the current (browser-visible) path. */
-function pathFor(pathname: string, target: Locale): string {
-  const seg = pathname.split("/")[1];
-  const rest = isLocale(seg) ? pathname.slice(seg.length + 1) || "/" : pathname;
-  const prefixed = `${localePrefix(target)}${rest === "/" ? "/" : rest}`;
-  return prefixed || "/";
-}
-
+/**
+ * Offers only the locales the current page exists in (the same rule that
+ * drives its hreflang set). `slug` is set on app pages. The server render uses
+ * path-style hrefs (/zh-cn/apps/<slug>/...) that work on every host; once
+ * mounted on <slug>.appfactory.sg they become the canonical clean paths.
+ * The class props let each site style it; the defaults are the spec-label
+ * look with slashes between labels.
+ */
 export function LocaleSwitcher({
   current,
+  slug,
   className = "spec-label flex items-center gap-2",
   linkClassName = "transition-colors hover:text-indigo-soft",
   currentClassName = "text-paper",
   separator = true,
 }: {
   current: Locale;
+  slug?: string;
   className?: string;
   linkClassName?: string;
   currentClassName?: string;
-  /** Draw a slash between labels (the app sites' spec-label style). */
+  /** Draw a slash between labels (the spec-label style). */
   separator?: boolean;
 }) {
   const pathname = usePathname() ?? "/";
+  const [clean, setClean] = useState(false);
+  useEffect(() => {
+    const h = location.hostname;
+    setClean(!!slug && h.endsWith(`.${APEX_DOMAIN}`) && h !== `www.${APEX_DOMAIN}`);
+  }, [slug]);
+
+  const available = localesForPage(pagePathOf(pathname, slug));
+  const shown = LOCALES.filter((l) => available.includes(l));
 
   return (
     <span className={className} aria-label="Language">
-      {LOCALES.map((locale, i) => (
+      {shown.map((locale, i) => (
         <span key={locale} className="flex items-center gap-2">
           {i > 0 && separator && <span aria-hidden>/</span>}
           {locale === current ? (
@@ -45,7 +58,7 @@ export function LocaleSwitcher({
             </span>
           ) : (
             <Link
-              href={pathFor(pathname, locale)}
+              href={switchHref(pathname, locale, slug, clean)}
               className={linkClassName}
               hrefLang={locale}
             >

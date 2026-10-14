@@ -1,14 +1,14 @@
-// Sushi Sort's display face: Shippori Mincho B1, the same mincho serif the
-// game uses for its level plaques and order tickets. Self-hosted at build
-// time by next/font (latin subset; CJK falls through to the system mincho /
-// song faces in globals.css). preload is off because the [slug] layout
-// imports this for every app site.
+import localFont from "next/font/local";
 
-import { Shippori_Mincho_B1 } from "next/font/google";
-
-const shippori = Shippori_Mincho_B1({
-  subsets: ["latin"],
-  weight: ["700", "800"],
+// Shippori Mincho B1 (SIL OFL), Latin subset only, self-hosted: the Google
+// build of this family is ~244 CJK slices, and fetching them all at build
+// time times out. Chinese and Japanese text falls back to the system Mincho
+// / Song faces listed in the theme's font stack.
+const shippori = localFont({
+  src: [
+    { path: "./fonts/shippori-mincho-b1-700-latin.woff2", weight: "700" },
+    { path: "./fonts/shippori-mincho-b1-800-latin.woff2", weight: "800" },
+  ],
   variable: "--font-shippori",
   display: "swap",
   preload: false,

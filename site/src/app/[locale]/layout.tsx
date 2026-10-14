@@ -14,6 +14,7 @@ import {
   languageAlternates,
 } from "@/lib/i18n";
 import { hubOrigin, SITE_NAME } from "@/lib/site";
+import { Analytics } from "@/components/analytics";
 import "../globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -86,6 +87,7 @@ export default async function RootLayout({
     >
       <body className="bg-ink text-paper min-h-dvh antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );

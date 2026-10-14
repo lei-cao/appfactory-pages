@@ -85,6 +85,7 @@ export function GamesIndex({
                       {g.appStoreUrl ? (
                         <a
                           href={g.appStoreUrl}
+                          data-app={g.slug}
                           className="go link"
                           target="_blank"
                           rel="noopener noreferrer"

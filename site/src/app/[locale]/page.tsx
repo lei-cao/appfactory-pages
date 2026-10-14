@@ -21,6 +21,7 @@ import {
   fmt,
   isLocale,
   LANG_TAG,
+  canonicalUrl,
   languageAlternates,
   localePrefix,
   type Locale,
@@ -37,7 +38,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDict(locale);
-  const url = `${hubOrigin()}${localePrefix(locale)}`;
+  const url = canonicalUrl(hubOrigin(), locale);
   return {
     title: { absolute: dict.meta.title },
     description: dict.meta.description,
@@ -151,7 +152,7 @@ export default async function Hub({
     };
   });
 
-  const hubUrl = `${hubOrigin()}${localePrefix(locale)}`;
+  const hubUrl = canonicalUrl(hubOrigin(), locale);
   const jsonLd = [
     organizationLd(),
     {
@@ -315,7 +316,7 @@ export default async function Hub({
                     </span>
                   </a>
                   {app.appStoreUrl && (
-                    <a href={app.appStoreUrl} {...externalProps(true)} className="go link">
+                    <a href={app.appStoreUrl} data-app={app.slug} {...externalProps(true)} className="go link">
                       {h.appStore} <span className="arrow" aria-hidden>↗</span>
                     </a>
                   )}

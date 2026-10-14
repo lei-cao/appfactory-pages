@@ -17,7 +17,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import { localePrefix, type Locale } from "./i18n";
+import {
+  GUIDE_LOCALES,
+  isGuideLocale,
+  localePrefix,
+  type GuideLocale,
+  type Locale,
+} from "./i18n";
 
 /** Reading order from apps/poker-night/docs/content/README.md. */
 export const GUIDE_ARTICLE_IDS = [
@@ -42,14 +48,7 @@ export const GUIDE_ARTICLE_IDS = [
 
 export type GuideArticleId = (typeof GUIDE_ARTICLE_IDS)[number];
 
-/** Only "en" and "zh-cn" have guide content; zh-Hant hasn't been written. */
-export type GuideLocale = "en" | "zh-cn";
-
-export const GUIDE_LOCALES: GuideLocale[] = ["en", "zh-cn"];
-
-export function isGuideLocale(locale: Locale): locale is GuideLocale {
-  return locale === "en" || locale === "zh-cn";
-}
+export { GUIDE_LOCALES, isGuideLocale, type GuideLocale };
 
 /**
  * hreflang alternates for a guide page — only "en" and "zh-cn" exist, unlike
@@ -59,9 +58,9 @@ export function isGuideLocale(locale: Locale): locale is GuideLocale {
 export function guideLanguageAlternates(origin: string, path: string) {
   const p = path === "/" ? "" : path;
   return {
-    en: `${origin}${p || "/"}`,
+    en: `${origin}${p}`,
     "zh-CN": `${origin}/zh-cn${p}`,
-    "x-default": `${origin}${p || "/"}`,
+    "x-default": `${origin}${p}`,
   };
 }
 

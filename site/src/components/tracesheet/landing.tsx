@@ -187,7 +187,7 @@ export async function TracesheetLandingPage({ locale }: { locale: Locale }) {
       },
     ],
     author: { "@type": "Person", name: "Lei Cao" },
-    publisher: { "@type": "Organization", "@id": "https://appfactory.sg/#org", name: "App Factory", url: "https://appfactory.sg" },
+    publisher: { "@id": "https://appfactory.sg/#org" },
   };
 
   const faqLd = {
