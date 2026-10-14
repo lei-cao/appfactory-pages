@@ -9,15 +9,17 @@ export interface GameEntry {
   oneLiner: string;
   href: string;
   appStoreUrl?: string;
-  poster: string;
+  /** Whole store posters, in listing order (up to three). */
+  posters: string[];
   alt: string;
-  /** A muted gameplay loop shown in the frame instead of the poster. */
+  /** A muted gameplay loop shown first in the gallery. */
   loop?: { src: string; poster: string };
 }
 
 /**
  * Games as a big-name index. On wide screens the active name lights its
- * store poster in a sticky frame and opens its note; hover, focus and tap
+ * store gallery (whole posters, never cropped) in a sticky frame and opens
+ * its note; hover, focus and tap
  * all move the state. On phones every game shows its poster and note in turn.
  * Every name and note is in the HTML, so search engines read them all.
  */
@@ -51,16 +53,20 @@ export function GamesIndex({
               style={{ "--i": i } as React.CSSProperties}
               onMouseEnter={() => setActive(i)}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className="index__thumb"
-                src={g.poster}
-                alt={g.alt}
-                width={860}
-                height={1864}
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="index__thumbs">
+                {g.posters.slice(0, 2).map((src, n) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={src}
+                    src={src}
+                    alt={n === 0 ? g.alt : ""}
+                    width={860}
+                    height={1864}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ))}
+              </div>
               <h3>
                 <button
                   type="button"
@@ -105,34 +111,28 @@ export function GamesIndex({
       </ul>
 
       <div className="index__frame" aria-hidden data-reveal>
-        {games.map((g, i) =>
-          g.loop ? (
-            <video
-              key={g.slug}
-              data-on={i === active}
-              poster={g.loop.poster}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="metadata"
-            >
-              <source src={g.loop.src} type="video/mp4" />
-            </video>
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={g.slug}
-              src={g.poster}
-              alt=""
-              data-on={i === active}
-              width={860}
-              height={1864}
-              loading="lazy"
-              decoding="async"
-            />
-          ),
-        )}
+        {games.map((g, i) => (
+          <div key={g.slug} className="index__set" data-on={i === active}>
+            {g.loop && (
+              <video
+                poster={g.loop.poster}
+                muted
+                loop
+                playsInline
+                autoPlay
+                preload="metadata"
+                width={432}
+                height={936}
+              >
+                <source src={g.loop.src} type="video/mp4" />
+              </video>
+            )}
+            {g.posters.slice(0, g.loop ? 2 : 3).map((src) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={src} src={src} alt="" width={860} height={1864} loading="lazy" decoding="async" />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );

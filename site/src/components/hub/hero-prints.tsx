@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 
 export interface Print {
-  poster: string;
+  /** Whole store posters shown side by side (two). */
+  posters: string[];
   icon: string;
   alt: string;
   name: string;
@@ -13,8 +14,9 @@ export interface Print {
 const HOLD_MS = 5600;
 
 /**
- * The hero's two lit prints: a store poster large, its app icon small and
- * dimmed. They change together on a slow crossfade, like light shifting in
+ * The hero's two lit prints: a pair of whole store posters large (never
+ * cropped, so their captions and screens read in full), the app icon small
+ * and dimmed. They change together on a slow crossfade, like light shifting in
  * a room. Pauses while the tab is hidden; under reduced motion the first
  * print simply stays.
  */
@@ -41,19 +43,21 @@ export function HeroPrints({ prints, intro }: { prints: Print[]; intro: string }
     <>
       <figure className="print print--large" data-rise style={{ "--i": 1 } as React.CSSProperties}>
         {prints.map((p, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={p.poster}
-            src={p.poster}
-            alt={i === on ? p.alt : ""}
-            aria-hidden={i !== on}
-            data-on={i === on}
-            width={860}
-            height={1864}
-            fetchPriority={i === 0 ? "high" : "low"}
-            loading={i === 0 ? "eager" : "lazy"}
-            decoding="async"
-          />
+          <div key={p.posters[0]} className="print__set" data-on={i === on} aria-hidden={i !== on}>
+            {p.posters.map((src, n) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={src}
+                src={src}
+                alt={i === on && n === 0 ? p.alt : ""}
+                width={860}
+                height={1864}
+                fetchPriority={i === 0 ? "high" : "low"}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            ))}
+          </div>
         ))}
       </figure>
       <figure className="print print--small" aria-hidden data-rise style={{ "--i": 3 } as React.CSSProperties}>

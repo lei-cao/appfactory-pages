@@ -128,12 +128,17 @@ export default async function Hub({
     return fmt(h.posterAlt, { name: loc.storeName, subtitle: loc.subtitle });
   };
 
+  const postersOf = (slug: string) =>
+    Array.from({ length: POSTER_COUNT }, (_, n) => poster(slug, n + 1, locale)).filter(
+      (src): src is string => !!src,
+    );
+
   const prints: Print[] = HERO_SLUGS.flatMap((slug) => {
     const app = bySlug(slug);
-    const src = app && poster(slug, 1, locale);
-    if (!app || !src || !app.icon) return [];
+    const posters = postersOf(slug).slice(0, 2);
+    if (!app || posters.length < 2 || !app.icon) return [];
     const loc = localized(app, locale);
-    return [{ poster: src, icon: app.icon, alt: posterAlt(app), name: loc.name, subtitle: loc.subtitle }];
+    return [{ posters, icon: app.icon, alt: posterAlt(app), name: loc.name, subtitle: loc.subtitle }];
   });
 
   const games: GameEntry[] = liveGames.map((app) => {
@@ -146,7 +151,9 @@ export default async function Hub({
       oneLiner: loc.oneLiner,
       href: appLink(app, locale).href,
       appStoreUrl: app.appStoreUrl,
-      poster: poster(app.slug, 1, locale) ?? loc.screenshots[0]?.src ?? "",
+      posters: postersOf(app.slug).length
+        ? postersOf(app.slug)
+        : loc.screenshots.slice(0, 3).map((s) => s.src),
       alt: posterAlt(app),
       loop: loop ? { src: loop.src[locale] ?? loop.src.en!, poster: loop.poster } : undefined,
     };
@@ -278,9 +285,7 @@ export default async function Hub({
           return (
             <article key={app.slug} className="feature" aria-labelledby={`${app.slug}-name`}>
               <div className="feature__visual">
-                {Array.from({ length: POSTER_COUNT }, (_, n) => poster(app.slug, n + 1, locale))
-                  .filter((src): src is string => !!src)
-                  .map((src, n) => (
+                {postersOf(app.slug).map((src, n) => (
                     <Image
                       key={src}
                       src={src}
