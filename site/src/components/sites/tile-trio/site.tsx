@@ -1,10 +1,9 @@
-import { DefaultShell } from "../shared/default-shell";
-import { GenericLanding } from "../shared/generic-landing";
 import type { SiteModule } from "../types";
-
-const SLUG = "tile-trio";
+import { TileTrioLanding } from "./landing";
+import { TileTrioShell } from "./shell";
+import "./site.css";
 
 export const site: SiteModule = {
-  Landing: ({ locale }) => <GenericLanding locale={locale} slug={SLUG} />,
-  Shell: (props) => <DefaultShell {...props} />,
+  Landing: ({ locale }) => <TileTrioLanding locale={locale} />,
+  Shell: (props) => <TileTrioShell {...props} />,
 };

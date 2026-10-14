@@ -1,0 +1,1313 @@
+/* ---------------------------------------------------------------------------
+   Porcelain Trio — the page is a stack of porcelain-white folders on a deep
+   cobalt desk. Two inks like blue-and-white ware (cobalt on glaze) plus the
+   game's celadon and pale blue washes as folder colours. Square corners
+   everywhere except the game's own tiles; buttons take the folder tab's
+   cut top corners. The layout sets data-app=<slug> on the page wrapper;
+   remapping the theme variables here re-skins the shared support, privacy
+   and terms pages (bg-panel, border-line, text-slate…) at the same time. */
+
+[data-app="tile-trio"] {
+  --tt-paper: #eff2f3; /* glaze white, faintly blue: the page and the sheets */
+  --tt-tone: #e4e8ec; /* one step down from the glaze */
+  --tt-ink: #17357a; /* cobalt ink: text, buttons */
+  --tt-ink-hover: #0e2253;
+  --tt-muted: #46557a; /* secondary notes, 6.9:1 on glaze */
+  --tt-deep: #0e2253; /* the desk under the folders */
+  --tt-cobalt: #234c9e; /* the tea house field */
+  --tt-celadon: #bdd1c0;
+  --tt-wash: #d8e1ee;
+  --tt-sky: #a8bbd9;
+  --tt-on-dark: #eff2f3;
+  --tt-on-dark-soft: #d3dcec; /* 7:1 on the cobalt field */
+  --tt-wood: #4a3121; /* the tray */
+  --tt-wood-deep: #2c1c10;
+  --tt-tile: #fbfaf5;
+  --tt-tile-edge: #b6c3bd;
+
+  --tt-serif: var(--font-boska), "Songti SC", "STSong", "Noto Serif SC",
+    "Source Han Serif SC", "Songti TC", "Noto Serif TC", "PMingLiU", "SimSun",
+    Georgia, serif;
+
+  --step-small: 0.875rem;
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --step-display: clamp(3.25rem, 10vw, 10rem);
+
+  --gutter: clamp(16px, 3vw, 32px);
+  --section: clamp(96px, 11vw, 200px);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --cut: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0 100%);
+
+  /* The shared pages' semantic colours, remapped to glaze and cobalt. */
+  --color-ink: var(--tt-paper);
+  --color-panel: var(--tt-tone);
+  --color-panel-2: #d9e0e8;
+  --color-line: #cfd7e2;
+  --color-paper: var(--tt-ink);
+  --color-slate: var(--tt-muted);
+  --color-indigo: var(--tt-ink);
+  --color-indigo-soft: #2f5cb8;
+  --font-display: var(--tt-serif);
+  --font-body: var(--tt-serif);
+
+  background: var(--tt-paper);
+  color: var(--tt-ink);
+  font-family: var(--tt-serif);
+  font-size: var(--step-body);
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  /* Boska ships 400 and 500: the shared pages' bold headings use the real
+     500 rather than a smeared synthetic bold. */
+  font-synthesis-weight: none;
+}
+
+[data-app="tile-trio"]:lang(zh-TW) {
+  --tt-serif: var(--font-boska), "Songti TC", "Noto Serif TC", "Source Han Serif TC",
+    "PMingLiU", "Songti SC", "Noto Serif SC", Georgia, serif;
+}
+
+[data-app="tile-trio"] ::selection {
+  background: var(--tt-ink);
+  color: var(--tt-paper);
+}
+
+[data-app="tile-trio"] :focus-visible {
+  outline: 3px solid var(--tt-sky);
+  outline-offset: 3px;
+}
+
+/* The shared pages' mono eyebrow, set as a plain sentence-case line. */
+[data-app="tile-trio"] .spec-label {
+  font-family: var(--tt-serif);
+  font-size: var(--step-small);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--tt-muted);
+}
+[data-app="tile-trio"] span.spec-label {
+  display: inline-block;
+}
+[data-app="tile-trio"] .spec-label::first-letter {
+  text-transform: uppercase;
+}
+
+[data-app="tile-trio"] main:not(.tt-main) {
+  padding-inline: var(--gutter);
+  font-size: var(--step-body);
+}
+
+/* ---- Header ------------------------------------------------------------ */
+
+.tt-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding-inline: var(--gutter);
+  background: var(--tt-deep);
+  color: var(--tt-on-dark);
+  font-size: var(--step-small);
+}
+.tt-bar a {
+  color: var(--tt-on-dark-soft);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+.tt-bar a:hover {
+  color: var(--tt-on-dark);
+}
+.tt-bar__studio {
+  justify-self: start;
+  white-space: nowrap;
+}
+.tt-bar__mark {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  vertical-align: -0.12em;
+}
+.tt-bar__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--step-body);
+}
+.tt-bar a.tt-bar__name {
+  color: var(--tt-on-dark);
+}
+.tt-bar__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+.tt-bar__nav {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.tt-locales {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tt-locales > span {
+  display: inline-flex;
+}
+.tt-locales__current {
+  color: var(--tt-on-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+a.tt-locales__link {
+  color: var(--tt-on-dark-soft);
+}
+
+@media (max-width: 719px) {
+  .tt-hide-sm {
+    display: none;
+  }
+  .tt-bar {
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+  }
+  .tt-bar__studio span {
+    display: none;
+  }
+  .tt-bar__name {
+    justify-self: center;
+  }
+  .tt-bar__name span {
+    display: none;
+  }
+  .tt-bar__nav {
+    gap: 14px;
+  }
+}
+
+/* ---- Shared type ------------------------------------------------------- */
+
+.tt-main {
+  flex: 1;
+}
+.tt-display {
+  margin: 0;
+  font-size: var(--step-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+}
+.tt-head {
+  font-size: var(--step-head);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.tt-lead {
+  font-size: var(--step-lead);
+  line-height: 1.35;
+}
+.tt-break {
+  overflow-wrap: anywhere;
+}
+
+/* One button shape: a flat block with the folder tab's cut top corners. */
+.tt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 28px;
+  background: var(--tt-ink);
+  color: var(--tt-paper);
+  font-size: var(--step-body);
+  text-decoration: none;
+  clip-path: var(--cut);
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+.tt-btn:hover {
+  background: var(--tt-ink-hover);
+}
+.tt-btn:active {
+  transform: translateY(1px);
+}
+
+/* ---- Hero: the name and the folder stack ------------------------------- */
+
+.tt-hero {
+  background: var(--tt-deep);
+  color: var(--tt-on-dark);
+  padding-top: clamp(48px, 7vh, 96px);
+}
+.tt-hero__words {
+  padding-inline: var(--gutter);
+}
+.tt-hero__line {
+  max-width: 46ch;
+  margin: 28px auto 0;
+  text-align: center;
+  font-size: var(--step-lead);
+  line-height: 1.35;
+  color: var(--tt-on-dark-soft);
+  text-wrap: balance;
+}
+.tt-folders {
+  width: 86%;
+  margin: clamp(72px, 9vh, 120px) auto 0;
+}
+.tt-folder {
+  position: relative;
+  display: block;
+  height: 64px;
+  color: var(--tt-ink);
+  text-decoration: none;
+}
+.tt-tab {
+  position: absolute;
+  bottom: 100%;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 28px;
+  background: inherit;
+  color: inherit;
+  font-size: var(--step-body);
+  white-space: nowrap;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  transition: transform 200ms var(--ease);
+}
+.tt-folder:hover .tt-tab,
+.tt-folder:focus-visible .tt-tab {
+  transform: translateY(-6px);
+}
+.tt-folder--inside {
+  background: var(--tt-sky);
+}
+.tt-folder--inside .tt-tab {
+  left: 58%;
+}
+.tt-folder--screens {
+  background: var(--tt-wash);
+}
+.tt-folder--screens .tt-tab {
+  left: 6%;
+}
+.tt-folder--twists {
+  background: var(--tt-celadon);
+}
+.tt-folder--twists .tt-tab {
+  left: 34%;
+}
+.tt-folder--house {
+  background: var(--tt-cobalt);
+  color: var(--tt-on-dark);
+}
+.tt-folder--house .tt-tab {
+  left: 72%;
+}
+
+/* ---- The front folder (play) ------------------------------------------- */
+
+.tt-front {
+  background: var(--tt-deep);
+  padding-inline: 7%;
+}
+.tt-front__sheet {
+  position: relative;
+  background: var(--tt-paper);
+  padding: clamp(24px, 3.4vw, 48px) clamp(20px, 3.4vw, 48px) clamp(40px, 5vw, 72px);
+}
+.tt-tab--front {
+  left: 16%;
+  background: var(--tt-paper);
+  color: var(--tt-ink);
+}
+.tt-front__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+.tt-front__note {
+  color: var(--tt-muted);
+  font-size: var(--step-small);
+  max-width: 44ch;
+}
+
+.tt-show {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(28px, 4.5vw, 72px);
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
+.tt-plate {
+  position: relative;
+  aspect-ratio: 1;
+  align-self: start;
+  overflow: hidden;
+  background: var(--tt-wood-deep);
+  container-type: inline-size;
+  --tw: 17cqi;
+  --th: calc(var(--tw) * 1.16);
+  --lift: 1.3cqi;
+}
+.tt-plate__room {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 58%;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 700ms ease, transform 6s ease-out;
+}
+.tt-plate__room.is-on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tt-board {
+  position: absolute;
+  top: 13cqi;
+  left: 50%;
+  width: calc(var(--tw) * 4 + var(--lift) * 2);
+  height: calc(var(--th) * 2 + var(--lift) * 2);
+  transform: translateX(-50%);
+}
+.tt-tile {
+  position: absolute;
+  left: calc(var(--x) * var(--tw) / 2 + (2 - var(--z)) * var(--lift));
+  top: calc(var(--y) * var(--th) / 2 + (2 - var(--z)) * var(--lift));
+  z-index: calc(var(--z) + 1);
+  width: calc(var(--tw) - 0.8cqi);
+  height: calc(var(--th) - 0.8cqi);
+  display: grid;
+  place-items: center;
+  padding: 1.2cqi;
+  border: 0;
+  border-bottom: 1.2cqi solid var(--tt-tile-edge);
+  border-radius: 1.6cqi;
+  background: var(--tt-tile);
+  cursor: pointer;
+  transition: transform 160ms var(--ease), filter 300ms ease;
+}
+.tt-tile img {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.tt-tile:hover:not(.is-covered) {
+  transform: translateY(-0.8cqi);
+}
+.tt-tile:active:not(.is-covered) {
+  transform: translateY(0.3cqi);
+}
+.tt-tile.is-covered {
+  filter: brightness(0.56) saturate(0.7);
+  cursor: default;
+}
+.tt-show[data-phase="full"] .tt-tile {
+  cursor: default;
+}
+
+.tt-tray {
+  position: absolute;
+  left: 50%;
+  bottom: 5cqi;
+  display: flex;
+  gap: 1cqi;
+  margin: 0;
+  padding: 1.4cqi;
+  list-style: none;
+  background: var(--tt-wood);
+  border-radius: 2cqi;
+  transform: translateX(-50%);
+}
+.tt-slot {
+  display: grid;
+  place-items: center;
+  width: 10.4cqi;
+  aspect-ratio: 0.86;
+  background: var(--tt-wood-deep);
+  border-radius: 1.2cqi;
+}
+.tt-slot__tile {
+  display: grid;
+  place-items: center;
+  width: 88%;
+  height: 88%;
+  padding: 0.6cqi;
+  background: var(--tt-tile);
+  border-radius: 1cqi;
+  animation: tt-slot-in 220ms var(--ease) both;
+}
+.tt-slot__tile img {
+  width: 100%;
+  height: auto;
+}
+.tt-slot__tile.is-clearing {
+  animation: tt-slot-out 320ms var(--ease) forwards;
+}
+.tt-show[data-phase="full"] .tt-tray {
+  background: #7a2a1c;
+}
+
+@keyframes tt-slot-in {
+  from {
+    opacity: 0;
+    transform: translateY(-40%) scale(0.9);
+  }
+}
+@keyframes tt-slot-out {
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.tt-show__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+/* The game's HUD: a wood strip across the top of the plate. */
+.tt-readouts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 4cqi;
+  padding: 1.6cqi 2cqi;
+  background: var(--tt-wood);
+  color: var(--tt-on-dark-soft);
+  font-size: var(--step-small);
+}
+.tt-readouts b {
+  font-weight: 500;
+  color: var(--tt-on-dark);
+  font-variant-numeric: tabular-nums;
+}
+.tt-show__mid {
+  display: grid;
+  gap: 28px;
+}
+.tt-show__body {
+  max-width: 40ch;
+}
+.tt-show__status {
+  max-width: 40ch;
+  min-height: 3em;
+  font-style: italic;
+}
+.tt-cells {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.tt-cell {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 20px;
+  border: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  clip-path: var(--cut);
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+.tt-cell:active {
+  transform: translateY(1px);
+}
+.tt-cell--ink {
+  background: var(--tt-ink);
+  color: var(--tt-paper);
+}
+.tt-cell--ink:hover {
+  background: var(--tt-ink-hover);
+}
+.tt-cell--tone {
+  background: var(--tt-tone);
+  color: var(--tt-ink);
+}
+.tt-cell--tone:hover {
+  background: var(--tt-wash);
+}
+.tt-show[data-phase="full"] .tt-cell--tone,
+.tt-show[data-phase="won"] .tt-cell--tone {
+  background: var(--tt-celadon);
+}
+
+/* ---- The tea house: index with preview --------------------------------- */
+
+.tt-house {
+  background: var(--tt-cobalt);
+  color: var(--tt-on-dark);
+  padding: var(--section) var(--gutter);
+}
+.tt-house__head {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: 24px;
+  align-items: end;
+}
+.tt-house__head .tt-head {
+  grid-column: 1 / 7;
+}
+.tt-house__head .tt-lead {
+  grid-column: 8 / 13;
+  max-width: 34ch;
+}
+.tt-house .tt-lead {
+  color: var(--tt-on-dark-soft);
+}
+.tt-index {
+  position: relative;
+  margin: clamp(48px, 6vw, 96px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tt-index__row {
+  padding-block: 18px;
+}
+.tt-index__name {
+  font-size: var(--step-head);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.tt-index__line {
+  margin-top: 6px;
+  color: var(--tt-on-dark-soft);
+  max-width: 44ch;
+}
+.tt-index__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-top: 16px;
+}
+
+@media (hover: hover) and (min-width: 900px) {
+  .tt-index__row {
+    width: 56%;
+    transition: opacity 240ms ease;
+  }
+  .tt-index__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 38%;
+    height: 100%;
+    margin: 0;
+    aspect-ratio: auto;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 240ms ease, transform 900ms var(--ease);
+    pointer-events: none;
+  }
+  .tt-index__row:first-child .tt-index__img,
+  .tt-index:has(.tt-index__row:hover) .tt-index__row:hover .tt-index__img {
+    opacity: 1;
+    transform: none;
+  }
+  .tt-index:has(.tt-index__row:hover) .tt-index__row:first-child:not(:hover) .tt-index__img {
+    opacity: 0;
+  }
+  .tt-index:has(.tt-index__row:hover) .tt-index__row:not(:hover) {
+    opacity: 0.55;
+  }
+  .tt-index__row:hover .tt-index__name {
+    transform: translateX(12px);
+  }
+  .tt-index__name {
+    transition: transform 240ms var(--ease);
+  }
+}
+
+/* ---- Twists: stacking colour sheets ------------------------------------ */
+
+.tt-twists {
+  padding-top: var(--section);
+  background: var(--tt-paper);
+}
+.tt-twists__title {
+  padding-inline: var(--gutter);
+  margin-bottom: 48px;
+  max-width: 18ch;
+}
+.tt-twists__title .tt-r {
+  display: inline-block;
+}
+.tt-sheet {
+  position: sticky;
+  top: calc(var(--n) * 72px);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 72px 1fr;
+  column-gap: var(--gutter);
+  /* Every sheet ends on the same line, so the stack leaves the screen
+     together and no sheet slides over another's title band. */
+  height: calc(max(86svh, 640px) - var(--n) * 72px);
+  padding-left: var(--gutter);
+  background: var(--tt-celadon);
+  color: var(--tt-ink);
+}
+.tt-sheet:nth-child(2) {
+  background: var(--tt-wash);
+}
+.tt-sheet:nth-child(3) {
+  background: var(--tt-sky);
+}
+.tt-sheet:nth-child(4) {
+  background: var(--tt-cobalt);
+  color: var(--tt-on-dark);
+}
+.tt-sheet__name {
+  grid-column: 1 / 7;
+  grid-row: 1;
+  align-self: center;
+  font-size: var(--step-lead);
+  font-weight: 500;
+}
+.tt-sheet__body {
+  grid-column: 1 / 6;
+  grid-row: 2;
+  align-self: end;
+  max-width: 36ch;
+  padding-bottom: clamp(32px, 5vw, 64px);
+}
+.tt-sheet__pic {
+  grid-column: 7 / 13;
+  grid-row: 2;
+  position: relative;
+  overflow: hidden;
+}
+.tt-sheet__pic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Screens: prints with label strips --------------------------------- */
+
+.tt-screens {
+  padding: var(--section) var(--gutter);
+  background: var(--tt-paper);
+}
+.tt-screens .tt-head {
+  margin-bottom: 40px;
+}
+.tt-screens .tt-head .tt-r {
+  display: inline-block;
+}
+.tt-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tt-print__pic {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--tt-deep);
+}
+.tt-print__pic img,
+.tt-print__pic video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 62%;
+}
+.tt-print__pic video {
+  object-position: 50% 50%;
+}
+.tt-print__strip {
+  display: grid;
+  gap: 8px;
+  min-height: 92px;
+  padding: 12px;
+  background: var(--tt-ink);
+  color: var(--tt-paper);
+}
+.tt-print:nth-child(4n + 2) .tt-print__strip {
+  background: var(--tt-celadon);
+  color: var(--tt-ink);
+}
+.tt-print:nth-child(4n + 3) .tt-print__strip {
+  background: var(--tt-wash);
+  color: var(--tt-ink);
+}
+.tt-print:nth-child(4n + 4) .tt-print__strip {
+  background: var(--tt-deep);
+  color: var(--tt-paper);
+}
+.tt-print__values {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 10px;
+  font-size: var(--step-small);
+  font-variant-numeric: tabular-nums;
+}
+.tt-print__caption {
+  font-style: italic;
+}
+
+/* ---- What's inside: the tea house menu --------------------------------- */
+
+.tt-inside {
+  position: relative;
+  padding: var(--section) var(--gutter);
+  background: #3c3c3c;
+}
+.tt-inside__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 28% 50%;
+}
+.tt-menu {
+  position: relative;
+  width: min(640px, 100%);
+  margin-left: auto;
+  margin-right: max(0px, 6vw);
+  padding: 64px;
+  background: var(--tt-paper);
+  text-align: center;
+}
+/* Scalloped top and bottom edges: rows of glaze-white bumps. */
+.tt-menu::before,
+.tt-menu::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-repeat: repeat-x;
+  background-size: 24px 12px;
+}
+.tt-menu::before {
+  bottom: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23eff2f3'/%3E%3C/svg%3E");
+}
+.tt-menu::after {
+  top: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Ccircle cx='12' cy='0' r='12' fill='%23eff2f3'/%3E%3C/svg%3E");
+}
+.tt-menu__title {
+  font-size: var(--step-head);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.tt-menu__note {
+  margin-top: 14px;
+  font-size: var(--step-small);
+  color: var(--tt-muted);
+}
+.tt-menu__group {
+  margin-top: 56px;
+}
+.tt-menu__group-name {
+  font-size: var(--step-lead);
+  font-style: italic;
+}
+.tt-menu dl {
+  max-width: 420px;
+  margin: 20px auto 0;
+  display: grid;
+  gap: 16px;
+  text-align: left;
+}
+.tt-menu__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 20px;
+}
+.tt-menu dt {
+  margin: 0;
+}
+.tt-menu__value {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.tt-menu__desc {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  font-size: var(--step-small);
+  color: var(--tt-muted);
+}
+.tt-menu__closing {
+  margin-top: 56px;
+  font-style: italic;
+}
+
+/* ---- Questions and credits: reading text ------------------------------- */
+
+.tt-faq,
+.tt-credits {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  padding: var(--section) var(--gutter) 0;
+  background: var(--tt-tone);
+}
+.tt-credits {
+  padding-block: clamp(72px, 8vw, 120px) var(--section);
+}
+.tt-faq__side {
+  grid-column: 1 / 4;
+}
+.tt-faq__plate {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 32px;
+}
+.tt-faq__text {
+  grid-column: 5 / 13;
+  columns: 2;
+  column-gap: 56px;
+  line-height: 1.55;
+}
+.tt-faq__text p {
+  break-inside: avoid;
+  margin: 0 0 20px;
+}
+/* 600: Boska's 500 for Latin, the system Song face's bold for Chinese. */
+.tt-faq__text strong {
+  font-weight: 600;
+}
+.tt-credits > .tt-head {
+  grid-column: 1 / 4;
+}
+.tt-credits__text {
+  grid-column: 5 / 13;
+  max-width: 68ch;
+  line-height: 1.55;
+}
+.tt-credits__text h3 {
+  margin-top: 28px;
+  font-weight: 500;
+}
+.tt-credits__text a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+.tt-credits__text a:hover {
+  color: #2f5cb8;
+}
+.tt-credits__tracks {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: 40px;
+}
+.tt-credits__tracks li {
+  break-inside: avoid;
+  margin-bottom: 6px;
+}
+
+/* ---- Honest about ads: a letter with a tear-off strip ------------------ */
+
+.tt-letter-ground {
+  padding: var(--section) var(--gutter);
+  background: var(--tt-cobalt);
+}
+.tt-letter,
+.tt-stub {
+  width: min(640px, 100%);
+  margin-inline: auto;
+  background: var(--tt-paper);
+}
+.tt-letter {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 60px 60px 72px;
+  line-height: 1.55;
+}
+.tt-letter__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+.tt-letter__title {
+  margin-top: 10px;
+  font-size: var(--step-lead);
+}
+.tt-letter__sign {
+  margin-top: 12px;
+  font-size: var(--step-lead);
+  font-style: italic;
+}
+.tt-letter__role {
+  margin-top: -12px;
+  font-size: var(--step-small);
+  color: var(--tt-muted);
+}
+/* The perforation: a row of round holes punched through to the ground. */
+.tt-stub {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+  margin-top: 14px;
+  padding: 14px 24px 14px 60px;
+}
+.tt-stub::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 4px);
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='6'%3E%3Ccircle cx='7' cy='3' r='3' fill='%23eff2f3'/%3E%3C/svg%3E");
+  background-size: 14px 6px;
+  background-repeat: repeat-x;
+}
+.tt-stub__mail {
+  color: var(--tt-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+/* ---- Footer: photograph half, menu half -------------------------------- */
+
+.tt-foot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: min(92svh, 860px);
+  background: var(--tt-deep);
+  color: var(--tt-on-dark);
+}
+.tt-foot__photo {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+.tt-foot__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+.tt-foot__menu {
+  display: flex;
+  flex-direction: column;
+  padding: 80px var(--gutter) 32px clamp(24px, 8vw, 128px);
+  font-size: var(--step-small);
+}
+.tt-foot a {
+  color: var(--tt-on-dark-soft);
+  text-decoration: none;
+  transition: color 160ms ease, transform 200ms var(--ease), opacity 200ms ease;
+}
+.tt-foot a:hover {
+  color: var(--tt-on-dark);
+}
+.tt-foot__name {
+  font-size: var(--step-body);
+}
+.tt-foot a.tt-foot__name {
+  color: var(--tt-on-dark);
+}
+.tt-foot__links {
+  display: grid;
+  gap: 14px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tt-foot__links a {
+  display: inline-block;
+  font-size: var(--step-head);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--tt-on-dark);
+}
+.tt-foot__links:hover a:not(:hover) {
+  color: var(--tt-on-dark-soft);
+}
+.tt-foot__links a:hover {
+  transform: translateX(12px);
+}
+.tt-foot__blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 64px;
+}
+.tt-foot__blocks > div {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.tt-foot__label {
+  margin: 0;
+  color: var(--tt-on-dark);
+  font-weight: 500;
+}
+.tt-foot__plain {
+  overflow-wrap: anywhere;
+}
+.tt-foot__mark {
+  display: inline-block;
+  height: 0.95em;
+  width: auto;
+  vertical-align: -0.12em;
+}
+.tt-locales--foot {
+  flex-wrap: wrap;
+}
+.tt-foot .tt-locales__current {
+  color: var(--tt-on-dark);
+}
+.tt-foot__legal {
+  margin: auto 0 0;
+  padding-top: 48px;
+  color: var(--tt-on-dark-soft);
+}
+
+/* ---- Motion ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .tt-display {
+    animation: tt-rise 900ms var(--ease) both;
+  }
+  .tt-hero__line {
+    animation: tt-rise 900ms var(--ease) 120ms both;
+  }
+  .tt-folder {
+    animation: tt-rise 800ms var(--ease) both;
+  }
+  .tt-folder:nth-child(1) {
+    animation-delay: 220ms;
+  }
+  .tt-folder:nth-child(2) {
+    animation-delay: 290ms;
+  }
+  .tt-folder:nth-child(3) {
+    animation-delay: 360ms;
+  }
+  .tt-folder:nth-child(4) {
+    animation-delay: 430ms;
+  }
+  .tt-front__sheet {
+    animation: tt-rise 900ms var(--ease) 500ms both;
+  }
+
+  .tt-js [data-reveal] .tt-r,
+  .tt-js [data-reveal].tt-r {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .tt-js [data-reveal].is-in .tt-r {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+/* ---- Phone composition ------------------------------------------------- */
+
+@media (max-width: 899px) {
+  .tt-house__head .tt-head,
+  .tt-house__head .tt-lead {
+    grid-column: 1 / -1;
+  }
+  .tt-show {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .tt-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 8px;
+  }
+  .tt-print__values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .tt-faq__side,
+  .tt-faq__text,
+  .tt-credits > .tt-head,
+  .tt-credits__text {
+    grid-column: 1 / -1;
+  }
+  .tt-faq__text {
+    columns: 1;
+    margin-top: 32px;
+  }
+  .tt-faq__plate {
+    max-width: 420px;
+  }
+  .tt-credits__text {
+    margin-top: 24px;
+  }
+  .tt-foot {
+    grid-template-columns: 1fr;
+  }
+  .tt-foot__photo {
+    height: 50svh;
+  }
+  .tt-foot__menu {
+    padding: 48px var(--gutter) 32px;
+  }
+  .tt-foot__links a {
+    font-size: 8vw;
+  }
+}
+
+@media (max-width: 639px) {
+  .tt-display {
+    font-size: 15vw;
+  }
+  .tt-hero__line {
+    font-size: var(--step-body);
+    margin-top: 20px;
+  }
+  .tt-folders {
+    width: 100%;
+    margin-top: 64px;
+  }
+  .tt-folder {
+    height: 52px;
+  }
+  .tt-tab {
+    height: 32px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+  .tt-folder--inside .tt-tab {
+    left: auto;
+    right: 4%;
+  }
+  .tt-folder--screens .tt-tab {
+    left: 4%;
+  }
+  .tt-folder--twists .tt-tab {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .tt-folder--twists:hover .tt-tab {
+    transform: translate(-50%, -6px);
+  }
+  .tt-folder--house .tt-tab {
+    left: auto;
+    right: 4%;
+  }
+  .tt-front {
+    padding-inline: 0;
+  }
+  .tt-tab--front {
+    left: 4%;
+  }
+  .tt-front__sheet {
+    padding: 20px 16px 40px;
+  }
+  .tt-front__top .tt-btn {
+    width: 100%;
+  }
+  .tt-cells {
+    grid-template-columns: 1fr;
+  }
+  .tt-cell {
+    min-height: 60px;
+  }
+  /* On a phone the sheets stack in plain flow: their content is taller
+     than a pinned band can leave room for. */
+  .tt-sheet {
+    position: relative;
+    top: auto;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: 52px auto auto;
+    padding: 0;
+  }
+  .tt-sheet__name {
+    grid-column: 1;
+    padding-inline: 20px;
+  }
+  .tt-sheet__pic {
+    grid-column: 1;
+    grid-row: 2;
+    aspect-ratio: 4 / 3;
+  }
+  .tt-sheet__body {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 20px 20px 32px;
+    align-self: start;
+  }
+  .tt-menu {
+    width: calc(100% - 4px);
+    margin: 0 auto;
+    padding: 28px;
+  }
+  .tt-inside {
+    padding-inline: 8px;
+  }
+  .tt-menu dl {
+    max-width: none;
+  }
+  .tt-credits__tracks {
+    columns: 1;
+  }
+  .tt-letter {
+    padding: 40px 24px 48px;
+  }
+  .tt-stub {
+    padding: 16px 24px;
+  }
+  .tt-stub .tt-btn {
+    width: 100%;
+  }
+  .tt-foot__blocks {
+    grid-template-columns: 1fr;
+    margin-top: 48px;
+  }
+}
