@@ -12,7 +12,7 @@ export const APP_STORE_DEVELOPER_URL =
 /** Locales each app has posters in; the rest fall back (see poster()). */
 const POSTER_LOCALES: Record<string, Locale[]> = {
   "poker-night": ["en", "zh-cn"],
-  tiltfree: ["en", "zh-tw"],
+  tiltfree: ["en", "zh-cn", "zh-tw"],
   tracesheet: ["en", "zh-cn", "zh-tw"],
   "sushi-sort": ["en"],
   "ember-deck": ["en", "zh-cn"],
