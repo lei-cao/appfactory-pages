@@ -1,10 +1,14 @@
-import { DefaultShell } from "../shared/default-shell";
-import { GenericLanding } from "../shared/generic-landing";
+import { PokerNightLandingPage } from "@/components/poker-night/landing";
+import { pokerNightFontClass } from "@/components/poker-night/fonts";
 import type { SiteModule } from "../types";
-
-const SLUG = "poker-night";
+import { PokerNightShell } from "./shell";
+import "./site.css";
 
 export const site: SiteModule = {
-  Landing: ({ locale }) => <GenericLanding locale={locale} slug={SLUG} />,
-  Shell: (props) => <DefaultShell {...props} />,
+  Landing: ({ locale }) => <PokerNightLandingPage locale={locale} />,
+  Shell: (props) => (
+    <div className={pokerNightFontClass}>
+      <PokerNightShell {...props} />
+    </div>
+  ),
 };
