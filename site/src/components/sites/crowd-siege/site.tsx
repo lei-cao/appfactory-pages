@@ -1,10 +1,12 @@
-import { DefaultShell } from "../shared/default-shell";
-import { GenericLanding } from "../shared/generic-landing";
 import type { SiteModule } from "../types";
+import { CrowdSiegeLanding } from "./landing";
+import { CrowdSiegeShell } from "./shell";
+import "./site.css";
 
-const SLUG = "crowd-siege";
-
+// Crowd Siege: the sentence is the layout. The name runs as one poster line
+// with the six heroes standing in its gap, and the campaign reads as a
+// series of statements with their proof.
 export const site: SiteModule = {
-  Landing: ({ locale }) => <GenericLanding locale={locale} slug={SLUG} />,
-  Shell: (props) => <DefaultShell {...props} />,
+  Landing: ({ locale }) => <CrowdSiegeLanding locale={locale} />,
+  Shell: (props) => <CrowdSiegeShell {...props} />,
 };

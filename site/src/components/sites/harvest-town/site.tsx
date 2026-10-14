@@ -1,10 +1,11 @@
-import { DefaultShell } from "../shared/default-shell";
-import { GenericLanding } from "../shared/generic-landing";
 import type { SiteModule } from "../types";
+import { HaystackLanding } from "./landing";
+import { HaystackShell } from "./shell";
+import "./site.css";
 
-const SLUG = "harvest-town";
-
+// Haystack Hollow: the page is the object. The town's Order Board supplies
+// the stationery: an order card, a slip, a printed menu, all on the meadow.
 export const site: SiteModule = {
-  Landing: ({ locale }) => <GenericLanding locale={locale} slug={SLUG} />,
-  Shell: (props) => <DefaultShell {...props} />,
+  Landing: ({ locale }) => <HaystackLanding locale={locale} />,
+  Shell: (props) => <HaystackShell {...props} />,
 };
