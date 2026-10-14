@@ -699,7 +699,8 @@ export const emberDeck: AppContent = {
   category: "game",
   buildNumber: 9,
   version: "2.0.0",
-  status: anyReleased ? "live" : "testflight",
+  // Treated as released ahead of store approval (owner call, 2026-10-14).
+  status: "live",
   appStoreUrl: RELEASED.ios ? APP_STORE_URL : undefined,
   playStoreUrl: RELEASED.android ? PLAY_STORE_URL : undefined,
   platforms: ["iOS", "Android"],

@@ -3,3 +3,6 @@ graft/
 
 # macOS Finder metadata
 .DS_Store
+
+# taste-skill working files (inspector screenshots, direction sheet)
+.taste-skill/

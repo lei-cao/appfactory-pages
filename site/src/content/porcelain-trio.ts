@@ -18,7 +18,7 @@ const en: AppLocalized = {
   subtitle: "A Calm Triple Match Puzzle",
   oneLiner:
     "Pick porcelain tiles into a 7-slot tray and clear them three alike, while an old tea house comes back to life. 600 levels plus a 120-level Master track, and no time limits on regular levels.",
-  statusNote: "Coming soon to the App Store and Google Play.",
+  statusNote: "Out now on the App Store for iPhone and iPad. Google Play is next.",
   metaTitle: "Porcelain Trio: Calm Triple-Match Tile Puzzle",
   metaDescription:
     "Porcelain Trio is a calm, layered triple-match puzzle: porcelain tiles in a hand-painted style, a 7-slot tray, 3 free undos every level, 600 levels plus a 120-level Master track each checked for a solution, and no time limits on regular levels.",
@@ -82,7 +82,7 @@ const zhCn: AppLocalized = {
   tagline: "拾一片，凑三枚，品一口。",
   subtitle: "静心三消解谜",
   oneLiner: "把瓷砖放进 7 格托盘，三枚相同即消除，一座老茶馆随之重现生机。600 个关卡外加 120 关大师轨道，普通关卡没有时间限制。",
-  statusNote: "即将登陆 App Store 和 Google Play。",
+  statusNote: "已在 App Store 上架，支持 iPhone 和 iPad。Google Play 版即将推出。",
   features: [
     { title: "三枚相同即消除", body: "点一块瓷砖，它会滑进托盘；三块相同即消除。托盘满了却没有配对，本关结束——所以要规划好每组三块。" },
     { title: "层层叠叠", body: "瓷砖分层堆叠，还有高高的金字塔；清掉上层明亮的瓷砖，下层较暗的才会解锁。随着进度还有背面朝上的瓷砖、侧边瓷砖堆、钥匙与挂锁、藤蔓、冰块和双托盘。" },
@@ -116,7 +116,7 @@ const zhTw: AppLocalized = {
   tagline: "拾一片，湊三枚，品一口。",
   subtitle: "靜心三消解謎",
   oneLiner: "把瓷磚放進 7 格托盤，三枚相同即消除，一座老茶館隨之重現生機。600 個關卡外加 120 關大師軌道，一般關卡沒有時間限制。",
-  statusNote: "即將登陸 App Store 和 Google Play。",
+  statusNote: "已在 App Store 上架，支援 iPhone 與 iPad。Google Play 版即將推出。",
   features: [
     { title: "三枚相同即消除", body: "點一塊瓷磚，它會滑進托盤；三塊相同即消除。托盤滿了卻沒有配對，本關結束——所以要規劃好每組三塊。" },
     { title: "層層疊疊", body: "瓷磚分層堆疊，還有高高的金字塔；清掉上層明亮的瓷磚，下層較暗的才會解鎖。隨著進度還有背面朝上的瓷磚、側邊瓷磚堆、鑰匙與掛鎖、藤蔓、冰塊和雙托盤。" },
@@ -150,7 +150,9 @@ export const porcelainTrio: AppContent = {
   ogImage: "/apps/tile-trio/og.png",
   buildNumber: 11,
   version: "1.0.0",
-  status: "building",
+  status: "live",
+  appStoreUrl: "https://apps.apple.com/app/id6818530086",
+  appStoreId: "6818530086",
   platforms: ["iOS", "Android"],
   icon: "/apps/tile-trio/icon.png",
   contactEmail: PUZZLE_GAMES_CONTACT,

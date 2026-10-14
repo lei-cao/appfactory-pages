@@ -7,33 +7,46 @@ import type { AppStatus } from "@/content/apps";
 export interface Dict {
   meta: { title: string; description: string };
   hub: {
-    location: string;
-    est: string;
+    nav: { games: string; apps: string; poker: string; studio: string };
+    /** The page's one solid action: the developer page on the App Store. */
+    storeAction: string;
+    /** The same action on narrow screens. */
+    appStoreShort: string;
     headline: [string, string];
-    /** Sentence-final punctuation rendered as the brand accent. */
-    period: string;
     intro: string;
-    explore: string;
-    contact: string;
-    nav: { apps: string; games: string; soon: string; studio: string };
-    statLive: string;
-    statSoon: string;
-    statLangs: string;
-    appsTitle: string;
-    appsIntro: string;
+    posterAlt: string; // {name} {subtitle}
     gamesTitle: string;
     gamesIntro: string;
-    soonTitle: string;
-    soonIntro: string;
+    appsTitle: string;
+    appsIntro: string;
     visit: string;
     appStore: string;
-    kind: { app: string; game: string };
-    studioEyebrow: string;
+    storeSoon: string;
+    tpTitle: string;
+    tpLead: [string, string];
+    tpBody: string;
+    tpPairs: string;
+    tpAction: string;
+    tpCaption: string;
+    tpShots: { home: string; equity: string; preflop: string; trainer: string };
+    catTitle: string;
+    catCols: { name: string; what: string; platforms: string; status: string };
+    catOut: string;
+    catNext: string;
+    catWeb: string;
+    catWebWhat: string;
     studioTitle: string;
     studioBody: string;
-    principles: { title: string; body: string }[];
+    facts: { label: string; value: string }[];
     contactTitle: string;
-    contactBody: string;
+    contactLine: string;
+    contactReply: string;
+    city: string;
+    footGames: string;
+    footApps: string;
+    footSites: string;
+    footStudio: string;
+    top: string;
     copyright: string; // {year}
   };
   status: Record<AppStatus, string>;
@@ -96,46 +109,61 @@ export interface Dict {
 
 const en: Dict = {
   meta: {
-    title: "App Factory — Useful Apps and Playful Games",
+    title: "App Factory — iPhone & Android Games and Apps from Singapore",
     description:
-      "Discover useful apps and playful games from App Factory, an independent studio building for mobile and web.",
+      "Calm puzzle games, poker tools and a Chinese, Japanese and Korean writing app for iPhone and Android, plus the free thinking.poker study site. Made by App Factory in Singapore.",
   },
   hub: {
-    location: "appfactory.sg · singapore",
-    est: "est. 2026",
-    headline: ["Small apps.", "Big possibilities"],
-    period: ".",
+    nav: { games: "Games", apps: "Apps", poker: "thinking.poker", studio: "Studio" },
+    storeAction: "All apps on the App Store",
+    appStoreShort: "App Store",
+    headline: ["Small apps and games,", "made in Singapore."],
     intro:
-      "Useful tools. Playful games. Made for your everyday. We turn everyday ideas into apps you can use and games you can enjoy.",
-    explore: "Explore our apps",
-    contact: "Say hello",
-    nav: { apps: "Apps", games: "Games", soon: "Coming soon", studio: "Studio" },
-    statLive: "on the App Store",
-    statSoon: "in the works",
-    statLangs: "languages",
-    appsTitle: "Useful apps",
-    appsIntro:
-      "Tools that do one job well — at the poker table, at the practice desk, wherever you need them.",
-    gamesTitle: "Playful games",
-    gamesIntro:
-      "Calm puzzles and quick runs, built for a few good minutes at a time.",
-    soonTitle: "Coming soon",
-    soonIntro:
-      "Next off the line. Each one already has its own page — tap in to see where it's at.",
+      "App Factory is an independent studio making calm puzzle games, poker tools and a writing app for Chinese, Japanese and Korean, on iPhone and Android.",
+    posterAlt: "App Store screenshot of {name}: {subtitle}",
+    gamesTitle: "Games",
+    gamesIntro: "Puzzle and card games for iPhone and Android. No timers you didn't ask for.",
+    appsTitle: "Apps",
+    appsIntro: "Tools for the poker table and the writing desk.",
     visit: "Visit site",
     appStore: "App Store",
-    kind: { app: "App", game: "Game" },
-    studioEyebrow: "The studio",
-    studioTitle: "One small studio in Singapore.",
+    storeSoon: "App Store link on its way",
+    tpTitle: "thinking.poker",
+    tpLead: ["Run the numbers,", "then decide."],
+    tpBody:
+      "A free poker study site, written Chinese-first and also in English: an equity calculator for Hold'em and PLO, preflop charts, pot odds, ICM and SPR tools, trainers that turn the maths into reflexes, and articles on the basics. Everything runs in your browser, with no account.",
+    tpPairs: "It pairs with Poker Night for the home game and TiltFree for reviewing your hands.",
+    tpAction: "Open thinking.poker",
+    tpCaption: "The home page, the equity calculator, preflop charts and the equity guess trainer.",
+    tpShots: {
+      home: "thinking.poker home page with a quick equity calculator showing aces against kings",
+      equity: "The Hold'em and PLO equity calculator on thinking.poker",
+      preflop: "Six-max preflop range chart with raise-first-in actions on thinking.poker",
+      trainer: "The equity guess trainer on thinking.poker",
+    },
+    catTitle: "Everything we make",
+    catCols: { name: "Name", what: "What it is", platforms: "Platforms", status: "Status" },
+    catOut: "Out now",
+    catNext: "In the works",
+    catWeb: "Web",
+    catWebWhat: "Free poker calculators, trainers and articles",
+    studioTitle: "About the studio",
     studioBody:
-      "App Factory is an independent studio building for mobile and web. Every app stays small enough to be good at one thing, and ships properly: its own site, support page and privacy policy.",
-    principles: [
-      { title: "Focused", body: "One app, one job. No feature soup." },
-      { title: "Three languages", body: "English, 简体中文 and 繁體中文 from the first release." },
-      { title: "Looked after", body: "A real support page for every app, and a person who answers email." },
+      "App Factory builds small apps and games for phones and the web. Each one stays small enough to be good at one thing, and ships properly: its own site, a support page, a privacy policy, three languages, and a person who answers the email.",
+    facts: [
+      { label: "Founded", value: "2026" },
+      { label: "Based in", value: "Singapore" },
+      { label: "Languages", value: "English, 简体, 繁體" },
     ],
-    contactTitle: "Have an idea, a bug, or a partnership in mind?",
-    contactBody: "We read every message.",
+    contactTitle: "Contact",
+    contactLine: "Ideas, bugs, partnerships or press: write to us.",
+    contactReply: "Replies usually within two days",
+    city: "Singapore",
+    footGames: "Games",
+    footApps: "Apps",
+    footSites: "Websites",
+    footStudio: "Studio",
+    top: "Back to top",
     copyright: "© {year} App Factory · Singapore",
   },
   status: {
@@ -202,43 +230,61 @@ const en: Dict = {
 
 const zhCn: Dict = {
   meta: {
-    title: "App Factory — 实用应用与趣味游戏",
+    title: "App Factory — 新加坡独立工作室的 iPhone 与安卓游戏和应用",
     description:
-      "探索 App Factory 的实用应用与趣味游戏。我们是一间为手机和网页打造产品的独立工作室。",
+      "治愈益智游戏、扑克工具，以及中日韩文字书写应用，支持 iPhone 和安卓；另有免费扑克学习网站 thinking.poker。由新加坡独立工作室 App Factory 打造。",
   },
   hub: {
-    location: "appfactory.sg · 新加坡",
-    est: "始于 2026",
-    headline: ["小小应用，", "无限可能"],
-    period: "。",
+    nav: { games: "游戏", apps: "应用", poker: "thinking.poker", studio: "工作室" },
+    storeAction: "在 App Store 查看全部应用",
+    appStoreShort: "App Store",
+    headline: ["小巧的应用与游戏，", "在新加坡制作。"],
     intro:
-      "实用工具，趣味游戏，为日常生活而造。我们把日常灵感变成好用的应用和好玩的游戏。",
-    explore: "探索我们的应用",
-    contact: "联系我们",
-    nav: { apps: "应用", games: "游戏", soon: "即将推出", studio: "工作室" },
-    statLive: "已上架 App Store",
-    statSoon: "开发中",
-    statLangs: "种语言",
-    appsTitle: "实用应用",
-    appsIntro: "把一件事做好的工具——牌桌上、练字桌前，需要时就在手边。",
-    gamesTitle: "趣味游戏",
-    gamesIntro: "安静的解谜与快节奏的闯关，几分钟就能玩得尽兴。",
-    soonTitle: "即将推出",
-    soonIntro: "产线上的下一批。每一款都已有自己的页面，点进去看看进度。",
+      "App Factory 是新加坡的一间独立工作室，为 iPhone 和安卓打造治愈的益智游戏、扑克工具，以及中日韩文字书写应用。",
+    posterAlt: "{name} 的 App Store 截图：{subtitle}",
+    gamesTitle: "游戏",
+    gamesIntro: "适合 iPhone 和安卓的益智与卡牌游戏，没有逼你赶时间的倒计时。",
+    appsTitle: "应用",
+    appsIntro: "牌桌上和书桌前用得上的工具。",
     visit: "访问网站",
     appStore: "App Store",
-    kind: { app: "应用", game: "游戏" },
-    studioEyebrow: "关于工作室",
-    studioTitle: "新加坡的一间小工作室。",
+    storeSoon: "App Store 链接即将上线",
+    tpTitle: "thinking.poker",
+    tpLead: ["先算清楚，", "再做决定。"],
+    tpBody:
+      "免费的扑克学习网站，以中文为主，也有英文版：德州与奥马哈胜率计算器、翻牌前范围表、底池赔率、ICM 与 SPR 工具，把计算练成直觉的训练器，以及入门文章。全部在浏览器里运行，不需要账号。",
+    tpPairs: "与记录家庭局的 Poker Night、复盘手牌的 TiltFree 搭配使用。",
+    tpAction: "打开 thinking.poker",
+    tpCaption: "首页、胜率计算器、翻牌前范围表和胜率估算训练。",
+    tpShots: {
+      home: "thinking.poker 首页，快速胜率计算显示 AA 对 KK",
+      equity: "thinking.poker 的德州／奥马哈胜率计算器",
+      preflop: "thinking.poker 的六人桌翻牌前范围表",
+      trainer: "thinking.poker 的胜率估算训练",
+    },
+    catTitle: "我们做的全部产品",
+    catCols: { name: "名称", what: "简介", platforms: "平台", status: "状态" },
+    catOut: "已推出",
+    catNext: "开发中",
+    catWeb: "网页",
+    catWebWhat: "免费扑克计算器、训练与文章",
+    studioTitle: "关于工作室",
     studioBody:
-      "App Factory 是一间为手机和网页打造产品的独立工作室。每个应用都保持小而专，只做好一件事；上线时也做足功课：独立网站、支持页面与隐私政策一应俱全。",
-    principles: [
-      { title: "专注", body: "一个应用，一件事。不堆砌功能。" },
-      { title: "三种语言", body: "从第一版起就支持 English、简体中文与繁體中文。" },
-      { title: "有人照看", body: "每个应用都有支持页面，邮件有真人回复。" },
+      "App Factory 为手机和网页打造小巧的应用与游戏。每一款都保持小而专，只做好一件事；上线时也做足功课：独立网站、支持页面、隐私政策、三种语言，还有真人回复的邮箱。",
+    facts: [
+      { label: "成立", value: "2026" },
+      { label: "所在地", value: "新加坡" },
+      { label: "语言", value: "English、简体、繁體" },
     ],
-    contactTitle: "有想法、发现问题，或想谈合作？",
-    contactBody: "每一封邮件我们都会读。",
+    contactTitle: "联系我们",
+    contactLine: "想法、问题、合作或媒体采访，欢迎来信。",
+    contactReply: "通常两天内回复",
+    city: "新加坡",
+    footGames: "游戏",
+    footApps: "应用",
+    footSites: "网站",
+    footStudio: "工作室",
+    top: "回到顶部",
     copyright: "© {year} App Factory · 新加坡",
   },
   status: {
@@ -302,43 +348,61 @@ const zhCn: Dict = {
 
 const zhTw: Dict = {
   meta: {
-    title: "App Factory — 實用 App 與趣味遊戲",
+    title: "App Factory — 新加坡獨立工作室的 iPhone 與 Android 遊戲和 App",
     description:
-      "探索 App Factory 的實用 App 與趣味遊戲。我們是一間為手機與網頁打造產品的獨立工作室。",
+      "療癒益智遊戲、撲克工具，以及中日韓文字書寫 App，支援 iPhone 與 Android；另有免費撲克學習網站 thinking.poker。由新加坡獨立工作室 App Factory 打造。",
   },
   hub: {
-    location: "appfactory.sg · 新加坡",
-    est: "始於 2026",
-    headline: ["小小 App，", "無限可能"],
-    period: "。",
+    nav: { games: "遊戲", apps: "App", poker: "thinking.poker", studio: "工作室" },
+    storeAction: "在 App Store 查看全部 App",
+    appStoreShort: "App Store",
+    headline: ["小巧的 App 與遊戲，", "在新加坡製作。"],
     intro:
-      "實用工具，趣味遊戲，為日常生活而造。我們把日常靈感變成好用的 App 和好玩的遊戲。",
-    explore: "探索我們的 App",
-    contact: "聯絡我們",
-    nav: { apps: "App", games: "遊戲", soon: "即將推出", studio: "工作室" },
-    statLive: "已上架 App Store",
-    statSoon: "製作中",
-    statLangs: "種語言",
-    appsTitle: "實用 App",
-    appsIntro: "把一件事做好的工具——牌桌上、練字桌前，需要時就在手邊。",
-    gamesTitle: "趣味遊戲",
-    gamesIntro: "安靜的解謎與快節奏的闖關，幾分鐘就能玩得盡興。",
-    soonTitle: "即將推出",
-    soonIntro: "產線上的下一批。每一款都已有自己的頁面，點進去看看進度。",
+      "App Factory 是新加坡的一間獨立工作室，為 iPhone 與 Android 打造療癒的益智遊戲、撲克工具，以及中日韓文字書寫 App。",
+    posterAlt: "{name} 的 App Store 截圖：{subtitle}",
+    gamesTitle: "遊戲",
+    gamesIntro: "適合 iPhone 與 Android 的益智與卡牌遊戲，沒有逼你趕時間的倒數計時。",
+    appsTitle: "App",
+    appsIntro: "牌桌上和書桌前用得上的工具。",
     visit: "前往網站",
     appStore: "App Store",
-    kind: { app: "App", game: "遊戲" },
-    studioEyebrow: "關於工作室",
-    studioTitle: "新加坡的一間小工作室。",
+    storeSoon: "App Store 連結即將上線",
+    tpTitle: "thinking.poker",
+    tpLead: ["先算清楚，", "再做決定。"],
+    tpBody:
+      "免費的撲克學習網站，以中文為主，也有英文版：德州與奧馬哈勝率計算器、翻牌前範圍表、底池賠率、ICM 與 SPR 工具，把計算練成直覺的訓練器，以及入門文章。全部在瀏覽器裡運算，不需要帳號。",
+    tpPairs: "與記錄家庭局的 Poker Night、複盤手牌的 TiltFree 搭配使用。",
+    tpAction: "打開 thinking.poker",
+    tpCaption: "首頁、勝率計算器、翻牌前範圍表和勝率估算訓練。",
+    tpShots: {
+      home: "thinking.poker 首頁，快速勝率計算顯示 AA 對 KK",
+      equity: "thinking.poker 的德州／奧馬哈勝率計算器",
+      preflop: "thinking.poker 的六人桌翻牌前範圍表",
+      trainer: "thinking.poker 的勝率估算訓練",
+    },
+    catTitle: "我們做的全部產品",
+    catCols: { name: "名稱", what: "簡介", platforms: "平台", status: "狀態" },
+    catOut: "已推出",
+    catNext: "開發中",
+    catWeb: "網頁",
+    catWebWhat: "免費撲克計算器、訓練與文章",
+    studioTitle: "關於工作室",
     studioBody:
-      "App Factory 是一間為手機與網頁打造產品的獨立工作室。每個 App 都保持小而專，只做好一件事；上架時也做足功課：獨立網站、支援頁面與隱私權政策一應俱全。",
-    principles: [
-      { title: "專注", body: "一個 App，一件事。不堆砌功能。" },
-      { title: "三種語言", body: "從第一版起就支援 English、简体中文與繁體中文。" },
-      { title: "有人照看", body: "每個 App 都有支援頁面，郵件有真人回覆。" },
+      "App Factory 為手機與網頁打造小巧的 App 與遊戲。每一款都保持小而專，只做好一件事；上架時也做足功課：獨立網站、支援頁面、隱私權政策、三種語言，還有真人回覆的信箱。",
+    facts: [
+      { label: "成立", value: "2026" },
+      { label: "所在地", value: "新加坡" },
+      { label: "語言", value: "English、简体、繁體" },
     ],
-    contactTitle: "有想法、發現問題，或想談合作？",
-    contactBody: "每一封郵件我們都會讀。",
+    contactTitle: "聯絡我們",
+    contactLine: "想法、問題、合作或媒體採訪，歡迎來信。",
+    contactReply: "通常兩天內回覆",
+    city: "新加坡",
+    footGames: "遊戲",
+    footApps: "App",
+    footSites: "網站",
+    footStudio: "工作室",
+    top: "回到頂部",
     copyright: "© {year} App Factory · 新加坡",
   },
   status: {

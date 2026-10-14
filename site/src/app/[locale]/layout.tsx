@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
+  Archivo,
   Bricolage_Grotesque,
   IBM_Plex_Mono,
   Instrument_Sans,
@@ -29,6 +30,13 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-plex-mono",
+});
+
+// The hub's one face.
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-archivo",
 });
 
 export function generateStaticParams() {
@@ -69,9 +77,12 @@ export default async function RootLayout({
   return (
     // Font variables live on <html>: Tailwind's @theme tokens are defined on
     // :root and reference them, so they must be set at :root scope too.
+    // suppressHydrationWarning: the hub adds a `js` class to <html> before
+    // hydration so its entrance states only apply when script runs.
     <html
+      suppressHydrationWarning
       lang={LANG_TAG[locale]}
-      className={`${bricolage.variable} ${instrument.variable} ${plexMono.variable}`}
+      className={`${bricolage.variable} ${instrument.variable} ${plexMono.variable} ${archivo.variable}`}
     >
       <body className="bg-ink text-paper min-h-dvh antialiased">
         {children}

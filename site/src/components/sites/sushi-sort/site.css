@@ -1,0 +1,105 @@
+/* ---------------------------------------------------------------------------
+   Sushi Sort — black lacquer, vermilion and hinoki, lifted from the 2.2 game
+   (the Master tray, the order ticket, the spot row). The layout sets
+   data-app=<slug> on the page wrapper; remapping the theme variables here
+   re-skins every semantic utility (bg-panel, border-line, text-slate…) on
+   the landing, support, privacy, and terms pages at once. No glow blobs:
+   the real screenshots carry the page. */
+
+[data-app="sushi-sort"] {
+  --color-ink: #15100c; /* lacquer black (page) */
+  --color-panel: #1f1712; /* lacquer card */
+  --color-panel-2: #2a1f18; /* raised lacquer */
+  --color-line: #4a3727; /* dark wood hairline */
+  --color-paper: #f5ead8; /* washi (body text) */
+  --color-slate: #c9b394; /* soft washi — 9:1 on ink */
+  --color-indigo: #ec6a4a; /* vermilion for text & accents — 5.6:1 on ink */
+  --color-indigo-soft: #f29a7c;
+  --color-live: #6fbf95;
+  --ss-gold: #d4a54a; /* the gold on the lids and the Master trim */
+  --ss-vermilion: #b8321f; /* vermilion fills, with white text */
+  --ss-hinoki: #d9a86a;
+  --font-display: var(--font-shippori), "Hiragino Mincho ProN", "Songti SC",
+    "Songti TC", "STSong", "Yu Mincho", Georgia, serif;
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+[data-app="sushi-sort"] ::selection {
+  background: var(--ss-vermilion);
+  color: #fff;
+}
+
+[data-app="sushi-sort"] .spec-label {
+  color: var(--ss-gold);
+}
+
+/* A lacquer lid with a gold "?" — the 2.2 motif, used as list markers. */
+.ss-lid {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 1.5rem;
+  border-radius: 1rem 1rem 0.35rem 0.35rem;
+  background: radial-gradient(120% 90% at 35% 25%, #4a3a30 0%, #120c09 60%);
+  border-bottom: 3px solid #e9dcc5;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  color: var(--ss-gold);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* A framed phone screenshot: thin gold trim like the Master tray. */
+.ss-shot {
+  border: 2px solid rgba(212, 165, 74, 0.55);
+  border-radius: 1.5rem;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+}
+
+/* The vermilion hanko seal on the promises card. */
+.cs-hanko {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.65rem;
+  background: var(--ss-vermilion);
+  color: #fdf6ea;
+  font-weight: 700;
+  font-size: 1.35rem;
+  transform: rotate(-6deg);
+}
+
+/* Header: the mincho wordmark is wider than the site face, so on phones
+   the name goes visually hidden (it still names the home link) and nothing
+   wraps mid-word. */
+[data-app="sushi-sort"] header nav {
+  column-gap: 1rem;
+}
+[data-app="sushi-sort"] header a,
+[data-app="sushi-sort"] header span {
+  white-space: nowrap;
+}
+@media (max-width: 639px) {
+  [data-app="sushi-sort"] header > a > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+.ss-store-badge:focus-visible {
+  outline: 2px solid var(--color-indigo);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+

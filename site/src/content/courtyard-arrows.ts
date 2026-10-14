@@ -18,7 +18,7 @@ const en: AppLocalized = {
   subtitle: "A Calm, Tricky Arrow Puzzle",
   oneLiner:
     "A calm tap puzzle: send each arrow off the board once its way is clear, and restore a quiet courtyard with every star. 600 levels plus a 120-level Master track, and no time limits on regular levels.",
-  statusNote: "Coming soon to the App Store and Google Play.",
+  statusNote: "Launching now on the App Store and Google Play.",
   metaTitle: "Courtyard Arrows: Tap & Clear — a calm arrow puzzle, 600 levels",
   metaDescription:
     "Courtyard Arrows is a calm tap-and-clear arrow puzzle: long and bent arrows, fuses and linked pairs, 600 levels plus a 120-level Master track each checked for a solution, and no time limits on regular levels.",
@@ -83,7 +83,7 @@ const zhCn: AppLocalized = {
   subtitle: "静心而有挑战的箭头解谜",
   oneLiner:
     "一款静心的点击解谜：箭头前方畅通时点它飞出棋盘，每颗星星都让安静的庭院焕然一新。600 个关卡外加 120 关大师轨道，普通关卡没有时间限制。",
-  statusNote: "即将登陆 App Store 和 Google Play。",
+  statusNote: "正在登陆 App Store 和 Google Play。",
   features: [
     { title: "会拐弯的箭头", body: "箭头会变长、会拐弯；飞出时整条身体沿自己的路径蛇行而出。拥挤的棋盘需要你提前规划两三步。" },
     { title: "只有红心，没有时钟", body: "每关三颗红心（超难关和大师关为两颗）。点到被挡住的箭头会失去一颗心；用完可以继续或直接重来。普通关卡没有时间限制；少数「冲刺」关卡有倒计时，棋盘被遮挡时会暂停。" },
@@ -118,7 +118,7 @@ const zhTw: AppLocalized = {
   subtitle: "靜心而有挑戰的箭頭解謎",
   oneLiner:
     "一款靜心的點擊解謎：箭頭前方暢通時點它飛出棋盤，每顆星星都讓安靜的庭院煥然一新。600 個關卡外加 120 關大師軌道，一般關卡沒有時間限制。",
-  statusNote: "即將登陸 App Store 和 Google Play。",
+  statusNote: "正在上架 App Store 與 Google Play。",
   features: [
     { title: "會轉彎的箭頭", body: "箭頭會變長、會轉彎；飛出時整條身體沿自己的路徑蛇行而出。擁擠的棋盤需要你提前規劃兩三步。" },
     { title: "只有紅心，沒有時鐘", body: "每關三顆紅心（超難關和大師關為兩顆）。點到被擋住的箭頭會失去一顆心；用完可以繼續或直接重來。一般關卡沒有時間限制；少數「衝刺」關卡有倒數計時，棋盤被遮擋時會暫停。" },
@@ -152,7 +152,8 @@ export const courtyardArrows: AppContent = {
   ogImage: "/apps/arrow-out/og.png",
   buildNumber: 10,
   version: "1.0.0",
-  status: "building",
+  // Treated as released ahead of store approval; add appStoreUrl when live.
+  status: "live",
   platforms: ["iOS", "Android"],
   icon: "/apps/arrow-out/icon.png",
   contactEmail: PUZZLE_GAMES_CONTACT,

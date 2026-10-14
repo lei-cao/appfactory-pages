@@ -19,7 +19,7 @@ const en: AppLocalized = {
   subtitle: "Color Door Puzzle, 600 Levels",
   oneLiner:
     "Drag glossy toy blocks out through the doors of their colour. Undo is free, there are no time limits on regular levels, and 600 levels plus a 120-level Master track are checked solvable.",
-  statusNote: "Coming soon to the App Store and Google Play.",
+  statusNote: "Out now on the App Store for iPhone and iPad. Google Play is next.",
   metaTitle: "Glossy Blocks: Toy Slide — a colour-door sliding puzzle, 600 levels",
   metaDescription:
     "Glossy Blocks is a calm sliding-block puzzle: drag toy blocks through matching colour doors, 600 levels plus a 120-level Master track each checked for a solution, free undo and no time limits on regular levels.",
@@ -83,7 +83,7 @@ const zhCn: AppLocalized = {
   tagline: "滑一滑，撤一步，笑一笑。",
   subtitle: "颜色门滑块解谜，600 个关卡",
   oneLiner: "把光亮的玩具积木拖过同色的门。撤销免费，普通关卡没有时间限制，600 个关卡外加 120 关大师轨道，全部经过验证有解。",
-  statusNote: "即将登陆 App Store 和 Google Play。",
+  statusNote: "已在 App Store 上架，支持 iPhone 和 iPad。Google Play 版即将推出。",
   features: [
     { title: "撤销永远免费", body: "撤销按钮在每个棋盘下方，不花一分钱。使用不超过所示次数的撤销仍可获得三星；超过后该关最高两星。试一个想法，撤回，再试另一个。" },
     { title: "普通关卡没有时间限制", body: "每关都有步数上限，计数器始终显示剩余步数。用完可以购买额外步数（用金币，或自愿看广告）或直接重来。只有少数「冲刺」关卡有倒计时。" },
@@ -117,7 +117,7 @@ const zhTw: AppLocalized = {
   tagline: "滑一滑，復原一步，笑一笑。",
   subtitle: "顏色門滑塊解謎，600 個關卡",
   oneLiner: "把光亮的玩具積木拖過同色的門。復原免費，一般關卡沒有時間限制，600 個關卡外加 120 關大師軌道，全部經過驗證有解。",
-  statusNote: "即將登陸 App Store 和 Google Play。",
+  statusNote: "已在 App Store 上架，支援 iPhone 與 iPad。Google Play 版即將推出。",
   features: [
     { title: "復原永遠免費", body: "復原按鈕在每個棋盤下方，不花一分錢。使用不超過所示次數的復原仍可獲得三星；超過後該關最高兩星。試一個想法，復原，再試另一個。" },
     { title: "一般關卡沒有時間限制", body: "每關都有步數上限，計數器始終顯示剩餘步數。用完可以購買額外步數（用金幣，或自願看廣告）或直接重來。只有少數「衝刺」關卡有倒數計時。" },
@@ -151,7 +151,9 @@ export const glossyBlocks: AppContent = {
   ogImage: "/apps/slide-jam/og.png",
   buildNumber: 12,
   version: "1.0.0",
-  status: "building",
+  status: "live",
+  appStoreUrl: "https://apps.apple.com/app/id6818530151",
+  appStoreId: "6818530151",
   platforms: ["iOS", "Android"],
   icon: "/apps/slide-jam/icon.png",
   contactEmail: PUZZLE_GAMES_CONTACT,

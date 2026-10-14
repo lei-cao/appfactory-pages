@@ -18,20 +18,36 @@ function pathFor(pathname: string, target: Locale): string {
   return prefixed || "/";
 }
 
-export function LocaleSwitcher({ current }: { current: Locale }) {
+export function LocaleSwitcher({
+  current,
+  className = "spec-label flex items-center gap-2",
+  linkClassName = "transition-colors hover:text-indigo-soft",
+  currentClassName = "text-paper",
+  separator = true,
+}: {
+  current: Locale;
+  className?: string;
+  linkClassName?: string;
+  currentClassName?: string;
+  /** Draw a slash between labels (the app sites' spec-label style). */
+  separator?: boolean;
+}) {
   const pathname = usePathname() ?? "/";
 
   return (
-    <span className="spec-label flex items-center gap-2" aria-label="Language">
+    <span className={className} aria-label="Language">
       {LOCALES.map((locale, i) => (
         <span key={locale} className="flex items-center gap-2">
-          {i > 0 && <span aria-hidden>/</span>}
+          {i > 0 && separator && <span aria-hidden>/</span>}
           {locale === current ? (
-            <span className="text-paper">{LOCALE_LABEL[locale]}</span>
+            <span className={currentClassName} aria-current="true">
+              {LOCALE_LABEL[locale]}
+            </span>
           ) : (
             <Link
               href={pathFor(pathname, locale)}
-              className="transition-colors hover:text-indigo-soft"
+              className={linkClassName}
+              hrefLang={locale}
             >
               {LOCALE_LABEL[locale]}
             </Link>

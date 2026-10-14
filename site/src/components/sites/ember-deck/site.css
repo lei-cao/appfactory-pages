@@ -1,0 +1,330 @@
+/* ---------------------------------------------------------------------------
+   Ember Deck — "a lit hearth in a dark book" (app repo docs/v2/ux-v2.md §1).
+   Charcoal and parchment surfaces, one warm light source, ember accent.
+   The ux-v2 AVOID list binds here too: no neon, no glassmorphism, no emoji,
+   no Cinzel. Remapping the tokens re-skins support/privacy/terms as well. */
+
+[data-app="ember-deck"] {
+  --color-ink: #120f17; /* charcoalDeep */
+  --color-panel: #1a1620; /* charcoal */
+  --color-panel-2: #241e2a; /* charcoalRaised */
+  --color-line: #3a3240;
+  --color-paper: #e8dcc8; /* parchment */
+  --color-slate: #b9ab95;
+  --color-indigo: #f0a030; /* ember */
+  --color-indigo-soft: #e3b04b; /* gilt */
+  --color-live: #8fd67a;
+  --ed-heat0: #5a4c44;
+  --ed-heat1: #b0501e;
+  --ed-heat2: #e0701e;
+  --ed-heat3: #ff9a2e;
+  --ed-heat4: #ffd36b;
+  --ed-heat5: #fff4d6;
+  --ed-blaze: #ff7a1a;
+  --ed-iron: #4a4550;
+  --ed-bronze: #9c6b3a;
+  --font-display: var(--font-grenze), "Songti SC", "Songti TC", "STSong",
+    "Noto Serif SC", "Noto Serif TC", serif;
+  --font-body: var(--font-alegreya), var(--font-cjk), sans-serif;
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* ux-v2 body 17 */
+  color: var(--color-paper);
+  background:
+    radial-gradient(900px 520px at 50% -160px, rgba(240, 160, 48, 0.1), transparent 70%),
+    var(--color-ink);
+  /* full-bleed sections use 100vw; clip the scrollbar-width overhang */
+  overflow-x: clip;
+}
+
+/* The eyebrow becomes the ux-v2 "label" token instead of the hub's mono. */
+[data-app="ember-deck"] .spec-label {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--color-indigo);
+}
+
+[data-app="ember-deck"] ::selection {
+  background: #b0501e;
+  color: #fff4d6;
+}
+
+/* Full-bleed band inside the max-w layout container. */
+.ed-bleed {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Forged-iron frame: a double metal edge rather than a 1px stroke. */
+.ed-frame {
+  border: 1px solid #5a4c44;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 3px rgba(156, 107, 58, 0.18),
+    0 10px 30px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Parchment reading panel (ux-v2 DO #11). */
+.ed-parchment {
+  background:
+    radial-gradient(120% 90% at 30% 10%, #efe4d1, #e0d0b4 70%, #cdb994);
+  color: #221a14;
+}
+
+/* Slow ember drift over the key art. GPU-cheap; frozen by reduced motion. */
+.ed-ember {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #ffb347;
+  opacity: 0;
+  animation: ed-rise 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ed-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate3d(24px, -340px, 0);
+    opacity: 0;
+  }
+}
+
+/* The Heat flame breathes (ux-v2 §1.6 ambient class). */
+.ed-breathe {
+  animation: ed-breathe 3.2s ease-in-out infinite;
+}
+
+@keyframes ed-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* Headline fire: the Heat ramp as a text fill. */
+.ed-fire-text {
+  background: linear-gradient(180deg, #ffd36b 10%, #ff9a2e 55%, #e0701e 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(255, 122, 26, 0.35));
+}
+
+/* Status plate: forged iron, lit from below. */
+.ed-plate {
+  background: linear-gradient(180deg, #2a2230, #1a1620);
+  border: 1px solid #9c6b3a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 211, 107, 0.15),
+    inset 0 -10px 18px -10px rgba(255, 122, 26, 0.35),
+    0 10px 30px -12px rgba(0, 0, 0, 0.9);
+}
+
+/* Phone bezel around the gameplay capture. */
+.ed-phone {
+  border-radius: 2.6rem;
+  padding: 0.55rem;
+  background: linear-gradient(160deg, #3a3240, #120f17 40%, #241e2a);
+  box-shadow:
+    inset 0 0 0 1px rgba(156, 107, 58, 0.45),
+    0 40px 80px -30px rgba(0, 0, 0, 0.95);
+  transform: rotate(2.5deg);
+}
+.ed-phone-glow {
+  background: radial-gradient(50% 45% at 50% 60%, rgba(255, 122, 26, 0.38), transparent 70%);
+}
+
+/* Cards: the cost gem and the Blaze pip (lit when Heat reaches it). */
+.ed-gem {
+  background: radial-gradient(circle at 40% 35%, #5fc7c0, #1f6e72 60%, #123f45);
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+.ed-pip {
+  background: #2a1a16;
+  color: #8a7a6c;
+  border: 2px solid #5a4c44;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.ed-card[data-lit] .ed-pip {
+  color: #fff4d6;
+  border-color: #ff7a1a;
+  background: radial-gradient(circle, #e0701e, #8a2a0c);
+  box-shadow: 0 0 12px rgba(255, 122, 26, 0.85);
+  animation: ed-breathe 1.6s ease-in-out infinite;
+}
+
+/* Heat demo hit feedback. */
+.ed-pop {
+  animation: ed-pop 0.9s ease-out forwards;
+  text-shadow:
+    0 2px 0 #5a1a0a,
+    0 0 18px rgba(255, 122, 26, 0.8);
+}
+@keyframes ed-pop {
+  0% {
+    transform: translate(-50%, 10px) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -6px) scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -38px) scale(1);
+    opacity: 0;
+  }
+}
+.ed-stamp {
+  animation: ed-stamp 1.1s ease-out forwards;
+}
+@keyframes ed-stamp {
+  0% {
+    transform: translateX(-50%) scale(1.8) rotate(-8deg);
+    opacity: 0;
+  }
+  18% {
+    transform: translateX(-50%) scale(1) rotate(-4deg);
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(1) rotate(-4deg);
+    opacity: 0;
+  }
+}
+.ed-shake {
+  animation: ed-shake 0.35s ease-out;
+}
+@keyframes ed-shake {
+  20% {
+    transform: translateX(-7px) rotate(-2deg);
+  }
+  45% {
+    transform: translateX(6px) rotate(1.5deg);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+}
+.ed-fall {
+  animation: ed-fall 0.9s 0.25s ease-in forwards;
+}
+@keyframes ed-fall {
+  to {
+    transform: translateY(14px) rotate(8deg);
+    opacity: 0.25;
+    filter: grayscale(1) brightness(0.5);
+  }
+}
+.ed-tick {
+  animation: ed-tick 0.3s ease-out;
+}
+@keyframes ed-tick {
+  0% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Hero swap: fade the stage in. */
+.ed-hero-panel:not([hidden]) {
+  animation: ed-fade 0.45s ease-out;
+}
+.ed-hero-panel:not([hidden]) .ed-hero-art {
+  animation: ed-rise-in 0.6s ease-out;
+}
+@keyframes ed-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ed-rise-in {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+}
+
+/* Wax seal on the pact. */
+.ed-seal {
+  background: radial-gradient(circle at 38% 32%, #c4421c, #8a1c0c 60%, #5a1008);
+  box-shadow:
+    inset 0 0 0 4px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 7px rgba(255, 180, 120, 0.12),
+    0 4px 10px rgba(60, 20, 10, 0.5);
+  transform: rotate(-10deg);
+}
+
+/* Screenshot rail: thin ember scrollbar. */
+.ed-rail {
+  scrollbar-width: thin;
+  scrollbar-color: #5a4c44 transparent;
+}
+.ed-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-ember,
+  .ed-breathe,
+  .ed-card[data-lit] .ed-pip,
+  .ed-shake,
+  .ed-tick,
+  .ed-hero-panel:not([hidden]),
+  .ed-hero-panel:not([hidden]) .ed-hero-art {
+    animation: none;
+  }
+  .ed-phone {
+    transform: none;
+  }
+}
+
+/* Header on a 390pt phone: the blackletter wordmark plus three nav items
+   and the language switcher don't fit on one row, so below sm the name
+   goes visually hidden (kept for screen readers — it names the home link)
+   and nothing is allowed to wrap mid-word. */
+[data-app="ember-deck"] header nav {
+  column-gap: 1rem;
+}
+[data-app="ember-deck"] header a,
+[data-app="ember-deck"] header span {
+  white-space: nowrap;
+}
+@media (max-width: 639px) {
+  [data-app="ember-deck"] header > a > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
