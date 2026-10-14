@@ -1,0 +1,932 @@
+/* ---------------------------------------------------------------------------
+   Hub (appfactory.sg) — "the dark room". One blue-black ground from top to
+   bottom; the apps' own store posters are the lit things in it. One face
+   (Archivo), regular weight. The App Store developer link is the page's
+   single solid light element. Scoped to .hub so the app subdomain sites keep
+   their own themes.
+   ------------------------------------------------------------------------- */
+
+.hub {
+  --bg: #0d0f14;
+  --surface: #161922;
+  --ink: #e9e9e6;
+  --muted: #a9adb8;
+  --accent: #ff6b35;
+  --accent-ink: #0d0f14;
+  --paper: #e4e4e1;
+  --paper-ink: #0d0f14;
+  --paper-muted: #4b4f5a;
+
+  --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.05rem + 0.75vw, 1.75rem);
+  --step-head: clamp(2.25rem, 1rem + 5.4vw, 5rem);
+  --step-title: clamp(1.75rem, 0.9rem + 3.2vw, 2.5rem);
+
+  --margin: clamp(16px, 2.1vw, 30px);
+  --gap: clamp(16px, 1.7vw, 24px);
+  --section: clamp(112px, 13vw, 200px);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-press: 140ms;
+  --t-hover: 200ms;
+  --t-ui: 320ms;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-archivo), var(--font-cjk), system-ui, sans-serif;
+  font-size: var(--step-body);
+  line-height: 1.6;
+}
+
+:root:has(.hub) {
+  background: #0d0f14;
+}
+
+.hub ::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.hub :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.hub .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.hub .muted {
+  color: var(--muted);
+}
+.hub .t-lead {
+  font-size: var(--step-lead);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.hub .t-small {
+  font-size: var(--step-small);
+  line-height: 1.5;
+}
+
+/* Controls ------------------------------------------------------------------ */
+
+.hub .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  min-height: 46px;
+  padding: 0 1.15rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--step-small);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--t-hover) ease,
+    transform var(--t-press) var(--ease-out);
+}
+.hub .btn:hover {
+  background: var(--ink);
+}
+.hub .btn:active {
+  transform: scale(0.97);
+}
+.hub .link {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.22em;
+  transition:
+    text-decoration-color var(--t-hover) ease,
+    color var(--t-hover) ease;
+}
+.hub .link:hover {
+  text-decoration-color: currentColor;
+}
+.hub .arrow {
+  display: inline-block;
+  transition: transform var(--t-hover) var(--ease-out);
+}
+.hub a:hover > .arrow {
+  transform: translate(2px, -2px);
+}
+.hub .go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 44px;
+  font-weight: 600;
+}
+.hub .go--off {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Bar ----------------------------------------------------------------------- */
+
+.hub .bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px var(--margin);
+  font-size: var(--step-small);
+}
+.hub .bar__left {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 36px);
+}
+.hub .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: var(--step-small);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.hub .mark svg {
+  width: 30px;
+  height: auto;
+  fill: var(--accent);
+}
+.hub .bar__nav {
+  display: none;
+}
+.hub .bar__nav ul {
+  display: flex;
+  gap: clamp(16px, 1.8vw, 28px);
+}
+.hub .bar__nav a {
+  color: var(--muted);
+  transition: color var(--t-hover) ease;
+}
+.hub .bar__nav a:hover {
+  color: var(--ink);
+}
+.hub .bar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hub .bar .btn .label-long {
+  display: none;
+}
+.hub .langs {
+  display: flex;
+  gap: 12px;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.hub .langs a {
+  color: var(--muted);
+  transition: color var(--t-hover) ease;
+}
+.hub .langs a:hover {
+  color: var(--ink);
+}
+@media (max-width: 479px) {
+  .hub .bar .langs {
+    display: none;
+  }
+}
+@media (min-width: 900px) {
+  .hub .bar__nav {
+    display: block;
+  }
+  .hub .bar .btn .label-long {
+    display: inline;
+  }
+  .hub .bar .btn .label-short {
+    display: none;
+  }
+}
+
+/* Hero: two prints in darkness --------------------------------------------- */
+
+.hub .hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 96px var(--margin) 32px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto auto auto;
+  column-gap: var(--gap);
+}
+.hub .print {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+}
+.hub .print--small img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1600ms ease;
+}
+.hub .print--small img[data-on="true"] {
+  opacity: 1;
+}
+/* Whole store posters, never cropped: a pair per app, stacked sets that
+   crossfade. The figure takes the height of the posters themselves. */
+.hub .print--large {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: grid;
+  background: none;
+}
+.hub .print__set {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 1600ms ease;
+}
+.hub .print__set[data-on="true"] {
+  opacity: 1;
+}
+.hub .print__set img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 860 / 1864;
+  background: var(--surface);
+}
+/* The dimmed icon print joins on wide screens only; on a phone it would sit
+   over a poster. */
+.hub .print--small {
+  display: none;
+  grid-row: 1;
+  aspect-ratio: 1;
+  filter: brightness(0.7);
+}
+.hub .hero h1 {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-size: var(--step-title);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  padding-top: 40px;
+}
+.hub .hero h1 span {
+  display: block;
+}
+.hub .hero__side {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: grid;
+  gap: 18px;
+  padding-top: 18px;
+  font-size: var(--step-small);
+  color: var(--muted);
+  max-width: 40ch;
+}
+.hub .hero__caption {
+  min-height: 3em;
+}
+.hub .hero__caption b {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+@media (min-width: 900px) {
+  /* Headline large at the bottom left; the pair of whole posters large on
+     the right with the caption and intro under them; the dimmed icon print
+     up top on the left. */
+  .hub .hero {
+    padding: calc(9svh + 8px) var(--margin) 30px;
+    grid-template-rows: 1fr auto;
+    row-gap: 22px;
+  }
+  .hub .print--large {
+    grid-column: 8 / span 5;
+    grid-row: 1;
+    align-self: start;
+    width: min(100%, calc(2 * 66svh * 860 / 1864 + 10px));
+    justify-self: end;
+  }
+  .hub .print--small {
+    display: block;
+    grid-column: 2 / span 2;
+    grid-row: 1;
+    align-self: start;
+    margin-top: 10svh;
+  }
+  .hub .hero h1 {
+    grid-column: 1 / span 7;
+    grid-row: 2;
+    align-self: end;
+    padding-top: 0;
+    font-size: clamp(2.5rem, 0.6rem + 4.4vw, 4.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .hub .hero__side {
+    grid-column: 8 / span 5;
+    grid-row: 2;
+    align-self: end;
+    max-width: 52ch;
+    padding-top: 0;
+    padding-bottom: 0.2em;
+    grid-template-columns: 1fr 1.6fr;
+    column-gap: var(--gap);
+  }
+}
+
+/* Section heads --------------------------------------------------------------- */
+
+.hub .sect {
+  padding: var(--section) var(--margin) 0;
+}
+.hub .sect__head {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 48px;
+  max-width: 40rem;
+}
+.hub .sect__head h2 {
+  font-size: var(--step-lead);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.hub .sect__head p {
+  color: var(--muted);
+}
+
+/* Games: big names, fixed preview ------------------------------------------- */
+
+.hub .index {
+  display: grid;
+}
+.hub .index__frame {
+  display: none;
+}
+.hub .index__list {
+  display: grid;
+  gap: 56px;
+}
+.hub .index__row {
+  display: grid;
+  gap: 14px;
+}
+.hub .index__thumbs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.hub .index__thumbs img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 860 / 1864;
+  background: var(--surface);
+}
+.hub .index__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 20px;
+  width: 100%;
+  text-align: left;
+  color: var(--ink);
+  transition:
+    color var(--t-hover) ease,
+    transform var(--t-ui) var(--ease-out);
+}
+.hub .index__title {
+  font-size: var(--step-head);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.hub .index__name small {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+.hub .index__more p {
+  max-width: 46ch;
+}
+.hub .index__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 28px;
+  margin-top: 6px;
+}
+
+@media (min-width: 900px) {
+  .hub .index {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    align-items: start;
+  }
+  .hub .index__list {
+    grid-column: 1 / span 6;
+    gap: 0;
+  }
+  .hub .index__thumbs {
+    display: none;
+  }
+  .hub .index__row {
+    gap: 0;
+  }
+  .hub .index__name {
+    padding: 10px 0;
+    color: var(--muted);
+  }
+  .hub .index__row[data-active="true"] .index__name {
+    color: var(--ink);
+    transform: translateX(10px);
+  }
+  .hub .index__more {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--t-ui) var(--ease-out);
+  }
+  .hub .index__row[data-active="true"] .index__more {
+    grid-template-rows: 1fr;
+  }
+  .hub .index__more > div {
+    overflow: hidden;
+  }
+  .hub .index__more-inner {
+    padding: 6px 0 32px 10px;
+  }
+  /* The active game's store gallery: three whole posters (or the gameplay
+     loop and two posters), never cropped. Sets stack and crossfade. */
+  .hub .index__frame {
+    display: grid;
+    position: sticky;
+    top: 12vh;
+    grid-column: 7 / span 6;
+  }
+  .hub .index__set {
+    grid-area: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 300ms ease,
+      visibility 0s linear 300ms;
+  }
+  .hub .index__set[data-on="true"] {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 300ms ease;
+  }
+  .hub .index__set > * {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 860 / 1864;
+    object-fit: cover;
+    background: var(--surface);
+  }
+}
+
+/* Apps: oversized visual, small cluster ------------------------------------- */
+
+.hub .apps {
+  overflow: hidden;
+}
+.hub .feature {
+  display: grid;
+  gap: 32px;
+}
+.hub .feature + .feature {
+  margin-top: clamp(96px, 10vw, 140px);
+}
+.hub .feature__visual {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+.hub .feature__visual img {
+  width: 100%;
+  height: auto;
+  background: var(--surface);
+  transition: transform 600ms var(--ease-out);
+}
+.hub .feature__visual img:nth-child(3) {
+  display: none;
+}
+.hub .feature__cluster {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+.hub .feature__cluster h3 {
+  font-size: var(--step-head);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.hub .feature__icon {
+  width: 64px;
+  height: 64px;
+}
+.hub .feature__cluster ul {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+}
+.hub .feature__cluster li::before {
+  content: "– ";
+}
+
+@media (min-width: 900px) {
+  .hub .feature {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    align-items: center;
+  }
+  .hub .feature__visual {
+    grid-column: 1 / span 7;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .hub .feature__visual img:nth-child(3) {
+    display: block;
+  }
+  .hub .feature:hover .feature__visual img:nth-child(2) {
+    transform: translateY(-14px);
+  }
+  .hub .feature__cluster {
+    grid-column: 9 / span 4;
+  }
+}
+
+/* thinking.poker: band of unequal panels ----------------------------------- */
+
+.hub .tp__head {
+  padding: 0 var(--margin);
+  margin-bottom: 48px;
+  display: grid;
+  gap: 10px;
+}
+.hub .tp__head h2 {
+  font-size: var(--step-title);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.hub .band {
+  display: flex;
+  flex-wrap: wrap;
+}
+.hub .band__panel {
+  position: relative;
+  overflow: hidden;
+  height: 42svh;
+  background: #f5f6f8;
+}
+.hub .band__panel:nth-child(1),
+.hub .band__panel:nth-child(4) {
+  flex: 0 0 64%;
+}
+.hub .band__panel:nth-child(2),
+.hub .band__panel:nth-child(3) {
+  flex: 0 0 36%;
+}
+.hub .band__panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+.hub .tp__caption {
+  padding: 16px var(--margin) 0;
+  color: var(--muted);
+  font-size: var(--step-small);
+}
+.hub .tp__body {
+  padding: 56px var(--margin) 0;
+  display: grid;
+  gap: 28px;
+}
+.hub .tp__body > p {
+  max-width: 58ch;
+}
+.hub .tp__side {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  max-width: 36ch;
+}
+.hub .tp__go {
+  color: var(--accent);
+  font-size: var(--step-lead);
+  letter-spacing: -0.015em;
+}
+
+@media (min-width: 900px) {
+  .hub .tp__head {
+    padding-left: calc(var(--margin) + (100vw - 2 * var(--margin)) / 6);
+  }
+  .hub .band {
+    flex-wrap: nowrap;
+    height: min(68svh, 760px);
+  }
+  .hub .band__panel,
+  .hub .band__panel:nth-child(n) {
+    height: 100%;
+    flex: var(--grow) 1 0;
+    transition: flex-grow 500ms var(--ease-out);
+  }
+  .hub .band__panel:hover {
+    flex-grow: 6;
+  }
+  .hub .tp__body {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+  }
+  .hub .tp__body > p {
+    grid-column: 1 / span 7;
+  }
+  .hub .tp__side {
+    grid-column: 9 / span 4;
+  }
+}
+
+/* Catalogue: one table at one size ------------------------------------------ */
+
+.hub .cat table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(1.0625rem, 0.75rem + 1.05vw, 1.625rem);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.hub .cat thead th {
+  font-size: var(--step-small);
+  color: var(--muted);
+  font-weight: 400;
+  text-align: left;
+  padding-bottom: 12px;
+}
+.hub .cat th[scope="rowgroup"] {
+  text-align: left;
+  color: var(--accent);
+  font-weight: 400;
+  padding: 56px 0 12px;
+}
+.hub .cat tbody:first-of-type th[scope="rowgroup"] {
+  padding-top: 8px;
+}
+.hub .cat td {
+  padding: 0.3em 0;
+  vertical-align: baseline;
+}
+.hub .cat td:nth-child(2),
+.hub .cat td:nth-child(3) {
+  color: var(--muted);
+}
+.hub .cat td:last-child,
+.hub .cat thead th:last-child {
+  text-align: right;
+}
+.hub .cat a {
+  color: var(--ink);
+}
+@media (min-width: 900px) {
+  .hub .cat col.c-name {
+    width: 28%;
+  }
+  .hub .cat col.c-what {
+    width: 40%;
+  }
+  .hub .cat col.c-plat {
+    width: 16%;
+  }
+}
+@media (max-width: 899px) {
+  .hub .cat table,
+  .hub .cat tbody,
+  .hub .cat tr,
+  .hub .cat td,
+  .hub .cat th {
+    display: block;
+  }
+  .hub .cat thead,
+  .hub .cat colgroup {
+    display: none;
+  }
+  .hub .cat tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 9px 0;
+  }
+  .hub .cat td:nth-child(1) {
+    grid-column: 1 / -1;
+    font-size: 1.375rem;
+  }
+  .hub .cat td:nth-child(2) {
+    grid-column: 1 / -1;
+    font-size: var(--step-small);
+    padding: 2px 0;
+  }
+  .hub .cat td:nth-child(3),
+  .hub .cat td:nth-child(4) {
+    font-size: var(--step-small);
+    padding: 0;
+  }
+  .hub .cat th[scope="rowgroup"] {
+    padding-top: 48px;
+    font-size: 1.375rem;
+  }
+}
+
+/* Studio: side facts, wide paragraph ---------------------------------------- */
+
+.hub .studio {
+  display: grid;
+  gap: 32px;
+  padding-bottom: var(--section);
+}
+.hub .studio__facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 16px 32px;
+}
+.hub .studio__facts dt {
+  color: var(--muted);
+  font-size: var(--step-small);
+}
+.hub .studio__para {
+  max-width: 36ch;
+}
+@media (min-width: 900px) {
+  .hub .studio {
+    grid-template-columns: 34% 1fr;
+    column-gap: 0;
+  }
+  .hub .studio__facts {
+    grid-template-columns: 1fr;
+    align-content: start;
+  }
+  .hub .studio__para {
+    max-width: 58ch;
+  }
+}
+
+/* Contact: the email as display type --------------------------------------- */
+
+.hub .contact {
+  background: var(--paper);
+  color: var(--paper-ink);
+  min-height: 64svh;
+  padding: 32px var(--margin);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  row-gap: 24px;
+}
+.hub .contact ::selection {
+  background: var(--paper-ink);
+  color: var(--paper);
+}
+.hub .contact :focus-visible {
+  outline-color: var(--paper-ink);
+}
+.hub .contact__line {
+  font-size: var(--step-lead);
+  max-width: 26ch;
+}
+.hub .contact__mail {
+  grid-row: 3;
+  font-size: 11.5vw;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  transition: color var(--t-hover) ease;
+}
+.hub .contact__mail:hover {
+  color: #b53a0c;
+}
+.hub .contact__mail span {
+  display: block;
+}
+.hub .contact__foot {
+  grid-row: 4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 32px;
+  color: var(--paper-muted);
+  font-size: var(--step-small);
+  padding-top: 4vh;
+}
+.hub .contact__foot ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
+.hub .contact__foot a {
+  color: var(--paper-ink);
+}
+@media (min-width: 900px) {
+  .hub .contact {
+    min-height: 78svh;
+    padding: 40px var(--margin);
+  }
+  .hub .contact__mail {
+    font-size: 12.7vw;
+  }
+  .hub .contact__mail span {
+    display: inline;
+  }
+}
+
+/* Footer: columns above, wordmark below ------------------------------------- */
+
+.hub .foot {
+  padding: 40px var(--margin) 24px;
+  display: grid;
+  gap: clamp(64px, 12vw, 160px) 0;
+}
+.hub .foot__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px var(--gap);
+  font-size: var(--step-small);
+}
+.hub .foot__cols .foot__h {
+  font-size: var(--step-small);
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.hub .foot__cols ul {
+  display: grid;
+  gap: 6px;
+}
+.hub .foot__cols a {
+  color: var(--muted);
+  transition: color var(--t-hover) ease;
+}
+.hub .foot__cols a:hover {
+  color: var(--ink);
+}
+.hub .foot__word {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: var(--ink);
+}
+.hub .foot__legal {
+  margin-top: calc(clamp(64px, 12vw, 160px) * -1 + 20px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  color: var(--muted);
+  font-size: var(--step-small);
+}
+@media (min-width: 900px) {
+  .hub .foot__cols {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Motion: entrances, only when script runs ----------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hub [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 900ms var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .js .hub [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+  .js .hub .hero [data-rise] {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hub-rise 1000ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * 110ms + 120ms);
+  }
+}
+@keyframes hub-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

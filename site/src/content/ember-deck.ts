@@ -1,25 +1,23 @@
 // Ember Deck — content in all three locales, plus the copy for its bespoke
-// landing page (src/components/ember-deck/landing.tsx). The subdomain gets
-// the "lit hearth in a dark book" theme via [data-app="ember-deck"] in
-// globals.css. Game facts come from the app repo: docs/v2/MASTER-PLAN.md,
-// docs/v2/design-v2.md, fastlane metadata and app_privacy_details.json.
+// landing page (src/components/sites/ember-deck/landing.tsx). The site's look
+// lives in src/components/sites/ember-deck/site.css. Game facts come from the
+// app repo (apps/roguelite-deckbuilder): fastlane store metadata (names,
+// subtitles, description), assets/content/*.json (card, enemy, relic counts,
+// hero HP, card costs) and app_privacy_details.json.
 
 import type { Locale } from "@/lib/i18n";
 import type { AppContent, AppLocalized } from "./apps";
-import type { HeatDemoCopy } from "@/components/ember-deck/heat-demo";
-import type { HeroCopy, HeroLabels } from "@/components/ember-deck/hero-showcase";
 
 // ---------------------------------------------------------------------------
 // RELEASE SWITCH — the one line to change on launch day. Flipping a platform
-// to true turns the status to "live", shows the real store button for it and
-// swaps every "coming soon" line for the released wording.
+// to true shows the real store button for it and swaps the availability lines
+// for the released wording. Until then the site says the game is launching on
+// both stores and shows no store link.
 const RELEASED = { ios: false, android: false };
 
 const APP_STORE_URL = "https://apps.apple.com/app/id6794833643";
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.appfactory.roguelite_deckbuilder";
-
-const anyReleased = RELEASED.ios || RELEASED.android;
 
 /** Pick the right availability line for the current release state. */
 function availability(c: {
@@ -38,55 +36,56 @@ const SHOT = "/apps/ember-deck";
 
 const en: AppLocalized = {
   name: "Ember Deck",
-  storeName: "Ember Deck: Roguelite Cards",
-  tagline: "Five-minute runs. Die. Grow stronger.",
-  subtitle: "5-Min Runs. Die. Grow Stronger",
+  // Store name and subtitle as filed in fastlane/metadata/ios/en-US.
+  storeName: "Ember Deck: Roguelike Cards",
+  tagline: "Every card feeds the fire.",
+  subtitle: "Deckbuilder RPG · Play Offline",
   oneLiner:
-    "A painted dark-fantasy deckbuilder sized for a commute. Every card you play stokes the Heat — sequence your hand, light the Blaze, and climb three acts to the Hollow King.",
+    "A five-minute dark-fantasy roguelike deckbuilder. Every card you play stokes the Heat: sequence your hand, light the Blaze and climb three acts to the Hollow King.",
   statusNote: availability({
-    soon: "Coming soon to iPhone & Android.",
-    both: "Out now on iPhone & Android.",
-    iosOnly: "Out now on iPhone. Android is on the way.",
-    androidOnly: "Out now on Android. iPhone is on the way.",
+    soon: "Launching on the App Store and Google Play.",
+    both: "Out now on the App Store and Google Play.",
+    iosOnly: "Out now on the App Store. Google Play is next.",
+    androidOnly: "Out now on Google Play. The App Store is next.",
   }),
-  metaTitle: "Ember Deck: Roguelite Cards — a five-minute dark-fantasy deckbuilder",
+  metaTitle: "Ember Deck: Roguelike Deckbuilder Card Game, Offline",
   metaDescription:
-    "Ember Deck is a roguelite deckbuilder for your phone: build Heat with every card, fire Blaze finishers, and climb three acts with three heroes and 120+ cards. No energy timers, no gacha, fully offline.",
+    "Ember Deck is a dark-fantasy roguelike deckbuilder for iPhone and Android. Stack Heat, fire Blaze finishers, 3 heroes, 120+ cards. Free, offline, no gacha.",
   features: [
     {
-      title: "Three acts, one throne",
-      body: "Climb The Ascent, sink into The Drowned Vaults and storm The Cinder Throne. Each act has its own enemies, two possible bosses and a camp to rest at in between.",
+      title: "Every card stokes the Heat",
+      body: "Each card you play adds one Heat. Play them in the right order and your Blaze cards erupt: one perfect turn can wipe the board.",
     },
     {
-      title: "120+ cards, all earned",
-      body: "Over a hundred and twenty cards across three heroes and a neutral pool. Every card is unlocked by playing. None come in packs and none are sold for currency.",
-    },
-    {
-      title: "No energy timers",
-      body: "The only energy in Ember Deck is the three you spend each turn. Nothing recharges on a clock, so play one run a week or ten in a night.",
-    },
-    {
-      title: "Plays fully offline",
-      body: "No account and no sign-up. The game autosaves after every node, so a tunnel or a flight never costs you a run.",
-    },
-    {
-      title: "Fair monetization, no gacha",
-      body: "No loot boxes and nothing random for sale. Optional one-time purchases remove the between-run ads or unlock a hero early, and every hero can also be earned by playing.",
+      title: "Three heroes, three acts",
+      body: "Emberknight, Venomblade and Ashen Seer each burn Heat their own way. Climb The Ascent, The Drowned Vaults and The Cinder Throne to the Hollow King.",
     },
     {
       title: "Death is progress",
-      body: "Every node you clear banks shards and mastery. Spend them in the Sanctum on permanent upgrades, then push into fifteen Ascension levels when the run needs to fight back.",
+      body: "Every fight you clear pays shards and hero Mastery. Spend them on 20 permanent Sanctum upgrades, then climb again stronger.",
+    },
+    {
+      title: "No energy timers",
+      body: "The only energy is the three you spend each turn. Nothing recharges on a clock: play one run a week or ten in a night.",
+    },
+    {
+      title: "Plays fully offline",
+      body: "No account and no sign-up. The game autosaves after every room, so a tunnel or a flight never costs you a run.",
+    },
+    {
+      title: "No gacha, no card packs",
+      body: "Every card is earned by playing. Optional one-time purchases remove the between-run ads or unlock a hero early, and every hero can be earned for free.",
     },
   ],
   screenshots: [
-    { src: `${SHOT}/v2/shots/en/combat-inferno.webp`, alt: "Combat at Heat 9: a 26-damage hit lands on the Cinder Ogre while the flame meter roars beside the hand" },
-    { src: `${SHOT}/v2/shots/en/sanctum.webp`, alt: "Run summary after a fall: floors cleared, shards earned and a Mastery level-up" },
-    { src: `${SHOT}/v2/shots/en/hero-select.webp`, alt: "Hero select: Emberknight, Venomblade and Ashen Seer" },
+    { src: `${SHOT}/v2/shots/en/combat-inferno.webp`, alt: "Ember Deck combat at Heat 9: a 26-damage hit lands on the Cinder Ogre while the flame meter roars beside the hand" },
+    { src: `${SHOT}/v2/shots/en/sanctum.webp`, alt: "Run summary after a fall in Ember Deck: floors cleared, shards earned and a Mastery level-up" },
+    { src: `${SHOT}/v2/shots/en/hero-select.webp`, alt: "Hero select screen with Emberknight, Venomblade and Ashen Seer" },
     { src: `${SHOT}/v2/shots/en/map-act2.webp`, alt: "Act II map: branching paths through the Drowned Vaults up to the Sunken Bell" },
-    { src: `${SHOT}/v2/shots/en/shop.webp`, alt: "In-run shop: buy cards, relics and potions, or remove a card" },
-    { src: `${SHOT}/v2/shots/en/hollow-king.webp`, alt: "Fighting the Hollow King on the Cinder Throne" },
+    { src: `${SHOT}/v2/shots/en/shop.webp`, alt: "In-run shop: buy cards, relics and potions, or pay to remove a card" },
+    { src: `${SHOT}/v2/shots/en/hollow-king.webp`, alt: "Final boss fight against the Hollow King on the Cinder Throne" },
     { src: `${SHOT}/v2/shots/en/reward-rare.webp`, alt: "Victory over the Ashen Warden: choose a boss relic and a rare card" },
-    { src: `${SHOT}/v2/shots/en/hub.webp`, alt: "The hub between runs: Embark, Daily Run, Sanctum and quests" },
+    { src: `${SHOT}/v2/shots/en/hub.webp`, alt: "The camp between runs: Embark, Daily Run, Sanctum and quests" },
   ],
   faqs: [
     {
@@ -258,53 +257,54 @@ const en: AppLocalized = {
 
 const zhCn: AppLocalized = {
   name: "余烬牌组",
-  storeName: "余烬牌组 — 卡牌肉鸽",
-  tagline: "五分钟一局。死去，然后变得更强。",
-  subtitle: "五分钟一局的地牢闯关。死去，然后变得更强。",
+  // Store name and subtitle as filed in fastlane/metadata/ios/zh-Hans.
+  storeName: "余烬牌组：肉鸽爬塔卡牌构筑",
+  tagline: "每一张牌，都在为火添柴。",
+  subtitle: "单机离线·回合制策略卡牌冒险",
   oneLiner:
-    "手绘暗黑奇幻卡牌构筑，一局刚好一段通勤。每打出一张牌，热度就往上窜一格——排好出牌顺序，点燃烈焰，穿过三幕，直抵空洞之王。",
+    "五分钟一局的暗黑奇幻肉鸽卡牌构筑。每打出一张牌，热度就涨一分：排好出牌顺序，点燃烈焰，穿过三幕，直抵空洞之王。",
   statusNote: availability({
-    soon: "即将登陆 iPhone 与 Android。",
-    both: "现已登陆 iPhone 与 Android。",
-    iosOnly: "现已登陆 iPhone，Android 版即将推出。",
-    androidOnly: "现已登陆 Android，iPhone 版即将推出。",
+    soon: "正在上架 App Store 和 Google Play。",
+    both: "现已登陆 App Store 和 Google Play。",
+    iosOnly: "现已登陆 App Store，Google Play 版紧随其后。",
+    androidOnly: "现已登陆 Google Play，App Store 版紧随其后。",
   }),
-  metaTitle: "余烬牌组 — 五分钟一局的暗黑奇幻卡牌肉鸽",
+  metaTitle: "余烬牌组：单机离线肉鸽爬塔卡牌构筑手游",
   metaDescription:
-    "《余烬牌组》是一款手机卡牌肉鸽：每张牌都在累积热度，烈焰牌在临界点爆发。三位英雄、三幕冒险、120 多张卡牌。没有体力计时，没有抽卡付费，完全离线可玩。",
+    "《余烬牌组》是一款暗黑奇幻肉鸽卡牌构筑手游：每打出一张牌叠一层热度，烈焰牌在临界点爆发。三位英雄、三幕爬塔、120 余张卡牌。免费、单机离线、没有体力、没有抽卡。",
   features: [
     {
-      title: "三幕冒险，一座王座",
-      body: "登上攀登之路，潜入溺亡地窖，杀向余烬王座。每一幕都有自己的敌人、两位可能出现的首领，幕与幕之间还有营地可以歇脚。",
+      title: "每一张牌都在添火",
+      body: "每打出一张牌，热度 +1。出牌顺序对了，烈焰牌便轰然爆发，一个完美的回合就能清空全场。",
     },
     {
-      title: "120 多张卡，全靠打出来",
-      body: "三位英雄加中立卡池，共 120 多张卡牌。每一张都靠游玩解锁——没有卡包，也不能用货币买卡。",
+      title: "三位英雄，三幕冒险",
+      body: "余烬骑士、毒刃客、灰烬先知，各有各的燃法。踏上攀登之路，潜入溺亡地窖，杀上余烬王座，直面空洞之王。",
     },
     {
-      title: "没有体力计时",
-      body: "游戏里唯一的「能量」，是你每回合要花掉的那三点。没有任何东西按时间回满——一周打一局，或一晚打十局，都随你。",
+      title: "死亡即成长",
+      body: "每打赢一场战斗都能获得碎晶和英雄专精经验。带回圣所换取 20 项永久强化，再次出发时更强。",
+    },
+    {
+      title: "没有体力",
+      body: "唯一的能量是你每回合要花掉的那三点。没有任何东西按时间恢复，一周打一局或一晚打十局都随你。",
     },
     {
       title: "完全离线可玩",
-      body: "无需账号，无需注册。每过一个节点自动存档，钻进隧道或飞机上断网，这一局也不会白打。",
+      body: "无需账号，无需注册。每个房间结束都会自动存档，钻进隧道或坐飞机断网，这一局也不会白打。",
     },
     {
-      title: "良心付费，没有抽卡",
-      body: "没有宝箱，也不卖任何随机奖励。可选的一次性内购能移除局间广告、提前解锁英雄——而每位英雄也都能靠游玩免费解锁。",
-    },
-    {
-      title: "每次倒下都是进步",
-      body: "每通过一个节点都会存下碎晶和精通经验。拿去圣所换永久强化，觉得不够刺激时，再挑战十五级晋升难度。",
+      title: "没有抽卡，没有卡包",
+      body: "每一张卡都靠游玩获得。可选的一次性内购能移除局间广告或提前解锁英雄，而每位英雄也都能免费解锁。",
     },
   ],
   screenshots: [
-    { src: `${SHOT}/v2/shots/zh/combat-inferno.webp`, alt: "热度 9 的战斗：一击 26 点伤害落在炭烬巨魔身上，手牌旁的火焰计量表熊熊燃烧" },
-    { src: `${SHOT}/v2/shots/zh/sanctum.webp`, alt: "倒下后的结算：通过的层数、获得的碎晶和精通升级" },
-    { src: `${SHOT}/v2/shots/zh/hero-select.webp`, alt: "英雄选择：余烬骑士、毒刃客与灰烬先知" },
+    { src: `${SHOT}/v2/shots/zh/combat-inferno.webp`, alt: "《余烬牌组》热度 9 的战斗：一击 26 点伤害落在炭烬巨魔身上，手牌旁的火焰计量表熊熊燃烧" },
+    { src: `${SHOT}/v2/shots/zh/sanctum.webp`, alt: "倒下后的结算画面：通过的层数、获得的碎晶和专精升级" },
+    { src: `${SHOT}/v2/shots/zh/hero-select.webp`, alt: "英雄选择画面：余烬骑士、毒刃客与灰烬先知" },
     { src: `${SHOT}/v2/shots/zh/map-act2.webp`, alt: "第二幕地图：穿过溺亡地窖、通往沉没之钟的分支路线" },
-    { src: `${SHOT}/v2/shots/zh/shop.webp`, alt: "局内商店：购买卡牌、遗物和药水，或移除一张牌" },
-    { src: `${SHOT}/v2/shots/zh/hollow-king.webp`, alt: "在余烬王座迎战空洞之王" },
+    { src: `${SHOT}/v2/shots/zh/shop.webp`, alt: "局内商店：购买卡牌、遗物和药水，或花钱移除一张牌" },
+    { src: `${SHOT}/v2/shots/zh/hollow-king.webp`, alt: "在余烬王座迎战最终首领空洞之王" },
     { src: `${SHOT}/v2/shots/zh/reward-rare.webp`, alt: "击败灰烬守望者：挑选首领遗物和一张稀有卡" },
     { src: `${SHOT}/v2/shots/zh/hub.webp`, alt: "局与局之间的营地：启程、每日挑战、圣所与任务" },
   ],
@@ -476,55 +476,57 @@ const zhCn: AppLocalized = {
 
 const zhTw: AppLocalized = {
   name: "餘燼牌組",
-  storeName: "餘燼牌組 — Roguelite 卡牌冒險",
-  tagline: "五分鐘一局。倒下，然後變得更強。",
-  subtitle: "五分鐘一局的地城冒險。倒下，然後變得更強。",
+  // No zh-Hant store listing exists; this is the zh-Hans listing written for
+  // Taiwan (Roguelike rather than the mainland 肉鸽).
+  storeName: "餘燼牌組：Roguelike 爬塔卡牌構築",
+  tagline: "每一張牌，都在為火添柴。",
+  subtitle: "單機離線·回合制策略卡牌冒險",
   oneLiner:
-    "手繪暗黑奇幻牌組構築，一局剛好一段通勤。每打出一張牌，熱度就往上竄一格——排好出牌順序，點燃烈焰，穿越三幕，直抵空洞之王。",
+    "五分鐘一局的暗黑奇幻 Roguelike 牌組構築。每打出一張牌，熱度就漲一格：排好出牌順序，點燃烈焰，穿越三幕，直抵空洞之王。",
   statusNote: availability({
-    soon: "即將登陸 iPhone 與 Android。",
-    both: "現已登陸 iPhone 與 Android。",
-    iosOnly: "現已登陸 iPhone，Android 版即將推出。",
-    androidOnly: "現已登陸 Android，iPhone 版即將推出。",
+    soon: "正在上架 App Store 與 Google Play。",
+    both: "現已登上 App Store 與 Google Play。",
+    iosOnly: "現已登上 App Store，Google Play 版緊接在後。",
+    androidOnly: "現已登上 Google Play，App Store 版緊接在後。",
   }),
-  metaTitle: "餘燼牌組 — 五分鐘一局的暗黑奇幻 Roguelite 卡牌遊戲",
+  metaTitle: "餘燼牌組：單機離線 Roguelike 爬塔卡牌手遊",
   metaDescription:
-    "《餘燼牌組》是一款手機 Roguelite 牌組構築遊戲：每張牌都在累積熱度，烈焰牌在臨界點爆發。三位英雄、三幕冒險、120 多張卡牌。沒有體力計時，沒有轉蛋，完全離線可玩。",
+    "《餘燼牌組》是一款暗黑奇幻 Roguelike 牌組構築手遊：每打出一張牌疊一層熱度，烈焰牌在臨界點爆發。三位英雄、三幕爬塔、120 多張卡牌。免費、單機離線、沒有體力、沒有轉蛋。",
   features: [
     {
-      title: "三幕冒險，一座王座",
-      body: "登上攀登之路，潛入溺亡地窖，殺向餘燼王座。每一幕都有自己的敵人、兩位可能出現的首領，幕與幕之間還有營地可以歇腳。",
+      title: "每一張牌都在添火",
+      body: "每打出一張牌，熱度 +1。出牌順序對了，烈焰牌便轟然爆發，一個完美的回合就能清空全場。",
     },
     {
-      title: "120 多張卡，全靠玩出來",
-      body: "三位英雄加中立卡池，共 120 多張卡牌。每一張都靠遊玩解鎖——沒有卡包，也不能用貨幣買卡。",
+      title: "三位英雄，三幕冒險",
+      body: "餘燼騎士、毒刃客、灰燼先知，各有各的燃法。踏上攀登之路，潛入溺亡地窖，殺上餘燼王座，直面空洞之王。",
     },
     {
-      title: "沒有體力計時",
-      body: "遊戲裡唯一的「能量」，是你每回合要花掉的那三點。沒有任何東西按時間回滿——一週玩一局，或一晚玩十局，都隨你。",
+      title: "倒下也是成長",
+      body: "每打贏一場戰鬥都能拿到碎晶和英雄專精經驗。帶回聖所換取 20 項永久強化，再出發時更強。",
+    },
+    {
+      title: "沒有體力",
+      body: "唯一的能量是你每回合要花掉的那三點。沒有任何東西按時間回復，一週玩一局或一晚玩十局都隨你。",
     },
     {
       title: "完全離線可玩",
-      body: "不用帳號，不用註冊。每過一個節點自動存檔，鑽進隧道或在飛機上斷網，這一局也不會白打。",
+      body: "不用帳號，不用註冊。每個房間結束都會自動存檔，鑽進隧道或搭飛機斷網，這一局也不會白打。",
     },
     {
-      title: "良心收費，沒有轉蛋",
-      body: "沒有寶箱，也不賣任何隨機獎勵。可選的一次性內購能移除局間廣告、提前解鎖英雄——而每位英雄也都能靠遊玩免費解鎖。",
-    },
-    {
-      title: "每次倒下都是進步",
-      body: "每通過一個節點都會存下碎晶與精通經驗。拿去聖所換永久強化，覺得不夠刺激時，再挑戰十五級晉升難度。",
+      title: "沒有轉蛋，沒有卡包",
+      body: "每一張卡都靠遊玩取得。可選的一次性內購能移除局間廣告或提前解鎖英雄，而每位英雄也都能免費解鎖。",
     },
   ],
   // The game ships English + Simplified Chinese; zh-TW visitors see the
   // Simplified Chinese captures.
   screenshots: [
-    { src: `${SHOT}/v2/shots/zh/combat-inferno.webp`, alt: "熱度 9 的戰鬥：一擊 26 點傷害落在炭燼巨魔身上，手牌旁的火焰計量表熊熊燃燒" },
-    { src: `${SHOT}/v2/shots/zh/sanctum.webp`, alt: "倒下後的結算：透過的層數、獲得的碎晶和精通升級" },
-    { src: `${SHOT}/v2/shots/zh/hero-select.webp`, alt: "英雄選擇：餘燼騎士、毒刃客與灰燼先知" },
+    { src: `${SHOT}/v2/shots/zh/combat-inferno.webp`, alt: "《餘燼牌組》熱度 9 的戰鬥：一擊 26 點傷害落在炭燼巨魔身上，手牌旁的火焰計量表熊熊燃燒" },
+    { src: `${SHOT}/v2/shots/zh/sanctum.webp`, alt: "倒下後的結算畫面：通過的層數、獲得的碎晶和專精升級" },
+    { src: `${SHOT}/v2/shots/zh/hero-select.webp`, alt: "英雄選擇畫面：餘燼騎士、毒刃客與灰燼先知" },
     { src: `${SHOT}/v2/shots/zh/map-act2.webp`, alt: "第二幕地圖：穿過溺亡地窖、通往沉沒之鐘的分支路線" },
-    { src: `${SHOT}/v2/shots/zh/shop.webp`, alt: "局內商店：購買卡牌、遺物和藥水，或移除一張牌" },
-    { src: `${SHOT}/v2/shots/zh/hollow-king.webp`, alt: "在餘燼王座迎戰空洞之王" },
+    { src: `${SHOT}/v2/shots/zh/shop.webp`, alt: "局內商店：購買卡牌、遺物和藥水，或花錢移除一張牌" },
+    { src: `${SHOT}/v2/shots/zh/hollow-king.webp`, alt: "在餘燼王座迎戰最終首領空洞之王" },
     { src: `${SHOT}/v2/shots/zh/reward-rare.webp`, alt: "擊敗灰燼守望者：挑選首領遺物和一張稀有卡" },
     { src: `${SHOT}/v2/shots/zh/hub.webp`, alt: "局與局之間的營地：啟程、每日挑戰、聖所與任務" },
   ],
@@ -699,7 +701,8 @@ export const emberDeck: AppContent = {
   category: "game",
   buildNumber: 9,
   version: "2.0.0",
-  status: anyReleased ? "live" : "testflight",
+  // Treated as released ahead of store approval (owner call, 2026-10-14).
+  status: "live",
   appStoreUrl: RELEASED.ios ? APP_STORE_URL : undefined,
   playStoreUrl: RELEASED.android ? PLAY_STORE_URL : undefined,
   platforms: ["iOS", "Android"],
@@ -710,110 +713,143 @@ export const emberDeck: AppContent = {
 
 // ---------------------------------------------------------------------------
 // Copy for the bespoke landing page only (not part of the generic registry).
-// Game numbers are the shipped ones (app repo assets/content/*.json), not the
-// design doc's: hero HP 70/58/66, Forge Brand 2 Block, Serpent Fang 1 Poison.
-// Chinese game terms follow the app's own glossary (assets/i18n/zh.json).
+// Game numbers are the shipped ones (app repo assets/content/*.json): hero HP
+// 70/58/66, card costs, Forge Brand 2 Block, Serpent Fang 1 Poison, Hollow
+// King 440 HP, 120+ cards (122), 30 enemies, 7 bosses, 42 relics, 12 potions,
+// 18 events, 20 Sanctum nodes, Mastery 1–10, Ascension 1–15, 40 achievements.
+// Chinese game terms follow the store listing (fastlane zh-Hans).
+
+const anyReleased = RELEASED.ios || RELEASED.android;
+
+/** The five cards of the playable turn; ids are fixed by the demo engine. */
+export type TurnCardId = "hammer" | "slice" | "strike" | "jab" | "blade";
+
+export interface TurnCopy {
+  enemy: string;
+  heat: string;
+  energy: string;
+  hint: string;
+  blaze: string;
+  /** "{dmg} dmg" style suffix after a damage preview. */
+  dmgSuffix: string;
+  playLabel: string;
+  reset: string;
+  again: string;
+  perfect: string;
+  short: string;
+  bestOrder: string;
+  /** Accessible name of the whole table. */
+  label: string;
+  cards: Record<TurnCardId, { name: string; text: string }>;
+}
+
+export interface HeroEntry {
+  /** Art stem under v2/heroes/. */
+  art: "emberknight" | "venomblade" | "ashen_seer";
+  name: string;
+  line: string;
+  style: string;
+  hp: string;
+  relic: { name: string; text: string };
+  cards: { name: string; text: string; cost: string }[];
+  unlock: string;
+}
+
+export interface ProgressRow {
+  /** Picture path under /apps/ember-deck/v2/. */
+  img: string;
+  name: string;
+  value: string;
+}
 
 export interface EmberDeckLanding {
-  kicker: string;
-  heroLines: [string, string, string];
-  heroSub: string;
-  priceNote: string;
-  heroStats: { n: string; label: string }[];
-  videoLabel: string;
-  heatEyebrow: string;
-  heatTitle: string;
-  heatIntro: string;
-  heatRules: { k: string; body: string }[];
-  demo: HeatDemoCopy;
-  heroesEyebrow: string;
+  nav: {
+    turn: string;
+    heroes: string;
+    acts: string;
+    progress: string;
+    faq: string;
+    press: string;
+    write: string;
+    pages: string;
+  };
+  hero: { line: string; sub: string; cta: string; price: string };
+  turnTitle: string;
+  rules: { title: string; body: string }[];
+  turn: TurnCopy;
   heroesTitle: string;
   heroesIntro: string;
-  heroes: HeroCopy[];
-  heroLabels: HeroLabels;
-  actsEyebrow: string;
+  heroLabels: { hp: string; relic: string; unlock: string };
+  heroes: HeroEntry[];
   actsTitle: string;
   actsIntro: string;
   acts: {
-    label: string;
     name: string;
-    body: string;
     minutes: string;
-    bosses: [string, string];
+    body: string;
+    bosses: string;
     foes: [string, string, string, string];
   }[];
   bossesLabel: string;
   foesLabel: string;
-  finalEyebrow: string;
-  finalName: string;
-  finalBody: string;
-  progressEyebrow: string;
+  king: { name: string; hp: string; body: string };
   progressTitle: string;
   progressBody: string;
-  progress: { n: string; title: string; body: string }[];
-  counts: { n: string; label: string }[];
-  screensEyebrow: string;
-  screensTitle: string;
-  /** One short caption per loc.screenshots entry, same order. */
-  screenCaptions: string[];
-  pactEyebrow: string;
-  pactTitle: string;
-  pact: { title: string; body: string }[];
-  shopTitle: string;
-  shop: { name: string; price: string; body: string }[];
-  shopNote: string;
-  faqEyebrow: string;
+  progressGroups: { name: string; rows: ProgressRow[] }[];
+  galleryTitle: string;
+  galleryCount: string;
+  videoLabel: string;
+  free: { name: string; for: string; body: string; price: string; unit: string; cta: string };
+  bundle: { name: string; for: string; body: string; price: string; unit: string; cta: string };
   faqTitle: string;
   faqs: { q: string; a: string }[];
   supportLink: string;
-  pressEyebrow: string;
   pressTitle: string;
-  pressBody: string;
+  pressBody: string[];
   pressFacts: { label: string; value: string }[];
   pressItems: { file: string; label: string; meta: string }[];
   pressZip: string;
-  creditsTitle: string;
-  creditsMusicLabel: string;
+  creditsMusic: string;
   creditsMusicBy: string;
-  creditsMusicNote: string;
-  creditsSfxLabel: string;
-  creditsSfxBody: string;
+  creditsSfx: string;
   /** MOMIZizm MUSiC's terms ask for the composer's name plus this link. */
   creditsMusicUrl: string;
-  closingTitle: string;
-  closingBody: string;
+  signoff: string;
+  closing: string;
 }
 
 const PRESS = "/apps/ember-deck/press";
+const MUSIC_URL = "https://music.storyinvention.com/en/";
 
 const landingEn: EmberDeckLanding = {
-  kicker: "Roguelite deckbuilder · iPhone & Android",
-  heroLines: ["Every card", "feeds the", "fire."],
-  heroSub:
-    "Five-minute dungeon runs in a painted dark-fantasy world. Each card you play stokes the Heat. Sequence your hand, light the Blaze, and when you fall, the next run starts stronger.",
-  priceNote: "Free to play. No energy timers, no gacha, fully offline.",
-  heroStats: [
-    { n: "3", label: "heroes" },
-    { n: "3", label: "acts" },
-    { n: "120+", label: "cards" },
-    { n: "6–8", label: "min an act" },
+  nav: {
+    turn: "Play a turn",
+    heroes: "Heroes",
+    acts: "The three acts",
+    progress: "Between runs",
+    faq: "Questions",
+    press: "Press kit",
+    write: "Write to us",
+    pages: "Help and policies",
+  },
+  hero: {
+    line: "Every card feeds the fire.",
+    sub: "A five-minute roguelike deckbuilder in a painted dark-fantasy world. Each card you play adds Heat. Play them in the right order and the Blaze cards erupt.",
+    cta: "Play a turn",
+    price: "Free to play. Offline, no energy timers, no gacha.",
+  },
+  turnTitle: "How a turn burns",
+  rules: [
+    { title: "Every card you play adds one Heat.", body: "Heat climbs card by card and resets when your next turn begins." },
+    { title: "Blaze cards wait for their number.", body: "A card marked Blaze 3 fires its bonus once Heat has reached three." },
+    { title: "So the order is the skill.", body: "Lead with the cheap cards, bank the Heat, land the finisher last. The Cinder Ogre on this table falls only to a perfect turn." },
   ],
-  videoLabel: "Ember Deck gameplay, 26 seconds, no sound",
-  heatEyebrow: "the heat hook",
-  heatTitle: "Order is the skill. Heat is the reward.",
-  heatIntro:
-    "One rule sits under every turn, and you can learn it in three seconds. Then try it: the Cinder Ogre below falls only to a perfect turn.",
-  heatRules: [
-    { k: "+1", body: "Every card you play adds one Heat. It resets when your next turn starts." },
-    { k: "Blaze", body: "A Blaze card fires a bonus once Heat has reached its number." },
-    { k: "Order", body: "Lead with cheap cards, bank the Heat, land the finisher last." },
-  ],
-  demo: {
+  turn: {
     enemy: "Cinder Ogre",
     heat: "Heat",
     energy: "Energy",
-    hint: "Tap cards to play them. You have 3 energy, and order matters.",
-    blaze: "BLAZE!",
+    hint: "Tap a card to play it. You have 3 energy, and the order matters.",
+    blaze: "Blaze!",
     dmgSuffix: " dmg",
     playLabel: "Play {name}, costs {cost}, deals {dmg} now",
     reset: "Reset turn",
@@ -821,6 +857,7 @@ const landingEn: EmberDeckLanding = {
     perfect: "Perfect turn: {dmg} damage. The Ogre falls.",
     short: "{dmg} damage. The Ogre survives. The best order deals {best}.",
     bestOrder: "Best order:",
+    label: "A playable Ember Deck turn against the Cinder Ogre",
     cards: {
       hammer: { name: "Hammerfall", text: "Deal 10, +2 per Heat." },
       slice: { name: "Slice", text: "Deal 4. Blaze 2: deal 4 more." },
@@ -829,141 +866,135 @@ const landingEn: EmberDeckLanding = {
       blade: { name: "Heated Blade", text: "Deal 6. Blaze 3: deal 4 more." },
     },
   },
-  heroesEyebrow: "three heroes",
   heroesTitle: "Three ways to burn",
   heroesIntro:
-    "Every hero plays by the same Heat rules and spends the Heat differently. Emberknight is free from the first run. The other two unlock by playing, or early with a one-time purchase.",
+    "Every hero plays by the same Heat rules and spends the Heat differently. Emberknight is free from the first run; the other two unlock by playing.",
+  heroLabels: { hp: "HP", relic: "Starter relic", unlock: "Unlock" },
   heroes: [
     {
+      art: "emberknight",
       name: "Emberknight",
-      line: "Every blow tempers the blade. Heat becomes steel.",
-      style: "A wall that hits back. Heat turns into Block and Strength, and steady Blaze 2–3 cards finish the job.",
-      unlock: "Free from the first run",
+      line: "Every blow tempers the blade.",
+      style: "A wall that hits back: Heat turns into Block and Strength.",
       hp: "70",
-      relic: "Forge Brand",
-      relicBody: "the first time Heat reaches 3 each turn, gain 2 Block",
+      relic: { name: "Forge Brand", text: "The first time Heat reaches 3 each turn, gain 2 Block." },
       cards: [
-        { name: "Heated Blade", text: "Deal 6. Blaze 3: deal 4 more." },
-        { name: "Whirlwind", text: "Deal 8 to all. Blaze 3: 4 more to all." },
-        { name: "Hammerfall", text: "Deal 10, +2 per Heat." },
+        { name: "Heated Blade", text: "Deal 6. Blaze 3: deal 4 more.", cost: "1 energy" },
+        { name: "Whirlwind", text: "Deal 8 to all. Blaze 3: 4 more to all.", cost: "2 energy" },
+        { name: "Hammerfall", text: "Deal 10, +2 per Heat.", cost: "2 energy" },
       ],
+      unlock: "Free",
     },
     {
+      art: "venomblade",
       name: "Venomblade",
       line: "A hundred small cuts. Each one burns.",
-      style: "Zero-cost chains, fans of Needles and Poison that scales with Heat. The fastest Heat in the game.",
-      unlock: "Defeat any Act 1 boss",
+      style: "The fastest Heat in the game: zero-cost chains, Needles and Poison.",
       hp: "58",
-      relic: "Serpent Fang",
-      relicBody: "the first time Heat reaches 4 each turn, apply 1 Poison to all",
+      relic: { name: "Serpent Fang", text: "The first time Heat reaches 4 each turn, apply 1 Poison to all." },
       cards: [
-        { name: "Fan of Needles", text: "Add 2 Needles to your hand." },
-        { name: "Venom Cascade", text: "Apply 1 Poison per Heat." },
-        { name: "Venom Surge", text: "Apply 2 Poison. Blaze 4: 7 more." },
+        { name: "Fan of Needles", text: "Add 2 Needles to your hand.", cost: "1 energy" },
+        { name: "Venom Cascade", text: "Apply 1 Poison per Heat.", cost: "1 energy" },
+        { name: "Venom Surge", text: "Apply 2 Poison. Blaze 4: 7 more.", cost: "1 energy" },
       ],
+      unlock: "Beat an act boss",
     },
     {
+      art: "ashen_seer",
       name: "Ashen Seer",
       line: "She sees the fire before it's lit.",
-      style: "Starts every turn already burning, controls the fight with Weak and Vulnerable, then takes one enormous Blaze turn.",
-      unlock: "Defeat any Act 2 boss, or reach Emberknight Mastery 5",
+      style: "Starts every turn burning, controls the fight, then takes one enormous Blaze turn.",
       hp: "66",
-      relic: "Kindling Eye",
-      relicBody: "gain 1 Heat at the start of every turn",
+      relic: { name: "Kindling Eye", text: "Gain 1 Heat at the start of every turn." },
       cards: [
-        { name: "Starfall", text: "Deal 12 to all. Blaze 5: 12 more." },
-        { name: "Pillar of Ash", text: "Deal 20. Blaze 5: 20 more." },
-        { name: "Supernova", text: "Deal 5 per Heat to all." },
+        { name: "Starfall", text: "Deal 12 to all. Blaze 5: 12 more.", cost: "3 energy" },
+        { name: "Pillar of Ash", text: "Deal 20. Blaze 5: 20 more.", cost: "2 energy" },
+        { name: "Supernova", text: "Deal 5 per Heat to all.", cost: "3 energy" },
       ],
+      unlock: "Act 2 boss or Mastery 5",
     },
   ],
-  heroLabels: { hp: "Max HP", relic: "Starter relic", signature: "Signature cards", unlock: "Unlock" },
-  actsEyebrow: "three acts",
   actsTitle: "A run is a climb",
   actsIntro:
-    "Pick your path up a branching map of fights, elites, shops, events, campfires and treasure. Every act ends at one of two bosses, and the game saves after every room.",
+    "Pick your path up a branching map of fights, elites, shops, events, campfires and treasure. Each act takes six to eight minutes and the game saves after every room.",
   acts: [
     {
-      label: "Act I",
-      name: "The Ascent",
-      body: "Rat-infested ruins and rust-lit halls. Learn the rules, then face the Ashen Warden or the Rotmother.",
+      name: "Act I: The Ascent",
       minutes: "6–8 min",
-      bosses: ["The Ashen Warden", "The Rotmother"],
+      body: "Rat-infested ruins and rust-lit halls. Learn the rules on the way up.",
+      bosses: "The Ashen Warden or the Rotmother",
       foes: ["Grave Hound", "Mire Serpent", "Bone Archer", "Cinder Ogre"],
     },
     {
-      label: "Act II",
-      name: "The Drowned Vaults",
-      body: "Flooded crypts under a teal glow, where Soaked raises every Blaze number. The Tide Matron and the Sunken Bell drown careless decks.",
+      name: "Act II: The Drowned Vaults",
       minutes: "6–8 min",
-      bosses: ["Tide Matron", "Sunken Bell"],
+      body: "Flooded crypts under a teal glow, where Soaked raises every Blaze number by one.",
+      bosses: "The Tide Matron or the Sunken Bell",
       foes: ["Drowned Rower", "Ink Wraith", "Vault Hydra", "Brine Knight"],
     },
     {
-      label: "Act III",
-      name: "The Cinder Throne",
-      body: "Magma halls where the enemies feed you fire. Manage your Heat or burn with it.",
+      name: "Act III: The Cinder Throne",
       minutes: "6–8 min",
-      bosses: ["Ashen Pyre", "Molten Herald"],
+      body: "Magma halls where the enemies feed you fire. Manage your Heat or burn with it.",
+      bosses: "The Ashen Pyre or the Molten Herald",
       foes: ["Ember Zealot", "Magma Golem", "Cinder Harpy", "Pyre Knight"],
     },
   ],
-  bossesLabel: "Act bosses",
-  foesLabel: "On the way up",
-  finalEyebrow: "the final boss",
-  finalName: "The Hollow King",
-  finalBody:
-    "440 HP on the Cinder Throne, waiting at the top of every run. Most runs end before you meet him. That's the point.",
-  progressEyebrow: "death is progress",
-  progressTitle: "Fall, and the next climb starts stronger",
+  bossesLabel: "Boss",
+  foesLabel: "On the way",
+  king: {
+    name: "The Hollow King",
+    hp: "440 HP",
+    body: "He waits at the top of every run. Most runs end before you meet him. That is the point.",
+  },
+  progressTitle: "Fall, then climb stronger",
   progressBody:
-    "Every fight you clear pays shards and hero Mastery, whether the run ends in victory or on the floor of Act II. Nothing is wasted.",
-  progress: [
-    { n: "20", title: "Sanctum upgrades", body: "Permanent unlocks bought with shards: relics, card tiers, a second pick." },
-    { n: "1–10", title: "Hero Mastery", body: "Each hero levels up on their own and earns new cards, card backs and skins." },
-    { n: "1–15", title: "Ascension", body: "Per hero, for when the climb needs to fight back." },
-    { n: "Daily", title: "Daily Run & Weekly Challenge", body: "Seeded runs with modifiers, plus daily quests and a 7-day calendar." },
+    "Every fight you clear pays shards and hero Mastery, whether the run ends on the throne or on the floor of Act II. No run is wasted.",
+  progressGroups: [
+    {
+      name: "Between runs",
+      rows: [
+        { img: "misc/shopkeeper.webp", name: "Sanctum upgrades, bought with shards", value: "20" },
+        { img: "heroes/emberknight-bust.webp", name: "Hero Mastery: new cards, card backs, skins", value: "Levels 1–10" },
+        { img: "bosses/b03.webp", name: "Ascension, for when the climb should fight back", value: "15 per hero" },
+        { img: "misc/cardback-ember.webp", name: "Daily Run with seeded modifiers", value: "Every day" },
+        { img: "misc/cardback-founder.webp", name: "Weekly Challenge", value: "Every week" },
+        { img: "misc/phoenix-brew.webp", name: "Daily quests and a 7-day calendar", value: "Daily" },
+        { img: "heroes/ashen_seer-bust.webp", name: "Achievements", value: "40" },
+      ],
+    },
+    {
+      name: "In every run",
+      rows: [
+        { img: "art/hammerfall.webp", name: "Cards across three heroes and a neutral pool", value: "120+" },
+        { img: "enemies/e10.webp", name: "Enemies, each showing its next move in numbers", value: "30" },
+        { img: "bosses/b01.webp", name: "Act bosses, then the Hollow King", value: "7" },
+        { img: "misc/seers-ink.webp", name: "Relics", value: "42" },
+        { img: "misc/fire-flask.webp", name: "Potions", value: "12" },
+        { img: "misc/venom-phial.webp", name: "Events with real trade-offs", value: "18" },
+      ],
+    },
   ],
-  counts: [
-    { n: "120+", label: "cards" },
-    { n: "30", label: "enemies" },
-    { n: "7", label: "bosses" },
-    { n: "42", label: "relics" },
-    { n: "12", label: "potions" },
-    { n: "18", label: "events" },
-    { n: "40", label: "achievements" },
-  ],
-  screensEyebrow: "screens",
-  screensTitle: "From the table",
-  screenCaptions: [
-    "Heat 9. The hand catches fire.",
-    "You fell. You still earned shards.",
-    "Choose your hero",
-    "Act II, the Drowned Vaults",
-    "In-run shop: cards, relics, potions",
-    "The Hollow King",
-    "Boss down: pick a relic and a rare",
-    "The hub between runs",
-  ],
-  pactEyebrow: "fair play",
-  pactTitle: "The pact",
-  pact: [
-    { title: "No energy timers", body: "The only energy is the three you spend each turn. Play one run a week or ten in a night." },
-    { title: "No gacha, no card packs", body: "No loot boxes and nothing random for money. Every card is earned by playing." },
-    { title: "Ads stay out of the fight", body: "A short ad may play between acts or runs, never in your first two runs, never in a fight, on the map or during a decision." },
-    { title: "Rewards you choose", body: "Optional ads revive once per run, reroll a reward, double shards or open a daily chest. Always labelled, never required." },
-    { title: "Offline, no account", body: "The whole game works offline and saves on your device after every room." },
-  ],
-  shopTitle: "What's for sale",
-  shop: [
-    { name: "Founder's Bundle", price: "$7.99", body: "No forced ads, both heroes, the Founder card back and 300 shards." },
-    { name: "Remove forced ads", price: "$4.99", body: "Optional reward ads stay, because they only play when you tap them." },
-    { name: "Hero unlock", price: "$2.99", body: "Venomblade or Ashen Seer now, if you'd rather not wait." },
-    { name: "Card backs & boards", price: "$1.99", body: "Cosmetic only." },
-  ],
-  shopNote: "One-time purchases, no subscriptions. US prices; your store shows local pricing.",
-  faqEyebrow: "questions",
-  faqTitle: "Fair questions, straight answers",
+  galleryTitle: "From the table",
+  galleryCount: "8 screens, 26 seconds of play",
+  videoLabel: "Ember Deck gameplay, 26 seconds, no sound",
+  free: {
+    name: "The whole game",
+    for: "For everyone: every act, every hero, the Daily Run.",
+    body: "No energy timers and no gacha. No card packs, no loot boxes, nothing random for money. A short ad may play between acts or runs, never in your first two runs and never in a fight, on the map or during a decision. Optional ads revive you once a run, reroll a reward, double shards or open a daily chest; they are always labelled and never required. The whole game plays offline with no account.",
+    price: "Free",
+    unit: "to play",
+    cta: "Play a turn",
+  },
+  bundle: {
+    name: "Founder's Bundle",
+    for: "For players who want it all now.",
+    body: "No forced ads, both locked heroes, the Founder card back and 300 shards. Also sold on their own: Remove forced ads ($4.99), a hero unlock ($2.99), card backs and boards ($1.99). One-time purchases, no subscriptions; US prices, your store shows local pricing. Nothing sold makes a run easier to win.",
+    price: "$7.99",
+    unit: "once",
+    cta: "Purchase help",
+  },
+  faqTitle: "Straight answers",
   faqs: [
     {
       q: "Is Ember Deck free?",
@@ -975,19 +1006,26 @@ const landingEn: EmberDeckLanding = {
     },
     {
       q: "How long is a run?",
-      a: "About six to eight minutes an act, and three acts plus the final boss for a full run. The game autosaves after every room, so close it mid-fight and pick up exactly where you left off.",
+      a: "About six to eight minutes an act, and three acts plus the final boss for a full run. The game autosaves after every room, so you can close it mid-fight and pick up exactly where you left off.",
     },
     {
       q: "Do I need an internet connection or an account?",
-      a: "Neither. Ember Deck plays fully offline and has no account. Leaderboards and achievements through Game Center are optional.",
+      a: "Neither. Ember Deck plays fully offline and has no account. Leaderboards and achievements through Game Center or Google Play Games are optional.",
     },
-    // Pre-release only; drops out once RELEASED has a platform.
+    {
+      q: "When do ads appear?",
+      a: "Only between acts or runs, never during a fight, and never in your first two runs. Reward ads play only when you tap them.",
+    },
+    {
+      q: "Where is my progress saved?",
+      a: "On your device. There is no cloud save, so deleting the app deletes your progress. Purchases can be restored from Settings on a new phone.",
+    },
     ...(anyReleased
       ? []
       : [
           {
-            q: "When is it out?",
-            a: "Soon. Version 2.0 is headed to the App Store first, with Android after. This page will link straight to the store on launch day.",
+            q: "Where can I get it?",
+            a: "Ember Deck 2.0 is launching on the App Store and Google Play. This page links straight to each store as soon as its listing is live.",
           },
         ]),
     {
@@ -996,65 +1034,63 @@ const landingEn: EmberDeckLanding = {
     },
   ],
   supportLink: "More help on the support page",
-  pressEyebrow: "press kit",
   pressTitle: "For press and creators",
-  pressBody:
-    "Use these in coverage, videos and streams. For codes, questions or higher-resolution art, email lei@appfactory.sg.",
+  pressBody: [
+    "Ember Deck is made by App Factory in Singapore. Use anything on this page in coverage, videos and streams: the icon, the logo, the key art and the Hollow King are below as files.",
+    "For codes, questions or higher-resolution art, write to lei@appfactory.sg. A real person reads every message, usually within two days.",
+  ],
   pressFacts: [
     { label: "Developer", value: "App Factory (Lei Cao), Singapore" },
-    { label: "Genre", value: "Roguelite deckbuilder" },
-    { label: "Platforms", value: "iPhone first, then Android" },
+    { label: "Genre", value: "Roguelike deckbuilder" },
+    { label: "Platforms", value: "iPhone and Android" },
     { label: "Price", value: "Free, optional one-time purchases" },
     { label: "Languages", value: "English, 简体中文" },
-    { label: "Release", value: anyReleased ? "Out now" : "Coming soon" },
+    { label: "Release", value: anyReleased ? "Out now" : "Launching now (version 2.0)" },
   ],
   pressItems: [
-    { file: `${PRESS}/ember-deck-icon-1024.png`, label: "App icon", meta: "PNG · 1024 × 1024" },
-    { file: `${PRESS}/ember-deck-logo.png`, label: "Logo", meta: "PNG · transparent" },
-    { file: `${PRESS}/ember-deck-key-art.jpg`, label: "Key art", meta: "JPG · 1080 × 1920" },
-    { file: `${PRESS}/ember-deck-hollow-king.png`, label: "The Hollow King", meta: "PNG · transparent" },
-    { file: `${PRESS}/ember-deck-social-card.jpg`, label: "Social card", meta: "JPG · 1200 × 630" },
+    { file: `${PRESS}/ember-deck-icon-1024.png`, label: "App icon", meta: "PNG, 1024 × 1024" },
+    { file: `${PRESS}/ember-deck-logo.png`, label: "Logo", meta: "PNG, transparent" },
+    { file: `${PRESS}/ember-deck-key-art.jpg`, label: "Key art", meta: "JPG, 1080 × 1920" },
+    { file: `${PRESS}/ember-deck-hollow-king.png`, label: "The Hollow King", meta: "PNG, transparent" },
+    { file: `${PRESS}/ember-deck-social-card.jpg`, label: "Social card", meta: "JPG, 1200 × 630" },
   ],
   pressZip: "Download everything (.zip)",
-  creditsTitle: "Music & sound",
-  creditsMusicLabel: "Music",
-  creditsMusicBy: "もみじば (Momijiba) — MOMIZizm MUSiC",
-  creditsMusicNote: "Used with credit under the composer's licence.",
-  creditsSfxLabel: "Sound effects",
-  creditsSfxBody: "Sound effects: original, made for Ember Deck.",
-  creditsMusicUrl: "https://music.storyinvention.com/en/",
-  closingTitle: anyReleased ? "One more run. Always one more run." : "One more run is coming.",
-  closingBody: anyReleased
-    ? "Free to play, fully offline, no energy timers. Pick a hero and start climbing."
-    : "Ember Deck 2.0 is in final testing. Bookmark this page: it will link straight to the store on launch day.",
+  creditsMusic: "Music by",
+  creditsMusicBy: "もみじば (Momijiba), MOMIZizm MUSiC",
+  creditsSfx: "Sound effects are original, made for Ember Deck.",
+  creditsMusicUrl: MUSIC_URL,
+  signoff: "App Factory, Singapore",
+  closing: "One more run. Always one more run.",
 };
 
 const landingZhCn: EmberDeckLanding = {
-  kicker: "卡牌肉鸽 · iPhone 与 Android",
-  heroLines: ["每一张牌，", "都在", "为火添柴。"],
-  heroSub:
-    "手绘暗黑奇幻世界里，五分钟一局的地牢闯关。每打出一张牌，热度就升高一格。排好出牌顺序，点燃烈焰；就算倒下，下一局也会更强。",
-  priceNote: "免费游玩。没有体力计时，没有抽卡，完全离线。",
-  heroStats: [
-    { n: "3", label: "位英雄" },
-    { n: "3", label: "幕冒险" },
-    { n: "120+", label: "张卡牌" },
-    { n: "6–8", label: "分钟一幕" },
+  nav: {
+    turn: "试打一回合",
+    heroes: "英雄",
+    acts: "三幕冒险",
+    progress: "局与局之间",
+    faq: "常见问题",
+    press: "媒体资料",
+    write: "写信给我们",
+    pages: "帮助与条款",
+  },
+  hero: {
+    line: "每一张牌，都在为火添柴。",
+    sub: "暗黑奇幻手绘世界里，五分钟一局的肉鸽卡牌构筑。每打出一张牌，热度就涨一分；出牌顺序对了，烈焰牌便轰然爆发。",
+    cta: "试打一回合",
+    price: "免费游玩。单机离线，没有体力，没有抽卡。",
+  },
+  turnTitle: "一个回合怎样烧起来",
+  rules: [
+    { title: "每打出一张牌，热度 +1。", body: "热度一张一张往上涨，到你的下个回合开始时归零。" },
+    { title: "烈焰牌，在等它的数字。", body: "标着「烈焰 3」的牌，要等热度达到 3 才会额外爆发。" },
+    { title: "所以，顺序就是技术。", body: "先出便宜的牌攒热度，最后再打出终结技。这张牌桌上的炭烬巨魔，只有完美的一回合才能打倒。" },
   ],
-  videoLabel: "《余烬牌组》实机画面，26 秒，无声",
-  heatEyebrow: "核心玩法：热度",
-  heatTitle: "出牌顺序是技术，热度是奖赏。",
-  heatIntro: "每一个回合都建立在同一条规则上，三秒就能看懂。不如直接试试：下面这只炭烬巨魔，只有完美的一回合才能打倒。",
-  heatRules: [
-    { k: "+1", body: "每打出一张牌，热度 +1。在你的下个回合开始时归零。" },
-    { k: "烈焰", body: "热度达到烈焰牌上的数值后再打出，就会额外触发烈焰效果。" },
-    { k: "顺序", body: "先出便宜的牌攒热度，最后再打出终结技。" },
-  ],
-  demo: {
+  turn: {
     enemy: "炭烬巨魔",
     heat: "热度",
     energy: "能量",
-    hint: "点按卡牌即可打出。你有 3 点能量——顺序很重要。",
+    hint: "点按卡牌即可打出。你有 3 点能量，顺序很重要。",
     blaze: "烈焰！",
     dmgSuffix: " 伤害",
     playLabel: "打出{name}，消耗 {cost}，现在造成 {dmg} 点伤害",
@@ -1063,6 +1099,7 @@ const landingZhCn: EmberDeckLanding = {
     perfect: "完美回合：{dmg} 点伤害，巨魔倒下了。",
     short: "{dmg} 点伤害，巨魔还站着。最佳顺序能打出 {best} 点。",
     bestOrder: "最佳顺序：",
+    label: "可以试玩的《余烬牌组》回合：对战炭烬巨魔",
     cards: {
       hammer: { name: "重锤落", text: "造成 10 点伤害，每点热度 +2。" },
       slice: { name: "切割", text: "造成 4 点伤害。烈焰 2：再造成 4 点。" },
@@ -1071,139 +1108,135 @@ const landingZhCn: EmberDeckLanding = {
       blade: { name: "炽热之刃", text: "造成 6 点伤害。烈焰 3：再造成 4 点。" },
     },
   },
-  heroesEyebrow: "三位英雄",
   heroesTitle: "三种燃烧的方式",
   heroesIntro:
-    "三位英雄遵循同一套热度规则，用法却各不相同。余烬骑士第一局即可使用，另外两位靠游玩解锁，也可以用一次性内购提前解锁。",
+    "三位英雄遵循同一套热度规则，用法却各不相同。余烬骑士第一局即可使用，另外两位靠游玩解锁。",
+  heroLabels: { hp: "生命", relic: "初始遗物", unlock: "解锁" },
   heroes: [
     {
+      art: "emberknight",
       name: "余烬骑士",
-      line: "每一击都在淬炼刀锋，热度化为钢铁。",
-      style: "一堵会还手的墙。热度化为格挡与力量，再用稳定的烈焰 2–3 牌收尾。",
-      unlock: "第一局即可使用",
+      line: "每一击都在淬炼刀锋。",
+      style: "攻守一体的铁壁：热度化为格挡与力量。",
       hp: "70",
-      relic: "锻炉烙印",
-      relicBody: "每回合热度首次达到 3 时，获得 2 点格挡",
+      relic: { name: "锻炉烙印", text: "每回合热度首次达到 3 时，获得 2 点格挡。" },
       cards: [
-        { name: "炽热之刃", text: "造成 6 点伤害。烈焰 3：再造成 4 点。" },
-        { name: "旋风斩", text: "对所有敌人造成 8 点伤害。烈焰 3：再造成 4 点。" },
-        { name: "重锤落", text: "造成 10 点伤害，每点热度 +2。" },
+        { name: "炽热之刃", text: "造成 6 点伤害。烈焰 3：再造成 4 点。", cost: "1 能量" },
+        { name: "旋风斩", text: "对所有敌人造成 8 点伤害。烈焰 3：再造成 4 点。", cost: "2 能量" },
+        { name: "重锤落", text: "造成 10 点伤害，每点热度 +2。", cost: "2 能量" },
       ],
+      unlock: "免费",
     },
     {
+      art: "venomblade",
       name: "毒刃客",
       line: "千百道细小的伤口，每一道都在灼烧。",
-      style: "零费连击、成把的飞针，以及随热度增长的中毒。全游戏升温最快的英雄。",
-      unlock: "击败任意第一幕首领",
+      style: "全游戏升温最快：零费连击、漫天飞针与层层中毒。",
       hp: "58",
-      relic: "蛇牙",
-      relicBody: "每回合热度首次达到 4 时，对所有敌人施加 1 层中毒",
+      relic: { name: "蛇牙", text: "每回合热度首次达到 4 时，对所有敌人施加 1 层中毒。" },
       cards: [
-        { name: "飞针扇", text: "将 2 张飞针加入手牌。" },
-        { name: "毒液倾泻", text: "每点热度施加 1 层中毒。" },
-        { name: "毒液涌动", text: "施加 2 层中毒。烈焰 4：再施加 7 层。" },
+        { name: "飞针扇", text: "将 2 张飞针加入手牌。", cost: "1 能量" },
+        { name: "毒液倾泻", text: "每点热度施加 1 层中毒。", cost: "1 能量" },
+        { name: "毒液涌动", text: "施加 2 层中毒。烈焰 4：再施加 7 层。", cost: "1 能量" },
       ],
+      unlock: "击败一位幕首领",
     },
     {
+      art: "ashen_seer",
       name: "灰烬先知",
       line: "火焰未起，她已先见。",
-      style: "每回合一开始就带着热度，用虚弱和易伤控场，然后打出一个惊天动地的烈焰回合。",
-      unlock: "击败任意第二幕首领，或余烬骑士精通达到 5 级",
+      style: "每回合开局就带着热度，控住战局，再打出一个惊天动地的烈焰回合。",
       hp: "66",
-      relic: "引火之眼",
-      relicBody: "每回合开始时获得 1 点热度",
+      relic: { name: "引火之眼", text: "每回合开始时获得 1 点热度。" },
       cards: [
-        { name: "星陨", text: "对所有敌人造成 12 点伤害。烈焰 5：再造成 12 点。" },
-        { name: "灰烬之柱", text: "造成 20 点伤害。烈焰 5：再造成 20 点。" },
-        { name: "超新星", text: "每点热度对所有敌人造成 5 点伤害。" },
+        { name: "星陨", text: "对所有敌人造成 12 点伤害。烈焰 5：再造成 12 点。", cost: "3 能量" },
+        { name: "灰烬之柱", text: "造成 20 点伤害。烈焰 5：再造成 20 点。", cost: "2 能量" },
+        { name: "超新星", text: "每点热度对所有敌人造成 5 点伤害。", cost: "3 能量" },
       ],
+      unlock: "第二幕首领或专精 5 级",
     },
   ],
-  heroLabels: { hp: "生命上限", relic: "初始遗物", signature: "招牌卡牌", unlock: "解锁" },
-  actsEyebrow: "三幕冒险",
   actsTitle: "每一局都是一次攀登",
   actsIntro:
-    "在分支地图上选择你的路线：普通战斗、精英、商店、事件、营火与宝藏。每一幕的尽头都是两位首领之一，每过一个房间都会自动存档。",
+    "在分支地图上选择路线：普通战斗、精英、商店、事件、营火与宝藏。每一幕约 6～8 分钟，每个房间结束都会自动存档。",
   acts: [
     {
-      label: "第一幕",
-      name: "攀登之路",
-      body: "鼠群出没的废墟与锈光笼罩的大厅。先学会规则，再去挑战灰烬守望者或腐化之母。",
-      minutes: "6–8 分钟",
-      bosses: ["灰烬守望者", "腐化之母"],
+      name: "第一幕：攀登之路",
+      minutes: "6～8 分钟",
+      body: "鼠群出没的废墟与锈光笼罩的大厅。一边往上爬，一边学会规则。",
+      bosses: "灰烬守望者或腐化之母",
       foes: ["墓穴猎犬", "泥沼巨蛇", "骸骨弓手", "炭烬巨魔"],
     },
     {
-      label: "第二幕",
-      name: "溺亡地窖",
-      body: "青光幽幽的水下墓穴，浸湿会让所有烈焰门槛 +1。潮汐主母与沉没之钟会把粗心的卡组拖进水底。",
-      minutes: "6–8 分钟",
-      bosses: ["潮汐主母", "沉没之钟"],
+      name: "第二幕：溺亡地窖",
+      minutes: "6～8 分钟",
+      body: "青光幽幽的水下墓穴，浸湿会让每一个烈焰门槛 +1。",
+      bosses: "潮汐主母或沉没之钟",
       foes: ["溺亡桨手", "墨影幽魂", "地窖九头蛇", "盐水骑士"],
     },
     {
-      label: "第三幕",
-      name: "余烬王座",
+      name: "第三幕：余烬王座",
+      minutes: "6～8 分钟",
       body: "熔岩大厅里，敌人会往你手里塞火。控制好热度，否则引火烧身。",
-      minutes: "6–8 分钟",
-      bosses: ["灰烬火葬堆", "熔岩先驱"],
+      bosses: "灰烬火葬堆或熔岩先驱",
       foes: ["余烬狂信徒", "岩浆魔像", "余烬鸟妖", "火葬骑士"],
     },
   ],
-  bossesLabel: "本幕首领",
+  bossesLabel: "首领",
   foesLabel: "沿途敌人",
-  finalEyebrow: "最终首领",
-  finalName: "空洞之王",
-  finalBody: "440 点生命，端坐余烬王座，在每一局的顶端等着你。大多数时候，你还没见到他就倒下了——这正是乐趣所在。",
-  progressEyebrow: "每次倒下都是进步",
-  progressTitle: "倒下了，下一次攀登会更强",
-  progressBody: "每通过一场战斗都会获得碎晶和英雄精通经验，无论这一局是胜利，还是倒在第二幕。没有一局是白打的。",
-  progress: [
-    { n: "20", title: "项圣所强化", body: "用碎晶换取永久解锁：遗物、卡牌层级、二次挑选。" },
-    { n: "1–10", title: "英雄精通", body: "每位英雄各自升级，解锁新卡牌、卡背和皮肤。" },
-    { n: "1–15", title: "晋升难度", body: "每位英雄独立计算，觉得不够刺激时再往上爬。" },
-    { n: "每日", title: "每日挑战与每周挑战", body: "带修正规则的固定种子关卡，外加每日任务和七日签到。" },
+  king: {
+    name: "空洞之王",
+    hp: "440 生命",
+    body: "他在每一局的顶端等你。大多数时候，你还没见到他就倒下了。这正是乐趣所在。",
+  },
+  progressTitle: "倒下了，再爬时更强",
+  progressBody:
+    "每打赢一场战斗都会获得碎晶和英雄专精经验，无论这一局是登上王座，还是倒在第二幕。没有一局是白打的。",
+  progressGroups: [
+    {
+      name: "局与局之间",
+      rows: [
+        { img: "misc/shopkeeper.webp", name: "圣所强化，用碎晶解锁", value: "20 项" },
+        { img: "heroes/emberknight-bust.webp", name: "英雄专精：新卡牌、卡背与皮肤", value: "1～10 级" },
+        { img: "bosses/b03.webp", name: "晋升难度，给想要更大挑战的你", value: "每位英雄 15 级" },
+        { img: "misc/cardback-ember.webp", name: "每日挑战，固定种子与随机词缀", value: "每天" },
+        { img: "misc/cardback-founder.webp", name: "每周挑战", value: "每周" },
+        { img: "misc/phoenix-brew.webp", name: "每日任务与 7 日签到", value: "每天" },
+        { img: "heroes/ashen_seer-bust.webp", name: "成就", value: "40 个" },
+      ],
+    },
+    {
+      name: "每一局里",
+      rows: [
+        { img: "art/hammerfall.webp", name: "卡牌：三位英雄加中立卡池", value: "120 余张" },
+        { img: "enemies/e10.webp", name: "敌人，下一步行动都用数字亮出", value: "30 种" },
+        { img: "bosses/b01.webp", name: "幕首领，外加空洞之王", value: "7 位" },
+        { img: "misc/seers-ink.webp", name: "遗物", value: "42 件" },
+        { img: "misc/fire-flask.webp", name: "药水", value: "12 种" },
+        { img: "misc/venom-phial.webp", name: "有真实取舍的事件", value: "18 个" },
+      ],
+    },
   ],
-  counts: [
-    { n: "120+", label: "张卡牌" },
-    { n: "30", label: "种敌人" },
-    { n: "7", label: "位首领" },
-    { n: "42", label: "件遗物" },
-    { n: "12", label: "种药水" },
-    { n: "18", label: "个事件" },
-    { n: "40", label: "项成就" },
-  ],
-  screensEyebrow: "截图",
-  screensTitle: "牌桌实况",
-  screenCaptions: [
-    "热度 9，整手牌都烧起来了",
-    "倒下了，碎晶照样到手",
-    "选择你的英雄",
-    "第二幕：溺亡地窖",
-    "局内商店：卡牌、遗物、药水",
-    "空洞之王",
-    "首领倒下：挑选遗物和稀有卡",
-    "局与局之间的营地",
-  ],
-  pactEyebrow: "公平游戏",
-  pactTitle: "我们的约定",
-  pact: [
-    { title: "没有体力计时", body: "唯一的能量是你每回合花掉的那三点。一周打一局，或一晚打十局，都随你。" },
-    { title: "没有抽卡，没有卡包", body: "没有宝箱，也不卖任何随机奖励。每一张卡都是打出来的。" },
-    { title: "广告不进战斗", body: "短广告只会在幕与幕、局与局之间出现；前两局完全没有，战斗、地图和做决定时也绝不打扰。" },
-    { title: "奖励由你决定", body: "可选的看广告奖励：每局复活一次、重抽奖励、碎晶翻倍、打开每日宝箱。都有清楚标注，从不强制。" },
-    { title: "离线可玩，无需账号", body: "整个游戏都能离线运行，每过一个房间就在本机自动存档。" },
-  ],
-  shopTitle: "出售的内容",
-  shop: [
-    { name: "创始者礼包", price: "$7.99", body: "移除强制广告、解锁两位英雄、创始者卡背和 300 碎晶。" },
-    { name: "移除强制广告", price: "$4.99", body: "可选的奖励广告仍然保留，因为只有你主动点按时才会播放。" },
-    { name: "英雄解锁", price: "$2.99", body: "不想等的话，立即解锁毒刃客或灰烬先知。" },
-    { name: "卡背与牌桌", price: "$1.99", body: "纯外观。" },
-  ],
-  shopNote: "全部为一次性购买，没有订阅。以上为美区价格，实际以你所在商店显示的本地价格为准。",
-  faqEyebrow: "常见问题",
-  faqTitle: "坦率的问题，直接的回答",
+  galleryTitle: "牌桌实况",
+  galleryCount: "8 张截图，26 秒实机画面",
+  videoLabel: "《余烬牌组》实机画面，26 秒，无声",
+  free: {
+    name: "完整游戏",
+    for: "给每一个人：全部三幕、每一位英雄、每日挑战。",
+    body: "没有体力，没有抽卡。没有卡包，没有开箱，不卖任何随机奖励。短广告只会出现在幕与幕、局与局之间，前两局完全没有，战斗、地图和做决定时绝不打扰。可选的激励广告能让你每局复活一次、重抽奖励、碎晶翻倍或打开每日宝箱，都有明确标注，从不强制。整款游戏离线可玩，无需账号。",
+    price: "免费",
+    unit: "游玩",
+    cta: "试打一回合",
+  },
+  bundle: {
+    name: "创始者礼包",
+    for: "给想一次拥有全部的玩家。",
+    body: "移除强制广告、解锁两位英雄、创始者卡背和 300 碎晶。也可单独购买：移除强制广告（$4.99）、英雄解锁（$2.99）、卡背与牌桌（$1.99）。全部为一次性购买，没有订阅；以上为美区价格，实际以商店显示的本地价格为准。付费内容不会让你更容易通关。",
+    price: "$7.99",
+    unit: "一次性",
+    cta: "购买相关帮助",
+  },
+  faqTitle: "直接的回答",
   faqs: [
     {
       q: "《余烬牌组》免费吗？",
@@ -1215,19 +1248,26 @@ const landingZhCn: EmberDeckLanding = {
     },
     {
       q: "一局要玩多久？",
-      a: "每一幕大约六到八分钟，一整局是三幕加最终首领。每过一个房间都会自动存档，战斗中途关掉游戏，下次也能从原处继续。",
+      a: "每一幕大约六到八分钟，一整局是三幕加最终首领。每个房间结束都会自动存档，战斗中途关掉游戏，下次也能从原处继续。",
     },
     {
       q: "需要联网或注册账号吗？",
-      a: "都不需要。《余烬牌组》完全离线可玩，也没有账号系统。Game Center 的排行榜和成就是可选的。",
+      a: "都不需要。《余烬牌组》完全离线可玩，也没有账号系统。Game Center 或 Google Play 游戏的排行榜和成就是可选的。",
     },
-    // Pre-release only; drops out once RELEASED has a platform.
+    {
+      q: "广告什么时候出现？",
+      a: "只在幕与幕、局与局之间出现，绝不会在战斗中打断你，前两局也完全没有。激励广告只有你主动点按才会播放。",
+    },
+    {
+      q: "进度保存在哪里？",
+      a: "保存在你的设备上，没有云端存档，删除应用会同时删除进度。换新手机后，可以在设置中恢复购买。",
+    },
     ...(anyReleased
       ? []
       : [
           {
-            q: "什么时候上线？",
-            a: "很快。2.0 版本会先登陆 App Store，随后是 Android。上线当天，本页面会直接链接到应用商店。",
+            q: "在哪里下载？",
+            a: "《余烬牌组》2.0 正在上架 App Store 和 Google Play。商店页面一上线，本页就会直接链接过去。",
           },
         ]),
     {
@@ -1236,73 +1276,72 @@ const landingZhCn: EmberDeckLanding = {
     },
   ],
   supportLink: "更多帮助请见支持页面",
-  pressEyebrow: "媒体资料",
   pressTitle: "给媒体与创作者",
-  pressBody:
-    "欢迎在报道、视频和直播中使用以下素材。如需兑换码、有任何问题或需要更高分辨率的美术，请发邮件至 lei@appfactory.sg。",
+  pressBody: [
+    "《余烬牌组》由新加坡的 App Factory 制作。欢迎在报道、视频和直播中使用本页的任何内容：应用图标、标志、主视觉和空洞之王都在下面，可以直接下载。",
+    "如需兑换码、有任何问题或需要更高分辨率的美术，请写信至 lei@appfactory.sg。每一封都有真人阅读，通常两天内回复。",
+  ],
   pressFacts: [
     { label: "开发者", value: "App Factory（Lei Cao），新加坡" },
-    { label: "类型", value: "卡牌肉鸽" },
-    { label: "平台", value: "先登陆 iPhone，随后 Android" },
+    { label: "类型", value: "肉鸽卡牌构筑" },
+    { label: "平台", value: "iPhone 与 Android" },
     { label: "价格", value: "免费，含可选一次性内购" },
     { label: "语言", value: "English、简体中文" },
-    { label: "上线时间", value: anyReleased ? "已上线" : "即将推出" },
+    { label: "上线", value: anyReleased ? "已上线" : "正在上架（2.0 版）" },
   ],
   pressItems: [
-    { file: `${PRESS}/ember-deck-icon-1024.png`, label: "应用图标", meta: "PNG · 1024 × 1024" },
-    { file: `${PRESS}/ember-deck-logo.png`, label: "标志", meta: "PNG · 透明背景" },
-    { file: `${PRESS}/ember-deck-key-art.jpg`, label: "主视觉", meta: "JPG · 1080 × 1920" },
-    { file: `${PRESS}/ember-deck-hollow-king.png`, label: "空洞之王", meta: "PNG · 透明背景" },
-    { file: `${PRESS}/ember-deck-social-card.jpg`, label: "社交分享图", meta: "JPG · 1200 × 630" },
+    { file: `${PRESS}/ember-deck-icon-1024.png`, label: "应用图标", meta: "PNG，1024 × 1024" },
+    { file: `${PRESS}/ember-deck-logo.png`, label: "标志", meta: "PNG，透明背景" },
+    { file: `${PRESS}/ember-deck-key-art.jpg`, label: "主视觉", meta: "JPG，1080 × 1920" },
+    { file: `${PRESS}/ember-deck-hollow-king.png`, label: "空洞之王", meta: "PNG，透明背景" },
+    { file: `${PRESS}/ember-deck-social-card.jpg`, label: "社交分享图", meta: "JPG，1200 × 630" },
   ],
   pressZip: "打包下载全部素材（.zip）",
-  creditsTitle: "音乐与音效",
-  creditsMusicLabel: "音乐",
-  creditsMusicBy: "もみじば (Momijiba) — MOMIZizm MUSiC",
-  creditsMusicNote: "依据作曲者的授权条款，注明出处使用。",
-  creditsSfxLabel: "音效",
-  creditsSfxBody: "音效：为《余烬牌组》原创制作。",
-  creditsMusicUrl: "https://music.storyinvention.com/en/",
-  closingTitle: anyReleased ? "还想再来一局。永远还想再来一局。" : "下一局，就快来了。",
-  closingBody: anyReleased
-    ? "免费游玩，完全离线，没有体力计时。选一位英雄，开始攀登吧。"
-    : "《余烬牌组》2.0 正在进行最后的测试。把本页加入书签吧，上线当天这里会直接链接到应用商店。",
+  creditsMusic: "音乐：",
+  creditsMusicBy: "もみじば (Momijiba)，MOMIZizm MUSiC",
+  creditsSfx: "音效为《余烬牌组》原创制作。",
+  creditsMusicUrl: MUSIC_URL,
+  signoff: "App Factory，新加坡",
+  closing: "再来一局。永远想再来一局。",
 };
 
 const landingZhTw: EmberDeckLanding = {
-  kicker: "Roguelite 牌組構築 · iPhone 與 Android",
-  heroLines: ["每一張牌，", "都在", "為火添柴。"],
-  heroSub:
-    "手繪暗黑奇幻世界裡，五分鐘一局的地牢闖關。每打出一張牌，熱度就升高一格。排好出牌順序，點燃烈焰；就算倒下，下一局也會更強。",
-  priceNote: "免費遊玩。沒有體力計時，沒有轉蛋，完全離線。",
-  heroStats: [
-    { n: "3", label: "位英雄" },
-    { n: "3", label: "幕冒險" },
-    { n: "120+", label: "張卡牌" },
-    { n: "6–8", label: "分鐘一幕" },
+  nav: {
+    turn: "試打一回合",
+    heroes: "英雄",
+    acts: "三幕冒險",
+    progress: "局與局之間",
+    faq: "常見問題",
+    press: "媒體資料",
+    write: "寫信給我們",
+    pages: "說明與條款",
+  },
+  hero: {
+    line: "每一張牌，都在為火添柴。",
+    sub: "暗黑奇幻手繪世界裡，五分鐘一局的 Roguelike 牌組構築。每打出一張牌，熱度就漲一格；出牌順序對了，烈焰牌便轟然爆發。",
+    cta: "試打一回合",
+    price: "免費遊玩。單機離線，沒有體力，沒有轉蛋。",
+  },
+  turnTitle: "一個回合怎麼燒起來",
+  rules: [
+    { title: "每打出一張牌，熱度 +1。", body: "熱度一張一張往上漲，到你的下個回合開始時歸零。" },
+    { title: "烈焰牌，在等它的數字。", body: "標著「烈焰 3」的牌，要等熱度到 3 才會額外爆發。" },
+    { title: "所以，順序就是技術。", body: "先出便宜的牌累積熱度，最後再打出終結技。這張牌桌上的炭燼巨魔，只有完美的一回合才打得倒。" },
   ],
-  videoLabel: "《餘燼牌組》實機畫面，26 秒，無聲",
-  heatEyebrow: "核心玩法：熱度",
-  heatTitle: "出牌順序是技術，熱度是獎賞。",
-  heatIntro: "每一個回合都建立在同一條規則上，三秒就能看懂。不如直接試試：下面這隻炭燼巨魔，只有完美的一回合才能打倒。",
-  heatRules: [
-    { k: "+1", body: "每打出一張牌，熱度 +1。在你的下個回合開始時歸零。" },
-    { k: "烈焰", body: "熱度達到烈焰牌上的數值後再打出，就會額外觸發烈焰效果。" },
-    { k: "順序", body: "先出便宜的牌攢熱度，最後再打出終結技。" },
-  ],
-  demo: {
+  turn: {
     enemy: "炭燼巨魔",
     heat: "熱度",
     energy: "能量",
-    hint: "點按卡牌即可打出。你有 3 點能量——順序很重要。",
+    hint: "點一下卡牌就能打出。你有 3 點能量，順序很重要。",
     blaze: "烈焰！",
     dmgSuffix: " 傷害",
     playLabel: "打出{name}，消耗 {cost}，現在造成 {dmg} 點傷害",
-    reset: "重置回合",
+    reset: "重來這回合",
     again: "再打一次",
     perfect: "完美回合：{dmg} 點傷害，巨魔倒下了。",
     short: "{dmg} 點傷害，巨魔還站著。最佳順序能打出 {best} 點。",
     bestOrder: "最佳順序：",
+    label: "可以試玩的《餘燼牌組》回合：對戰炭燼巨魔",
     cards: {
       hammer: { name: "重錘落", text: "造成 10 點傷害，每點熱度 +2。" },
       slice: { name: "切割", text: "造成 4 點傷害。烈焰 2：再造成 4 點。" },
@@ -1311,139 +1350,135 @@ const landingZhTw: EmberDeckLanding = {
       blade: { name: "熾熱之刃", text: "造成 6 點傷害。烈焰 3：再造成 4 點。" },
     },
   },
-  heroesEyebrow: "三位英雄",
   heroesTitle: "三種燃燒的方式",
   heroesIntro:
-    "三位英雄遵循同一套熱度規則，用法卻各不相同。餘燼騎士第一局即可使用，另外兩位靠遊玩解鎖，也可以用一次性內購提前解鎖。",
+    "三位英雄遵循同一套熱度規則，用法卻各不相同。餘燼騎士第一局就能使用，另外兩位靠遊玩解鎖。",
+  heroLabels: { hp: "生命", relic: "初始遺物", unlock: "解鎖" },
   heroes: [
     {
+      art: "emberknight",
       name: "餘燼騎士",
-      line: "每一擊都在淬鍊刀鋒，熱度化為鋼鐵。",
-      style: "一堵會還手的牆。熱度化為格擋與力量，再用穩定的烈焰 2–3 牌收尾。",
-      unlock: "第一局即可使用",
+      line: "每一擊都在淬鍊刀鋒。",
+      style: "攻守一體的鐵壁：熱度化為格擋與力量。",
       hp: "70",
-      relic: "鍛爐烙印",
-      relicBody: "每回合熱度首次達到 3 時，獲得 2 點格擋",
+      relic: { name: "鍛爐烙印", text: "每回合熱度首次達到 3 時，獲得 2 點格擋。" },
       cards: [
-        { name: "熾熱之刃", text: "造成 6 點傷害。烈焰 3：再造成 4 點。" },
-        { name: "旋風斬", text: "對所有敵人造成 8 點傷害。烈焰 3：再造成 4 點。" },
-        { name: "重錘落", text: "造成 10 點傷害，每點熱度 +2。" },
+        { name: "熾熱之刃", text: "造成 6 點傷害。烈焰 3：再造成 4 點。", cost: "1 能量" },
+        { name: "旋風斬", text: "對所有敵人造成 8 點傷害。烈焰 3：再造成 4 點。", cost: "2 能量" },
+        { name: "重錘落", text: "造成 10 點傷害，每點熱度 +2。", cost: "2 能量" },
       ],
+      unlock: "免費",
     },
     {
+      art: "venomblade",
       name: "毒刃客",
       line: "千百道細小的傷口，每一道都在灼燒。",
-      style: "零費連擊、成把的飛針，以及隨熱度增長的中毒。全遊戲升溫最快的英雄。",
-      unlock: "擊敗任意第一幕首領",
+      style: "全遊戲升溫最快：零費連擊、漫天飛針與層層中毒。",
       hp: "58",
-      relic: "蛇牙",
-      relicBody: "每回合熱度首次達到 4 時，對所有敵人施加 1 層中毒",
+      relic: { name: "蛇牙", text: "每回合熱度首次達到 4 時，對所有敵人施加 1 層中毒。" },
       cards: [
-        { name: "飛針扇", text: "將 2 張飛針加入手牌。" },
-        { name: "毒液傾瀉", text: "每點熱度施加 1 層中毒。" },
-        { name: "毒液湧動", text: "施加 2 層中毒。烈焰 4：再施加 7 層。" },
+        { name: "飛針扇", text: "將 2 張飛針加入手牌。", cost: "1 能量" },
+        { name: "毒液傾瀉", text: "每點熱度施加 1 層中毒。", cost: "1 能量" },
+        { name: "毒液湧動", text: "施加 2 層中毒。烈焰 4：再施加 7 層。", cost: "1 能量" },
       ],
+      unlock: "擊敗一位幕首領",
     },
     {
+      art: "ashen_seer",
       name: "灰燼先知",
       line: "火焰未起，她已先見。",
-      style: "每回合一開始就帶著熱度，用虛弱和易傷控場，然後打出一個驚天動地的烈焰回合。",
-      unlock: "擊敗任意第二幕首領，或餘燼騎士精通達到 5 級",
+      style: "每回合開局就帶著熱度，控住戰局，再打出一個驚天動地的烈焰回合。",
       hp: "66",
-      relic: "引火之眼",
-      relicBody: "每回合開始時獲得 1 點熱度",
+      relic: { name: "引火之眼", text: "每回合開始時獲得 1 點熱度。" },
       cards: [
-        { name: "星隕", text: "對所有敵人造成 12 點傷害。烈焰 5：再造成 12 點。" },
-        { name: "灰燼之柱", text: "造成 20 點傷害。烈焰 5：再造成 20 點。" },
-        { name: "超新星", text: "每點熱度對所有敵人造成 5 點傷害。" },
+        { name: "星隕", text: "對所有敵人造成 12 點傷害。烈焰 5：再造成 12 點。", cost: "3 能量" },
+        { name: "灰燼之柱", text: "造成 20 點傷害。烈焰 5：再造成 20 點。", cost: "2 能量" },
+        { name: "超新星", text: "每點熱度對所有敵人造成 5 點傷害。", cost: "3 能量" },
       ],
+      unlock: "第二幕首領或專精 5 級",
     },
   ],
-  heroLabels: { hp: "生命上限", relic: "初始遺物", signature: "招牌卡牌", unlock: "解鎖" },
-  actsEyebrow: "三幕冒險",
   actsTitle: "每一局都是一次攀登",
   actsIntro:
-    "在分支地圖上選擇你的路線：普通戰鬥、精英、商店、事件、營火與寶藏。每一幕的盡頭都是兩位首領之一，每過一個房間都會自動存檔。",
+    "在分支地圖上選擇路線：一般戰鬥、菁英、商店、事件、營火與寶藏。每一幕約 6～8 分鐘，每個房間結束都會自動存檔。",
   acts: [
     {
-      label: "第一幕",
-      name: "攀登之路",
-      body: "鼠群出沒的廢墟與鏽光籠罩的大廳。先學會規則，再去挑戰灰燼守望者或腐化之母。",
-      minutes: "6–8 分鐘",
-      bosses: ["灰燼守望者", "腐化之母"],
+      name: "第一幕：攀登之路",
+      minutes: "6～8 分鐘",
+      body: "鼠群出沒的廢墟與鏽光籠罩的大廳。一邊往上爬，一邊學會規則。",
+      bosses: "灰燼守望者或腐化之母",
       foes: ["墓穴獵犬", "泥沼巨蛇", "骸骨弓手", "炭燼巨魔"],
     },
     {
-      label: "第二幕",
-      name: "溺亡地窖",
-      body: "青光幽幽的水下墓穴，浸溼會讓所有烈焰門檻 +1。潮汐主母與沉沒之鐘會把粗心的卡組拖進水底。",
-      minutes: "6–8 分鐘",
-      bosses: ["潮汐主母", "沉沒之鐘"],
+      name: "第二幕：溺亡地窖",
+      minutes: "6～8 分鐘",
+      body: "青光幽幽的水下墓穴，浸濕會讓每一個烈焰門檻 +1。",
+      bosses: "潮汐主母或沉沒之鐘",
       foes: ["溺亡槳手", "墨影幽魂", "地窖九頭蛇", "鹽水騎士"],
     },
     {
-      label: "第三幕",
-      name: "餘燼王座",
-      body: "熔岩大廳裡，敵人會往你手裡塞火。控制好熱度，否則引火燒身。",
-      minutes: "6–8 分鐘",
-      bosses: ["灰燼火葬堆", "熔岩先驅"],
+      name: "第三幕：餘燼王座",
+      minutes: "6～8 分鐘",
+      body: "熔岩大廳裡，敵人會往你手裡塞火。控制好熱度，否則引火自焚。",
+      bosses: "灰燼火葬堆或熔岩先驅",
       foes: ["餘燼狂信徒", "岩漿魔像", "餘燼鳥妖", "火葬騎士"],
     },
   ],
-  bossesLabel: "本幕首領",
+  bossesLabel: "首領",
   foesLabel: "沿途敵人",
-  finalEyebrow: "最終首領",
-  finalName: "空洞之王",
-  finalBody: "440 點生命，端坐餘燼王座，在每一局的頂端等著你。大多數時候，你還沒見到他就倒下了——這正是樂趣所在。",
-  progressEyebrow: "每次倒下都是進步",
-  progressTitle: "倒下了，下一次攀登會更強",
-  progressBody: "每透過一場戰鬥都會獲得碎晶和英雄精通經驗，無論這一局是勝利，還是倒在第二幕。沒有一局是白打的。",
-  progress: [
-    { n: "20", title: "項聖所強化", body: "用碎晶換取永久解鎖：遺物、卡牌層級、二次挑選。" },
-    { n: "1–10", title: "英雄精通", body: "每位英雄各自升級，解鎖新卡牌、卡背和皮膚。" },
-    { n: "1–15", title: "晉升難度", body: "每位英雄獨立計算，覺得不夠刺激時再往上爬。" },
-    { n: "每日", title: "每日挑戰與每週挑戰", body: "帶修正規則的固定種子關卡，外加每日任務和七日簽到。" },
+  king: {
+    name: "空洞之王",
+    hp: "440 生命",
+    body: "他在每一局的頂端等你。大多數時候，你還沒見到他就倒下了。這正是樂趣所在。",
+  },
+  progressTitle: "倒下了，再爬時更強",
+  progressBody:
+    "每打贏一場戰鬥都會拿到碎晶和英雄專精經驗，不論這一局是登上王座，還是倒在第二幕。沒有一局是白打的。",
+  progressGroups: [
+    {
+      name: "局與局之間",
+      rows: [
+        { img: "misc/shopkeeper.webp", name: "聖所強化，用碎晶解鎖", value: "20 項" },
+        { img: "heroes/emberknight-bust.webp", name: "英雄專精：新卡牌、卡背與造型", value: "1～10 級" },
+        { img: "bosses/b03.webp", name: "晉升難度，給想要更大挑戰的你", value: "每位英雄 15 級" },
+        { img: "misc/cardback-ember.webp", name: "每日挑戰，固定種子與隨機詞綴", value: "每天" },
+        { img: "misc/cardback-founder.webp", name: "每週挑戰", value: "每週" },
+        { img: "misc/phoenix-brew.webp", name: "每日任務與 7 日簽到", value: "每天" },
+        { img: "heroes/ashen_seer-bust.webp", name: "成就", value: "40 個" },
+      ],
+    },
+    {
+      name: "每一局裡",
+      rows: [
+        { img: "art/hammerfall.webp", name: "卡牌：三位英雄加中立卡池", value: "120 多張" },
+        { img: "enemies/e10.webp", name: "敵人，下一步行動都用數字亮出", value: "30 種" },
+        { img: "bosses/b01.webp", name: "幕首領，外加空洞之王", value: "7 位" },
+        { img: "misc/seers-ink.webp", name: "遺物", value: "42 件" },
+        { img: "misc/fire-flask.webp", name: "藥水", value: "12 種" },
+        { img: "misc/venom-phial.webp", name: "有真實取捨的事件", value: "18 個" },
+      ],
+    },
   ],
-  counts: [
-    { n: "120+", label: "張卡牌" },
-    { n: "30", label: "種敵人" },
-    { n: "7", label: "位首領" },
-    { n: "42", label: "件遺物" },
-    { n: "12", label: "種藥水" },
-    { n: "18", label: "個事件" },
-    { n: "40", label: "項成就" },
-  ],
-  screensEyebrow: "截圖",
-  screensTitle: "牌桌實況",
-  screenCaptions: [
-    "熱度 9，整手牌都燒起來了",
-    "倒下了，碎晶照樣到手",
-    "選擇你的英雄",
-    "第二幕：溺亡地窖",
-    "局內商店：卡牌、遺物、藥水",
-    "空洞之王",
-    "首領倒下：挑選遺物和稀有卡",
-    "局與局之間的營地",
-  ],
-  pactEyebrow: "公平遊戲",
-  pactTitle: "我們的約定",
-  pact: [
-    { title: "沒有體力計時", body: "唯一的能量是你每回合花掉的那三點。一週打一局，或一晚打十局，都隨你。" },
-    { title: "沒有轉蛋，沒有卡包", body: "沒有寶箱，也不賣任何隨機獎勵。每一張卡都是打出來的。" },
-    { title: "廣告不進戰鬥", body: "短廣告只會在幕與幕、局與局之間出現；前兩局完全沒有，戰鬥、地圖和做決定時也絕不打擾。" },
-    { title: "獎勵由你決定", body: "可選的看廣告獎勵：每局復活一次、重抽獎勵、碎晶翻倍、開啟每日寶箱。都有清楚標註，從不強制。" },
-    { title: "離線可玩，無需賬號", body: "整個遊戲都能離線執行，每過一個房間就在本機自動存檔。" },
-  ],
-  shopTitle: "出售的內容",
-  shop: [
-    { name: "創始者禮包", price: "$7.99", body: "移除強制廣告、解鎖兩位英雄、創始者卡背和 300 碎晶。" },
-    { name: "移除強制廣告", price: "$4.99", body: "可選的獎勵廣告仍然保留，因為只有你主動點按時才會播放。" },
-    { name: "英雄解鎖", price: "$2.99", body: "不想等的話，立即解鎖毒刃客或灰燼先知。" },
-    { name: "卡背與牌桌", price: "$1.99", body: "純外觀。" },
-  ],
-  shopNote: "全部為一次性購買，沒有訂閱。以上為美區價格，實際以你所在商店顯示的本地價格為準。",
-  faqEyebrow: "常見問題",
-  faqTitle: "坦率的問題，直接的回答",
+  galleryTitle: "牌桌實況",
+  galleryCount: "8 張截圖，26 秒實機畫面",
+  videoLabel: "《餘燼牌組》實機畫面，26 秒，無聲",
+  free: {
+    name: "完整遊戲",
+    for: "給每一個人：全部三幕、每一位英雄、每日挑戰。",
+    body: "沒有體力，沒有轉蛋。沒有卡包，沒有開箱，不賣任何隨機獎勵。短廣告只會出現在幕與幕、局與局之間，前兩局完全沒有，戰鬥、地圖和做決定時絕不打擾。可選的獎勵廣告能讓你每局復活一次、重抽獎勵、碎晶加倍或打開每日寶箱，都有清楚標示，從不強制。整款遊戲離線可玩，不用帳號。",
+    price: "免費",
+    unit: "遊玩",
+    cta: "試打一回合",
+  },
+  bundle: {
+    name: "創始者禮包",
+    for: "給想一次擁有全部的玩家。",
+    body: "移除強制廣告、解鎖兩位英雄、創始者卡背和 300 碎晶。也可以單獨購買：移除強制廣告（US$4.99）、英雄解鎖（US$2.99）、卡背與牌桌（US$1.99）。全部是一次性購買，沒有訂閱；以上為美國區價格，實際以商店顯示的當地價格為準。付費內容不會讓你更容易破關。",
+    price: "US$7.99",
+    unit: "一次性",
+    cta: "購買相關說明",
+  },
+  faqTitle: "直接的回答",
   faqs: [
     {
       q: "《餘燼牌組》免費嗎？",
@@ -1455,19 +1490,26 @@ const landingZhTw: EmberDeckLanding = {
     },
     {
       q: "一局要玩多久？",
-      a: "每一幕大約六到八分鐘，一整局是三幕加最終首領。每過一個房間都會自動存檔，戰鬥中途關掉遊戲，下次也能從原處繼續。",
+      a: "每一幕大約六到八分鐘，一整局是三幕加最終首領。每個房間結束都會自動存檔，戰鬥中途關掉遊戲，下次也能從原處繼續。",
     },
     {
-      q: "需要聯網或註冊賬號嗎？",
-      a: "都不需要。《餘燼牌組》完全離線可玩，也沒有賬號系統。Game Center 的排行榜和成就是可選的。",
+      q: "需要連網或註冊帳號嗎？",
+      a: "都不需要。《餘燼牌組》完全離線可玩，也沒有帳號系統。Game Center 或 Google Play 遊戲的排行榜和成就是可選的。",
     },
-    // Pre-release only; drops out once RELEASED has a platform.
+    {
+      q: "廣告什麼時候出現？",
+      a: "只在幕與幕、局與局之間出現，絕不會在戰鬥中打斷你，前兩局也完全沒有。獎勵廣告只有你主動點按才會播放。",
+    },
+    {
+      q: "進度存在哪裡？",
+      a: "存在你的裝置上，沒有雲端存檔，刪除 App 會一併刪除進度。換新手機後，可以在設定中恢復購買。",
+    },
     ...(anyReleased
       ? []
       : [
           {
-            q: "什麼時候上線？",
-            a: "很快。2.0 版本會先登陸 App Store，隨後是 Android。上線當天，本頁面會直接連結到應用商店。",
+            q: "在哪裡下載？",
+            a: "《餘燼牌組》2.0 正在上架 App Store 與 Google Play。商店頁面一上線，本頁就會直接連過去。",
           },
         ]),
     {
@@ -1475,38 +1517,34 @@ const landingZhTw: EmberDeckLanding = {
       a: "英文和簡體中文。",
     },
   ],
-  supportLink: "更多幫助請見支援頁面",
-  pressEyebrow: "媒體資料",
+  supportLink: "更多說明請見支援頁面",
   pressTitle: "給媒體與創作者",
-  pressBody:
-    "歡迎在報道、影片和直播中使用以下素材。如需兌換碼、有任何問題或需要更高解析度的美術，請發郵件至 lei@appfactory.sg。",
+  pressBody: [
+    "《餘燼牌組》由新加坡的 App Factory 製作。歡迎在報導、影片和直播中使用本頁的任何內容：App 圖示、標誌、主視覺和空洞之王都在下方，可以直接下載。",
+    "如需兌換碼、有任何問題或需要更高解析度的美術，請寫信至 lei@appfactory.sg。每一封都有真人閱讀，通常兩天內回覆。",
+  ],
   pressFacts: [
     { label: "開發者", value: "App Factory（Lei Cao），新加坡" },
-    { label: "型別", value: "Roguelite 牌組構築" },
-    { label: "平臺", value: "先登陸 iPhone，隨後 Android" },
+    { label: "類型", value: "Roguelike 牌組構築" },
+    { label: "平台", value: "iPhone 與 Android" },
     { label: "價格", value: "免費，含可選一次性內購" },
     { label: "語言", value: "English、簡體中文" },
-    { label: "上線時間", value: anyReleased ? "已上線" : "即將推出" },
+    { label: "上線", value: anyReleased ? "已上線" : "正在上架（2.0 版）" },
   ],
   pressItems: [
-    { file: `${PRESS}/ember-deck-icon-1024.png`, label: "應用圖示", meta: "PNG · 1024 × 1024" },
-    { file: `${PRESS}/ember-deck-logo.png`, label: "標誌", meta: "PNG · 透明背景" },
-    { file: `${PRESS}/ember-deck-key-art.jpg`, label: "主視覺", meta: "JPG · 1080 × 1920" },
-    { file: `${PRESS}/ember-deck-hollow-king.png`, label: "空洞之王", meta: "PNG · 透明背景" },
-    { file: `${PRESS}/ember-deck-social-card.jpg`, label: "社交分享圖", meta: "JPG · 1200 × 630" },
+    { file: `${PRESS}/ember-deck-icon-1024.png`, label: "App 圖示", meta: "PNG，1024 × 1024" },
+    { file: `${PRESS}/ember-deck-logo.png`, label: "標誌", meta: "PNG，透明背景" },
+    { file: `${PRESS}/ember-deck-key-art.jpg`, label: "主視覺", meta: "JPG，1080 × 1920" },
+    { file: `${PRESS}/ember-deck-hollow-king.png`, label: "空洞之王", meta: "PNG，透明背景" },
+    { file: `${PRESS}/ember-deck-social-card.jpg`, label: "社群分享圖", meta: "JPG，1200 × 630" },
   ],
   pressZip: "打包下載全部素材（.zip）",
-  creditsTitle: "音樂與音效",
-  creditsMusicLabel: "音樂",
-  creditsMusicBy: "もみじば (Momijiba) — MOMIZizm MUSiC",
-  creditsMusicNote: "依據作曲者的授權條款，註明出處使用。",
-  creditsSfxLabel: "音效",
-  creditsSfxBody: "音效：為《餘燼牌組》原創制作。",
-  creditsMusicUrl: "https://music.storyinvention.com/en/",
-  closingTitle: anyReleased ? "還想再來一局。永遠還想再來一局。" : "下一局，就快來了。",
-  closingBody: anyReleased
-    ? "免費遊玩，完全離線，沒有體力計時。選一位英雄，開始攀登吧。"
-    : "《餘燼牌組》2.0 正在進行最後的測試。把本頁加入書籤吧，上線當天這裡會直接連結到應用商店。",
+  creditsMusic: "音樂：",
+  creditsMusicBy: "もみじば (Momijiba)，MOMIZizm MUSiC",
+  creditsSfx: "音效為《餘燼牌組》原創製作。",
+  creditsMusicUrl: MUSIC_URL,
+  signoff: "App Factory，新加坡",
+  closing: "再來一局。永遠還想再來一局。",
 };
 
 export const emberDeckLanding: Record<Locale, EmberDeckLanding> = {

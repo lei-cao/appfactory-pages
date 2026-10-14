@@ -18,13 +18,24 @@ import { APEX_DOMAIN } from "@/lib/site";
  * drives its hreflang set). `slug` is set on app pages. The server render uses
  * path-style hrefs (/zh-cn/apps/<slug>/...) that work on every host; once
  * mounted on <slug>.appfactory.sg they become the canonical clean paths.
+ * The class props let each site style it; the defaults are the spec-label
+ * look with slashes between labels.
  */
 export function LocaleSwitcher({
   current,
   slug,
+  className = "spec-label flex items-center gap-2",
+  linkClassName = "transition-colors hover:text-indigo-soft",
+  currentClassName = "text-paper",
+  separator = true,
 }: {
   current: Locale;
   slug?: string;
+  className?: string;
+  linkClassName?: string;
+  currentClassName?: string;
+  /** Draw a slash between labels (the spec-label style). */
+  separator?: boolean;
 }) {
   const pathname = usePathname() ?? "/";
   const [clean, setClean] = useState(false);
@@ -37,16 +48,19 @@ export function LocaleSwitcher({
   const shown = LOCALES.filter((l) => available.includes(l));
 
   return (
-    <span className="spec-label flex items-center gap-2" aria-label="Language">
+    <span className={className} aria-label="Language">
       {shown.map((locale, i) => (
         <span key={locale} className="flex items-center gap-2">
-          {i > 0 && <span aria-hidden>/</span>}
+          {i > 0 && separator && <span aria-hidden>/</span>}
           {locale === current ? (
-            <span className="text-paper">{LOCALE_LABEL[locale]}</span>
+            <span className={currentClassName} aria-current="true">
+              {LOCALE_LABEL[locale]}
+            </span>
           ) : (
             <Link
               href={switchHref(pathname, locale, slug, clean)}
-              className="transition-colors hover:text-indigo-soft"
+              className={linkClassName}
+              hrefLang={locale}
             >
               {LOCALE_LABEL[locale]}
             </Link>
