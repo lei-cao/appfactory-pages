@@ -1,17 +1,11 @@
-import { TracesheetLandingPage } from "@/components/tracesheet/landing";
-import { JsonLd, organizationLd } from "@/lib/seo";
-import { DefaultShell } from "../shared/default-shell";
 import type { SiteModule } from "../types";
+import { TracesheetLanding } from "./landing";
+import { TracesheetShell } from "./shell";
 import "./site.css";
 
+// tracesheet.appfactory.sg: its own Shell (header, cell-wordmark footer) and
+// Landing. The landing emits the app and Organization JSON-LD itself.
 export const site: SiteModule = {
-  // The landing emits its own app JSON-LD, which references the studio by
-  // @id, so the Organization node is added here.
-  Landing: ({ locale }) => (
-    <>
-      <JsonLd data={[organizationLd()]} />
-      <TracesheetLandingPage locale={locale} />
-    </>
-  ),
-  Shell: (props) => <DefaultShell {...props} />,
+  Landing: ({ locale }) => <TracesheetLanding locale={locale} />,
+  Shell: (props) => <TracesheetShell {...props} />,
 };

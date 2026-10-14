@@ -1,6 +1,9 @@
-// TraceSheet — content in all three locales, plus the copy for its bespoke
-// landing page (src/components/tracesheet/landing.tsx). The subdomain gets a
-// paper-and-ink 田字格 theme via [data-app="tracesheet"] in globals.css.
+// TraceSheet — content in all three locales, plus the copy for its own
+// landing page (src/components/sites/tracesheet/landing.tsx). The site's look
+// lives in src/components/sites/tracesheet/site.css.
+//
+// Facts checked against the live listing (App Store id 6816287607, v1.0.2,
+// 2026-10-05) and apps/tracesheet/fastlane/metadata in the app repo.
 //
 // v7 launch copy: the positioning and the free/Pro split come from the app
 // repo (apps/tracesheet/docs/design/v7-share-free-launch.md §1 and
@@ -12,21 +15,23 @@ import type { AppContent, AppLocalized, Screenshot } from "./apps";
 
 const ASSETS = "/apps/tracesheet";
 
-/** Store screenshots (iPhone 6.9" frames, 720px WebP) in one locale's
- * captions. The array order is what the landing page indexes into. */
+/** Store screenshots (iPhone 6.9" frames from fastlane, 720px WebP), in
+ * App Store order. The landing page indexes into this array. */
+export const SHOT_FILES = [
+  "01-quick-add",
+  "02-dictation",
+  "03-tian-sheet",
+  "04-library",
+  "05-reading-meaning",
+  "06-write-japanese",
+  "07-flashcards",
+  "08-english",
+  "09-check-words",
+  "10-offline",
+] as const;
+
 function shots(dir: "en" | "zh-cn" | "zh-tw", alts: string[]): Screenshot[] {
-  const files = [
-    "02-library",
-    "03-reading-meaning",
-    "05-flashcards",
-    "04-write-japanese",
-    "01-dictation",
-    "07-write-korean",
-    "09-check-words",
-    "06-tian-sheet",
-    "08-english",
-  ];
-  return files.map((f, i) => ({
+  return SHOT_FILES.map((f, i) => ({
     src: `${ASSETS}/shots/${dir}/${f}.webp`,
     alt: alts[i],
   }));
@@ -38,12 +43,11 @@ const en: AppLocalized = {
   tagline: "Collect any word. Learn it. Print real practice.",
   subtitle: "Stroke order, kanji & hangul",
   oneLiner:
-    "Collect any word in Chinese, Japanese, Korean or English, learn it — listen, flashcards, stroke-by-stroke writing, dictation — and print practice sheets that look like a copybook.",
-  statusNote: "Live now on the App Store — free on iPhone and iPad.",
-  metaTitle:
-    "TraceSheet — collect words, learn them, print 田字格 practice sheets free",
+    "Collect any word in Chinese, Japanese, Korean or English, learn it with audio, flashcards, stroke-by-stroke writing and dictation, and print practice sheets that look like a copybook.",
+  statusNote: "Live on the App Store, free on iPhone and iPad.",
+  metaTitle: "TraceSheet: Chinese Worksheets, Stroke Order & Pinyin",
   metaDescription:
-    "Collect any word in Chinese, Japanese, Korean or English. Hear it, flip flashcards, write it stroke by stroke and take dictation — then print 田字格, pinyin and English practice sheets free: page 1 of every sheet, with no limit on sheets. iPhone and iPad. No account, no ads.",
+    "Print free 田字格 Chinese worksheets with stroke-order tracing and pinyin. Collect words in Chinese, Japanese, Korean or English to learn. iPhone & iPad.",
   features: [
     {
       title: "Collect any word",
@@ -51,11 +55,11 @@ const en: AppLocalized = {
     },
     {
       title: "About 2,000 words per language",
-      body: "Chinese (Simplified and Traditional), Japanese, Korean and English topic decks in five levels. Search by word, reading or meaning — “shui” finds 水.",
+      body: "Chinese (Simplified and Traditional), Japanese, Korean and English topic decks in five levels. Search by word, reading or meaning: “shui” finds 水.",
     },
     {
       title: "Hear it, read it",
-      body: "Every word shows its reading — pinyin, kana with romaji, Korean romanization or US IPA — plus its meaning and a speaker button.",
+      body: "Every word shows its reading (pinyin, kana with romaji, Korean romanization or US IPA), its meaning and a speaker button.",
     },
     {
       title: "Write it, stroke by stroke",
@@ -67,19 +71,20 @@ const en: AppLocalized = {
     },
     {
       title: "Print real practice",
-      body: "田字格 with 描红 tracing and pinyin, pinyin four-line sheets, English handwriting lines, notebook lines and square grid — A4 or US Letter.",
+      body: "田字格 with 描红 tracing and pinyin, pinyin four-line sheets, English handwriting lines, notebook lines and square grid, on A4 or US Letter.",
     },
   ],
   screenshots: shots("en", [
-    "Library: about 2,000 ready-made words in Chinese, English, Japanese and Korean decks",
-    "A Chinese deck with pinyin, meanings and a speaker button on every word",
-    "Flashcards for 花开 with pinyin and the meaning “flowers bloom”",
-    "Writing a Japanese word on screen, stroke by stroke, following the red stroke",
-    "Dictation: 春天 revealed in a 田字格 grid with pinyin, after writing it on paper",
-    "Writing the Korean 사랑 stroke by stroke",
-    "Checking a typed list: pinyin fills in automatically and 多音字 are flagged",
-    "Building a 田字格 practice sheet with tracing, shade and cell-size options",
-    "An English spelling sheet with handwriting lines",
+    "Adding 学校 to Quick notes: pinyin xué xiào appears as you type, next to butterfly, 사랑 and ありがとう",
+    "Dictation: 春天 revealed in 田字格 cells with pinyin, after writing it on paper",
+    "Building a 田字格 practice sheet with 描红 tracing, pinyin, sheet types and trace colours",
+    "Library of about 2,000 ready-made words: Chinese decks for numbers, colours, family and greetings",
+    "A Family deck with 爸爸, 妈妈 and more: pinyin, meanings and a speaker button on every word",
+    "Writing 花火 (hanabi, fireworks) stroke by stroke, following the red stroke",
+    "Flashcard for 花开 with pinyin and the meaning “flowers bloom”",
+    "Building an English sheet: apple, banana, happy on handwriting lines, with spelling and reading modes",
+    "Checking a typed list: pinyin added automatically, with a 多音字 flagged to confirm",
+    "Print preview of a 田字格 sheet with Print, Share PDF and Save image",
   ]),
   trust: {
     title: "No account, no ads, no tracking",
@@ -88,15 +93,15 @@ const en: AppLocalized = {
   faqs: [
     {
       q: "Is TraceSheet only for Chinese?",
-      a: "No. It covers Chinese (Simplified and Traditional), Japanese, Korean and English, with about 2,000 words per language. A list can mix languages — each word keeps its own reading, voice and practice.",
+      a: "No. It covers Chinese (Simplified and Traditional), Japanese, Korean and English, with about 2,000 words per language. A list can mix languages, and each word keeps its own reading, voice and practice.",
     },
     {
       q: "What can I print for free?",
-      a: "Page 1 of any everyday sheet, with no limit on how many sheets you make: 田字格 with 描红 tracing and pinyin, pinyin four-line sheets, English handwriting, notebook lines and square grid, with every layout setting. Print, share a PDF or save an image as often as you like — free exports contain page 1 of each sheet, with a small App Store QR code in the footer.",
+      a: "Page 1 of any everyday sheet, with no limit on how many sheets you make: 田字格 with 描红 tracing and pinyin, pinyin four-line sheets, English handwriting, notebook lines and square grid, with every layout setting. Print, share a PDF or save an image as often as you like. Free exports contain page 1 of each sheet, with a small App Store QR code in the footer.",
     },
     {
       q: "Is TraceSheet Pro a subscription?",
-      a: "No. Pro is a one-time purchase (USD 14.99 in the US store; the App Store shows your local price) with Family Sharing. You can try every Pro sheet option first — the preview shows page 1, and “Use free options” switches back in one tap.",
+      a: "No. Pro is a one-time purchase (USD 14.99 in the US store; the App Store shows your local price) with Family Sharing. You can try every Pro sheet option first: the preview shows page 1, and “Use free options” switches back in one tap.",
     },
     {
       q: "Can I share sheets with a class?",
@@ -107,6 +112,10 @@ const en: AppLocalized = {
       a: "Tap Print to send it to any AirPrint printer, or share it as a PDF or image to print or save elsewhere. Sheets come in A4 or US Letter.",
     },
     {
+      q: "How many rows can each character have?",
+      a: "Up to 10. The first row has the model character and its trace copies; the rows below are empty boxes for writing alone. You can also repeat the whole list, from one to ten times.",
+    },
+    {
       q: "Does TraceSheet work offline?",
       a: "Yes. Your words, flashcards, writing, dictation and printing all work without an internet connection.",
     },
@@ -115,7 +124,7 @@ const en: AppLocalized = {
       a: "Not yet. Traditional characters are in the word library, but readings and sheets use pinyin.",
     },
     {
-      q: "The voice sounds robotic — can I fix that?",
+      q: "The voice sounds robotic. Can I fix that?",
       a: "Install an Enhanced or Premium voice: iPhone Settings → Accessibility → Spoken Content → Voices → choose the language and download a higher-quality voice.",
     },
     {
@@ -238,9 +247,9 @@ const zhCn: AppLocalized = {
   oneLiner:
     "中文、日文、韩文、英文的词都能随手收下，再听读音、翻闪卡、一笔一笔写、做听写，最后打印成像字帖一样的练习纸。",
   statusNote: "已在 App Store 上线，iPhone 和 iPad 均可免费下载。",
-  metaTitle: "TraceSheet — 随手收词，田字格字帖免费打印",
+  metaTitle: "TraceSheet：田字格字帖与听写｜笔顺描红，免费打印",
   metaDescription:
-    "中文、日文、韩文、英文的词随手收下：听读音、翻闪卡、按笔顺一笔一笔写、听写，再免费打印田字格、拼音四线格和英文书写字帖——每张字帖免费打印第 1 页，不限张数。支持 iPhone 和 iPad，无需账号，没有广告。",
+    "免费打印田字格字帖、拼音四线格和英文书写纸，汉字描红带拼音。中日韩英的词随手收下，听读音、翻闪卡、按笔顺书写、做听写。支持 iPhone 和 iPad，无需账号。",
   features: [
     {
       title: "随手收词",
@@ -268,15 +277,16 @@ const zhCn: AppLocalized = {
     },
   ],
   screenshots: shots("zh-cn", [
-    "词库：中文、英文、日文、韩文，约 2,000 个现成的词",
-    "中文词组：每个词都有拼音、释义和朗读按钮",
-    "“花开”闪卡，带拼音和释义",
-    "在屏幕上按笔顺书写日文，跟着红色笔画写",
-    "听写：写在纸上后，翻开田字格里的“春天”和拼音对答案",
-    "按笔顺书写韩文“사랑”",
+    "随手记里已有 사랑、ありがとう 和“学校”，正在添加 butterfly",
+    "听写：在纸上写完后，翻开田字格里的“春天”和拼音对答案",
+    "制作田字格字帖：描红、拼音、字帖类型和描红颜色都能选",
+    "词库：简体中文的数字、颜色等主题词组，每种语言约 2,000 个现成的词",
+    "英文“颜色”词组：red、orange、yellow，带音标、中文释义和朗读按钮",
+    "按笔顺书写日文“花火”（hanabi，烟花），跟着红色笔画写",
+    "英文单词闪卡：apple，带音标和中文释义“苹果”",
+    "英文字帖：书写线、拼写测验和单词表",
     "检查输入的清单：拼音自动标注，多音字会提示确认",
-    "制作田字格字帖：描红方式、深浅、格子大小都能调",
-    "英文书写字帖，带书写线",
+    "田字格字帖的打印预览，可以打印、分享 PDF 或存成图片",
   ]),
   trust: {
     title: "无需账号，没有广告，不追踪",
@@ -302,6 +312,10 @@ const zhCn: AppLocalized = {
     {
       q: "怎么打印字帖？",
       a: "点击“打印”，通过任意 AirPrint 打印机打印，或者分享为 PDF 或图片，在其他地方打印或保存。支持 A4 或 Letter 纸型。",
+    },
+    {
+      q: "每个字能印几行？",
+      a: "最多 10 行。第一行是范字和描红，下面几行是空格，让孩子自己独立书写。还可以把整个词表重复 1 到 10 遍。",
     },
     {
       q: "可以离线使用吗？",
@@ -435,9 +449,9 @@ const zhTw: AppLocalized = {
   oneLiner:
     "中文、日文、韓文、英文的詞都能隨手收下，再聽讀音、翻字卡、一筆一筆寫、做聽寫，最後列印成像字帖一樣的練習紙。",
   statusNote: "已在 App Store 上線，iPhone 和 iPad 皆可免費下載。",
-  metaTitle: "TraceSheet — 隨手收詞，田字格字帖免費列印",
+  metaTitle: "TraceSheet：田字格字帖與聽寫｜筆順描紅，免費列印",
   metaDescription:
-    "中文、日文、韓文、英文的詞隨手收下：聽讀音、翻字卡、按筆順一筆一筆寫、聽寫，再免費列印田字格、拼音四線格和英文書寫字帖——每張字帖免費列印第 1 頁，不限張數。支援 iPhone 和 iPad，無需帳號，沒有廣告。",
+    "免費列印田字格字帖、拼音四線格和英文書寫紙，國字描紅附拼音。中日韓英的詞隨手收下，聽讀音、翻字卡、按筆順書寫、做聽寫。支援 iPhone 和 iPad，無需帳號。",
   features: [
     {
       title: "隨手收詞",
@@ -465,15 +479,16 @@ const zhTw: AppLocalized = {
     },
   ],
   screenshots: shots("zh-tw", [
-    "詞庫：中文、英文、日文、韓文，約 2,000 個現成的詞",
-    "中文詞組：每個詞都有拼音、釋義和朗讀按鈕",
-    "「花開」字卡，附拼音和釋義",
-    "在螢幕上按筆順書寫日文，跟著紅色筆畫寫",
-    "聽寫：寫在紙上後，翻開田字格裡的「春天」和拼音對答案",
-    "按筆順書寫韓文「사랑」",
+    "隨手記裡已有 사랑、ありがとう 和「学校」，正在新增 butterfly",
+    "聽寫：在紙上寫完後，翻開田字格裡的「春天」和拼音對答案",
+    "製作田字格字帖：描紅、拼音、字帖類型和描紅顏色都能選",
+    "詞庫：繁體中文的數字、顏色等主題詞組，每種語言約 2,000 個現成的詞",
+    "英文「顏色」詞組：red、orange、yellow，附音標、中文釋義和朗讀按鈕",
+    "按筆順書寫日文「花火」（hanabi，煙火），跟著紅色筆畫寫",
+    "英文單字卡：apple，附音標和中文釋義「蘋果」",
+    "英文字帖：書寫線、拼寫測驗和單字表",
     "檢查輸入的清單：拼音自動標註，多音字會提示確認",
-    "製作田字格字帖：描紅方式、深淺、格子大小都能調",
-    "英文書寫字帖，附書寫線",
+    "田字格字帖的列印預覽，可以列印、分享 PDF 或存成圖片",
   ]),
   trust: {
     title: "無需帳號，沒有廣告，不追蹤",
@@ -499,6 +514,10 @@ const zhTw: AppLocalized = {
     {
       q: "怎麼列印字帖？",
       a: "點擊「列印」，透過任意 AirPrint 印表機列印，或分享為 PDF 或圖片，在其他地方列印或保存。支援 A4 或 Letter 紙型。",
+    },
+    {
+      q: "每個字能印幾行？",
+      a: "最多 10 行。第一行是範字和描紅，下面幾行是空格，讓孩子自己獨立書寫。還可以把整個詞表重複 1 到 10 遍。",
     },
     {
       q: "可以離線使用嗎？",
@@ -629,22 +648,24 @@ export const tracesheet: AppContent = {
   category: "app",
   schemaCategory: "EducationalApplication",
   buildNumber: 8,
-  version: "1.0.0",
+  version: "1.0.2",
   status: "live",
   platforms: ["iOS"],
   // ct=site attributes site downloads in App Store Connect analytics.
   appStoreUrl: "https://apps.apple.com/app/id6816287607?pt=119559267&ct=site&mt=8",
   appStoreId: "6816287607",
+  proOffer: { name: "TraceSheet Pro", price: "14.99" },
   icon: `${ASSETS}/icon.png`,
   ogImage: `${ASSETS}/og.png`,
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
 
+
 // ---------------------------------------------------------------------------
-// Copy for the bespoke landing page only (not part of the generic registry).
+// Copy for the landing page only (not part of the shared registry).
 
 /** Hero video set for one locale (web encodes of the promo hero cuts:
- * 16:9 for wide screens, 1:1 below 640px; H.264 + VP9, no audio). */
+ * 16:9 and 1:1, H.264 + VP9, no audio). The landing plays the 1:1 cut. */
 export interface TracesheetHeroVideo {
   wide: { mp4: string; webm: string; poster: string };
   square: { mp4: string; webm: string; poster: string };
@@ -667,219 +688,336 @@ function heroVideo(lang: "en" | "zh-cn"): TracesheetHeroVideo {
 }
 
 /** A Free vs Pro row. `true` renders a check, `false` a dash, a string is
- * shown as-is ("3", "Try it: page 1 preview"). */
+ * shown as-is ("Page 1", "Try: page 1"). */
 export interface TracesheetPlanRow {
   label: string;
   free: boolean | string;
   pro: boolean | string;
 }
 
+/** Script of a word typed into the try-it sheet; picks the sheet style. */
+export type TracesheetScript = "zh" | "ja" | "ko" | "en";
+
+export interface TracesheetPreset {
+  text: string;
+  /** One reading per cell (pinyin per character, romaji per kana…). */
+  reading?: string[];
+}
+
+/** A tile in the "made for paper" grid: a crop of a store screenshot. */
+export interface TracesheetTile {
+  /** File under /apps/tracesheet/ui/<locale>/ (without .webp). */
+  ui: string;
+  name: string;
+  fact: string;
+  alt: string;
+}
+
+export interface TracesheetPlan {
+  name: string;
+  /** Who the plan is for, one sentence. */
+  forWhom: string;
+  price: string;
+  unit: string;
+  body: string;
+  cta: string;
+}
+
 export interface TracesheetLanding {
-  kicker: string;
-  /** Three beats of the hero headline; the last renders in vermilion. */
-  heroLines: [string, string, string];
+  /** The h1, two lines. */
+  heroTitle: [string, string];
   heroSub: string;
-  /** Short facts under the download button. */
-  heroFacts: string[];
+  heroNote: string;
   video: TracesheetHeroVideo;
   videoLabel: string;
-  learnEyebrow: string;
-  learnTitle: string;
-  learnIntro: string;
-  /** Each step pairs with one screenshot (index into `screenshots`). */
-  learnSteps: { title: string; body: string; shot: number }[];
-  printEyebrow: string;
-  printTitle: string;
-  printIntro: string;
-  printPoints: string[];
-  printShots: [number, number];
-  planEyebrow: string;
-  planTitle: string;
-  planIntro: string;
-  planFree: { name: string; price: string; note: string };
-  planPro: { name: string; price: string; note: string };
+  tryTitle: string;
+  tryBody: string;
+  tryLabel: string;
+  tryPresetsLabel: string;
+  tryPresets: TracesheetPreset[];
+  trySheet: Record<TracesheetScript, string>;
+  tryPrint: string;
+  tryNote: string;
+  stagesTitle: string;
+  stagesLabel: string;
+  /** Each stage pairs with one screenshot crop (a SHOT_FILES name). */
+  stages: { name: string; clause: string; body: string; ui: string; alt: string }[];
+  sheetsTitle: string;
+  sheetsBody: string;
+  tiles: TracesheetTile[];
+  plansTitle: string;
+  free: TracesheetPlan;
+  pro: TracesheetPlan;
+  compareTitle: string;
   planFeatureHeader: string;
   planRows: TracesheetPlanRow[];
+  planYes: string;
+  planNo: string;
   planFootnote: string;
-  shareEyebrow: string;
   shareTitle: string;
+  shareHead: string;
   shareBody: string;
-  shareSteps: { title: string; body: string }[];
-  trustEyebrow: string;
-  trustChips: string[];
-  faqEyebrow: string;
+  shareAlt: string;
+  shareCta: string;
   faqTitle: string;
-  closingTitle: string;
-  closingBody: string;
 }
 
 const landingEn: TracesheetLanding = {
-  kicker: "Chinese · Japanese · Korean · English",
-  heroLines: ["Collect any word.", "Learn it.", "Print real practice."],
+  heroTitle: ["Collect a word.", "Print a worksheet."],
   heroSub:
-    "Save a word the moment you meet it, in any of four languages. Hear it, flip flashcards, write it stroke by stroke, take dictation — then print sheets that look like a copybook.",
-  heroFacts: ["Free one-page sheets, no limit", "iPhone & iPad", "No account, no ads"],
+    "TraceSheet turns any word in Chinese, Japanese, Korean or English into flashcards, stroke-by-stroke writing, dictation and a printable copybook worksheet.",
+  heroNote: "Free on iPhone and iPad. No account, no ads.",
   video: heroVideo("en"),
   videoLabel:
-    "TraceSheet in 40 seconds: add a word, browse 2,000-word decks, flip flashcards, write 花 stroke by stroke, take dictation and print a 田字格 worksheet.",
-  learnEyebrow: "learn it",
-  learnTitle: "From a word you just met to a word you can write",
-  learnIntro:
-    "Every word keeps its own language, so a list can hold 水, ありがとう, 사랑 and “spring” side by side.",
-  learnSteps: [
-    {
-      title: "Collect",
-      body: "Add a word in a tap, paste a whole list, or start from about 2,000 ready-made words per language.",
-      shot: 0,
-    },
-    {
-      title: "Listen",
-      body: "Pinyin, kana with romaji, Korean romanization or IPA, the meaning, and a speaker button on every word.",
-      shot: 1,
-    },
-    {
-      title: "Flashcards",
-      body: "Word, reading, meaning or sound on the front — or choose from four. Missed words come round again.",
-      shot: 2,
-    },
-    {
-      title: "Write it, stroke by stroke",
-      body: "汉字, kana and 한글 are checked stroke by stroke, in order, with a finger or Apple Pencil.",
-      shot: 3,
-    },
-    {
-      title: "Dictation",
-      body: "TraceSheet reads each word aloud; you write on paper, reveal the answer and mark it.",
-      shot: 4,
-    },
+    "TraceSheet in 20 seconds: add a word in any language, flip a flashcard, write 花 stroke by stroke, check pinyin and print a 田字格 worksheet.",
+  tryTitle: "Try your own word",
+  tryBody:
+    "Each character gets its own row: the model in ink, copies to trace, then empty boxes to write alone. The app adds pinyin, stroke order and a full A4 or Letter page.",
+  tryLabel: "Word to practise",
+  tryPresetsLabel: "Or start from",
+  tryPresets: [
+    { text: "春天", reading: ["chūn", "tiān"] },
+    { text: "花开", reading: ["huā", "kāi"] },
+    { text: "ありがとう", reading: ["a", "ri", "ga", "to", "u"] },
+    { text: "사랑", reading: ["sa", "rang"] },
+    { text: "spring" },
   ],
-  printEyebrow: "print it",
-  printTitle: "Practice sheets that look like a copybook",
-  printIntro:
-    "Type this week's list and pinyin fills in, with any 多音字 flagged for you to confirm. Then pick a sheet and print.",
-  printPoints: [
-    "田字格 with 描红 tracing, pinyin over the characters",
-    "Pinyin four-line sheets",
-    "English handwriting lines and spelling lists",
-    "Notebook lines and square grid",
-    "A4 or US Letter; margins, cell size, spacing, guides, trace cells and shade",
-    "AirPrint, share a PDF or save an image",
-  ],
-  printShots: [7, 8],
-  planEyebrow: "free vs pro",
-  planTitle: "Everyday sheets are free. Pro is yours for good.",
-  planIntro:
-    "No sheet count, no trial clock. Every Pro sheet option can be tried free: the preview shows page 1, and “Use free options” switches back in one tap.",
-  planFree: { name: "Free", price: "USD 0", note: "Unlimited one-page sheets" },
-  planPro: {
-    name: "Pro",
-    price: "USD 14.99",
-    note: "One-time purchase · no subscription",
+  trySheet: {
+    zh: "田字格 sheet · Chinese",
+    ja: "Grid sheet · Japanese",
+    ko: "Grid sheet · Korean",
+    en: "Handwriting lines · English",
   },
+  tryPrint: "Print this sample",
+  tryNote:
+    "A sample drawn in your browser. In the app, pinyin fills in for you and the sheet runs to a full page.",
+  stagesTitle: "How a word is learned",
+  stagesLabel: "Learning step",
+  stages: [
+    {
+      name: "Listen",
+      clause: "Hear it and read it",
+      body: "Pinyin, kana with romaji, Korean romanization or US IPA, the meaning and a speaker button on every word.",
+      ui: "05-reading-meaning",
+      alt: "A Family deck: 爸爸, 妈妈, 哥哥 with pinyin, meanings and a speaker button",
+    },
+    {
+      name: "Flashcards",
+      clause: "Flip it until it sticks",
+      body: "Word, reading, meaning or sound on the front, or choose from four. Missed words come round again.",
+      ui: "07-flashcards",
+      alt: "Flashcard for 花开 with the pinyin huā kāi",
+    },
+    {
+      name: "Write",
+      clause: "Write it stroke by stroke",
+      body: "汉字, kana and 한글 are checked stroke by stroke, in the right order, with a finger or Apple Pencil.",
+      ui: "06-write-japanese",
+      alt: "Writing 花火 stroke by stroke in Trace mode",
+    },
+    {
+      name: "Dictation",
+      clause: "Then write it from memory",
+      body: "TraceSheet reads each word aloud. Write it on paper, reveal the answer and mark it.",
+      ui: "02-dictation",
+      alt: "Dictation answer: 春天 in 田字格 cells with pinyin chūn tiān",
+    },
+  ],
+  sheetsTitle: "Made for paper",
+  sheetsBody:
+    "Five sheet types, every layout setting, A4 or US Letter. Print with AirPrint, share a PDF or save an image.",
+  tiles: [
+    {
+      ui: "01-quick-add",
+      name: "Collect any word",
+      fact: "Type it, paste a whole list or scan a photo. One list can mix languages.",
+      alt: "Quick notes holding butterfly, 사랑 and ありがとう while 学校 is added",
+    },
+    {
+      ui: "ipad-tian-sheet",
+      name: "田字格 sheets",
+      fact: "描红 tracing, pinyin over every character, up to 10 rows per character.",
+      alt: "TraceSheet on iPad building a 田字格 sheet for 花, 开, 小, 鸟, 春, 天 with pinyin",
+    },
+    {
+      ui: "08-english",
+      name: "English handwriting",
+      fact: "Writing lines, spelling tests and reading lists for English words.",
+      alt: "English sheet preview with apple, banana and happy on handwriting lines",
+    },
+    {
+      ui: "09-check-words",
+      name: "Pinyin fills in",
+      fact: "Any 多音字 is flagged, so nothing reaches the sheet unchecked.",
+      alt: "Word check for 春天, 花开, 小鸟 and 长 with pinyin above each character",
+    },
+    {
+      ui: "04-library",
+      name: "About 2,000 words per language",
+      fact: "Topic decks in five levels. Type “shui” and you find 水.",
+      alt: "Library with Chinese decks for numbers, colours and family",
+    },
+  ],
+  plansTitle: "Free and Pro",
+  free: {
+    name: "Free",
+    forWhom: "For every family and every class.",
+    price: "0",
+    unit: "USD, no time limit",
+    body: "Collecting, listening, flashcards, writing and dictation. Page 1 of every 田字格, pinyin, English, lined and grid sheet, with every layout setting, printed as often as you like. Free pages carry a small App Store QR code.",
+    cta: "Download free",
+  },
+  pro: {
+    name: "Pro",
+    forWhom: "For the whole copybook.",
+    price: "14.99",
+    unit: "USD, once",
+    body: "Every page of every sheet, stroke-order sheets and strips, combined PDFs, textbook kai and print fonts, coloured trace ink and trace fade. Keep or drop the QR, unlimited photo scans, more profiles and Family Sharing. No subscription.",
+    cta: "Try Pro in the app",
+  },
+  compareTitle: "Free and Pro, side by side",
   planFeatureHeader: "What you get",
   planRows: [
     { label: "Learn: collect, listen, flashcards, write, dictation", free: true, pro: true },
-    { label: "田字格 tian-grid sheets with 描红 tracing and pinyin", free: true, pro: true },
+    { label: "田字格 sheets with 描红 tracing and pinyin", free: true, pro: true },
     { label: "Pinyin four-line, English lines, notebook lines, square grid", free: true, pro: true },
     { label: "Every layout setting, A4 or US Letter", free: true, pro: true },
     { label: "Pages per sheet", free: "Page 1", pro: "All pages" },
     { label: "Print, share PDF, save image", free: "Unlimited", pro: "Unlimited" },
-    { label: "App Store QR code in the page footer", free: "Small QR", pro: "Your choice: keep or turn off" },
+    { label: "App Store QR code in the page footer", free: "Small QR", pro: "Keep or turn off" },
     { label: "笔顺 stroke-order sheets and strips", free: "Try: page 1", pro: true },
-    { label: "Combined PDF — several sheet types in one file", free: "Try: page 1", pro: true },
+    { label: "Combined PDF: several sheet types in one file", free: "Try: page 1", pro: true },
     { label: "Fonts: 标准楷书 textbook kai, School print, Sloped print", free: "Try: page 1", pro: true },
     { label: "Blue, red, green and purple trace ink; trace fade", free: "Try: page 1", pro: true },
     { label: "Photo scans", free: "3", pro: "Unlimited" },
     { label: "More profiles", free: false, pro: true },
     { label: "Family Sharing", free: false, pro: true },
   ],
+  planYes: "Included",
+  planNo: "Not included",
   planFootnote:
-    "Price shown is the US App Store price; your App Store shows the price in your currency.",
-  shareEyebrow: "for teachers & parents",
-  shareTitle: "Share sheets free — with the class, the teacher, the group chat",
+    "Prices are the US App Store prices; your App Store shows the price in your currency.",
+  shareTitle: "Print one for the whole class.",
+  shareHead: "Free to share",
   shareBody:
-    "Free sheets aren't a trial — they print page 1 of each sheet, and a class list usually fits on one page anyway. Print a stack for the whole class, send the PDF to the teacher, or pass it on to other parents — as often as you like. Each free page carries a small App Store QR code in the footer, so anyone holding a copy can find the app that made it.",
-  shareSteps: [
-    {
-      title: "Make it once",
-      body: "Type or paste the week's list. Pinyin fills in; choose the sheet and the layout.",
-    },
-    {
-      title: "Share the PDF",
-      body: "AirPrint, or send the PDF or an image through any app on the share sheet.",
-    },
-    {
-      title: "Print for everyone",
-      body: "No per-copy limit and no account for anyone who receives it.",
-    },
-  ],
-  trustEyebrow: "privacy",
-  trustChips: ["No account", "No ads", "No tracking", "Works offline"],
-  faqEyebrow: "questions",
+    "Make the week's list once, then AirPrint it, send the PDF to the teacher or pass it to other parents. A class list usually fits on page 1, and the small QR code in the footer lets anyone holding a copy find the app.",
+  shareAlt: "Print preview of a 田字格 sheet for 花, 开, 小, 鸟, 春, 天 with pinyin",
+  shareCta: "Get TraceSheet free",
   faqTitle: "Short answers",
-  closingTitle: "Collect a word today. Print it tonight.",
-  closingBody:
-    "TraceSheet is free on the App Store for iPhone and iPad, in 12 languages.",
 };
 
 const landingZhCn: TracesheetLanding = {
-  kicker: "中文 · 日文 · 韩文 · 英文",
-  heroLines: ["随手收词，", "学会它，", "印成真正的字帖。"],
+  heroTitle: ["随手收词，", "印成田字格字帖"],
   heroSub:
-    "遇到一个词，随手收下，四种语言都行。听读音、翻闪卡、一笔一笔写、做听写——最后打印成像字帖一样的练习纸。",
-  heroFacts: ["免费打印第 1 页，不限张数", "iPhone 和 iPad", "无需账号，没有广告"],
+    "中文、日文、韩文、英文的词都能随手收下，再听读音、翻闪卡、按笔顺一笔一笔写、做听写，最后打印成像字帖一样的练习纸。",
+  heroNote: "iPhone 和 iPad 免费下载。无需账号，没有广告。",
   video: heroVideo("zh-cn"),
   videoLabel:
-    "40 秒看 TraceSheet：添加一个词、浏览 2,000 词词库、翻闪卡、按笔顺写“花”、做听写，再打印一张田字格字帖。",
-  learnEyebrow: "学会它",
-  learnTitle: "从刚遇到的词，到会写的词",
-  learnIntro:
-    "每个词都保留自己的语言，所以“水”“ありがとう”“사랑”和“spring”可以放在同一个词表里。",
-  learnSteps: [
+    "20 秒看 TraceSheet：添加任何语言的词、翻闪卡、按笔顺写“花”、自动标拼音，再打印一张田字格字帖。",
+  tryTitle: "写写你自己的词",
+  tryBody:
+    "每个字一行：第一格是范字，后面几格描红，再留空格自己写。App 里还会自动标拼音、加笔顺，排满一整页 A4 或 Letter。",
+  tryLabel: "要练的词",
+  tryPresetsLabel: "或者从这些开始",
+  tryPresets: [
+    { text: "春天", reading: ["chūn", "tiān"] },
+    { text: "花开", reading: ["huā", "kāi"] },
+    { text: "ありがとう", reading: ["a", "ri", "ga", "to", "u"] },
+    { text: "사랑", reading: ["sa", "rang"] },
+    { text: "spring" },
+  ],
+  trySheet: {
+    zh: "田字格字帖 · 中文",
+    ja: "方格字帖 · 日文",
+    ko: "方格字帖 · 韩文",
+    en: "英文书写线 · 英文",
+  },
+  tryPrint: "打印这份样张",
+  tryNote: "这是在浏览器里画出的样张。App 会自动标好拼音，排成完整的一页。",
+  stagesTitle: "一个词怎么学会",
+  stagesLabel: "学习步骤",
+  stages: [
     {
-      title: "收词",
-      body: "一点就能加词，也可以粘贴一整份清单，或者从每种语言约 2,000 个现成的词开始。",
-      shot: 0,
+      name: "听读音",
+      clause: "听一听，读一读",
+      body: "拼音、假名和罗马字、韩文罗马字或美式音标，加上释义，每个词都有朗读按钮。",
+      ui: "05-reading-meaning",
+      alt: "英文“颜色”词组：red、orange、yellow，带音标、中文释义和朗读按钮",
     },
     {
-      title: "听读音",
-      body: "拼音、假名和罗马字、韩文罗马字或音标，加上释义，每个词都有朗读按钮。",
-      shot: 1,
-    },
-    {
-      title: "闪卡",
+      name: "闪卡",
+      clause: "翻闪卡，直到记住",
       body: "正面可以是词语、读音、意思或声音，也可以四选一。没记住的词会再出现。",
-      shot: 2,
+      ui: "07-flashcards",
+      alt: "英文单词闪卡：apple，带音标和中文释义",
     },
     {
-      title: "一笔一笔写",
+      name: "书写",
+      clause: "一笔一笔写下来",
       body: "用手指或 Apple Pencil 书写，汉字、假名、韩文都按正确笔顺逐笔检查。",
-      shot: 3,
+      ui: "06-write-japanese",
+      alt: "描红模式下按笔顺书写“花火”",
     },
     {
-      title: "听写",
-      body: "TraceSheet 把词读出来，孩子写在纸上，再翻开答案批改。",
-      shot: 4,
+      name: "听写",
+      clause: "再凭记忆听写",
+      body: "TraceSheet 把词读出来，写在纸上，再翻开答案批改。",
+      ui: "02-dictation",
+      alt: "听写答案：田字格里的“春天”和拼音 chūn tiān",
     },
   ],
-  printEyebrow: "打印",
-  printTitle: "像字帖一样的练习纸",
-  printIntro: "输入这周的听写清单，拼音自动标注，多音字会提示你确认。选好字帖样式，就能打印。",
-  printPoints: [
-    "田字格描红，汉字上方可加拼音",
-    "拼音四线格",
-    "英文书写线和 spelling 单词表",
-    "横线纸和方格纸",
-    "A4 或 Letter；页边距、格子大小、行距、辅助线、描红格数、深浅都能调",
-    "隔空打印、分享 PDF 或存成图片",
+  sheetsTitle: "印在纸上",
+  sheetsBody: "五种字帖，所有排版都能调，A4 或 Letter 纸型。隔空打印、分享 PDF 或存成图片。",
+  tiles: [
+    {
+      ui: "01-quick-add",
+      name: "随手收词",
+      fact: "输入、粘贴整份清单或拍照识别，一个词表可以混着几种语言。",
+      alt: "随手记里有 사랑、ありがとう 和“学校”，正在添加 butterfly",
+    },
+    {
+      ui: "ipad-tian-sheet",
+      name: "田字格字帖",
+      fact: "描红，汉字上方加拼音，每个字最多印 10 行。",
+      alt: "在 iPad 上制作田字格字帖：花、开、小、鸟、春、天，带拼音",
+    },
+    {
+      ui: "08-english",
+      name: "英文书写",
+      fact: "书写线、拼写测验和单词表，英文单词也能练。",
+      alt: "英文字帖预览：apple、banana、happy 写在书写线上",
+    },
+    {
+      ui: "09-check-words",
+      name: "拼音自动标注",
+      fact: "多音字会提示确认，上纸之前都检查过。",
+      alt: "检查词语：春天、花开、小鸟、长，每个字上方都有拼音",
+    },
+    {
+      ui: "04-library",
+      name: "每种语言约 2,000 词",
+      fact: "按主题分五个级别，输入“shui”就能找到“水”。",
+      alt: "词库：简体中文的数字、颜色等主题词组",
+    },
   ],
-  printShots: [7, 8],
-  planEyebrow: "免费版与 Pro",
-  planTitle: "日常字帖免费印，Pro 买一次用到底。",
-  planIntro:
-    "不限张数，也没有试用期。所有 Pro 字帖选项都能免费试：预览显示第 1 页，点“改用免费选项”一键换回。",
-  planFree: { name: "免费", price: "0 美元", note: "单页字帖不限张数" },
-  planPro: { name: "Pro", price: "14.99 美元", note: "一次性购买，不是订阅" },
+  plansTitle: "免费版与 Pro",
+  free: {
+    name: "免费",
+    forWhom: "给每个家庭、每个班级。",
+    price: "0",
+    unit: "美元，不限时间",
+    body: "收词、听读音、闪卡、书写和听写都免费。田字格、拼音格、英文书写、横线纸和方格纸，每张都能免费打印第 1 页，所有排版都能调，想印几次就印几次。免费页面的页脚有一个小小的 App Store 二维码。",
+    cta: "免费下载",
+  },
+  pro: {
+    name: "Pro",
+    forWhom: "想印完整字帖的人。",
+    price: "14.99",
+    unit: "美元，一次买断",
+    body: "每张字帖的所有页、笔顺字帖和笔顺条、合订本 PDF、标准楷书和印刷体字体、彩色描红和描红渐淡。二维码可留可去，拍照识别不限次数，更多档案，支持家人共享。不是订阅。",
+    cta: "在 App 里试用 Pro",
+  },
+  compareTitle: "免费版与 Pro 对照",
   planFeatureHeader: "功能",
   planRows: [
     { label: "学习：收词、听读音、闪卡、书写、听写", free: true, pro: true },
@@ -888,7 +1026,7 @@ const landingZhCn: TracesheetLanding = {
     { label: "所有排版设置，A4 或 Letter", free: true, pro: true },
     { label: "每张字帖打印页数", free: "第 1 页", pro: "全部页" },
     { label: "打印、分享 PDF、存成图片", free: "不限", pro: "不限" },
-    { label: "页脚的 App Store 二维码", free: "小二维码", pro: "保留或去掉，由你选" },
+    { label: "页脚的 App Store 二维码", free: "小二维码", pro: "保留或去掉" },
     { label: "笔顺字帖和笔顺条", free: "可试：第 1 页", pro: true },
     { label: "合订本 PDF：几种字帖合成一个文件", free: "可试：第 1 页", pro: true },
     { label: "字体：标准楷书、School print、Sloped print", free: "可试：第 1 页", pro: true },
@@ -897,93 +1035,132 @@ const landingZhCn: TracesheetLanding = {
     { label: "更多档案", free: false, pro: true },
     { label: "家人共享", free: false, pro: true },
   ],
+  planYes: "包含",
+  planNo: "不包含",
   planFootnote: "价格为美区 App Store 价格；你的 App Store 会显示当地货币的价格。",
-  shareEyebrow: "给老师和家长",
-  shareTitle: "字帖免费分享——发给全班、发给老师、发到家长群",
+  shareTitle: "给全班每人印一份。",
+  shareHead: "免费分享",
   shareBody:
-    "免费字帖不是试用——每张只是印第 1 页，而一份听写清单通常一页就够。给全班每人印一份、把 PDF 发给老师、转给其他家长，想分享几次都行。每张免费页面的页脚都有一个小小的 App Store 二维码，拿到字帖的人扫一下就能找到这个应用。",
-  shareSteps: [
-    {
-      title: "做一次",
-      body: "输入或粘贴这周的清单，拼音自动标注；选好字帖和排版。",
-    },
-    {
-      title: "分享 PDF",
-      body: "隔空打印，或者通过分享面板里的任意应用发送 PDF 或图片。",
-    },
-    {
-      title: "人人都能印",
-      body: "不限份数，收到的人也不需要注册账号。",
-    },
-  ],
-  trustEyebrow: "隐私",
-  trustChips: ["无需账号", "没有广告", "不追踪", "离线可用"],
-  faqEyebrow: "常见问题",
+    "这周的听写清单做一次，就能隔空打印、把 PDF 发给老师，或者转到家长群。一份清单通常第 1 页就印得下；页脚的小二维码让拿到字帖的人也能找到这个应用。",
+  shareAlt: "田字格字帖打印预览：花、开、小、鸟、春、天，带拼音",
+  shareCta: "免费下载 TraceSheet",
   faqTitle: "简单回答",
-  closingTitle: "今天收下一个词，今晚印成字帖。",
-  closingBody: "TraceSheet 在 App Store 免费下载，支持 iPhone 和 iPad，界面有 12 种语言。",
 };
 
 const landingZhTw: TracesheetLanding = {
-  kicker: "中文 · 日文 · 韓文 · 英文",
-  heroLines: ["隨手收詞，", "學會它，", "印成真正的字帖。"],
+  heroTitle: ["隨手收詞，", "印成田字格字帖"],
   heroSub:
-    "遇到一個詞，隨手收下，四種語言都行。聽讀音、翻字卡、一筆一筆寫、做聽寫——最後列印成像字帖一樣的練習紙。",
-  heroFacts: ["免費列印第 1 頁，不限張數", "iPhone 和 iPad", "無需帳號，沒有廣告"],
+    "中文、日文、韓文、英文的詞都能隨手收下，再聽讀音、翻字卡、按筆順一筆一筆寫、做聽寫，最後列印成像字帖一樣的練習紙。",
+  heroNote: "iPhone 和 iPad 免費下載。無需帳號，沒有廣告。",
   // No Traditional-Chinese cut of the hero exists; the English one carries
   // no Simplified captions a zh-TW reader would trip over.
   video: heroVideo("en"),
   videoLabel:
-    "40 秒看 TraceSheet：新增一個詞、瀏覽 2,000 詞詞庫、翻字卡、按筆順寫「花」、做聽寫，再列印一張田字格字帖。",
-  learnEyebrow: "學會它",
-  learnTitle: "從剛遇到的詞，到會寫的詞",
-  learnIntro:
-    "每個詞都保留自己的語言，所以「水」「ありがとう」「사랑」和「spring」可以放在同一個詞表裡。",
-  learnSteps: [
+    "20 秒看 TraceSheet：新增任何語言的詞、翻字卡、按筆順寫「花」、自動標拼音，再列印一張田字格字帖。",
+  tryTitle: "寫寫你自己的詞",
+  tryBody:
+    "每個字一行：第一格是範字，後面幾格描紅，再留空格自己寫。App 裡還會自動標拼音、加筆順，排滿一整頁 A4 或 Letter。",
+  tryLabel: "要練的詞",
+  tryPresetsLabel: "或者從這些開始",
+  tryPresets: [
+    { text: "春天", reading: ["chūn", "tiān"] },
+    { text: "花開", reading: ["huā", "kāi"] },
+    { text: "ありがとう", reading: ["a", "ri", "ga", "to", "u"] },
+    { text: "사랑", reading: ["sa", "rang"] },
+    { text: "spring" },
+  ],
+  trySheet: {
+    zh: "田字格字帖 · 中文",
+    ja: "方格字帖 · 日文",
+    ko: "方格字帖 · 韓文",
+    en: "英文書寫線 · 英文",
+  },
+  tryPrint: "列印這份樣張",
+  tryNote: "這是在瀏覽器裡畫出的樣張。App 會自動標好拼音，排成完整的一頁。",
+  stagesTitle: "一個詞怎麼學會",
+  stagesLabel: "學習步驟",
+  stages: [
     {
-      title: "收詞",
-      body: "一點就能加詞，也可以貼上一整份清單，或者從每種語言約 2,000 個現成的詞開始。",
-      shot: 0,
+      name: "聽讀音",
+      clause: "聽一聽，讀一讀",
+      body: "拼音、假名和羅馬字、韓文羅馬字或美式音標，加上釋義，每個詞都有朗讀按鈕。",
+      ui: "05-reading-meaning",
+      alt: "英文「顏色」詞組：red、orange、yellow，附音標、中文釋義和朗讀按鈕",
     },
     {
-      title: "聽讀音",
-      body: "拼音、假名和羅馬字、韓文羅馬字或音標，加上釋義，每個詞都有朗讀按鈕。",
-      shot: 1,
-    },
-    {
-      title: "字卡",
+      name: "字卡",
+      clause: "翻字卡，直到記住",
       body: "正面可以是詞語、讀音、意思或聲音，也可以四選一。沒記住的詞會再出現。",
-      shot: 2,
+      ui: "07-flashcards",
+      alt: "英文單字卡：apple，附音標和中文釋義",
     },
     {
-      title: "一筆一筆寫",
-      body: "用手指或 Apple Pencil 書寫，漢字、假名、韓文都按正確筆順逐筆檢查。",
-      shot: 3,
+      name: "書寫",
+      clause: "一筆一筆寫下來",
+      body: "用手指或 Apple Pencil 書寫，國字、假名、韓文都按正確筆順逐筆檢查。",
+      ui: "06-write-japanese",
+      alt: "描紅模式下按筆順書寫「花火」",
     },
     {
-      title: "聽寫",
-      body: "TraceSheet 把詞唸出來，孩子寫在紙上，再翻開答案批改。",
-      shot: 4,
+      name: "聽寫",
+      clause: "再憑記憶聽寫",
+      body: "TraceSheet 把詞唸出來，寫在紙上，再翻開答案批改。",
+      ui: "02-dictation",
+      alt: "聽寫答案：田字格裡的「春天」和拼音 chūn tiān",
     },
   ],
-  printEyebrow: "列印",
-  printTitle: "像字帖一樣的練習紙",
-  printIntro: "輸入這週的聽寫清單，拼音自動標註，多音字會提示你確認。選好字帖樣式，就能列印。",
-  printPoints: [
-    "田字格描紅，國字上方可加拼音",
-    "拼音四線格",
-    "英文書寫線和拼寫單字表",
-    "橫線紙和方格紙",
-    "A4 或 Letter；頁邊距、格子大小、行距、輔助線、描紅格數、深淺都能調",
-    "AirPrint 列印、分享 PDF 或存成圖片",
+  sheetsTitle: "印在紙上",
+  sheetsBody: "五種字帖，所有排版都能調，A4 或 Letter 紙張。AirPrint 列印、分享 PDF 或存成圖片。",
+  tiles: [
+    {
+      ui: "01-quick-add",
+      name: "隨手收詞",
+      fact: "輸入、貼上整份清單或拍照辨識，一個詞表可以混著幾種語言。",
+      alt: "隨手記裡有 사랑、ありがとう 和「学校」，正在新增 butterfly",
+    },
+    {
+      ui: "ipad-tian-sheet",
+      name: "田字格字帖",
+      fact: "描紅，國字上方加拼音，每個字最多印 10 行。",
+      alt: "在 iPad 上製作田字格字帖：花、开、小、鸟、春、天，附拼音",
+    },
+    {
+      ui: "08-english",
+      name: "英文書寫",
+      fact: "書寫線、拼寫測驗和單字表，英文單字也能練。",
+      alt: "英文字帖預覽：apple、banana、happy 寫在書寫線上",
+    },
+    {
+      ui: "09-check-words",
+      name: "拼音自動標註",
+      fact: "多音字會提示確認，上紙之前都檢查過。",
+      alt: "檢查詞語：春天、花开、小鸟、长，每個字上方都有拼音",
+    },
+    {
+      ui: "04-library",
+      name: "每種語言約 2,000 詞",
+      fact: "按主題分五個級別，輸入「shui」就能找到「水」。",
+      alt: "詞庫：繁體中文的數字、顏色等主題詞組",
+    },
   ],
-  printShots: [7, 8],
-  planEyebrow: "免費版與 Pro",
-  planTitle: "日常字帖免費印，Pro 買一次用到底。",
-  planIntro:
-    "不限張數，也沒有試用期。所有 Pro 字帖選項都能免費試：預覽顯示第 1 頁，點「改用免費選項」一鍵換回。",
-  planFree: { name: "免費", price: "0 美元", note: "單頁字帖不限張數" },
-  planPro: { name: "Pro", price: "14.99 美元", note: "一次性購買，不是訂閱" },
+  plansTitle: "免費版與 Pro",
+  free: {
+    name: "免費",
+    forWhom: "給每個家庭、每個班級。",
+    price: "0",
+    unit: "美元，不限時間",
+    body: "收詞、聽讀音、字卡、書寫和聽寫都免費。田字格、拼音格、英文書寫、橫線紙和方格紙，每張都能免費列印第 1 頁，所有排版都能調，想印幾次就印幾次。免費頁面的頁尾有一個小小的 App Store QR 碼。",
+    cta: "免費下載",
+  },
+  pro: {
+    name: "Pro",
+    forWhom: "想印完整字帖的人。",
+    price: "14.99",
+    unit: "美元，一次買斷",
+    body: "每張字帖的所有頁、筆順字帖和筆順條、合訂本 PDF、標準楷書和印刷體字體、彩色描紅和描紅漸淡。QR 碼可留可去，拍照辨識不限次數，更多檔案，支援家人共享。不是訂閱。",
+    cta: "在 App 裡試用 Pro",
+  },
+  compareTitle: "免費版與 Pro 對照",
   planFeatureHeader: "功能",
   planRows: [
     { label: "學習：收詞、聽讀音、字卡、書寫、聽寫", free: true, pro: true },
@@ -992,7 +1169,7 @@ const landingZhTw: TracesheetLanding = {
     { label: "所有排版設定，A4 或 Letter", free: true, pro: true },
     { label: "每張字帖列印頁數", free: "第 1 頁", pro: "全部頁" },
     { label: "列印、分享 PDF、存成圖片", free: "不限", pro: "不限" },
-    { label: "頁尾的 App Store QR 碼", free: "小 QR 碼", pro: "保留或去掉，由你選" },
+    { label: "頁尾的 App Store QR 碼", free: "小 QR 碼", pro: "保留或去掉" },
     { label: "筆順字帖和筆順條", free: "可試：第 1 頁", pro: true },
     { label: "合訂本 PDF：幾種字帖合成一個檔案", free: "可試：第 1 頁", pro: true },
     { label: "字體：標準楷書、School print、Sloped print", free: "可試：第 1 頁", pro: true },
@@ -1001,31 +1178,16 @@ const landingZhTw: TracesheetLanding = {
     { label: "更多檔案", free: false, pro: true },
     { label: "家人共享", free: false, pro: true },
   ],
+  planYes: "包含",
+  planNo: "不包含",
   planFootnote: "價格為美區 App Store 價格；你的 App Store 會顯示當地貨幣的價格。",
-  shareEyebrow: "給老師和家長",
-  shareTitle: "字帖免費分享——傳給全班、傳給老師、傳到家長群組",
+  shareTitle: "給全班每人印一份。",
+  shareHead: "免費分享",
   shareBody:
-    "免費字帖不是試用——每張只是列印第 1 頁，而一份聽寫清單通常一頁就夠。給全班每人印一份、把 PDF 傳給老師、轉給其他家長，想分享幾次都行。每張免費頁面的頁尾都有一個小小的 App Store QR 碼，拿到字帖的人掃一下就能找到這個 App。",
-  shareSteps: [
-    {
-      title: "做一次",
-      body: "輸入或貼上這週的清單，拼音自動標註；選好字帖和排版。",
-    },
-    {
-      title: "分享 PDF",
-      body: "AirPrint 列印，或透過分享面板裡的任意 App 傳送 PDF 或圖片。",
-    },
-    {
-      title: "人人都能印",
-      body: "不限份數，收到的人也不需要註冊帳號。",
-    },
-  ],
-  trustEyebrow: "隱私",
-  trustChips: ["無需帳號", "沒有廣告", "不追蹤", "離線可用"],
-  faqEyebrow: "常見問題",
+    "這週的聽寫清單做一次，就能 AirPrint 列印、把 PDF 傳給老師，或者轉到家長群組。一份清單通常第 1 頁就印得下；頁尾的小 QR 碼讓拿到字帖的人也能找到這個 App。",
+  shareAlt: "田字格字帖列印預覽：花、开、小、鸟、春、天，附拼音",
+  shareCta: "免費下載 TraceSheet",
   faqTitle: "簡單回答",
-  closingTitle: "今天收下一個詞，今晚印成字帖。",
-  closingBody: "TraceSheet 在 App Store 免費下載，支援 iPhone 和 iPad，介面有 12 種語言。",
 };
 
 export const tracesheetLanding: Record<Locale, TracesheetLanding> = {
