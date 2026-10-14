@@ -1,0 +1,370 @@
+{
+ "pn1-settle": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/pn1-settle-v-en.mp4",
+    "poster": "/apps/poker-night/video/pn1-settle-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 15.1,
+    "bytes": 550407
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/pn1-settle-v-zh.mp4",
+    "poster": "/apps/poker-night/video/pn1-settle-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 16.2,
+    "bytes": 577690
+   }
+  }
+ },
+ "pn2-card": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/pn2-card-v-en.mp4",
+    "poster": "/apps/poker-night/video/pn2-card-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 19.6,
+    "bytes": 767188
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/pn2-card-v-zh.mp4",
+    "poster": "/apps/poker-night/video/pn2-card-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 18.4,
+    "bytes": 737937
+   }
+  }
+ },
+ "pn3-clock": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/pn3-clock-v-en.mp4",
+    "poster": "/apps/poker-night/video/pn3-clock-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 13.7,
+    "bytes": 406371
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/pn3-clock-v-zh.mp4",
+    "poster": "/apps/poker-night/video/pn3-clock-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 15.3,
+    "bytes": 440492
+   }
+  }
+ },
+ "pn4-walkthrough": {
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/pn4-walkthrough-h-en.mp4",
+    "poster": "/apps/poker-night/video/pn4-walkthrough-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 62.6,
+    "bytes": 2349984
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/pn4-walkthrough-h-zh.mp4",
+    "poster": "/apps/poker-night/video/pn4-walkthrough-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 61.0,
+    "bytes": 2199190
+   }
+  }
+ },
+ "b1-settle": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/b1-settle-v-en.mp4",
+    "poster": "/apps/poker-night/video/b1-settle-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 21.3,
+    "bytes": 1623609
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b1-settle-v-zh.mp4",
+    "poster": "/apps/poker-night/video/b1-settle-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 21.3,
+    "bytes": 1673403
+   }
+  },
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/b1-settle-h-en.mp4",
+    "poster": "/apps/poker-night/video/b1-settle-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 21.3,
+    "bytes": 1319523
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b1-settle-h-zh.mp4",
+    "poster": "/apps/poker-night/video/b1-settle-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 21.3,
+    "bytes": 1347712
+   }
+  }
+ },
+ "b2-card": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/b2-card-v-en.mp4",
+    "poster": "/apps/poker-night/video/b2-card-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 19.8,
+    "bytes": 1306922
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b2-card-v-zh.mp4",
+    "poster": "/apps/poker-night/video/b2-card-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 19.8,
+    "bytes": 1312582
+   }
+  },
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/b2-card-h-en.mp4",
+    "poster": "/apps/poker-night/video/b2-card-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 19.8,
+    "bytes": 1078527
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b2-card-h-zh.mp4",
+    "poster": "/apps/poker-night/video/b2-card-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 19.8,
+    "bytes": 1079334
+   }
+  }
+ },
+ "b3-clock": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/b3-clock-v-en.mp4",
+    "poster": "/apps/poker-night/video/b3-clock-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 18.9,
+    "bytes": 1094321
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b3-clock-v-zh.mp4",
+    "poster": "/apps/poker-night/video/b3-clock-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 18.9,
+    "bytes": 1094544
+   }
+  },
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/b3-clock-h-en.mp4",
+    "poster": "/apps/poker-night/video/b3-clock-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 18.9,
+    "bytes": 970097
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b3-clock-h-zh.mp4",
+    "poster": "/apps/poker-night/video/b3-clock-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 18.9,
+    "bytes": 964716
+   }
+  }
+ },
+ "b4-night": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/b4-night-v-en.mp4",
+    "poster": "/apps/poker-night/video/b4-night-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 24.4,
+    "bytes": 1831688
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b4-night-v-zh.mp4",
+    "poster": "/apps/poker-night/video/b4-night-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 24.4,
+    "bytes": 1860287
+   }
+  },
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/b4-night-h-en.mp4",
+    "poster": "/apps/poker-night/video/b4-night-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.4,
+    "bytes": 1462267
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b4-night-h-zh.mp4",
+    "poster": "/apps/poker-night/video/b4-night-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.4,
+    "bytes": 1489779
+   }
+  }
+ },
+ "b5-study": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/b5-study-v-en.mp4",
+    "poster": "/apps/poker-night/video/b5-study-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 21.7,
+    "bytes": 1283659
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b5-study-v-zh.mp4",
+    "poster": "/apps/poker-night/video/b5-study-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 21.7,
+    "bytes": 1330261
+   }
+  },
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/b5-study-h-en.mp4",
+    "poster": "/apps/poker-night/video/b5-study-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 21.7,
+    "bytes": 1095941
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/b5-study-h-zh.mp4",
+    "poster": "/apps/poker-night/video/b5-study-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 21.7,
+    "bytes": 1111628
+   }
+  }
+ },
+ "brag-night": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/brag-night-v-en.mp4",
+    "poster": "/apps/poker-night/video/brag-night-v-en.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 20.7,
+    "bytes": 1474430
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/brag-night-v-zh.mp4",
+    "poster": "/apps/poker-night/video/brag-night-v-zh.jpg",
+    "width": 720,
+    "height": 1280,
+    "duration": 20.7,
+    "bytes": 1471866
+   }
+  },
+  "h": {
+   "en": {
+    "src": "/apps/poker-night/video/brag-night-h-en.mp4",
+    "poster": "/apps/poker-night/video/brag-night-h-en.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 20.7,
+    "bytes": 1189967
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/brag-night-h-zh.mp4",
+    "poster": "/apps/poker-night/video/brag-night-h-zh.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 20.7,
+    "bytes": 1170344
+   }
+  }
+ },
+ "preview-store": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/preview-store-v-en.mp4",
+    "poster": "/apps/poker-night/video/preview-store-v-en.jpg",
+    "width": 590,
+    "height": 1280,
+    "duration": 26.7,
+    "bytes": 1359642
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/preview-store-v-zh.mp4",
+    "poster": "/apps/poker-night/video/preview-store-v-zh.jpg",
+    "width": 590,
+    "height": 1280,
+    "duration": 26.7,
+    "bytes": 1366365
+   }
+  }
+ },
+ "preview-brag": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/preview-brag-v-en.mp4",
+    "poster": "/apps/poker-night/video/preview-brag-v-en.jpg",
+    "width": 590,
+    "height": 1280,
+    "duration": 19.5,
+    "bytes": 1286824
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/preview-brag-v-zh.mp4",
+    "poster": "/apps/poker-night/video/preview-brag-v-zh.jpg",
+    "width": 590,
+    "height": 1280,
+    "duration": 19.5,
+    "bytes": 1308445
+   }
+  }
+ },
+ "preview-brag2": {
+  "v": {
+   "en": {
+    "src": "/apps/poker-night/video/preview-brag2-v-en.mp4",
+    "poster": "/apps/poker-night/video/preview-brag2-v-en.jpg",
+    "width": 590,
+    "height": 1280,
+    "duration": 26.0,
+    "bytes": 1741203
+   },
+   "zh": {
+    "src": "/apps/poker-night/video/preview-brag2-v-zh.mp4",
+    "poster": "/apps/poker-night/video/preview-brag2-v-zh.jpg",
+    "width": 590,
+    "height": 1280,
+    "duration": 26.0,
+    "bytes": 1711375
+   }
+  }
+ }
+}
