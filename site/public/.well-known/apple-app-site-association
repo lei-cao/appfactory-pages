@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["W4DQ85F9YZ.com.appfactory.tracesheet"],
+        "components": [
+          { "/": "/go/tracesheet/l", "comment": "TraceSheet shared list (the fragment carries the list)" },
+          { "/": "/go/tracesheet/l/" }
+        ]
+      }
+    ]
+  }
+}
