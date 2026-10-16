@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "chinese_words",
+      "fragment": "AatWylSyUnKrMM4OsEwMNMpV0lHKU7JSejphzdO2mQrP16wxfTpxhZKOUnFpkpKVUklmXnpFZqqSjlKFklV0tVKJkpXSsxlLny5ZqaSjlK1kpZScp6SjVABiZBxdnadQknmkMU-pVgei8kXXxmdztqKrzCg90qiQUnp8EkLdwh50RRWH1-alg9j5IB2HF-alw1U_m9P9tL8bWUO5kpUBRFvB4ZV56QqVxyeVKtXG1gIA",
+      "link": "https://appfactory.sg/go/tracesheet/l#AatWylSyUnKrMM4OsEwMNMpV0lHKU7JSejphzdO2mQrP16wxfTpxhZKOUnFpkpKVUklmXnpFZqqSjlKFklV0tVKJkpXSsxlLny5ZqaSjlK1kpZScp6SjVABiZBxdnadQknmkMU-pVgei8kXXxmdztqKrzCg90qiQUnp8EkLdwh50RRWH1-alg9j5IB2HF-alw1U_m9P9tL8bWUO5kpUBRFvB4ZV56QqVxyeVKtXG1gIA",
+      "expected": {
+        "id": "Fx3kP9aQ2m",
+        "name": "听写 第5周",
+        "items": [
+          {
+            "text": "春天",
+            "kind": "cn",
+            "itemKind": "word",
+            "targets": [],
+            "write": true,
+            "pinyin": "chūn tiān",
+            "pinyinOverride": null,
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": null
+          },
+          {
+            "text": "花朵",
+            "kind": "cn",
+            "itemKind": "word",
+            "targets": [],
+            "write": true,
+            "pinyin": "huā duǒ",
+            "pinyinOverride": null,
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": null
+          },
+          {
+            "text": "行",
+            "kind": "cn",
+            "itemKind": "char",
+            "targets": [],
+            "write": true,
+            "pinyin": "xíng",
+            "pinyinOverride": "háng",
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": null
+          },
+          {
+            "text": "朋友",
+            "kind": "cn",
+            "itemKind": "word",
+            "targets": [],
+            "write": false,
+            "pinyin": "péng yǒu",
+            "pinyinOverride": null,
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "sentences_and_targets",
+      "fragment": "AU3OMUvDUBQF4L_yOPNVKFUpb3TTSdHJkOElvTSxyUt574UYSsAWRIWCCDrZxc2hHTr7c2IK_gutRup6Oefcb4wYEqdF78J0zvXhHggaEmcjTpJYD0TBPBRdEGweQMK2dxDCELJDuIL0xnCQOBIFaydcJlzEIraJ0n0RcKhyyyJ2olBW2FzrcheEISRYo6Lf7vru8eN90czfmptF87L8vJ01T6v1clZfT9twqEFwA0jP69K-T94B9Xz_r9--2Q4T7A_JOlVyX0RZyv8tRsWa-xuI3eRGyrB2W83rvF3KXMQGhAQSl2rn-AQE862pJ8_15KGe3oOQbnQRG1OKIMmszVJUfvUF",
+      "link": "https://appfactory.sg/go/tracesheet/l#AU3OMUvDUBQF4L_yOPNVKFUpb3TTSdHJkOElvTSxyUt574UYSsAWRIWCCDrZxc2hHTr7c2IK_gutRup6Oefcb4wYEqdF78J0zvXhHggaEmcjTpJYD0TBPBRdEGweQMK2dxDCELJDuIL0xnCQOBIFaydcJlzEIraJ0n0RcKhyyyJ2olBW2FzrcheEISRYo6Lf7vru8eN90czfmptF87L8vJ01T6v1clZfT9twqEFwA0jP69K-T94B9Xz_r9--2Q4T7A_JOlVyX0RZyv8tRsWa-xuI3eRGyrB2W83rvF3KXMQGhAQSl2rn-AQE862pJ8_15KGe3oOQbnQRG1OKIMmszVJUfvUF",
+      "expected": {
+        "id": "Qw8Zr1TnB4",
+        "name": "Spelling week 3",
+        "items": [
+          {
+            "text": "I went to the island because it was sunny.",
+            "kind": "en",
+            "itemKind": "sentence",
+            "targets": [],
+            "write": true,
+            "pinyin": null,
+            "pinyinOverride": null,
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": null
+          },
+          {
+            "text": "我们在公园里唱歌。",
+            "kind": "cn",
+            "itemKind": "sentence",
+            "targets": [
+              [
+                3,
+                5
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "write": true,
+            "pinyin": null,
+            "pinyinOverride": null,
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": null
+          },
+          {
+            "text": "because",
+            "kind": "en",
+            "itemKind": "word",
+            "targets": [],
+            "write": true,
+            "pinyin": null,
+            "pinyinOverride": null,
+            "lang": null,
+            "reading": null,
+            "meaning": null,
+            "sentence": "I stayed home because it rained."
+          },
+          {
+            "text": "桜",
+            "kind": "other",
+            "itemKind": "word",
+            "targets": [],
+            "write": true,
+            "pinyin": null,
+            "pinyinOverride": null,
+            "lang": "ja-JP",
+            "reading": "さくら",
+            "meaning": "cherry blossom",
+            "sentence": null
+          }
+        ]
+      }
+    }
+  ],
+  "bad": [
+    {
+      "name": "empty",
+      "fragment": "",
+      "error": "notShare"
+    },
+    {
+      "name": "not_base64url",
+      "fragment": "abc+def/ghi=",
+      "error": "notShare"
+    },
+    {
+      "name": "unsupported_version",
+      "fragment": "AqtWylSyUnKrMM4OsEwMNMpV0lHKU7JSejphzdO2mQrP16wxfTpxhZKOUnFpkpKVUklmXnpFZqqSjlKFklV0tVKJkpXSsxlLny5ZqaSjlK1kpZScp6SjVABiZBxdnadQknmkMU-pVgei8kXXxmdztqKrzCg90qiQUnp8EkLdwh50RRWH1-alg9j5IB2HF-alw1U_m9P9tL8bWUO5kpUBRFvB4ZV56QqVxyeVKtXG1gIA",
+      "error": "unsupportedVersion"
+    },
+    {
+      "name": "version_zero",
+      "fragment": "AKtWylSyUnKrMM4OsEwMNMpV0lHKU7JSejphzdO2mQrP16wxfTpxhZKOUnFpkpKVUklmXnpFZqqSjlKFklV0tVKJkpXSsxlLny5ZqaSjlK1kpZScp6SjVABiZBxdnadQknmkMU-pVgei8kXXxmdztqKrzCg90qiQUnp8EkLdwh50RRWH1-alg9j5IB2HF-alw1U_m9P9tL8bWUO5kpUBRFvB4ZV56QqVxyeVKtXG1gIA",
+      "error": "unsupportedVersion"
+    },
+    {
+      "name": "truncated",
+      "fragment": "AatWylSyUnKrMM4OsEwMNMpV0lHKU7JSejphzdO2mQrP16wxfTpxhZKOUnFpkpKVUklmXnpFZqqSjlKFklV0tVKJkpXSsxlLny5ZqaSjlK1kpZScp6SjVA",
+      "error": "corrupt"
+    },
+    {
+      "name": "garbage",
+      "fragment": "AQcHBwcHBwcH",
+      "error": "corrupt"
+    },
+    {
+      "name": "inflates_too_big",
+      "fragment": "Ae3BMQEAAADCoPVPbQhfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgM",
+      "error": "tooLarge"
+    },
+    {
+      "name": "target_out_of_range",
+      "fragment": "AatWylOyUqpQ0lGqULKKrlYqUbJSejZj6dMlK5V0lLKVrJSS85R0lErSlayiow10TGNja2NrAQ",
+      "error": "invalid"
+    },
+    {
+      "name": "targets_overlap",
+      "fragment": "AatWylOyUqpQ0lGqULKKrlYqUbJSetYx8cnuNU_nrHjauubp7LVKOkrZSlZKyXlKOkol6UpW0dEGOsaxOtFGOiaxsbWxtQA",
+      "error": "invalid"
+    },
+    {
+      "name": "empty_list",
+      "fragment": "AatWylOyUqpQ0lGqULKKjq0FAA",
+      "error": "invalid"
+    },
+    {
+      "name": "unknown_kind",
+      "fragment": "AatWylOyUqpQ0lGqULKKrlYqUbJSSlTSUcpWslLKTSwqyUzMU6qNrQUA",
+      "error": "invalid"
+    }
+  ]
+}
