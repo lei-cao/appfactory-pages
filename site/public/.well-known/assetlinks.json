@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.appfactory.tracesheet",
-      "sha256_cert_fingerprints": ["REPLACE_WITH_RELEASE_SIGNING_CERT_SHA256"]
+      "sha256_cert_fingerprints": ["27:18:D9:50:D0:5D:0C:83:49:27:E6:B8:7C:CC:C2:DF:7F:79:44:34:CA:FE:14:20:4C:6F:A0:FB:32:31:D7:78"]
     }
   }
 ]
