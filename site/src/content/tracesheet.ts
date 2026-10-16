@@ -133,7 +133,7 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-28",
+    updated: "2026-10-17",
     sections: [
       {
         heading: "What we collect",
@@ -147,7 +147,13 @@ const en: AppLocalized = {
       {
         heading: "What we don't collect",
         body: [
-          "TraceSheet has no account and no sign-up. Word lists, children's names (profiles), and practice results are stored only on your device. Photos used for scanning are processed on-device with Apple's built-in text recognition and are never uploaded anywhere. Speech uses your device's built-in text-to-speech, entirely on-device. On iOS 18 or later, missing word meanings can be translated with Apple's on-device Translation; the words are not sent to us.",
+          "TraceSheet has no account and no sign-up. Word lists, children's names (profiles), and practice results are stored only on your device. Photos used for scanning are first read on-device with Apple's built-in text recognition; see “Cloud reading” below for when a photo is sent to our server. Speech uses your device's built-in text-to-speech, entirely on-device. On iOS 18 or later, missing word meanings can be translated with Apple's on-device Translation; the words are not sent to us.",
+        ],
+      },
+      {
+        heading: "Cloud reading",
+        body: [
+          "When you use Paper Check, when the app reads a photo of a word list, or when it fetches example sentences for a list, the photo (only the answer area on our printed test sheet) or the words are sent over an encrypted connection to our server (Google Firebase Cloud Functions) and on to Google's Gemini AI model, which sends back what it read. Our server does not store the photos or the words; its logs hold only counts, timings and error codes. Google may keep requests for a short time to detect abuse, under its Gemini API terms, and does not use them to train its models. To keep usage fair, the server keeps a random install ID (not linked to you) with a daily count and, for Pro, the App Store transaction ID of the purchase. The check photo stays on your device for 30 days for the check history; list photos stay on your device with the list.",
         ],
       },
       {
@@ -335,7 +341,7 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-28",
+    updated: "2026-10-17",
     sections: [
       {
         heading: "我们收集什么",
@@ -349,7 +355,13 @@ const zhCn: AppLocalized = {
       {
         heading: "我们不收集什么",
         body: [
-          "TraceSheet 没有账号，无需注册。听写清单、孩子的姓名（档案）和练习结果只保存在你的设备上。用于识别的照片在设备本机通过 Apple 内置文字识别处理，从不会上传到任何地方。朗读使用设备自带的文字转语音功能，同样完全在本机完成。iOS 18 及以上，缺少的释义可以通过 Apple 本机翻译补全，词语不会发送给我们。",
+          "TraceSheet 没有账号，无需注册。听写清单、孩子的姓名（档案）和练习结果只保存在你的设备上。用于识别的照片先在设备本机通过 Apple 内置文字识别处理；照片何时会发送到我们的服务器，见下方“云端识别”。朗读使用设备自带的文字转语音功能，同样完全在本机完成。iOS 18 及以上，缺少的释义可以通过 Apple 本机翻译补全，词语不会发送给我们。",
+        ],
+      },
+      {
+        heading: "云端识别",
+        body: [
+          "使用“批改”（Paper Check）、让应用识别词表照片，或为词表获取例句时，照片（在我们打印的测验纸上只发送答题区域）或词语会通过加密连接发送到我们的服务器（Google Firebase Cloud Functions），再转给 Google 的 Gemini AI 模型，由它返回识别结果。我们的服务器不保存照片或词语，日志只记录次数、耗时和错误代码。Google 可能会按其 Gemini API 条款短期保留请求以防滥用，并且不会用它们训练模型。为了公平使用，服务器会保存一个随机的安装 ID（与你本人无关）和每日次数；Pro 用户还会保存该次 App Store 购买的交易 ID。批改照片在你的设备上保留 30 天用于批改记录；词表照片随词表保存在你的设备上。",
         ],
       },
       {
@@ -537,7 +549,7 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-28",
+    updated: "2026-10-17",
     sections: [
       {
         heading: "我們收集什麼",
@@ -551,7 +563,13 @@ const zhTw: AppLocalized = {
       {
         heading: "我們不收集什麼",
         body: [
-          "TraceSheet 沒有帳號，無需註冊。聽寫清單、孩子的姓名（檔案）和練習結果只保存在你的裝置上。用於辨識的照片在裝置本機透過 Apple 內建文字辨識處理，從不會上傳到任何地方。朗讀使用裝置內建的文字轉語音功能，同樣完全在本機完成。iOS 18 及以上，缺少的釋義可以透過 Apple 本機翻譯補全，詞語不會傳送給我們。",
+          "TraceSheet 沒有帳號，無需註冊。聽寫清單、孩子的姓名（檔案）和練習結果只保存在你的裝置上。用於辨識的照片先在裝置本機透過 Apple 內建文字辨識處理；照片何時會傳送到我們的伺服器，見下方「雲端辨識」。朗讀使用裝置內建的文字轉語音功能，同樣完全在本機完成。iOS 18 及以上，缺少的釋義可以透過 Apple 本機翻譯補全，詞語不會傳送給我們。",
+        ],
+      },
+      {
+        heading: "雲端辨識",
+        body: [
+          "使用「批改」（Paper Check）、讓應用程式辨識詞表照片，或為詞表取得例句時，照片（在我們列印的測驗紙上只傳送作答區域）或詞語會透過加密連線傳送到我們的伺服器（Google Firebase Cloud Functions），再轉給 Google 的 Gemini AI 模型，由它回傳辨識結果。我們的伺服器不保存照片或詞語，紀錄只包含次數、耗時和錯誤代碼。Google 可能會依其 Gemini API 條款短期保留請求以防濫用，且不會用它們訓練模型。為了公平使用，伺服器會保存一個隨機的安裝 ID（與你本人無關）和每日次數；Pro 使用者還會保存該次 App Store 購買的交易 ID。批改照片在你的裝置上保留 30 天作為批改紀錄；詞表照片隨詞表保存在你的裝置上。",
         ],
       },
       {
