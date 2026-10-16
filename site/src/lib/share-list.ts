@@ -16,7 +16,6 @@ export const MAX_LINK_JSON_BYTES = 256 * 1024;
 export const MAX_ITEMS = 500;
 export const MAX_NAME_CHARS = 120;
 export const MAX_TEXT_CHARS = 400;
-const MAX_RECORDING_BYTES = 768 * 1024;
 
 export type ShareErrorKind =
   | "notShare"
@@ -88,7 +87,10 @@ async function decode(fragment: string): Promise<SharedList> {
   }
   if (bytes.length < 2) throw new ShareError("corrupt");
   if (bytes[0] !== FORMAT_VERSION) throw new ShareError("unsupportedVersion");
-  const raw = await inflateRawCapped(bytes.subarray(1), MAX_LINK_JSON_BYTES);
+  const payload = bytes.subarray(1);
+  const raw = await inflateRawCapped(payload, MAX_LINK_JSON_BYTES);
+  // Nothing may follow the end of the DEFLATE stream (the Dart decoder agrees).
+  if (deflateStreamLength(payload) !== payload.length) throw new ShareError("corrupt");
   let json: unknown;
   try {
     json = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(raw));
@@ -185,12 +187,8 @@ function itemFromJson(raw: unknown): SharedItem {
   if (o.ik === undefined || o.ik === null) itemKind = detectItemKind(text, kind);
   else if (o.ik === "char" || o.ik === "word" || o.ik === "sentence") itemKind = o.ik;
   else throw new ShareError("invalid");
-  if (o.a !== undefined && o.a !== null) {
-    // Recordings only travel in files, never in a link.
-    if (typeof o.a !== "string" || o.a.length > (MAX_RECORDING_BYTES * 4) / 3 + 8) {
-      throw new ShareError("tooLarge");
-    }
-  }
+  // Recordings travel in files only, never in a link (the app agrees).
+  if (o.a !== undefined && o.a !== null) throw new ShareError("invalid");
   const lang = typeof o.l === "string" && /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8}){0,3}$/.test(o.l) ? o.l : null;
   const sentence = field(o.s);
   return {
@@ -275,4 +273,159 @@ export function segments(item: Pick<SharedItem, "text" | "targets">): Segment[] 
   }
   if (at < item.text.length) out.push({ text: item.text.slice(at), isTarget: false });
   return out;
+}
+
+// ---------------------------------------------------------------------------
+// Where a raw DEFLATE stream ends (RFC 1951), so a payload with bytes after it
+// is refused the same way in every browser (DecompressionStream
+// implementations differ) and in the app's Dart decoder. A port of the block
+// walk in zlib's puff.c; it produces no output and only runs on data the real
+// decoder has already inflated within its cap.
+// ---------------------------------------------------------------------------
+
+const LENGTH_EXTRA = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0];
+const DIST_EXTRA = [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13];
+const CL_ORDER = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
+
+class Bad extends Error {}
+
+interface Huffman {
+  count: number[];
+  symbol: number[];
+}
+
+function huffman(lengths: number[]): Huffman {
+  const count = new Array<number>(16).fill(0);
+  for (const l of lengths) count[l]++;
+  const offs = new Array<number>(16).fill(0);
+  for (let l = 1; l < 15; l++) offs[l + 1] = offs[l] + count[l];
+  const symbol = new Array<number>(lengths.length).fill(0);
+  for (let s = 0; s < lengths.length; s++) {
+    if (lengths[s] !== 0) symbol[offs[lengths[s]]++] = s;
+  }
+  return { count, symbol };
+}
+
+class Reader {
+  pos = 0;
+  buf = 0;
+  cnt = 0;
+  data: Uint8Array;
+  constructor(data: Uint8Array) {
+    this.data = data;
+  }
+
+  bits(need: number): number {
+    let v = this.buf;
+    while (this.cnt < need) {
+      if (this.pos >= this.data.length) throw new Bad();
+      v |= this.data[this.pos++] << this.cnt;
+      this.cnt += 8;
+    }
+    this.buf = v >> need;
+    this.cnt -= need;
+    return v & ((1 << need) - 1);
+  }
+
+  align() {
+    this.buf = 0;
+    this.cnt = 0;
+  }
+
+  decode(h: Huffman): number {
+    let code = 0;
+    let first = 0;
+    let index = 0;
+    for (let len = 1; len <= 15; len++) {
+      code |= this.bits(1);
+      const count = h.count[len];
+      if (code - count < first) return h.symbol[index + (code - first)];
+      index += count;
+      first += count;
+      first <<= 1;
+      code <<= 1;
+    }
+    throw new Bad();
+  }
+}
+
+function walk(r: Reader, lit: Huffman, dist: Huffman) {
+  for (;;) {
+    const sym = r.decode(lit);
+    if (sym < 256) continue;
+    if (sym === 256) return;
+    const li = sym - 257;
+    if (li >= 29) throw new Bad();
+    r.bits(LENGTH_EXTRA[li]);
+    const ds = r.decode(dist);
+    if (ds >= 30) throw new Bad();
+    r.bits(DIST_EXTRA[ds]);
+  }
+}
+
+/** Bytes of `data` the DEFLATE stream occupies, or null if truncated or malformed. */
+export function deflateStreamLength(data: Uint8Array): number | null {
+  const r = new Reader(data);
+  try {
+    let last: number;
+    do {
+      last = r.bits(1);
+      switch (r.bits(2)) {
+        case 0: {
+          r.align();
+          if (r.pos + 4 > data.length) return null;
+          const len = data[r.pos] | (data[r.pos + 1] << 8);
+          const nlen = data[r.pos + 2] | (data[r.pos + 3] << 8);
+          if (len !== (~nlen & 0xffff)) return null;
+          r.pos += 4 + len;
+          if (r.pos > data.length) return null;
+          break;
+        }
+        case 1: {
+          const lit = new Array<number>(288).fill(8);
+          lit.fill(9, 144, 256);
+          lit.fill(7, 256, 280);
+          walk(r, huffman(lit), huffman(new Array<number>(30).fill(5)));
+          break;
+        }
+        case 2: {
+          const nlen = r.bits(5) + 257;
+          const ndist = r.bits(5) + 1;
+          const ncode = r.bits(4) + 4;
+          if (nlen > 286 || ndist > 30) return null;
+          const cl = new Array<number>(19).fill(0);
+          for (let k = 0; k < ncode; k++) cl[CL_ORDER[k]] = r.bits(3);
+          const clCodes = huffman(cl);
+          const lengths = new Array<number>(nlen + ndist).fill(0);
+          let i = 0;
+          while (i < nlen + ndist) {
+            const sym = r.decode(clCodes);
+            if (sym < 16) {
+              lengths[i++] = sym;
+              continue;
+            }
+            let prev = 0;
+            let rep: number;
+            if (sym === 16) {
+              if (i === 0) return null;
+              prev = lengths[i - 1];
+              rep = 3 + r.bits(2);
+            } else if (sym === 17) rep = 3 + r.bits(3);
+            else rep = 11 + r.bits(7);
+            if (i + rep > nlen + ndist) return null;
+            while (rep-- > 0) lengths[i++] = prev;
+          }
+          if (lengths[256] === 0) return null;
+          walk(r, huffman(lengths.slice(0, nlen)), huffman(lengths.slice(nlen)));
+          break;
+        }
+        default:
+          return null;
+      }
+    } while (last === 0);
+    return r.pos;
+  } catch (e) {
+    if (e instanceof Bad) return null;
+    throw e;
+  }
 }

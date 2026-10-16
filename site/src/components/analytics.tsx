@@ -7,6 +7,7 @@
 // Also reports store_click {app, store} for App Store / Google Play links.
 import { useEffect } from "react";
 import {
+  analyticsDisabledFor,
   appSlugFor,
   consentDefaults,
   parseGaId,
@@ -20,6 +21,8 @@ let started = false;
 export function Analytics() {
   useEffect(() => {
     if (!GA_ID || started) return;
+    // D11: the shared-list page's URL fragment is the list; never send it.
+    if (analyticsDisabledFor(location.pathname)) return;
     const gpc = (navigator as Navigator & { globalPrivacyControl?: boolean })
       .globalPrivacyControl;
     if (gpc) return;
