@@ -1,4 +1,4 @@
-// LingoWonders' home page at lingowonders.appfactory.sg.
+// LingoWonders' home page at lingowonders.com.
 //
 // It reads like a bilingual copybook: warm paper, ink type, the vermilion
 // 田字格 cell of the app icon as the one motif. The page tells the 2.1 week

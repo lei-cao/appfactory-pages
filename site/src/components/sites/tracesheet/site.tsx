@@ -3,7 +3,7 @@ import { TracesheetLanding } from "./landing";
 import { TracesheetShell } from "./shell";
 import "./site.css";
 
-// lingowonders.appfactory.sg (slug "tracesheet"): its own Shell (header,
+// lingowonders.com (slug "tracesheet"): its own Shell (header,
 // copybook footer) and Landing. The landing emits the app and Organization
 // JSON-LD itself; guides and support are routes in
 // src/app/[locale]/apps/tracesheet/.

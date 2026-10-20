@@ -15,7 +15,7 @@ export const DEFAULT_CAMPAIGN = "go";
 
 const CAMPAIGN_RE = /^[a-z0-9-]{1,40}$/;
 
-type GoApp = Pick<AppBase, "slug" | "host" | "appStoreUrl" | "appStoreId" | "playStoreUrl">;
+type GoApp = Pick<AppBase, "slug" | "host" | "domain" | "appStoreUrl" | "appStoreId" | "playStoreUrl">;
 
 export interface GoLinkDeps {
   apex: string;
@@ -58,7 +58,9 @@ export function resolveGoLink(
   const app = slugRaw ? getApp(slugRaw.toLowerCase()) : undefined;
   if (!app) return home;
 
-  const site = `https://${app.host ?? app.slug}.${apex}/`;
+  const site = app.domain
+    ? `https://${app.domain}/`
+    : `https://${app.host ?? app.slug}.${apex}/`;
   const campaign = sanitizeCampaign(campaignRaw);
 
   if (userAgent.includes("Android")) return app.playStoreUrl ?? site;

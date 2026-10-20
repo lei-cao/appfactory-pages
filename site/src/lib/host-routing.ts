@@ -4,7 +4,8 @@
 // Hosts: the apex is the hub, `<label>.appfactory.sg` (and
 // `<label>.localhost[:port]` in dev) is an app site. An app's public label is
 // its `host` when set (a rebrand), else its slug; the slug stays the internal
-// route id (/apps/<slug>/...).
+// route id (/apps/<slug>/...). An app with its own `domain` (lingowonders.com)
+// is served there; its appfactory.sg labels 308 to that domain in one hop.
 
 // No runtime imports (Node's type stripping can't resolve the "@/" alias or
 // extensionless paths), so the locale constants are mirrored from lib/i18n.ts;
@@ -25,6 +26,8 @@ function localePrefix(locale: Locale): string {
 export interface HostApp {
   slug: string;
   host?: string;
+  /** Own canonical domain; the app is served on it (and `www.` redirects to it). */
+  domain?: string;
 }
 
 export interface HostRoutingInput {
@@ -105,7 +108,32 @@ export function decideHost({
     return { action: "redirect-external", location: `https://${apex}${pathname}${search}` };
   }
 
+  // An app's own domain: the bare domain serves the app; `www.` is a safety net
+  // (Vercel redirects it at the domain level already).
+  const domainApp = apps.find(
+    (a) => a.domain && (host === a.domain || host === `www.${a.domain}`),
+  );
+  if (domainApp && host !== domainApp.domain) {
+    return {
+      action: "redirect-external",
+      location: `https://${domainApp.domain}${pathname}${search}`,
+    };
+  }
+
   const sub = subdomainOf(host, apex);
+
+  // Apps with their own domain: both appfactory.sg labels (old slug, rebrand
+  // host) go straight to the domain, so there is only ever one hop.
+  const labelApp =
+    sub?.root === apex
+      ? apps.find((a) => a.domain && (a.slug === sub.label || a.host === sub.label))
+      : undefined;
+  if (labelApp) {
+    return {
+      action: "redirect-external",
+      location: `https://${labelApp.domain}${pathname}${search}`,
+    };
+  }
 
   // Renamed apps: the old subdomain keeps working forever (App Store listings,
   // printed material, shipped builds), redirecting the same path to the new one.
@@ -123,8 +151,8 @@ export function decideHost({
 
   const effective: Locale = locale ?? DEFAULT_LOCALE;
 
-  if (sub) {
-    const slug = slugForLabel(sub.label, apps);
+  if (domainApp || sub) {
+    const slug = domainApp ? domainApp.slug : slugForLabel(sub!.label, apps);
     // In-app links are path-style (/apps/<slug>/support) so they work on the
     // apex and on previews; on the app's own host that prefix is redundant.
     const appPrefix = `/apps/${slug}`;
