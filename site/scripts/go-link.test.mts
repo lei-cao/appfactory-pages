@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import { isGoPath, isShareListPath, resolveGoLink, sanitizeCampaign } from "../src/lib/go-link.ts";
 
 const APPS = [
-  { slug: "tracesheet", host: "lingowonders", appStoreUrl: "https://apps.apple.com/app/id6816287607?pt=1&ct=site&mt=8" },
+  { slug: "tracesheet", host: "lingowonders", domain: "lingowonders.com", appStoreUrl: "https://apps.apple.com/app/id6816287607?pt=1&ct=site&mt=8" },
   { slug: "both", appStoreId: "123", playStoreUrl: "https://play.google.com/store/apps/details?id=x" },
   { slug: "unreleased" },
 ];
@@ -42,14 +42,14 @@ test("default and invalid campaigns become go", () => {
 
 test("Android gets Play when present, else the site", () => {
   assert.equal(resolveGoLink("/go/both/x", UA.android, deps), APPS[1].playStoreUrl);
-  assert.equal(resolveGoLink("/go/tracesheet", UA.android, deps), "https://lingowonders.appfactory.sg/");
+  assert.equal(resolveGoLink("/go/tracesheet", UA.android, deps), "https://lingowonders.com/");
 });
 
 test("everything else, and apps with no store id, get the site", () => {
-  assert.equal(resolveGoLink("/go/tracesheet", UA.windows, deps), "https://lingowonders.appfactory.sg/");
-  assert.equal(resolveGoLink("/go/tracesheet", "", deps), "https://lingowonders.appfactory.sg/");
+  assert.equal(resolveGoLink("/go/tracesheet", UA.windows, deps), "https://lingowonders.com/");
+  assert.equal(resolveGoLink("/go/tracesheet", "", deps), "https://lingowonders.com/");
   assert.equal(resolveGoLink("/go/unreleased", UA.iphone, deps), "https://unreleased.appfactory.sg/");
-  assert.equal(resolveGoLink("/go/TraceSheet", UA.windows, deps), "https://lingowonders.appfactory.sg/");
+  assert.equal(resolveGoLink("/go/TraceSheet", UA.windows, deps), "https://lingowonders.com/");
 });
 
 test("unknown or missing slug goes to the apex", () => {

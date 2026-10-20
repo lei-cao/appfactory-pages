@@ -725,6 +725,7 @@ const zhTw: AppLocalized = {
 export const tracesheet: AppContent = {
   slug: "tracesheet",
   host: "lingowonders",
+  domain: "lingowonders.com",
   category: "app",
   schemaCategory: "EducationalApplication",
   buildNumber: 8,

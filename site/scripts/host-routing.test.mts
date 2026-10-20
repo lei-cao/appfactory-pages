@@ -7,12 +7,12 @@ import assert from "node:assert/strict";
 import { decideHost, renamedLabels, slugForLabel } from "../src/lib/host-routing.ts";
 import { ROUTING_LOCALES } from "../src/lib/host-routing.ts";
 import { LOCALES } from "../src/lib/i18n.ts";
-import { HOST_SLUGS } from "../src/lib/analytics.ts";
+import { DOMAIN_SLUGS, HOST_SLUGS } from "../src/lib/analytics.ts";
 import { appHost, appOrigin } from "../src/lib/site.ts";
 
 const APEX = "appfactory.sg";
 const APPS = [
-  { slug: "tracesheet", host: "lingowonders" },
+  { slug: "tracesheet", host: "lingowonders", domain: "lingowonders.com" },
   { slug: "sushi-sort" },
   { slug: "poker-night" },
 ];
@@ -23,18 +23,50 @@ test("locale constants mirror lib/i18n", () => {
   assert.deepEqual([...ROUTING_LOCALES], [...LOCALES]);
 });
 
-test("old tracesheet host 308s to the same path on lingowonders", () => {
-  for (const [path, search] of [
-    ["/", ""],
-    ["/privacy", ""],
-    ["/zh-cn/support", ""],
-    ["/guide/x", "?a=1"],
-  ]) {
-    assert.deepEqual(route("tracesheet.appfactory.sg", path, search), {
-      action: "redirect-external",
-      location: `https://lingowonders.appfactory.sg${path}${search}`,
-    });
+test("both appfactory.sg labels 308 to the own domain in one hop", () => {
+  for (const host of ["tracesheet.appfactory.sg", "lingowonders.appfactory.sg"]) {
+    for (const [path, search] of [
+      ["/", ""],
+      ["/privacy", ""],
+      ["/zh-cn/support", ""],
+      ["/guide/getting-started", "?x=1"],
+    ]) {
+      assert.deepEqual(route(host, path, search), {
+        action: "redirect-external",
+        location: `https://lingowonders.com${path}${search}`,
+      });
+    }
   }
+});
+
+test("own domain serves the app in all locales", () => {
+  assert.deepEqual(route("lingowonders.com", "/"), { action: "rewrite", pathname: "/en/apps/tracesheet" });
+  assert.deepEqual(route("lingowonders.com", "/zh-cn"), { action: "rewrite", pathname: "/zh-cn/apps/tracesheet" });
+  assert.deepEqual(route("lingowonders.com", "/zh-tw/support"), {
+    action: "rewrite",
+    pathname: "/zh-tw/apps/tracesheet/support",
+  });
+  assert.deepEqual(route("lingowonders.com", "/guide/x"), {
+    action: "rewrite",
+    pathname: "/en/apps/tracesheet/guide/x",
+  });
+  assert.deepEqual(route("lingowonders.com", "/en/privacy"), { action: "redirect-path", pathname: "/privacy" });
+  assert.deepEqual(route("lingowonders.com", "/apps/tracesheet/terms"), {
+    action: "redirect-path",
+    pathname: "/terms",
+  });
+});
+
+test("www.<domain> 308s to the bare domain", () => {
+  assert.deepEqual(route("www.lingowonders.com", "/zh-cn", "?a=1"), {
+    action: "redirect-external",
+    location: "https://lingowonders.com/zh-cn?a=1",
+  });
+});
+
+test("unknown hosts keep hub behaviour; other apps keep their subdomain", () => {
+  assert.deepEqual(route("example.com", "/privacy"), { action: "rewrite", pathname: "/en/privacy" });
+  assert.deepEqual(route("sushi-sort.appfactory.sg", "/"), { action: "rewrite", pathname: "/en/apps/sushi-sort" });
 });
 
 test("tracesheet.localhost redirects to lingowonders.localhost, keeping the port", () => {
@@ -44,8 +76,8 @@ test("tracesheet.localhost redirects to lingowonders.localhost, keeping the port
   });
 });
 
-test("new host serves the tracesheet app", () => {
-  for (const host of ["lingowonders.appfactory.sg", "lingowonders.localhost"]) {
+test("dev host lingowonders.localhost serves the tracesheet app", () => {
+  for (const host of ["lingowonders.localhost"]) {
     assert.deepEqual(route(host, "/"), { action: "rewrite", pathname: "/en/apps/tracesheet" });
     assert.deepEqual(route(host, "/zh-cn/support"), {
       action: "rewrite",
@@ -54,12 +86,12 @@ test("new host serves the tracesheet app", () => {
   }
 });
 
-test("new host cleans path-style /apps/tracesheet", () => {
-  assert.deepEqual(route("lingowonders.appfactory.sg", "/apps/tracesheet/support"), {
+test("dev host cleans path-style /apps/tracesheet", () => {
+  assert.deepEqual(route("lingowonders.localhost", "/apps/tracesheet/support"), {
     action: "redirect-path",
     pathname: "/support",
   });
-  assert.deepEqual(route("lingowonders.appfactory.sg", "/zh-cn/apps/tracesheet"), {
+  assert.deepEqual(route("lingowonders.localhost", "/zh-cn/apps/tracesheet"), {
     action: "redirect-path",
     pathname: "/zh-cn/",
   });
@@ -98,7 +130,7 @@ test("hub host and /en stripping", () => {
     pathname: "/en/apps/tracesheet",
   });
   assert.deepEqual(route("appfactory.sg", "/en/x"), { action: "redirect-path", pathname: "/x" });
-  assert.deepEqual(route("lingowonders.appfactory.sg", "/en"), {
+  assert.deepEqual(route("lingowonders.localhost", "/en"), {
     action: "redirect-path",
     pathname: "/",
   });
@@ -116,6 +148,10 @@ test("rename table is derived from the registry", () => {
 test("app origins come from host ?? slug", () => {
   assert.equal(appHost({ slug: "tracesheet", host: "lingowonders" }), "lingowonders");
   assert.equal(appOrigin({ slug: "tracesheet", host: "lingowonders" }), "https://lingowonders.appfactory.sg");
+  assert.equal(
+    appOrigin({ slug: "tracesheet", host: "lingowonders", domain: "lingowonders.com" }),
+    "https://lingowonders.com",
+  );
   assert.equal(appOrigin({ slug: "poker-night" }), "https://poker-night.appfactory.sg");
   assert.equal(appOrigin("poker-night"), "https://poker-night.appfactory.sg");
 });
@@ -123,8 +159,9 @@ test("app origins come from host ?? slug", () => {
 test("analytics HOST_SLUGS matches the registry hosts", () => {
   // The registry uses the "@/" alias, so read the app content as text.
   const src = readFileSync(new URL("../src/content/tracesheet.ts", import.meta.url), "utf8");
-  assert.match(src, /slug: "tracesheet",\s*host: "lingowonders"/);
+  assert.match(src, /slug: "tracesheet",\s*host: "lingowonders",\s*domain: "lingowonders\.com"/);
   assert.deepEqual(HOST_SLUGS, { lingowonders: "tracesheet" });
+  assert.deepEqual(DOMAIN_SLUGS, { "lingowonders.com": "tracesheet" });
 });
 
 test("no module in the app builds a tracesheet.appfactory.sg URL", () => {

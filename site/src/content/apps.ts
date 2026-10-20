@@ -38,6 +38,12 @@ export interface AppBase {
    * TraceSheet became LingoWonders on 2026-10-18 → host "lingowonders".
    */
   host?: string;
+  /**
+   * Own registrable domain (e.g. "lingowonders.com"). When set it is the
+   * app's canonical host: every absolute URL uses it, and the appfactory.sg
+   * labels (`slug`, `host`) 308 to it. Dev (`<label>.localhost`) is unaffected.
+   */
+  domain?: string;
   category: AppCategory;
   /** Sequential factory build number (order the apps left the line). */
   buildNumber: number;
