@@ -250,6 +250,14 @@ body:has([data-app="tracesheet"]) {
 [data-app="tracesheet"] .lw-arrow-link::after {
   content: "→";
 }
+[data-app="tracesheet"] .lw-arrow-link + .lw-arrow-link {
+  display: flex;
+  width: fit-content;
+  margin-top: 0;
+}
+[data-app="tracesheet"] .lw-related {
+  margin: 8px 0 0;
+}
 [data-app="tracesheet"] .lw-arrow-link:hover {
   text-decoration-thickness: 2px;
 }
@@ -887,14 +895,99 @@ body:has([data-app="tracesheet"]) {
   }
 }
 
-/* ---- live ---------------------------------------------------------------- */
+/* ---- videos -------------------------------------------------------------- */
 
-[data-app="tracesheet"] .lw-live-grid {
+/* The channel's latest uploads, as links out. Thumbnails are local copies;
+   nothing on the page loads from YouTube. */
+[data-app="tracesheet"] .lw-videos-grid {
   display: grid;
   gap: 32px;
   align-items: center;
 }
-[data-app="tracesheet"] .lw-live-card {
+[data-app="tracesheet"] .lw-video {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+[data-app="tracesheet"] .lw-video-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--lw-paper-deep);
+  outline: 1px solid var(--lw-rule);
+  outline-offset: -1px;
+}
+[data-app="tracesheet"] .lw-video-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+[data-app="tracesheet"] .lw-video:hover .lw-video-thumb,
+[data-app="tracesheet"] .lw-video:focus-visible .lw-video-thumb {
+  outline: 2px solid var(--lw-red);
+  outline-offset: -2px;
+}
+[data-app="tracesheet"] .lw-video-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+[data-app="tracesheet"] .lw-video-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--t-small);
+  color: var(--lw-ink-soft);
+}
+/* A small play mark before the date: a vermilion triangle, no overlay on the
+   thumbnail (the channel's thumbnails carry their own type). */
+[data-app="tracesheet"] .lw-video-play {
+  flex: none;
+  border-style: solid;
+  border-width: 5px 0 5px 9px;
+  border-color: transparent transparent transparent var(--lw-red);
+}
+[data-app="tracesheet"] .lw-video-title {
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+[data-app="tracesheet"] .lw-video.is-feature .lw-video-title {
+  font-family: var(--lw-serif);
+  font-size: var(--t-h4);
+}
+[data-app="tracesheet"] .lw-video:hover .lw-video-title {
+  color: var(--lw-red-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+[data-app="tracesheet"] .lw-video-list {
+  display: grid;
+  gap: 32px 24px;
+  margin: 56px 0 0;
+  padding: 40px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--lw-rule);
+}
+@media (min-width: 600px) {
+  [data-app="tracesheet"] .lw-video-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1000px) {
+  [data-app="tracesheet"] .lw-video-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* With no synced video yet: the channel as a card in the video's place. */
+[data-app="tracesheet"] .lw-channel-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -907,7 +1000,7 @@ body:has([data-app="tracesheet"]) {
   text-decoration: none;
   overflow: hidden;
 }
-[data-app="tracesheet"] .lw-live-top {
+[data-app="tracesheet"] .lw-channel-top {
   position: absolute;
   top: clamp(16px, 2.5vw, 28px);
   left: clamp(20px, 3vw, 36px);
@@ -919,34 +1012,66 @@ body:has([data-app="tracesheet"]) {
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-[data-app="tracesheet"] .lw-live-dot {
+[data-app="tracesheet"] .lw-channel-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--lw-red);
 }
-[data-app="tracesheet"] .lw-live-name {
+[data-app="tracesheet"] .lw-channel-name {
   position: relative;
   font-family: var(--lw-serif);
-  font-size: clamp(2.5rem, 1.8rem + 3vw, 4rem);
+  font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
   font-weight: 600;
   line-height: 1;
 }
-[data-app="tracesheet"] .lw-live-handle {
+[data-app="tracesheet"] .lw-channel-handle {
   position: relative;
   margin-top: 8px;
   color: var(--lw-trace);
 }
-[data-app="tracesheet"] .lw-live-cell {
+[data-app="tracesheet"] .lw-channel-cell {
   position: absolute;
   right: clamp(16px, 3vw, 36px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(96px, 16vw, 168px);
-  font-size: clamp(96px, 16vw, 168px);
+  top: clamp(16px, 2.5vw, 28px);
+  width: clamp(80px, 13vw, 140px);
+  font-size: clamp(80px, 13vw, 140px);
+}
+
+[data-app="tracesheet"] .lw-channel-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 0;
+  font-weight: 600;
+}
+[data-app="tracesheet"] .lw-channel-line-cell {
+  width: 36px;
+  font-size: 36px;
+  flex: none;
+}
+[data-app="tracesheet"] .lw-channel-line-handle {
+  font-weight: 400;
+  color: var(--lw-ink-soft);
+}
+[data-app="tracesheet"] .lw-videos-act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 28px;
+}
+[data-app="tracesheet"] .lw-videos-act .lw-btn,
+[data-app="tracesheet"] .lw-videos-act .lw-arrow-link {
+  margin-top: 1.25rem;
+}
+/* Phones: the heading first, then the latest video. */
+@media (max-width: 899px) {
+  [data-app="tracesheet"] .lw-videos-text {
+    order: -1;
+  }
 }
 @media (min-width: 900px) {
-  [data-app="tracesheet"] .lw-live-grid {
+  [data-app="tracesheet"] .lw-videos-grid {
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
     gap: 64px;
   }

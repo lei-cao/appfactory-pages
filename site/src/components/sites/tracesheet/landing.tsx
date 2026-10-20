@@ -3,8 +3,8 @@
 // It reads like a bilingual copybook: warm paper, ink type, the vermilion
 // 田字格 cell of the app icon as the one motif. The page tells the 2.1 week
 // loop in order (read → say → week pack → write → dictation → print), then
-// the languages, Free and Pro, privacy, the guides, the live streams and the
-// FAQ. Copy lives in content/tracesheet.ts; nothing here is a product fact.
+// the languages, Free and Pro, privacy, the guides, the YouTube channel and
+// the FAQ. Copy lives in content/tracesheet.ts; nothing here is a product fact.
 
 import Image from "next/image";
 import Link from "next/link";
@@ -12,15 +12,57 @@ import { getApp, localized } from "@/content/apps";
 import {
   LW_SCREEN_SIZE,
   LW_YOUTUBE,
+  LW_YOUTUBE_HANDLE,
+  LW_YOUTUBE_SUBSCRIBE,
   lwClip,
   lwScreenSrc,
+  lwVideos,
+  lwVideoUrl,
   tracesheetLanding,
+  type LwVideo,
 } from "@/content/tracesheet";
-import { localePrefix, type Locale } from "@/lib/i18n";
+import { LANG_TAG, localePrefix, type Locale } from "@/lib/i18n";
 import { JsonLd, organizationLd, softwareApplicationLd } from "@/lib/seo";
 import { Clip } from "./clip";
 import { GuideList } from "./guide-list";
 import { AppStoreBadge, TianCell, UiLabel } from "./marks";
+
+/** A channel video as a plain link out: the thumbnail is a copy on this site,
+ * so nothing loads from YouTube until the visitor clicks. */
+function VideoCard({ video, locale, watch, feature = false }: {
+  video: LwVideo;
+  locale: Locale;
+  watch: string;
+  feature?: boolean;
+}) {
+  const date = new Intl.DateTimeFormat(LANG_TAG[locale], {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "Asia/Singapore",
+  }).format(new Date(video.published));
+  return (
+    <a href={lwVideoUrl(video.id)} className={`lw-video${feature ? " is-feature" : ""}`} rel="noopener" target="_blank">
+      <span className="lw-video-thumb">
+        <Image
+          src={video.thumbnail}
+          alt=""
+          width={640}
+          height={360}
+          sizes={feature ? "(max-width: 899px) 92vw, 620px" : "(max-width: 599px) 92vw, 380px"}
+        />
+      </span>
+      <span className="lw-video-text">
+        <span className="lw-video-date">
+          <span className="lw-video-play" aria-hidden />
+          <time dateTime={video.published}>{date}</time>
+        </span>
+        <span className="lw-video-title">{video.title}</span>
+        <span className="lw-sr"> ({watch})</span>
+      </span>
+    </a>
+  );
+}
 
 export function TracesheetLanding({ locale }: { locale: Locale }) {
   const app = getApp("tracesheet")!;
@@ -29,6 +71,7 @@ export function TracesheetLanding({ locale }: { locale: Locale }) {
   const store = app.appStoreUrl;
   const base = `${localePrefix(locale)}/apps/tracesheet`;
   const hero = lwClip("read", locale);
+  const [latest, ...older] = lwVideos();
 
   // The app was TraceSheet until 2.1; keep the old name findable.
   const appLd = { ...softwareApplicationLd(app, loc, locale), alternateName: [loc.name, "TraceSheet"] };
@@ -98,6 +141,11 @@ export function TracesheetLanding({ locale }: { locale: Locale }) {
                   <Link href={`${base}/guide/${c.guide}`} className="lw-arrow-link">
                     {c.guideLabel}
                   </Link>
+                  {c.moreGuide && (
+                    <Link href={`${base}/guide/${c.moreGuide.guide}`} className="lw-arrow-link">
+                      {c.moreGuide.label}
+                    </Link>
+                  )}
                 </div>
                 <div className="lw-chapter-media">
                   {c.media.kind === "screen" ? (
@@ -246,29 +294,56 @@ export function TracesheetLanding({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Live: a link out to YouTube, never an embed. */}
-      <section className="lw-section lw-live" aria-labelledby="lw-live-h">
-        <div className="lw-wrap lw-live-grid">
-          <a href={LW_YOUTUBE} className="lw-live-card" rel="noopener" target="_blank" tabIndex={-1} aria-hidden>
-            <span className="lw-live-top">
-              <span className="lw-live-dot" />
-              YouTube
-            </span>
-            <span className="lw-live-name">Lei Live</span>
-            <span className="lw-live-handle">@LeiPlaysBuilds</span>
-            <TianCell glyph="語" className="lw-live-cell" />
-          </a>
-          <div className="lw-live-text">
-            <p className="lw-kicker">{copy.liveKicker}</p>
-            <h2 id="lw-live-h" className="lw-h2">
-              {copy.liveTitle}
-            </h2>
-            <p className="lw-body-text">{copy.liveBody}</p>
-            <a href={LW_YOUTUBE} className="lw-btn" rel="noopener" target="_blank">
-              {copy.liveCta}
-            </a>
-            <p className="lw-note">{copy.liveNote}</p>
+      {/* Videos: the channel's latest uploads as links out, never an embed.
+          With no synced video yet, the channel card stands in for one. */}
+      <section id="videos" className="lw-section lw-videos" aria-labelledby="lw-videos-h">
+        <div className="lw-wrap">
+          <div className="lw-videos-grid">
+            {latest ? (
+              <VideoCard video={latest} locale={locale} watch={copy.videosWatch} feature />
+            ) : (
+              <a href={LW_YOUTUBE} className="lw-channel-card" rel="noopener" target="_blank" tabIndex={-1} aria-hidden>
+                <span className="lw-channel-top">
+                  <span className="lw-channel-dot" />
+                  YouTube
+                </span>
+                <span className="lw-channel-name">LingoWonders</span>
+                <span className="lw-channel-handle">{LW_YOUTUBE_HANDLE}</span>
+                <TianCell glyph="語" className="lw-channel-cell" />
+              </a>
+            )}
+            <div className="lw-videos-text">
+              <p className="lw-kicker">{copy.videosKicker}</p>
+              <h2 id="lw-videos-h" className="lw-h2">
+                {copy.videosTitle}
+              </h2>
+              <p className="lw-body-text">{copy.videosBody}</p>
+              <p className="lw-channel-line">
+                <TianCell glyph="語" className="lw-channel-line-cell" />
+                <span>
+                  LingoWonders · <span className="lw-channel-line-handle">{LW_YOUTUBE_HANDLE}</span>
+                </span>
+              </p>
+              <div className="lw-videos-act">
+                <a href={LW_YOUTUBE} className="lw-btn" rel="noopener" target="_blank">
+                  {copy.videosCta}
+                </a>
+                <a href={LW_YOUTUBE_SUBSCRIBE} className="lw-arrow-link" rel="noopener" target="_blank">
+                  {copy.videosSubscribe}
+                </a>
+              </div>
+              <p className="lw-note">{copy.videosNote}</p>
+            </div>
           </div>
+          {older.length > 0 && (
+            <ul className="lw-video-list">
+              {older.map((v) => (
+                <li key={v.id}>
+                  <VideoCard video={v} locale={locale} watch={copy.videosWatch} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
 

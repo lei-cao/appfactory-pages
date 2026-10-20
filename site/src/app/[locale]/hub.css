@@ -529,9 +529,13 @@
   display: grid;
   gap: 16px;
   align-content: start;
+  /* The name scales to the column so a long one-word name (LingoWonders)
+     never runs past it. */
+  min-width: 0;
+  container-type: inline-size;
 }
 .hub .feature__cluster h3 {
-  font-size: var(--step-head);
+  font-size: min(var(--step-head), 16cqi);
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1;

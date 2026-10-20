@@ -40,9 +40,9 @@ export function TracesheetShell({ locale, slug, children }: SiteShellProps) {
             <Link href={`${base}/support`} className="lw-nav-link">
               {dict.app.navSupport}
             </Link>
-            <a href={LW_YOUTUBE} className="lw-nav-link" rel="noopener" target="_blank">
-              {nav.live}
-            </a>
+            <Link href={`${base}#videos`} className="lw-nav-link">
+              {nav.videos}
+            </Link>
             <LocaleSwitch current={locale} slug={slug} />
             <StudioLink locale={locale} className="lw-nav-link lw-studio" markClassName="lw-studio-mark" />
           </nav>

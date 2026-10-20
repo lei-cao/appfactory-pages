@@ -8,7 +8,7 @@ export const guidesEn: LwGuideSet = {
     indexDescription:
       "Step-by-step guides to LingoWonders: read along, record yourself, make a Week Pack, write stroke by stroke, run dictation and print 田字格 sheets.",
     indexIntro:
-      "Nine short guides, in the order a week usually runs. Each one names the buttons the way the app does and shows the real screen.",
+      "Ten short guides, in the order a week usually runs. Each one names the buttons the way the app does and shows the real screen.",
     guides: "Guides",
     step: "Step {n}",
     steps: "{n} steps",
@@ -146,7 +146,7 @@ export const guidesEn: LwGuideSet = {
         {
           title: "Share straight from other apps",
           body: [
-            "In Safari, YouTube, Photos or Files, tap Share and choose LingoWonders. The page, video, photo or file opens as a new reading.",
+            "In Safari, YouTube, Photos, Files or any app with a Share button, tap Share and choose LingoWonders. The page, video, text, photos or file open in Read as a new reading. The next guide shows what each one becomes.",
           ],
         },
         {
@@ -165,8 +165,65 @@ export const guidesEn: LwGuideSet = {
       tips: [
         "All the built-in stories are free, and so is a daily allowance of your own readings. Pro removes the limit and takes longer texts.",
         "A badge on each reading shows how many of its words you already know, and its level.",
-        "Readings can be played with the screen off, with lock-screen controls. See the next guide.",
+        "Readings can be played with the screen off, with lock-screen controls. See “Listen, tap a word, and read it aloud”.",
       ],
+      related: [{ guide: "share-to-lingowonders", label: "Next: share to LingoWonders from any app" }],
+    },
+
+    "share-to-lingowonders": {
+      title: "Share to LingoWonders from YouTube, Safari or any app",
+      metaTitle: "Share to LingoWonders from YouTube, Safari or Any App",
+      description:
+        "Tap Share in YouTube, Safari, Photos or Files and choose LingoWonders. A link, text, photos or a file opens in Read as a new reading to learn from.",
+      summary: "Tap Share in YouTube, Safari or any app, then LingoWonders.",
+      intro: [
+        "You don't have to copy a link and come back. In YouTube, Safari, Photos, Files or any app with a Share button, tap Share and choose LingoWonders. What you shared opens in Read as a new reading, ready to check.",
+        "Sharing to LingoWonders is new in version 2.1.",
+      ],
+      steps: [
+        {
+          title: "Tap Share, then LingoWonders",
+          body: [
+            "In the other app, tap Share and choose LingoWonders in the row of apps. If it isn't in the row, scroll to the end, tap More and pick it from the list.",
+            "You can share one web link, some text, up to 8 images, or one file at a time.",
+          ],
+        },
+        {
+          title: "What each kind of share becomes",
+          body: [
+            [
+              "A YouTube link: the video's captions, in the language you are learning first. The reading plays with the video.",
+              "A web page link: the page's main article.",
+              "Text: the text itself.",
+              "Images: the text in them, read like photographed book pages.",
+              "A file: its text, subtitles (.srt or .vtt) or PDF.",
+            ],
+          ],
+        },
+        {
+          title: "When YouTube won't send the captions",
+          body: [
+            "Some videos have no captions, and YouTube sometimes refuses to send them. Then the draft keeps the video and offers to paste the text instead. The video's voice still plays as the audio.",
+          ],
+        },
+        {
+          title: "Check the draft and save the reading",
+          body: [
+            "The draft opens in the Read editor. Set the title and the language and fix any sentence, the same way as on [[Check the text]], then tap [[Create reading]].",
+          ],
+          figure: {
+            screen: "01-read",
+            alt: "A reading of the story 司马光砸缸 with pinyin over every word and an English translation under each sentence",
+            caption: "Every reading looks like this: the reading over the words, a translation below.",
+          },
+        },
+      ],
+      tips: [
+        "Your phone opens shared links and captions itself, and reads the text in images on the phone. Nothing goes through our servers.",
+        "Shared readings count like any of your own readings: Free has a daily allowance, and Pro removes the limit and takes longer texts. Free reads one page at a time; Pro reads whole books of many pages at once.",
+        "Vertical Japanese text can't be read from images yet. Pages set in horizontal lines work best.",
+      ],
+      related: [{ guide: "read-anything", label: "All the ways to make a reading" }],
     },
 
     "listen-and-say": {

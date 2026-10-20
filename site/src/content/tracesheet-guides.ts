@@ -18,6 +18,7 @@ import { guidesZhTw } from "./tracesheet-guides/zh-tw";
 const GUIDE_IDS = [
   "getting-started",
   "read-anything",
+  "share-to-lingowonders",
   "listen-and-say",
   "week-pack",
   "write-stroke-by-stroke",
@@ -35,6 +36,7 @@ export const TRACESHEET_GUIDE_IDS: readonly LwGuideId[] = GUIDE_IDS;
 const UPDATED: Record<LwGuideId, string> = {
   "getting-started": "2026-10-20",
   "read-anything": "2026-10-20",
+  "share-to-lingowonders": "2026-10-20",
   "listen-and-say": "2026-10-20",
   "week-pack": "2026-10-20",
   "write-stroke-by-stroke": "2026-10-20",
@@ -97,6 +99,8 @@ export interface LwGuide {
   intro: string[];
   steps: LwGuideStep[];
   tips: string[];
+  /** Other guides worth reading next, linked after the tips. */
+  related?: { guide: LwGuideId; label: string }[];
 }
 
 export interface LwGuideChrome {

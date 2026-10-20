@@ -164,6 +164,16 @@ export function LwGuideArticle({ locale, id }: { locale: Locale; id: LwGuideId }
         </aside>
       )}
 
+      {g.related && (
+        <p className="lw-related">
+          {g.related.map((r) => (
+            <Link key={r.guide} href={`${base}/guide/${r.guide}`} className="lw-arrow-link">
+              {r.label}
+            </Link>
+          ))}
+        </p>
+      )}
+
       <GetApp locale={locale} />
 
       <p className="lw-note lw-help">

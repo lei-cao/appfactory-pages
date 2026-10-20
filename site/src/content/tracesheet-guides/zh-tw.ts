@@ -7,7 +7,7 @@ export const guidesZhTw: LwGuideSet = {
     indexMetaTitle: "LingoWonders 使用指南：閱讀、跟讀、聽寫、列印字帖",
     indexDescription:
       "LingoWonders 分步指南：拍照或貼上文字變成讀物、錄音跟讀、每週練習包、依筆順書寫、聽寫與 Paper Check、列印田字格字帖。",
-    indexIntro: "九篇簡短指南，依一週的學習順序排好。每一步都用 App 裡的按鈕名稱，並附上真實的畫面截圖。",
+    indexIntro: "十篇簡短指南，依一週的學習順序排好。每一步都用 App 裡的按鈕名稱，並附上真實的畫面截圖。",
     guides: "使用指南",
     step: "第 {n} 步",
     steps: "{n} 步",
@@ -145,7 +145,7 @@ export const guidesZhTw: LwGuideSet = {
         {
           title: "從其他 App 直接分享進來",
           body: [
-            "在 Safari、YouTube、照片或「檔案」裡點「分享」，選 LingoWonders，網頁、影片、照片或檔案就會變成一篇新讀物。",
+            "在 Safari、YouTube、照片、「檔案」或任何有「分享」按鈕的 App 裡點「分享」，選 LingoWonders，網頁、影片、文字、照片或檔案就會在[[閱讀]]裡變成一篇新讀物。下一篇指南會說明每一種分享會變成什麼。",
           ],
         },
         {
@@ -164,8 +164,65 @@ export const guidesZhTw: LwGuideSet = {
       tips: [
         "所有內建故事都免費，自己的讀物每天也有免費額度；Pro 不限篇數，還能放更長的文本。",
         "每篇讀物上的標章會顯示你已認識的詞占多少比例，以及難度級別。",
-        "讀物可以在螢幕關閉後繼續播放，鎖定畫面上有播放控制，詳見下一篇。",
+        "讀物可以在螢幕關閉後繼續播放，鎖定畫面上有播放控制，詳見「聽、查詞、大聲讀出來」那一篇。",
       ],
+      related: [{ guide: "share-to-lingowonders", label: "下一篇：從任何 App 分享到 LingoWonders" }],
+    },
+
+    "share-to-lingowonders": {
+      title: "從 YouTube、Safari 或任何 App 分享到 LingoWonders",
+      metaTitle: "分享到 LingoWonders：YouTube、網頁、照片、檔案變讀物",
+      description:
+        "在 YouTube、Safari、照片或「檔案」裡點「分享」，選 LingoWonders。連結、文字、照片或檔案會在「閱讀」裡變成一篇新讀物。",
+      summary: "在 YouTube、Safari 或任何 App 裡點「分享」，選 LingoWonders。",
+      intro: [
+        "不用複製連結再切回來。在 YouTube、Safari、照片、「檔案」或任何有「分享」按鈕的 App 裡，點「分享」，選 LingoWonders。分享的內容會在[[閱讀]]裡變成一篇新讀物，檢查一下就能讀。",
+        "分享到 LingoWonders 是 2.1 版的新功能。",
+      ],
+      steps: [
+        {
+          title: "點「分享」，再選 LingoWonders",
+          body: [
+            "在其他 App 裡點「分享」，在 App 那一排裡選 LingoWonders。如果那一排裡沒有，滑到最後點「更多」，從列表裡選它。",
+            "每次可以分享一個網頁連結、一段文字、最多 8 張圖片，或一個檔案。",
+          ],
+        },
+        {
+          title: "每種分享會變成什麼",
+          body: [
+            [
+              "YouTube 連結：影片的字幕，優先選你在學的語言。讀物會跟著影片播放。",
+              "網頁連結：網頁的正文。",
+              "文字：就是這段文字。",
+              "圖片：圖片裡的文字，像拍下的書頁一樣辨識。",
+              "檔案：裡面的文字、字幕（.srt 或 .vtt）或 PDF。",
+            ],
+          ],
+        },
+        {
+          title: "YouTube 不提供字幕時",
+          body: [
+            "有些影片沒有字幕，YouTube 有時也不提供字幕。這時草稿會保留影片，並讓你改為貼上文字，影片的聲音仍然可以當作朗讀。",
+          ],
+        },
+        {
+          title: "檢查草稿，儲存讀物",
+          body: [
+            "草稿會在閱讀編輯器裡開啟。像在[[檢查文字]]頁一樣填好標題、選好語言、修改句子，然後點[[建立讀物]]。",
+          ],
+          figure: {
+            screen: "01-read",
+            alt: "《司馬光砸缸》讀物：每個詞上方標著讀音，每句下方有翻譯",
+            caption: "每篇讀物都是這樣：詞上標讀音，句下有翻譯。",
+          },
+        },
+      ],
+      tips: [
+        "分享進來的連結和字幕由你的手機直接取得，圖片裡的文字也在手機上辨識，都不經過我們的伺服器。",
+        "分享進來的讀物和你自己的其他讀物一樣計算：免費版每天有額度，Pro 不限篇數，還能放更長的文本。免費版一次辨識一頁；Pro 可以一次辨識多頁的整本書。",
+        "暫時還無法辨識圖片裡的直排日文，橫排的頁面效果最好。",
+      ],
+      related: [{ guide: "read-anything", label: "做讀物的所有方法" }],
     },
 
     "listen-and-say": {

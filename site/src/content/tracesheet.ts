@@ -19,6 +19,7 @@
 
 import type { Locale } from "@/lib/i18n";
 import type { AppContent, AppLocalized, Screenshot } from "./apps";
+import videoFeed from "./lingowonders-videos.json";
 import { LW_SCREENS, type LwGuideId, type LwScreen } from "./tracesheet-guides";
 
 const ASSETS = "/apps/tracesheet";
@@ -777,8 +778,33 @@ export const LW_SCREEN_SIZE = {
   ipad: { width: 1000, height: 1333 },
 } as const;
 
-/** The owner's YouTube channel (Lei Live). Linked, never embedded. */
-export const LW_YOUTUBE = "https://www.youtube.com/@LeiPlaysBuilds";
+/** LingoWonders' own YouTube channel (id UCkd122Jzs8JwNICRd8tQU9A).
+ * Linked, never embedded: the site loads nothing from YouTube. */
+export const LW_YOUTUBE_HANDLE = "@LingoWondersApp";
+export const LW_YOUTUBE = `https://www.youtube.com/${LW_YOUTUBE_HANDLE}`;
+export const LW_YOUTUBE_SUBSCRIBE = `${LW_YOUTUBE}?sub_confirmation=1`;
+
+/** One channel video, as synced by scripts/lingowonders-videos.mjs. */
+export interface LwVideo {
+  id: string;
+  /** As published; any language. */
+  title: string;
+  /** ISO 8601 (UTC). */
+  published: string;
+  /** A copy of the thumbnail on this site (640×360 jpg). */
+  thumbnail: string;
+}
+
+/** The channel's latest videos, newest first. "Latest" means as of the last
+ * `npm run videos:lingowonders` and the build after it; nothing is fetched at
+ * run time. Cards link out to youtube.com. */
+export function lwVideos(limit = 6): LwVideo[] {
+  return (videoFeed.videos as LwVideo[]).slice(0, limit);
+}
+
+export function lwVideoUrl(id: string): string {
+  return `https://www.youtube.com/watch?v=${id}`;
+}
 
 export interface LwChapter {
   /** The step's character, written in the 田 cell (decorative). */
@@ -797,6 +823,8 @@ export interface LwChapter {
     | { kind: "clip"; clip: "say" | "week"; poster: LwScreen; alt: string };
   guide: LwGuideId;
   guideLabel: string;
+  /** A second guide link under the first (Read → sharing). */
+  moreGuide?: { guide: LwGuideId; label: string };
 }
 
 export interface TracesheetLanding {
@@ -835,16 +863,18 @@ export interface TracesheetLanding {
   guidesKicker: string;
   guidesTitle: string;
   guidesIntro: string;
-  liveKicker: string;
-  liveTitle: string;
-  liveBody: string;
-  liveCta: string;
-  liveNote: string;
-  liveAlt: string;
+  videosKicker: string;
+  videosTitle: string;
+  videosBody: string;
+  videosCta: string;
+  videosSubscribe: string;
+  videosNote: string;
+  /** Read by screen readers after each video title. */
+  videosWatch: string;
   faqKicker: string;
   faqTitle: string;
   /** Shell labels. */
-  nav: { guides: string; live: string; menu: string; appStore: string; youtube: string; contact: string };
+  nav: { guides: string; videos: string; menu: string; appStore: string; youtube: string; contact: string };
   footLine: string;
 }
 
@@ -876,6 +906,7 @@ const landingEn: TracesheetLanding = {
       },
       guide: "read-anything",
       guideLabel: "Guide: read anything",
+      moreGuide: { guide: "share-to-lingowonders", label: "Guide: share from any app" },
     },
     {
       glyph: "说",
@@ -1015,21 +1046,22 @@ const landingEn: TracesheetLanding = {
   guidesKicker: "Guides",
   guidesTitle: "How to do each step",
   guidesIntro: "Short guides with the real screens, naming every button the way the app does.",
-  liveKicker: "Live on YouTube",
-  liveTitle: "Watch LingoWonders being built",
-  liveBody:
-    "Lei, who makes LingoWonders and the other App Factory apps, streams on YouTube as Lei Live: building the apps, testing them and using them, mistakes included. There is no fixed schedule; past streams stay on the channel.",
-  liveCta: "Open Lei Live on YouTube",
-  liveNote: "Opens youtube.com. Nothing from YouTube loads on this page until you click.",
-  liveAlt: "A frame from the LingoWonders promo: a story read with pinyin over the words",
+  videosKicker: "On YouTube",
+  videosTitle: "LingoWonders on YouTube",
+  videosBody:
+    "Study logs and learning videos on the LingoWonders channel: reading, saying and writing a language with the app. The first series is a study log of Japanese from zero, starting on day 1 with hiragana.",
+  videosCta: "Open the channel",
+  videosSubscribe: "Subscribe on YouTube",
+  videosNote: "Videos open on youtube.com. This page loads nothing from YouTube; the pictures are copies kept on this site.",
+  videosWatch: "watch on YouTube",
   faqKicker: "Questions",
   faqTitle: "Short answers",
   nav: {
     guides: "Guides",
-    live: "Live",
+    videos: "Videos",
     menu: "Site",
     appStore: "App Store",
-    youtube: "Lei Live on YouTube",
+    youtube: "LingoWonders on YouTube",
     contact: "Email",
   },
   footLine: "A language reader and copybook, made by App Factory in Singapore.",
@@ -1062,6 +1094,7 @@ const landingZhCn: TracesheetLanding = {
       },
       guide: "read-anything",
       guideLabel: "指南：什么都能读",
+      moreGuide: { guide: "share-to-lingowonders", label: "指南：从任何应用分享进来" },
     },
     {
       glyph: "说",
@@ -1200,21 +1233,22 @@ const landingZhCn: TracesheetLanding = {
   guidesKicker: "使用指南",
   guidesTitle: "每一步怎么做",
   guidesIntro: "配真实界面的短指南，按钮名称和应用里一模一样。",
-  liveKicker: "YouTube 直播",
-  liveTitle: "看 LingoWonders 是怎么做出来的",
-  liveBody:
-    "LingoWonders 和 App Factory 其他应用的作者 Lei，在 YouTube 上以 Lei Live 的名字直播：做应用、测应用、用应用，出错的地方也照播。没有固定时间表，以往的直播都留在频道里。",
-  liveCta: "打开 YouTube 上的 Lei Live",
-  liveNote: "会打开 youtube.com。点之前，这个页面不会加载任何 YouTube 内容。",
-  liveAlt: "LingoWonders 宣传片的一帧：一篇故事，词上标着拼音",
+  videosKicker: "YouTube 频道",
+  videosTitle: "LingoWonders 的 YouTube 频道",
+  videosBody:
+    "LingoWonders 频道上有学习日志和学习视频：用这个应用读、说、写一门语言。第一个系列是从零开始学日语的学习日志，第 1 天从平假名学起。",
+  videosCta: "打开频道",
+  videosSubscribe: "在 YouTube 上订阅",
+  videosNote: "视频在 youtube.com 上打开。这个页面不从 YouTube 加载任何内容，封面图是保存在本站的副本。",
+  videosWatch: "在 YouTube 上观看",
   faqKicker: "常见问题",
   faqTitle: "简单回答",
   nav: {
     guides: "指南",
-    live: "直播",
+    videos: "视频",
     menu: "网站",
     appStore: "App Store",
-    youtube: "YouTube 上的 Lei Live",
+    youtube: "YouTube 上的 LingoWonders",
     contact: "邮箱",
   },
   footLine: "外语阅读器和字帖，由新加坡的 App Factory 制作。",
@@ -1247,6 +1281,7 @@ const landingZhTw: TracesheetLanding = {
       },
       guide: "read-anything",
       guideLabel: "指南：什麼都能讀",
+      moreGuide: { guide: "share-to-lingowonders", label: "指南：從任何 App 分享進來" },
     },
     {
       glyph: "說",
@@ -1385,21 +1420,22 @@ const landingZhTw: TracesheetLanding = {
   guidesKicker: "使用指南",
   guidesTitle: "每一步怎麼做",
   guidesIntro: "附真實畫面的短指南，按鈕名稱和 App 裡一模一樣。",
-  liveKicker: "YouTube 直播",
-  liveTitle: "看 LingoWonders 是怎麼做出來的",
-  liveBody:
-    "LingoWonders 和 App Factory 其他 App 的作者 Lei，在 YouTube 上以 Lei Live 的名字直播：做 App、測 App、用 App，出錯的地方也照播。沒有固定時間表，以往的直播都留在頻道裡。",
-  liveCta: "開啟 YouTube 上的 Lei Live",
-  liveNote: "會開啟 youtube.com。點之前，這個頁面不會載入任何 YouTube 內容。",
-  liveAlt: "LingoWonders 宣傳片的一格：一篇故事，詞上標著拼音",
+  videosKicker: "YouTube 頻道",
+  videosTitle: "LingoWonders 的 YouTube 頻道",
+  videosBody:
+    "LingoWonders 頻道上有學習日誌和學習影片：用這個 App 讀、說、寫一種語言。第一個系列是從零開始學日語的學習日誌，第 1 天從平假名學起。",
+  videosCta: "開啟頻道",
+  videosSubscribe: "在 YouTube 上訂閱",
+  videosNote: "影片在 youtube.com 上開啟。這個頁面不從 YouTube 載入任何內容，封面圖是存放在本站的副本。",
+  videosWatch: "在 YouTube 上觀看",
   faqKicker: "常見問題",
   faqTitle: "簡單回答",
   nav: {
     guides: "指南",
-    live: "直播",
+    videos: "影片",
     menu: "網站",
     appStore: "App Store",
-    youtube: "YouTube 上的 Lei Live",
+    youtube: "YouTube 上的 LingoWonders",
     contact: "信箱",
   },
   footLine: "外語閱讀器和字帖，由新加坡的 App Factory 製作。",
