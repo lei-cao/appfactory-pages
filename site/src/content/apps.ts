@@ -32,6 +32,12 @@ export interface AppCredits {
 /** Locale-independent facts about an app. */
 export interface AppBase {
   slug: string;
+  /**
+   * Public subdomain label when it differs from the slug (a rebrand). The slug
+   * stays the internal id: routes, asset paths, /go/<slug> links, analytics.
+   * TraceSheet became LingoWonders on 2026-10-18 → host "lingowonders".
+   */
+  host?: string;
   category: AppCategory;
   /** Sequential factory build number (order the apps left the line). */
   buildNumber: number;

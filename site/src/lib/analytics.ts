@@ -46,6 +46,12 @@ export function storeOf(href: string): StoreName | null {
   return null;
 }
 
+/**
+ * Host label -> slug for rebranded apps (registry `host` != `slug`; keep in
+ * step with src/content/apps.ts, checked by scripts/seo.test.mts).
+ */
+export const HOST_SLUGS: Record<string, string> = { lingowonders: "tracesheet" };
+
 /** App slug for a page: explicit data-app, else subdomain, else /apps/<slug>, else "hub". */
 export function appSlugFor(
   hostname: string,
@@ -54,13 +60,14 @@ export function appSlugFor(
 ): string {
   if (explicit) return explicit;
   const sub = hostname.match(/^([a-z0-9-]+)\.appfactory\.sg$/)?.[1];
-  if (sub && sub !== "www") return sub;
+  // A rebranded app's host label differs from its slug; GA keeps the slug.
+  if (sub && sub !== "www") return HOST_SLUGS[sub] ?? sub;
   const m = pathname.match(/^(?:\/(?:zh-cn|zh-tw))?\/apps\/([a-z0-9-]+)/);
   return m ? m[1] : "hub";
 }
 
 /**
- * Pages where analytics must never load. The TraceSheet shared-list page
+ * Pages where analytics must never load. The LingoWonders shared-list page
  * (`/go/tracesheet/l#<data>`) carries the whole list in the URL fragment and
  * promises nothing leaves the browser (decision D11); GA's `page_location`
  * would include that fragment, so the loader skips these paths entirely.

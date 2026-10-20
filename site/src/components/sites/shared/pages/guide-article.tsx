@@ -62,7 +62,7 @@ export async function generateMetadata({
     path: `/guide/${articleId}`,
     title: `${article.title} — ${loc.name}`,
     description: article.description,
-    languages: guideLanguageAlternates(appOrigin(slug), `/guide/${articleId}`),
+    languages: guideLanguageAlternates(appOrigin(app), `/guide/${articleId}`),
     type: "article",
   });
 }
@@ -84,7 +84,7 @@ export default async function GuideArticlePage({
   const article = getGuideArticle(locale, articleId, slug);
   const base = `${localePrefix(locale)}/apps/${slug}/guide`;
   const loc = localized(app, locale);
-  const url = appPageUrl(slug, locale, `/guide/${articleId}`);
+  const url = appPageUrl(app, locale, `/guide/${articleId}`);
   const at = GUIDE_ARTICLE_IDS.indexOf(articleId);
   const prev = at > 0 ? getGuideArticleMeta(locale, GUIDE_ARTICLE_IDS[at - 1]) : null;
   const next = at < GUIDE_ARTICLE_IDS.length - 1 ? getGuideArticleMeta(locale, GUIDE_ARTICLE_IDS[at + 1]) : null;
@@ -105,7 +105,7 @@ export default async function GuideArticlePage({
             ...(app.ogImage && { image: new URL(app.ogImage, url).toString() }),
             author: { "@id": `${hubOrigin()}/#org` },
             publisher: { "@id": `${hubOrigin()}/#org` },
-            about: { "@id": `${appPageUrl(slug, locale)}#app` },
+            about: { "@id": `${appPageUrl(app, locale)}#app` },
           },
           breadcrumbLd(app, loc, locale, [
             { name: fmt(dict.guide.title, { name: loc.name }), path: "/guide" },

@@ -89,6 +89,10 @@ test("GA id parsing and store click helpers", () => {
   assert.equal(storeOf("/support"), null);
   assert.equal(storeOf("https://appfactory.sg/"), null);
   assert.equal(appSlugFor("tracesheet.appfactory.sg", "/"), "tracesheet");
+  assert.equal(appSlugFor("lingowonders.appfactory.sg", "/"), "tracesheet");
+  assert.equal(appSlugFor("lingowonders.appfactory.sg", "/zh-cn/support"), "tracesheet");
+  assert.equal(appSlugFor("poker-night.appfactory.sg", "/"), "poker-night");
+  assert.equal(appSlugFor("www.appfactory.sg", "/"), "hub");
   assert.equal(appSlugFor("appfactory.sg", "/zh-cn/apps/poker-night"), "poker-night");
   assert.equal(appSlugFor("appfactory.sg", "/", "ember-deck"), "ember-deck");
   assert.equal(appSlugFor("appfactory.sg", "/"), "hub");

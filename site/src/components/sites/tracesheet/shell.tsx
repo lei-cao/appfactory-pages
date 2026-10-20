@@ -1,138 +1,107 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getApp, localized } from "@/content/apps";
-import { LocaleSwitcher } from "@/components/locale-switcher";
+import { LW_YOUTUBE, tracesheetLanding } from "@/content/tracesheet";
 import { getDict } from "@/lib/dictionaries";
 import { localePrefix } from "@/lib/i18n";
 import { CONTACT_EMAIL } from "@/lib/site";
 import { StudioLink } from "../shared/studio-link";
 import type { SiteShellProps } from "../types";
 import { tracesheetFontClass } from "./fonts";
-import { Motion } from "./motion";
-
-/** The footer's wordmark, written the way a copybook row is: one letter per
- * 田 cell, the first in ink and the rest in trace red. */
-function CellWordmark({ name }: { name: string }) {
-  const letters = Array.from(name);
-  return (
-    <div className="ts-foot-mark" aria-hidden style={{ ["--n" as string]: letters.length }}>
-      {letters.map((ch, i) => (
-        <svg key={i} viewBox="0 0 100 100" className={`ts-foot-cell${i === 0 ? " is-model" : ""}`}>
-          <rect x="0" y="0" width="48" height="48" />
-          <rect x="52" y="0" width="48" height="48" />
-          <rect x="0" y="52" width="48" height="48" />
-          <rect x="52" y="52" width="48" height="48" />
-          <text x="50" y="54" textAnchor="middle" dominantBaseline="middle">
-            {ch}
-          </text>
-        </svg>
-      ))}
-    </div>
-  );
-}
+import { LocaleSwitch } from "./locale-switch";
 
 /**
- * Header and footer around every TraceSheet page (landing, support, privacy,
- * terms). The wrapper carries data-app="tracesheet", which site.css uses to
- * remap the shared colour and font tokens, so the shared legal pages come out
- * in TraceSheet's paper, ink and seal red.
+ * Header and footer around every LingoWonders page (landing, guides,
+ * support, privacy, terms). The wrapper carries data-app="tracesheet" (the
+ * slug), which site.css uses to remap the shared colour and font tokens, so
+ * the shared legal pages come out on LingoWonders' paper, in its ink.
  */
 export function TracesheetShell({ locale, slug, children }: SiteShellProps) {
   const app = getApp(slug)!;
   const loc = localized(app, locale);
   const dict = getDict(locale);
+  const nav = tracesheetLanding[locale].nav;
+  const foot = tracesheetLanding[locale].footLine;
   const base = `${localePrefix(locale)}/apps/${slug}`;
   const contact = app.contactEmail ?? CONTACT_EMAIL;
 
   return (
-    <div data-app={slug} className={`ts-site ${tracesheetFontClass}`}>
-      <Motion />
-      <header className="ts-bar">
-        <Link href={base} className="ts-wordmark">
-          <Image src={app.icon!} alt="" width={36} height={36} className="ts-wordmark-icon" />
-          <span>{loc.name}</span>
-        </Link>
-        <nav className="ts-nav" aria-label={loc.name}>
-          <Link href={`${base}/support`} className="ts-link">
-            {dict.app.navSupport}
+    <div data-app={slug} className={`lw-site ${tracesheetFontClass}`}>
+      <header className="lw-bar">
+        <div className="lw-bar-in">
+          <Link href={base} className="lw-brand">
+            <Image src={app.icon!} alt="" width={36} height={36} className="lw-brand-icon" priority />
+            <span>{loc.name}</span>
           </Link>
-          <Link href={`${base}/privacy`} className="ts-link">
-            {dict.app.navPrivacy}
-          </Link>
-          {loc.terms && (
-            <Link href={`${base}/terms`} className="ts-link">
-              {dict.app.navTerms}
+          <nav className="lw-nav" aria-label={loc.name}>
+            <Link href={`${base}/guide`} className="lw-nav-link">
+              {nav.guides}
             </Link>
-          )}
-          <StudioLink locale={locale} className="ts-link ts-studio" markClassName="ts-studio-mark" />
-          <LocaleSwitcher
-            current={locale}
-            slug={slug}
-            className="ts-locales"
-            linkClassName="ts-link"
-            currentClassName="ts-locale-current"
-            separator={false}
-          />
-        </nav>
+            <Link href={`${base}/support`} className="lw-nav-link">
+              {dict.app.navSupport}
+            </Link>
+            <Link href={`${base}#videos`} className="lw-nav-link">
+              {nav.videos}
+            </Link>
+            <LocaleSwitch current={locale} slug={slug} />
+            <StudioLink locale={locale} className="lw-nav-link lw-studio" markClassName="lw-studio-mark" />
+          </nav>
+        </div>
       </header>
 
-      <div className="ts-body">{children}</div>
+      <div className="lw-body">{children}</div>
 
-      <footer className="ts-foot">
-        <CellWordmark name={loc.name} />
-        <div className="ts-foot-cols">
-          <ul className="ts-foot-links">
-            <li>
-              <Link href={`${base}/support`} className="ts-link">
-                {dict.app.footSupport}
-              </Link>
-            </li>
-            <li>
-              <Link href={`${base}/privacy`} className="ts-link">
-                {dict.app.footPrivacy}
-              </Link>
-            </li>
-            {loc.terms && (
+      <footer className="lw-foot">
+        <div className="lw-foot-in">
+          <div className="lw-foot-brand">
+            <Image src={app.icon!} alt="" width={56} height={56} className="lw-brand-icon" />
+            <p className="lw-foot-name">{loc.name}</p>
+            <p className="lw-foot-line">{foot}</p>
+          </div>
+          <nav className="lw-foot-cols" aria-label={nav.menu}>
+            <ul>
               <li>
-                <Link href={`${base}/terms`} className="ts-link">
-                  {dict.app.footTerms}
-                </Link>
+                <Link href={`${base}/guide`}>{nav.guides}</Link>
               </li>
-            )}
-          </ul>
-          <ul className="ts-foot-links">
-            <li>
-              <a href={`mailto:${contact}`} className="ts-link">
-                {contact}
-              </a>
-            </li>
-            <li>
-              <StudioLink
-                locale={locale}
-                variant="long"
-                className="ts-link ts-studio"
-                markClassName="ts-studio-mark"
-              />
-            </li>
-          </ul>
-          <LocaleSwitcher
-            current={locale}
-            slug={slug}
-            className="ts-locales ts-foot-locales"
-            linkClassName="ts-link"
-            currentClassName="ts-locale-current"
-            separator={false}
-          />
-        </div>
-        <div className="ts-foot-last">
-          <span>
-            © {new Date().getFullYear()} App Factory · {loc.storeName}
-          </span>
-          {app.appStoreUrl && (
-            <a href={app.appStoreUrl} data-app={slug} className="ts-btn ts-btn-small">
-              App Store
-            </a>
-          )}
+              <li>
+                <Link href={`${base}/support`}>{dict.app.navSupport}</Link>
+              </li>
+              <li>
+                <Link href={`${base}/privacy`}>{dict.app.navPrivacy}</Link>
+              </li>
+              {loc.terms && (
+                <li>
+                  <Link href={`${base}/terms`}>{dict.app.navTerms}</Link>
+                </li>
+              )}
+            </ul>
+            <ul>
+              {app.appStoreUrl && (
+                <li>
+                  <a href={app.appStoreUrl} data-app={slug}>
+                    {nav.appStore}
+                  </a>
+                </li>
+              )}
+              <li>
+                <a href={LW_YOUTUBE} rel="noopener" target="_blank">
+                  {nav.youtube}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${contact}`}>{contact}</a>
+              </li>
+              <li>
+                <StudioLink locale={locale} variant="long" className="lw-studio" markClassName="lw-studio-mark" />
+              </li>
+            </ul>
+          </nav>
+          <div className="lw-foot-last">
+            <span>
+              © {new Date().getFullYear()} App Factory · {loc.storeName}
+            </span>
+            <LocaleSwitch current={locale} slug={slug} />
+          </div>
         </div>
       </footer>
     </div>

@@ -91,3 +91,30 @@ The repo root is still served by GitHub Pages at
 live App Store / Play submissions. Leave `poker-night/privacy.html`,
 `orbit-dash/privacy.html`, and `.nojekyll` in place until all store listings
 point at the new `*.appfactory.sg` URLs.
+
+## Rebranded apps (`host` vs `slug`)
+
+An app's `slug` is its internal id: routes (`/apps/<slug>/...`), asset paths,
+`/go/<slug>` short links (printed in QR codes and shipped builds), analytics.
+When an app is rebranded, set `host` in its registry entry
+(`src/content/apps.ts`, `AppBase.host`) and the public subdomain becomes
+`host ?? slug`: canonicals, hreflang, OG, JSON-LD, the sitemap, `llms.txt`,
+hub links and the `/go` desktop fallback all use `appOrigin(app)` /
+`appHost(app)` from `src/lib/site.ts`.
+
+- TraceSheet became LingoWonders on 2026-10-18: `slug: "tracesheet"`,
+  `host: "lingowonders"`. `lingowonders.appfactory.sg` serves it and
+  `tracesheet.appfactory.sg/<path>?<query>` 308s to the same path there
+  (locale prefix kept), same as the Calm Sort -> Sushi Sort note in
+  `src/middleware.ts`. The redirect table is derived from the registry
+  (any app whose `host` differs from its slug); the logic is the pure
+  `decideHost()` in `src/lib/host-routing.ts` (tests: `scripts/host-routing.test.mts`).
+  Locally, `tracesheet.localhost:3000` redirects to `lingowonders.localhost:3000`.
+- Static files (paths with a dot, e.g. `/opensource/tracesheet/...json.gz`)
+  skip the middleware and keep serving on both hosts. Do not add redirects in
+  `next.config.ts` / `vercel.json`: shipped apps download those files from the
+  old host.
+- Analytics keeps the slug: `HOST_SLUGS` in `src/lib/analytics.ts` maps
+  `lingowonders` -> `tracesheet` so GA reports the app as `tracesheet`.
+- Infra: the new host needs its Vercel domain + Cloudflare record, and the old
+  one must stay attached so the redirect keeps answering.
