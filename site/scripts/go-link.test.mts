@@ -3,7 +3,7 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { resolveGoLink, sanitizeCampaign } from "../src/lib/go-link.ts";
+import { isGoPath, isShareListPath, resolveGoLink, sanitizeCampaign } from "../src/lib/go-link.ts";
 
 const APPS = [
   { slug: "tracesheet", appStoreUrl: "https://apps.apple.com/app/id6816287607?pt=1&ct=site&mt=8" },
@@ -56,4 +56,16 @@ test("unknown or missing slug goes to the apex", () => {
   assert.equal(resolveGoLink("/go/nope", UA.iphone, deps), "https://appfactory.sg/");
   assert.equal(resolveGoLink("/go/", UA.iphone, deps), "https://appfactory.sg/");
   assert.equal(resolveGoLink("/go", UA.iphone, deps), "https://appfactory.sg/");
+});
+
+test("only /go/tracesheet/l renders the shared-list page; other /go paths still redirect", () => {
+  for (const p of ["/go/tracesheet/l", "/go/tracesheet/l/", "/go/TraceSheet/L"]) {
+    assert.equal(isShareListPath(p), true, p);
+  }
+  for (const p of ["/go/tracesheet", "/go/tracesheet/sheet", "/go/tracesheet/s", "/go/tracesheet/list", "/go/tracesheet/l/x", "/go/other/l", "/l"]) {
+    assert.equal(isShareListPath(p), false, p);
+  }
+  // The other campaigns keep resolving as before.
+  assert.equal(isGoPath("/go/tracesheet/sheet"), true);
+  assert.equal(resolveGoLink("/go/tracesheet/sheet", UA.iphone, deps), apple("6816287607", "sheet"));
 });

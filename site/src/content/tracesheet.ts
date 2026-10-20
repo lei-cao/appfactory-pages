@@ -157,7 +157,7 @@ const en: AppLocalized = {
             "Paper Check: the photo of the practice sheet.",
             "List photo: a list photo scanned while online is also sent, at a smaller size, to find underlined words.",
           ],
-          "Each request carries a random install id, and a Pro purchase receipt if you have one, so fair-use limits can be counted. Our server passes the request to Google's Gemini API to make the answer. Our server keeps no photos or text after answering; it keeps only the request count for the install id.",
+          "Each request carries a random install id, and a Pro purchase receipt if you have one, so fair-use limits can be counted. Our server passes the request to Google's Gemini API to make the answer. Our server does not store the photos or the words; its logs hold only counts, timings and error codes. To keep usage fair it keeps the random install id (not linked to you) with a request count and, for Pro, the App Store transaction id of the purchase. Google may keep requests for a short time to detect abuse, under its Gemini API terms, and does not use them to train its models. A Paper Check photo stays on your device for 30 days for the check history; list photos stay on your device with the list.",
         ],
       },
       {
@@ -196,7 +196,7 @@ const en: AppLocalized = {
       {
         heading: "Data deletion",
         body: [
-          "Deleting the app removes all local data (lists, profiles, readings, recordings and progress) from your device. To have the request count for your install id removed from our server, email us.",
+          "Deleting the app removes all local data (lists, profiles, readings, recordings and progress) from your device. To have your install id and its count removed from our server, email us.",
         ],
       },
       {
@@ -386,7 +386,7 @@ const zhCn: AppLocalized = {
             "纸面检查：答题纸的照片。",
             "清单照片：联网时扫描的清单照片也会缩小后发送，用来找出画线的词语。",
           ],
-          "每个请求都带有随机的安装编号，若有 Pro 购买凭证也会带上，用于计算合理使用额度。我们的服务器会把请求转交给 Google 的 Gemini API 来生成结果。生成结果后，服务器不保留任何照片或文字，只保留该安装编号的请求次数。",
+          "每个请求都带有随机的安装编号，若有 Pro 购买凭证也会带上，用于计算合理使用额度。我们的服务器会把请求转交给 Google 的 Gemini API 来生成结果。服务器不保存照片或词语，日志里只有次数、耗时和错误代码。为了计算合理使用额度，服务器会保留随机安装编号（与你本人无关联）及其请求次数；Pro 用户还会保留该购买的 App Store 交易编号。Google 可能会按其 Gemini API 条款短暂保留请求以防滥用，且不会用于训练模型。纸面检查的照片会在你的设备上保留 30 天，用于检查记录；清单照片随清单保存在你的设备上。",
         ],
       },
       {
@@ -425,7 +425,7 @@ const zhCn: AppLocalized = {
       {
         heading: "数据删除",
         body: [
-          "删除应用会移除设备上的所有本地数据（清单、档案、阅读内容、录音和进度）。如需删除我们服务器上该安装编号的请求次数，请来信。",
+          "删除应用会移除设备上的所有本地数据（清单、档案、阅读内容、录音和进度）。如需删除我们服务器上的安装编号及其次数，请来信。",
         ],
       },
       {
@@ -615,7 +615,7 @@ const zhTw: AppLocalized = {
             "紙本檢查：答題紙的照片。",
             "清單照片：連線時掃描的清單照片也會縮小後傳送，用來找出畫線的詞語。",
           ],
-          "每個請求都帶有隨機的安裝編號，若有 Pro 購買憑證也會帶上，用於計算合理使用額度。我們的伺服器會把請求轉交給 Google 的 Gemini API 來產生結果。產生結果後，伺服器不保留任何照片或文字，只保留該安裝編號的請求次數。",
+          "每個請求都帶有隨機的安裝編號，若有 Pro 購買憑證也會帶上，用於計算合理使用額度。我們的伺服器會把請求轉交給 Google 的 Gemini API 來產生結果。伺服器不儲存照片或詞語，紀錄裡只有次數、耗時和錯誤代碼。為了計算合理使用額度，伺服器會保留隨機安裝編號（與你本人無關聯）及其請求次數；Pro 使用者還會保留該購買的 App Store 交易編號。Google 可能會依其 Gemini API 條款短暫保留請求以防濫用，且不會用於訓練模型。紙本檢查的照片會在你的裝置上保留 30 天，用於檢查紀錄；清單照片隨清單儲存在你的裝置上。",
         ],
       },
       {
@@ -654,7 +654,7 @@ const zhTw: AppLocalized = {
       {
         heading: "資料刪除",
         body: [
-          "刪除應用程式會移除裝置上的所有本機資料（清單、檔案、閱讀內容、錄音和進度）。如需刪除我們伺服器上該安裝編號的請求次數，請來信。",
+          "刪除應用程式會移除裝置上的所有本機資料（清單、檔案、閱讀內容、錄音和進度）。如需刪除我們伺服器上的安裝編號及其次數，請來信。",
         ],
       },
       {

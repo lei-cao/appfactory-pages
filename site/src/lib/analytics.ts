@@ -58,3 +58,13 @@ export function appSlugFor(
   const m = pathname.match(/^(?:\/(?:zh-cn|zh-tw))?\/apps\/([a-z0-9-]+)/);
   return m ? m[1] : "hub";
 }
+
+/**
+ * Pages where analytics must never load. The TraceSheet shared-list page
+ * (`/go/tracesheet/l#<data>`) carries the whole list in the URL fragment and
+ * promises nothing leaves the browser (decision D11); GA's `page_location`
+ * would include that fragment, so the loader skips these paths entirely.
+ */
+export function analyticsDisabledFor(pathname: string): boolean {
+  return /^(\/(en|zh-cn|zh-tw))?\/go\/tracesheet\/l\/?$/i.test(pathname);
+}
