@@ -15,7 +15,7 @@ export const DEFAULT_CAMPAIGN = "go";
 
 const CAMPAIGN_RE = /^[a-z0-9-]{1,40}$/;
 
-type GoApp = Pick<AppBase, "slug" | "appStoreUrl" | "appStoreId" | "playStoreUrl">;
+type GoApp = Pick<AppBase, "slug" | "host" | "appStoreUrl" | "appStoreId" | "playStoreUrl">;
 
 export interface GoLinkDeps {
   apex: string;
@@ -28,7 +28,7 @@ export function isGoPath(pathname: string): boolean {
 }
 
 /**
- * The shared-list page, `/go/tracesheet/l#<data>` (TraceSheet share links).
+ * The shared-list page, `/go/tracesheet/l#<data>` (LingoWonders share links).
  * Unlike every other /go path it renders a page instead of redirecting: the
  * list is in the URL fragment, which only the browser sees.
  */
@@ -58,7 +58,7 @@ export function resolveGoLink(
   const app = slugRaw ? getApp(slugRaw.toLowerCase()) : undefined;
   if (!app) return home;
 
-  const site = `https://${app.slug}.${apex}/`;
+  const site = `https://${app.host ?? app.slug}.${apex}/`;
   const campaign = sanitizeCampaign(campaignRaw);
 
   if (userAgent.includes("Android")) return app.playStoreUrl ?? site;

@@ -1,46 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { APEX_DOMAIN } from "@/lib/site";
-import { DEFAULT_LOCALE, isLocale, localePrefix, type Locale } from "@/lib/i18n";
+import { DEFAULT_LOCALE } from "@/lib/i18n";
+import { decideHost } from "@/lib/host-routing";
 import { isGoPath, isShareListPath, resolveGoLink } from "@/lib/go-link";
-import { getApp } from "@/content/apps";
-
-// Hosts whose subdomains map to per-app sites. `localhost` makes
-// poker-night.localhost:3000 work in `next dev` with zero config.
-const ROOT_HOSTS = [APEX_DOMAIN, "localhost"];
-
-// old full host -> new subdomain label. Calm Sort became Sushi Sort on
-// 2026-07-28; calm-sort.appfactory.sg is still in the App Store listing that
-// was submitted under the old name, so it must not 404.
-const RENAMED_SUBDOMAINS: Record<string, string> = {
-  [`calm-sort.${APEX_DOMAIN}`]: "sushi-sort",
-};
-
-function subdomainOf(host: string): string | null {
-  for (const root of ROOT_HOSTS) {
-    if (host !== root && host.endsWith(`.${root}`)) {
-      const sub = host.slice(0, -(root.length + 1));
-      // Only single-label subdomains route to apps; anything deeper
-      // (e.g. Vercel preview URLs matched against "localhost") is ignored.
-      if (sub && !sub.includes(".")) return sub;
-    }
-  }
-  return null;
-}
-
-/** Split "/zh-cn/support" into locale + locale-less rest ("/support"). */
-function splitLocale(pathname: string): { locale: Locale | null; rest: string } {
-  const seg = pathname.split("/")[1];
-  if (isLocale(seg)) {
-    return { locale: seg, rest: pathname.slice(seg.length + 1) || "/" };
-  }
-  return { locale: null, rest: pathname };
-}
+import { apps, getApp } from "@/content/apps";
 
 export function middleware(req: NextRequest) {
   const host = (req.headers.get("host") ?? "").split(":")[0].toLowerCase();
   const url = req.nextUrl;
 
-  // TraceSheet share links render a page (the list is in the URL fragment and
+  // LingoWonders share links render a page (the list is in the URL fragment and
   // is decoded in the browser) on every host; every other /go path redirects.
   if (isShareListPath(url.pathname)) {
     const page = url.clone();
@@ -63,55 +32,24 @@ export function middleware(req: NextRequest) {
     return res;
   }
 
-  if (host === `www.${APEX_DOMAIN}`) {
-    return NextResponse.redirect(
-      `https://${APEX_DOMAIN}${url.pathname}${url.search}`,
-      308,
-    );
+  // Host decisions (www -> apex, renamed-app redirects, locale handling and the
+  // subdomain -> /apps/<slug> rewrite) live in lib/host-routing.ts.
+  const decision = decideHost({
+    host,
+    port: (req.headers.get("host") ?? "").split(":")[1] ?? "",
+    pathname: url.pathname,
+    search: url.search,
+    apex: APEX_DOMAIN,
+    apps,
+  });
+  if (decision.action === "redirect-external") {
+    return NextResponse.redirect(decision.location, 308);
   }
-
-  // Renamed apps: the old subdomain keeps working forever, because App Store
-  // listings, review submissions and anything already linked point at it.
-  const renamed = RENAMED_SUBDOMAINS[host];
-  if (renamed) {
-    return NextResponse.redirect(
-      `https://${renamed}.${APEX_DOMAIN}${url.pathname}${url.search}`,
-      308,
-    );
-  }
-
-  const { locale, rest } = splitLocale(url.pathname);
-
-  // English is canonical without a prefix — strip an explicit /en.
-  if (locale === DEFAULT_LOCALE) {
-    const clean = url.clone();
-    clean.pathname = rest;
-    return NextResponse.redirect(clean, 308);
-  }
-
-  const effective: Locale = locale ?? DEFAULT_LOCALE;
-  const slug = subdomainOf(host);
-
-  if (slug) {
-    // In-app links are path-style (/apps/<slug>/support) so they work on the
-    // apex and on previews; on the app's own subdomain that prefix is
-    // redundant — redirect to the clean canonical URL instead of 404ing.
-    const appPrefix = `/apps/${slug}`;
-    if (rest === appPrefix || rest.startsWith(`${appPrefix}/`)) {
-      const clean = url.clone();
-      clean.pathname =
-        localePrefix(effective) + (rest.slice(appPrefix.length) || "/");
-      return NextResponse.redirect(clean, 308);
-    }
-    const rewritten = url.clone();
-    rewritten.pathname = `/${effective}${appPrefix}${rest === "/" ? "" : rest}`;
-    return NextResponse.rewrite(rewritten);
-  }
-
-  // Hub host: ensure the internal path always carries a locale segment.
-  const rewritten = url.clone();
-  rewritten.pathname = `/${effective}${rest === "/" ? "" : rest}`;
-  return NextResponse.rewrite(rewritten);
+  const target = url.clone();
+  target.pathname = decision.pathname;
+  return decision.action === "redirect-path"
+    ? NextResponse.redirect(target, 308)
+    : NextResponse.rewrite(target);
 }
 
 export const config = {

@@ -80,7 +80,7 @@ function appLink(app: AppContent, locale: Locale) {
       external: true,
     };
   }
-  return { href: `${appOrigin(app.slug)}${localePrefix(locale)}`, domain: "", external: false };
+  return { href: `${appOrigin(app)}${localePrefix(locale)}`, domain: "", external: false };
 }
 
 /** App sites open in a new tab from the hub; each has a link back here. */

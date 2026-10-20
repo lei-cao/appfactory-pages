@@ -16,7 +16,7 @@ export function GET() {
   ];
   for (const app of apps) {
     const en = localized(app, "en");
-    const url = app.externalUrls?.en?.split("?")[0] ?? canonicalUrl(appOrigin(app.slug), "en");
+    const url = app.externalUrls?.en?.split("?")[0] ?? canonicalUrl(appOrigin(app), "en");
     lines.push(`- [${en.storeName}](${url}): ${en.oneLiner}`);
   }
   lines.push(

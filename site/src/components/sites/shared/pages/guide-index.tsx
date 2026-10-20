@@ -29,7 +29,7 @@ export async function generateMetadata({
     path: "/guide",
     title: fmt(dict.guide.title, { name: loc.name }),
     description: dict.guide.intro,
-    languages: guideLanguageAlternates(appOrigin(slug), "/guide"),
+    languages: guideLanguageAlternates(appOrigin(app), "/guide"),
   });
 }
 

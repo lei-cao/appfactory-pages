@@ -11,6 +11,7 @@ import {
   getGuideArticleMeta,
   guideLanguageAlternates,
 } from "@/lib/guide";
+import { TRACESHEET_GUIDE_IDS, tracesheetGuideUpdated } from "@/content/tracesheet-guides";
 import { canonicalUrl, languageAlternates, LOCALES } from "@/lib/i18n";
 import { appOrigin, hubOrigin } from "@/lib/site";
 
@@ -51,18 +52,31 @@ function guideEntriesFor(origin: string): MetadataRoute.Sitemap {
   return out;
 }
 
+// LingoWonders guides: every id exists in all three locales, so the normal
+// entriesFor() hreflang set applies. The index exists only once there is a guide.
+function tracesheetGuideEntries(origin: string): MetadataRoute.Sitemap {
+  if (TRACESHEET_GUIDE_IDS.length === 0) return [];
+  return [
+    ...entriesFor(origin, "/guide"),
+    ...TRACESHEET_GUIDE_IDS.flatMap((id) =>
+      entriesFor(origin, `/guide/${id}`, tracesheetGuideUpdated(id)),
+    ),
+  ];
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const out: MetadataRoute.Sitemap = [...entriesFor(hubOrigin(), "/")];
   for (const app of apps) {
     // External apps live on their own domain — skip subdomain sitemap entries.
     if (app.externalUrls) continue;
-    const origin = appOrigin(app.slug);
+    const origin = appOrigin(app);
     const en = localized(app, "en");
     out.push(...entriesFor(origin, "/"));
     out.push(...entriesFor(origin, "/support"));
     out.push(...entriesFor(origin, "/privacy", en.privacy.updated));
     if (en.terms) out.push(...entriesFor(origin, "/terms", en.terms.updated));
     if (app.slug === "poker-night") out.push(...guideEntriesFor(origin));
+    if (app.slug === "tracesheet") out.push(...tracesheetGuideEntries(origin));
   }
   return out;
 }
