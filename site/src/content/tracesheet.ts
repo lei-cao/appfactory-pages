@@ -211,7 +211,7 @@ const en: AppLocalized = {
     ],
   },
   terms: {
-    updated: "2026-09-26",
+    updated: "2026-10-20",
     sections: [
       {
         heading: "License",
@@ -222,13 +222,13 @@ const en: AppLocalized = {
       {
         heading: "Purchases",
         body: [
-          "LingoWonders Pro is a one-time purchase processed by the App Store under its payment terms, with Family Sharing support. Restore it anytime via Settings → Restore purchase. Refunds are handled by the App Store, not by us.",
+          "LingoWonders Pro is a one-time purchase processed by the App Store under its payment terms, with Family Sharing support. Restore it anytime via Settings → Restore purchases. Refunds are handled by the App Store, not by us.",
         ],
       },
       {
         heading: "Your content",
         body: [
-          "Word lists, names, and photos you enter or scan are yours. LingoWonders processes them on your device to generate pinyin, stroke order, and practice sheets; we do not receive or store this content ourselves.",
+          "Word lists, names, and photos you enter or scan are yours. LingoWonders processes them on your device to generate readings, stroke order, and practice sheets. The AI features described in the privacy policy send words or photos to our server only after you allow it; our server does not store them.",
         ],
       },
       {
@@ -440,7 +440,7 @@ const zhCn: AppLocalized = {
     ],
   },
   terms: {
-    updated: "2026-09-26",
+    updated: "2026-10-20",
     sections: [
       {
         heading: "许可",
@@ -457,7 +457,7 @@ const zhCn: AppLocalized = {
       {
         heading: "你的内容",
         body: [
-          "你输入或扫描的听写清单、姓名和照片归你所有。LingoWonders 在你的设备上本机处理它们，用于生成拼音、笔顺和练习字帖；我们自己不会接收或保存这些内容。",
+          "你输入或扫描的听写清单、姓名和照片归你所有。LingoWonders 在你的设备上本机处理它们，用于生成读音、笔顺和练习字帖。隐私政策里说明的 AI 功能，只有在你同意后才会把词语或照片发送到我们的服务器；我们的服务器不保存这些内容。",
         ],
       },
       {
@@ -669,7 +669,7 @@ const zhTw: AppLocalized = {
     ],
   },
   terms: {
-    updated: "2026-09-26",
+    updated: "2026-10-20",
     sections: [
       {
         heading: "授權",
@@ -686,7 +686,7 @@ const zhTw: AppLocalized = {
       {
         heading: "你的內容",
         body: [
-          "你輸入或掃描的聽寫清單、姓名和照片歸你所有。LingoWonders 在你的裝置上本機處理它們，用於產生拼音、筆順和練習字帖；我們自己不會接收或保存這些內容。",
+          "你輸入或掃描的聽寫清單、姓名和照片歸你所有。LingoWonders 在你的裝置上本機處理它們，用於產生讀音、筆順和練習字帖。隱私權政策裡說明的 AI 功能，只有在你同意後才會把詞語或照片傳送到我們的伺服器；我們的伺服器不保存這些內容。",
         ],
       },
       {
