@@ -133,50 +133,77 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-28",
+    updated: "2026-10-20",
     sections: [
       {
-        heading: "What we collect",
+        heading: "About this app",
+        body: [
+          "LingoWonders (formerly TraceSheet) is made by AppFactory. This policy covers the LingoWonders app on iPhone and iPad.",
+        ],
+      },
+      {
+        heading: "What stays on your device",
+        body: [
+          "Your lists, readings, progress, children's profiles and recordings stay on your device. There is no account and no sign-up. The speech check, translations and reading text from photos run on the device. A backup is a file you save yourself; there is no cloud sync.",
+        ],
+      },
+      {
+        heading: "What is sent when you use an AI feature",
+        body: [
+          "Nothing is sent until you allow AI features on the permission sheet the app shows before the first one. You can turn them off any time in Settings › AI features.",
+          [
+            "Week Pack: the list's words, their level and school year, your app language, the words already learned and the number of sentences per word. Remaking part of a pack also sends that pack's existing sentences and reading.",
+            "Get sentences: the words, their level and your app language.",
+            "Paper Check: the photo of the practice sheet.",
+            "List photo: a list photo scanned while online is also sent, at a smaller size, to find underlined words.",
+          ],
+          "Each request carries a random install id, and a Pro purchase receipt if you have one, so fair-use limits can be counted. Our server passes the request to Google's Gemini API to make the answer. Our server keeps no photos or text after answering; it keeps only the request count for the install id.",
+        ],
+      },
+      {
+        heading: "Analytics and crash reports",
         body: [
           [
-            "Usage analytics (Google Firebase Analytics): anonymous app-usage events — for example, that a sheet was generated or a paywall was shown. We never send list contents or names.",
+            "Usage analytics (Google Firebase Analytics): anonymous app-usage events, for example that a sheet was made or the Pro page was shown. Analytics never carry words, text or images.",
             "Crash reports (Firebase Crashlytics): technical crash and diagnostic data, used only to fix bugs.",
           ],
         ],
       },
       {
-        heading: "What we don't collect",
+        heading: "Web pages and videos",
         body: [
-          "TraceSheet has no account and no sign-up. Word lists, children's names (profiles), and practice results are stored only on your device. Photos used for scanning are processed on-device with Apple's built-in text recognition and are never uploaded anywhere. Speech uses your device's built-in text-to-speech, entirely on-device. On iOS 18 or later, missing word meanings can be translated with Apple's on-device Translation; the words are not sent to us.",
+          "When you add a web page or a video to Read, your device fetches it from that site itself. It does not go through our server.",
         ],
       },
       {
         heading: "Advertising & tracking",
         body: [
-          "TraceSheet shows no ads and does not track you across apps or websites — there is no App Tracking Transparency prompt and no advertising identifier is used. The QR code printed on sheets opens a short link on appfactory.sg that forwards to TraceSheet's App Store page (or this site on other devices). The link says only that it came from a printed sheet; it carries no identifier and nothing about you or your child. Our web host keeps standard request logs (such as IP address and browser type) for security, as any website does.",
+          "LingoWonders shows no ads and does not track you across apps or websites: there is no App Tracking Transparency prompt and no advertising identifier is used. The QR code printed on sheets opens a short link on appfactory.sg that forwards to the App Store page (or this site on other devices). The link says only that it came from a printed sheet; it carries no identifier and nothing about you or your child. Our web host keeps standard request logs (such as IP address and browser type) for security, as any website does.",
         ],
       },
       {
         heading: "Purchases",
         body: [
-          "TraceSheet Pro is a one-time purchase with Family Sharing, processed entirely by the App Store. We never see your payment details.",
+          "LingoWonders Pro is a one-time purchase with Family Sharing, processed entirely by the App Store. We never see your payment details.",
         ],
       },
       {
         heading: "Children",
         body: [
-          "TraceSheet is designed for a parent to use together with their child. It has no chat and no social features, and no external links reachable by a child using the app. Sheets and lists leave the device only when you print or share them yourself through the system share sheet.",
+          "LingoWonders is designed for a parent to use together with their child. It has no chat and no social features. AI features are off until a parent allows them. Sheets and lists leave the device only when you print or share them yourself through the system share sheet.",
         ],
       },
       {
         heading: "Data deletion",
         body: [
-          "Deleting the app removes all local data — word lists, profiles, and practice results — from your device.",
+          "Deleting the app removes all local data (lists, profiles, readings, recordings and progress) from your device. To have the request count for your install id removed from our server, email us.",
         ],
       },
       {
         heading: "Contact",
-        body: ["Questions: email lei@appfactory.sg."],
+        body: [
+          "Questions: email lei@appfactory.sg.",
+        ],
       },
       {
         heading: "Changes",
@@ -335,50 +362,77 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-28",
+    updated: "2026-10-20",
     sections: [
       {
-        heading: "我们收集什么",
+        heading: "关于本应用",
+        body: [
+          "LingoWonders（原名 TraceSheet）由 AppFactory 开发。本政策适用于 iPhone 和 iPad 上的 LingoWonders 应用。",
+        ],
+      },
+      {
+        heading: "留在你设备上的数据",
+        body: [
+          "清单、阅读内容、进度、孩子的档案和录音都只保存在你的设备上。没有账号，无需注册。语音检查、翻译以及从照片识别文字都在设备上完成。备份是你自己保存的文件，没有云同步。",
+        ],
+      },
+      {
+        heading: "使用 AI 功能时发送的内容",
+        body: [
+          "在你于应用首次使用 AI 功能前显示的授权页上选择允许之前，不会发送任何内容。你可以随时在“设置 › AI 功能”中关闭。",
+          [
+            "每周包：清单中的词语、级别和学年、应用语言、已学会的词语和每词句数；只重做包的一部分时，还会发送该包里已有的例句和读物。",
+            "生成例句：词语、级别和应用语言。",
+            "纸面检查：答题纸的照片。",
+            "清单照片：联网时扫描的清单照片也会缩小后发送，用来找出画线的词语。",
+          ],
+          "每个请求都带有随机的安装编号，若有 Pro 购买凭证也会带上，用于计算合理使用额度。我们的服务器会把请求转交给 Google 的 Gemini API 来生成结果。生成结果后，服务器不保留任何照片或文字，只保留该安装编号的请求次数。",
+        ],
+      },
+      {
+        heading: "统计与崩溃报告",
         body: [
           [
-            "使用统计（Google Firebase Analytics）：匿名的应用使用事件，例如生成了一份字帖，或展示了付费墙。我们从不发送清单内容或姓名。",
+            "使用统计（Google Firebase Analytics）：匿名的应用使用事件，例如生成了一份字帖，或展示了 Pro 页面。统计数据不包含词语、文字或图片。",
             "崩溃报告（Firebase Crashlytics）：技术性崩溃与诊断数据，仅用于修复问题。",
           ],
         ],
       },
       {
-        heading: "我们不收集什么",
+        heading: "网页与视频",
         body: [
-          "TraceSheet 没有账号，无需注册。听写清单、孩子的姓名（档案）和练习结果只保存在你的设备上。用于识别的照片在设备本机通过 Apple 内置文字识别处理，从不会上传到任何地方。朗读使用设备自带的文字转语音功能，同样完全在本机完成。iOS 18 及以上，缺少的释义可以通过 Apple 本机翻译补全，词语不会发送给我们。",
+          "在“阅读”中添加网页或视频时，由你的设备直接从该网站获取，不经过我们的服务器。",
         ],
       },
       {
         heading: "广告与追踪",
         body: [
-          "TraceSheet 不展示广告，也不会跨应用或网站追踪你——没有 App 跟踪透明度弹窗，也不使用广告标识符。字帖上印的二维码是 appfactory.sg 上的一个短链接，会转到 TraceSheet 的 App Store 页面（其他设备则转到本网站）。链接只表明它来自打印的字帖，不带任何标识，也不包含你或孩子的任何信息。和所有网站一样，我们的网站托管方会出于安全原因保留常规访问日志（如 IP 地址和浏览器类型）。",
+          "LingoWonders 不展示广告，也不会跨应用或网站追踪你——没有 App 跟踪透明度弹窗，也不使用广告标识符。字帖上印的二维码是 appfactory.sg 上的一个短链接，会转到应用的 App Store 页面（其他设备则转到本网站）。链接只表明它来自打印的字帖，不带任何标识，也不包含你或孩子的任何信息。和所有网站一样，我们的网站托管方会出于安全原因保留常规访问日志（如 IP 地址和浏览器类型）。",
         ],
       },
       {
         heading: "购买",
         body: [
-          "TraceSheet Pro 是支持家人共享的一次性购买，完全由 App Store 处理，我们不会接触你的付款信息。",
+          "LingoWonders Pro 是支持家人共享的一次性购买，完全由 App Store 处理，我们不会接触你的付款信息。",
         ],
       },
       {
         heading: "儿童",
         body: [
-          "TraceSheet 是设计给家长陪孩子一起使用的应用。没有聊天和社交功能，也没有孩子在使用时能点到的外部链接。字帖和词表只有在你自己打印或通过系统分享面板分享时才会离开设备。",
+          "LingoWonders 是设计给家长陪孩子一起使用的应用。没有聊天和社交功能。AI 功能在家长允许之前保持关闭。字帖和词表只有在你自己打印或通过系统分享面板分享时才会离开设备。",
         ],
       },
       {
         heading: "数据删除",
         body: [
-          "删除应用会移除设备上的所有本地数据——听写清单、档案和练习结果。",
+          "删除应用会移除设备上的所有本地数据（清单、档案、阅读内容、录音和进度）。如需删除我们服务器上该安装编号的请求次数，请来信。",
         ],
       },
       {
         heading: "联系方式",
-        body: ["如有疑问：来信 lei@appfactory.sg。"],
+        body: [
+          "如有疑问：来信 lei@appfactory.sg。",
+        ],
       },
       {
         heading: "政策变更",
@@ -537,50 +591,77 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-28",
+    updated: "2026-10-20",
     sections: [
       {
-        heading: "我們收集什麼",
+        heading: "關於本應用程式",
+        body: [
+          "LingoWonders（原名 TraceSheet）由 AppFactory 開發。本政策適用於 iPhone 和 iPad 上的 LingoWonders 應用程式。",
+        ],
+      },
+      {
+        heading: "留在你裝置上的資料",
+        body: [
+          "清單、閱讀內容、進度、孩子的檔案和錄音都只儲存在你的裝置上。沒有帳號，無需註冊。語音檢查、翻譯以及從照片辨識文字都在裝置上完成。備份是你自己儲存的檔案，沒有雲端同步。",
+        ],
+      },
+      {
+        heading: "使用 AI 功能時傳送的內容",
+        body: [
+          "在你於應用程式首次使用 AI 功能前顯示的授權頁上選擇允許之前，不會傳送任何內容。你可以隨時在「設定 › AI 功能」中關閉。",
+          [
+            "每週包：清單中的詞語、級別和學年、應用程式語言、已學會的詞語和每詞句數；只重做包的一部分時，還會傳送該包裡已有的例句和讀物。",
+            "產生例句：詞語、級別和應用程式語言。",
+            "紙本檢查：答題紙的照片。",
+            "清單照片：連線時掃描的清單照片也會縮小後傳送，用來找出畫線的詞語。",
+          ],
+          "每個請求都帶有隨機的安裝編號，若有 Pro 購買憑證也會帶上，用於計算合理使用額度。我們的伺服器會把請求轉交給 Google 的 Gemini API 來產生結果。產生結果後，伺服器不保留任何照片或文字，只保留該安裝編號的請求次數。",
+        ],
+      },
+      {
+        heading: "統計與當機報告",
         body: [
           [
-            "使用統計（Google Firebase Analytics）：匿名的應用程式使用事件，例如產生了一份字帖，或顯示了付費牆。我們從不傳送清單內容或姓名。",
-            "當機報告（Firebase Crashlytics）：技術性當機與診斷資料，僅用於修復問題。",
+            "使用統計（Google Firebase Analytics）：匿名的應用程式使用事件，例如產生了一份字帖，或顯示了 Pro 頁面。統計資料不包含詞語、文字或圖片。",
+            "當機報告（Firebase Crashlytics）：技術性當機與診斷資料，僅用於修正問題。",
           ],
         ],
       },
       {
-        heading: "我們不收集什麼",
+        heading: "網頁與影片",
         body: [
-          "TraceSheet 沒有帳號，無需註冊。聽寫清單、孩子的姓名（檔案）和練習結果只保存在你的裝置上。用於辨識的照片在裝置本機透過 Apple 內建文字辨識處理，從不會上傳到任何地方。朗讀使用裝置內建的文字轉語音功能，同樣完全在本機完成。iOS 18 及以上，缺少的釋義可以透過 Apple 本機翻譯補全，詞語不會傳送給我們。",
+          "在「閱讀」中加入網頁或影片時，由你的裝置直接從該網站取得，不經過我們的伺服器。",
         ],
       },
       {
         heading: "廣告與追蹤",
         body: [
-          "TraceSheet 不顯示廣告，也不會跨應用程式或網站追蹤你——沒有 App 追蹤透明度彈窗，也不使用廣告識別碼。字帖上印的 QR 碼是 appfactory.sg 上的一個短連結，會轉到 TraceSheet 的 App Store 頁面（其他裝置則轉到本網站）。連結只表明它來自列印的字帖，不帶任何識別碼，也不包含你或孩子的任何資訊。和所有網站一樣，我們的網站代管商會基於安全原因保留一般存取紀錄（如 IP 位址和瀏覽器類型）。",
+          "LingoWonders 不顯示廣告，也不會跨應用程式或網站追蹤你——沒有 App 追蹤透明度提示，也不使用廣告識別碼。字帖上印的 QR 碼是 appfactory.sg 上的一個短連結，會轉到應用程式的 App Store 頁面（其他裝置則轉到本網站）。連結只表明它來自列印的字帖，不帶任何識別資訊，也不包含你或孩子的任何資料。和所有網站一樣，我們的網站託管方會基於安全原因保留一般存取紀錄（如 IP 位址和瀏覽器類型）。",
         ],
       },
       {
-        heading: "內購",
+        heading: "購買",
         body: [
-          "TraceSheet Pro 是支援家人共享的一次性購買，完全由 App Store 處理，我們不會接觸你的付款資訊。",
+          "LingoWonders Pro 是支援家人共享的一次性購買，完全由 App Store 處理，我們不會接觸你的付款資訊。",
         ],
       },
       {
         heading: "兒童",
         body: [
-          "TraceSheet 是設計給家長陪孩子一起使用的應用程式。沒有聊天和社群功能，也沒有孩子在使用時能點到的外部連結。字帖和詞表只有在你自己列印或透過系統分享面板分享時才會離開裝置。",
+          "LingoWonders 是設計給家長陪孩子一起使用的應用程式。沒有聊天和社交功能。AI 功能在家長允許之前保持關閉。字帖和詞表只有在你自己列印或透過系統分享面板分享時才會離開裝置。",
         ],
       },
       {
         heading: "資料刪除",
         body: [
-          "刪除應用程式會移除裝置上的所有本機資料——聽寫清單、檔案和練習結果。",
+          "刪除應用程式會移除裝置上的所有本機資料（清單、檔案、閱讀內容、錄音和進度）。如需刪除我們伺服器上該安裝編號的請求次數，請來信。",
         ],
       },
       {
         heading: "聯絡方式",
-        body: ["如有疑問：來信 lei@appfactory.sg。"],
+        body: [
+          "如有疑問：來信 lei@appfactory.sg。",
+        ],
       },
       {
         heading: "政策變更",
