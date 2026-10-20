@@ -2,7 +2,17 @@ assets/strokes/ja.json.gz -- Japanese stroke data for Write (TraceSheet v4)
 
 Modified by TraceSheet on 2026-09-27 (tool/make_stroke_packs.py): a subset of AnimCJK graphicsJaKana.txt + graphicsJa.txt (github.com/parsimonhi/animCJK commit ec5e17cca76c87587790bcbce5ea0b4d4fb753d6) -- all kana plus the selected kanji -- repacked from one-JSON-object-per-line files into one gzipped JSON object keyed by character; each character's `strokes` and `medians` are unchanged (the redundant `character` key is dropped). Distributed under the Arphic Public License (ARPHICPL.TXT); see ANIMCJK_NOTICE.txt.
 
+The modified pack, this notice, the licence and the packing script are freely available at https://tracesheet.appfactory.sg/opensource/tracesheet/ja-strokes/README.txt (APL section 2(b)).
+
 Kana: 177. Kanji: 2160 (jouyou set; includes all 1026 kyouiku kanji).
+
+assets/strokes/zh_hant.json.gz -- Taiwan / Hong Kong stroke order (TraceSheet 1.4)
+
+Modified by TraceSheet on 2026-10-16 (tool/make_stroke_packs.py): AnimCJK graphicsZhHant.txt (github.com/parsimonhi/animCJK commit ec5e17cca76c87587790bcbce5ea0b4d4fb753d6) repacked from one-JSON-object-per-line into one gzipped JSON object keyed by character; each character's `strokes` and `medians` are unchanged (the redundant `character` key is dropped). Used for the Taiwan and Hong Kong stroke-order standards. Distributed under the Arphic Public License (ARPHICPL.TXT); see ANIMCJK_NOTICE.txt.
+
+The modified pack is published beside the Japanese one (APL section 2(b)).
+
+Characters: 1013.
 
 AnimCJK's own licence notice (licenses/COPYING.txt at that commit), verbatim:
 

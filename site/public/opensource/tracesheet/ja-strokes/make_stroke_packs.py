@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Builds the Japanese and Korean stroke packs for Write (v4 spec §3).
+"""Builds the Japanese, Taiwan (zh-Hant) and Korean stroke packs for Write
+(v4 spec §3, v9 F9).
 
 Usage:
     python3 tool/make_stroke_packs.py [--source-dir DIR] [--kanji jouyou|kyouiku]
@@ -20,6 +21,14 @@ coordinate system as the hanzi-writer pack `assets/strokes/all.json.gz`:
   that share the tail of one median; the app merges those parts back into
   one stroke at load time (`StrokePack(mergeSplitStrokes: true)`), so the
   data stays verbatim.
+- `assets/strokes/zh_hant.json.gz` — AnimCJK `graphicsZhHant.txt` (same
+  pinned commit, same licence, same verbatim `strokes` / `medians`): the
+  Taiwan stroke-order pack, used for the Taiwan and Hong Kong standards
+  (Hong Kong shares it until a Hong Kong source exists). The pack is the
+  whole file (1,013 traditional characters: AnimCJK's Taiwan primary-school
+  frequency sets plus 々 〇, a subset of the Taiwan MOE list); no filtering,
+  because it is small. Characters of a list that it lacks fall back to the
+  mainland pack one by one in the app. `_notice` as for ja.
 - `assets/strokes/ko.json.gz` — TraceSheet's own hangul stroke data,
   generated here: the 51 compatibility jamo (ㄱ…ㅣ) and the 2,350 KS X 1001
   syllables (+ any syllable in `assets/library/ko.json`). Each jamo is
@@ -46,7 +55,13 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANIMCJK_SHA = "ec5e17cca76c87587790bcbce5ea0b4d4fb753d6"  # master, 2026-05-13
 ANIMCJK_RAW = "https://raw.githubusercontent.com/parsimonhi/animCJK/" + ANIMCJK_SHA + "/"
-ANIMCJK_FILES = ["graphicsJa.txt", "graphicsJaKana.txt", "dictionaryJa.txt", "licenses/COPYING.txt"]
+ANIMCJK_FILES = [
+    "graphicsJa.txt",
+    "graphicsJaKana.txt",
+    "dictionaryJa.txt",
+    "graphicsZhHant.txt",
+    "licenses/COPYING.txt",
+]
 
 # AnimCJK's dictionaryJa.txt tags kyōiku kanji g1–g6 per the 2017 list
 # (1,006). The 2020 revision added these 20 (prefecture names) to grade 4.
@@ -149,6 +164,28 @@ JA_NOTICE = (
     "character; each character's `strokes` and `medians` are unchanged (the "
     "redundant `character` key is dropped). Distributed under the Arphic Public "
     "License (ARPHICPL.TXT); see ANIMCJK_NOTICE.txt."
+)
+
+
+def build_zh_hant(src):
+    """The whole of AnimCJK graphicsZhHant.txt, verbatim strokes/medians."""
+    pack = {}
+    for d in parse_lines(src["graphicsZhHant.txt"]):
+        if len(d["strokes"]) != len(d["medians"]):
+            raise SystemExit("stroke/median count mismatch for " + d["character"])
+        pack[d["character"]] = {"strokes": d["strokes"], "medians": d["medians"]}
+    lib = {c for c in library_chars("zh-Hant") if is_kanji(c)}
+    return pack, {"library_han": len(lib), "library_han_covered": len(lib & set(pack))}
+
+
+ZH_HANT_NOTICE = (
+    "Modified by TraceSheet on 2026-10-16 (tool/make_stroke_packs.py): AnimCJK "
+    "graphicsZhHant.txt (github.com/parsimonhi/animCJK commit " + ANIMCJK_SHA + ") "
+    "repacked from one-JSON-object-per-line into one gzipped JSON object keyed by "
+    "character; each character's `strokes` and `medians` are unchanged (the "
+    "redundant `character` key is dropped). Used for the Taiwan and Hong Kong "
+    "stroke-order standards. Distributed under the Arphic Public License "
+    "(ARPHICPL.TXT); see ANIMCJK_NOTICE.txt."
 )
 
 
@@ -477,6 +514,11 @@ def main():
     raw, gz = write_pack(os.path.join(args.out_dir, "ja.json.gz"), ja)
     print("ja.json.gz: %d chars, %s, %d bytes (raw %d)" % (len(ja) - 1, ja_stats, gz, raw))
 
+    zh_hant, zh_hant_stats = build_zh_hant(src)
+    zh_hant["_notice"] = ZH_HANT_NOTICE
+    raw, gz = write_pack(os.path.join(args.out_dir, "zh_hant.json.gz"), zh_hant)
+    print("zh_hant.json.gz: %d chars, %s, %d bytes (raw %d)" % (len(zh_hant) - 1, zh_hant_stats, gz, raw))
+
     ko, ko_stats = build_ko()
     raw, gz = write_pack(os.path.join(args.out_dir, "ko.json.gz"), ko)
     print("ko.json.gz: %d chars, %s, %d bytes (raw %d)" % (len(ko), ko_stats, gz, raw))
@@ -486,8 +528,14 @@ def main():
         f.write(
             "assets/strokes/ja.json.gz -- Japanese stroke data for Write (TraceSheet v4)\n\n"
             + JA_NOTICE
-            + "\n\nKana: %d. Kanji: %d (%s set; includes all %d kyouiku kanji).\n\n"
+            + "\n\nThe modified pack, this notice, the licence and the packing script are freely available at "
+            "https://tracesheet.appfactory.sg/opensource/tracesheet/ja-strokes/README.txt (APL section 2(b)).\n\n"
+            "Kana: %d. Kanji: %d (%s set; includes all %d kyouiku kanji).\n\n"
             % (ja_stats["kana"], ja_stats["kanji"], args.kanji, ja_stats["kyouiku"])
+            + "assets/strokes/zh_hant.json.gz -- Taiwan / Hong Kong stroke order (TraceSheet 1.4)\n\n"
+            + ZH_HANT_NOTICE
+            + "\n\nThe modified pack is published beside the Japanese one (APL section 2(b)).\n\n"
+            "Characters: %d.\n\n" % (len(zh_hant) - 1)
             + "AnimCJK's own licence notice (licenses/COPYING.txt at that commit), verbatim:\n\n"
             + src["licenses/COPYING.txt"].rstrip("\n")
             + "\n"

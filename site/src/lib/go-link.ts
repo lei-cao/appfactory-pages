@@ -27,6 +27,15 @@ export function isGoPath(pathname: string): boolean {
   return pathname === "/go" || pathname.startsWith("/go/");
 }
 
+/**
+ * The shared-list page, `/go/tracesheet/l#<data>` (TraceSheet share links).
+ * Unlike every other /go path it renders a page instead of redirecting: the
+ * list is in the URL fragment, which only the browser sees.
+ */
+export function isShareListPath(pathname: string): boolean {
+  return /^\/go\/tracesheet\/l\/?$/i.test(pathname);
+}
+
 export function sanitizeCampaign(raw: string | undefined): string {
   const c = (raw ?? "").toLowerCase();
   return CAMPAIGN_RE.test(c) ? c : DEFAULT_CAMPAIGN;

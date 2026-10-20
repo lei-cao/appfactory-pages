@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { APEX_DOMAIN } from "@/lib/site";
 import { DEFAULT_LOCALE, isLocale, localePrefix, type Locale } from "@/lib/i18n";
-import { isGoPath, resolveGoLink } from "@/lib/go-link";
+import { isGoPath, isShareListPath, resolveGoLink } from "@/lib/go-link";
 import { getApp } from "@/content/apps";
 
 // Hosts whose subdomains map to per-app sites. `localhost` makes
@@ -39,6 +39,16 @@ function splitLocale(pathname: string): { locale: Locale | null; rest: string } 
 export function middleware(req: NextRequest) {
   const host = (req.headers.get("host") ?? "").split(":")[0].toLowerCase();
   const url = req.nextUrl;
+
+  // TraceSheet share links render a page (the list is in the URL fragment and
+  // is decoded in the browser) on every host; every other /go path redirects.
+  if (isShareListPath(url.pathname)) {
+    const page = url.clone();
+    page.pathname = `/${DEFAULT_LOCALE}/go/tracesheet/l`;
+    const res = NextResponse.rewrite(page);
+    res.headers.set("Cache-Control", "no-store");
+    return res;
+  }
 
   // Short links answer on every host and skip locale handling entirely.
   if (isGoPath(url.pathname)) {
