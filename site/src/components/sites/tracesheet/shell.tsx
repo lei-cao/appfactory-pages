@@ -43,7 +43,7 @@ export function TracesheetShell({ locale, slug, children }: SiteShellProps) {
             <Link href={`${base}#videos`} className="lw-nav-link">
               {nav.videos}
             </Link>
-            <LocaleSwitch current={locale} slug={slug} />
+            <LocaleSwitch current={locale} slug={slug} domain={app.domain} />
             <StudioLink locale={locale} className="lw-nav-link lw-studio" markClassName="lw-studio-mark" />
           </nav>
         </div>
@@ -100,7 +100,7 @@ export function TracesheetShell({ locale, slug, children }: SiteShellProps) {
             <span>
               © {new Date().getFullYear()} App Factory · {loc.storeName}
             </span>
-            <LocaleSwitch current={locale} slug={slug} />
+            <LocaleSwitch current={locale} slug={slug} domain={app.domain} />
           </div>
         </div>
       </footer>

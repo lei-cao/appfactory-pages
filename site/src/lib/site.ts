@@ -6,6 +6,7 @@ export const CONTACT_EMAIL = "lei@appfactory.sg";
 export interface AppHostRef {
   slug: string;
   host?: string;
+  domain?: string;
 }
 
 /** Public subdomain label: `host` when the app was rebranded, else its slug. */
@@ -14,13 +15,24 @@ export function appHost(app: AppHostRef): string {
 }
 
 /**
- * Canonical origin of an app's site. Pass the app (or any `{slug, host}`), or
- * a bare host label string. A slug string is only right for apps without a
- * `host`; prefer the app object.
+ * Canonical origin of an app's site: its own `domain` when it has one, else
+ * `<host ?? slug>.appfactory.sg`. Pass the app (or any `{slug, host, domain}`),
+ * or a bare host label string. A slug string is only right for apps without a
+ * `host` or `domain`; prefer the app object.
  */
 export function appOrigin(app: AppHostRef | string): string {
+  if (typeof app !== "string" && app.domain) return `https://${app.domain}`;
   const label = typeof app === "string" ? app : appHost(app);
   return `https://${label}.${APEX_DOMAIN}`;
+}
+
+/**
+ * Whether `hostname` serves an app at clean paths (no /apps/<slug> prefix):
+ * any `<label>.appfactory.sg` except www, or the app's own `domain`.
+ */
+export function isCleanAppHost(hostname: string, domain?: string): boolean {
+  if (domain && hostname === domain) return true;
+  return hostname.endsWith(`.${APEX_DOMAIN}`) && hostname !== `www.${APEX_DOMAIN}`;
 }
 
 export function hubOrigin(): string {

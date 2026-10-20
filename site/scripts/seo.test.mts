@@ -19,7 +19,11 @@ import {
   storeOf,
 } from "../src/lib/analytics.ts";
 
-const ORIGINS = ["https://appfactory.sg", "https://poker-night.appfactory.sg"];
+const ORIGINS = [
+  "https://appfactory.sg",
+  "https://poker-night.appfactory.sg",
+  "https://lingowonders.com",
+];
 const PATHS = ["/", "/support", "/privacy", "/guide/holdem-basics"];
 
 test("canonical URLs never end in a slash", () => {
@@ -91,6 +95,7 @@ test("GA id parsing and store click helpers", () => {
   assert.equal(appSlugFor("tracesheet.appfactory.sg", "/"), "tracesheet");
   assert.equal(appSlugFor("lingowonders.appfactory.sg", "/"), "tracesheet");
   assert.equal(appSlugFor("lingowonders.appfactory.sg", "/zh-cn/support"), "tracesheet");
+  assert.equal(appSlugFor("lingowonders.com", "/zh-cn/support"), "tracesheet");
   assert.equal(appSlugFor("poker-night.appfactory.sg", "/"), "poker-night");
   assert.equal(appSlugFor("www.appfactory.sg", "/"), "hub");
   assert.equal(appSlugFor("appfactory.sg", "/zh-cn/apps/poker-night"), "poker-night");

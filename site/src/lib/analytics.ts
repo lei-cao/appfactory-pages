@@ -52,6 +52,9 @@ export function storeOf(href: string): StoreName | null {
  */
 export const HOST_SLUGS: Record<string, string> = { lingowonders: "tracesheet" };
 
+/** Own-domain hostname -> slug (registry `domain`; checked by scripts/seo.test.mts). */
+export const DOMAIN_SLUGS: Record<string, string> = { "lingowonders.com": "tracesheet" };
+
 /** App slug for a page: explicit data-app, else subdomain, else /apps/<slug>, else "hub". */
 export function appSlugFor(
   hostname: string,
@@ -59,6 +62,7 @@ export function appSlugFor(
   explicit?: string | null,
 ): string {
   if (explicit) return explicit;
+  if (DOMAIN_SLUGS[hostname]) return DOMAIN_SLUGS[hostname];
   const sub = hostname.match(/^([a-z0-9-]+)\.appfactory\.sg$/)?.[1];
   // A rebranded app's host label differs from its slug; GA keeps the slug.
   if (sub && sub !== "www") return HOST_SLUGS[sub] ?? sub;
