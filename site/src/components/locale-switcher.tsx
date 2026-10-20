@@ -11,7 +11,7 @@ import {
   switchHref,
   type Locale,
 } from "@/lib/i18n";
-import { APEX_DOMAIN } from "@/lib/site";
+import { isCleanAppHost } from "@/lib/site";
 
 /**
  * Offers only the locales the current page exists in (the same rule that
@@ -40,8 +40,7 @@ export function LocaleSwitcher({
   const pathname = usePathname() ?? "/";
   const [clean, setClean] = useState(false);
   useEffect(() => {
-    const h = location.hostname;
-    setClean(!!slug && h.endsWith(`.${APEX_DOMAIN}`) && h !== `www.${APEX_DOMAIN}`);
+    setClean(!!slug && isCleanAppHost(location.hostname));
   }, [slug]);
 
   const available = localesForPage(pagePathOf(pathname, slug));

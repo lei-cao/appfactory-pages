@@ -5,7 +5,7 @@
 // ./tracesheet-guides.ts.
 //
 // The slug stays "tracesheet" (routes, asset paths, /go links, analytics);
-// the public host is lingowonders.appfactory.sg (`host` below).
+// the public host is lingowonders.com (`domain` below).
 //
 // Facts come from the 2.1 store copy in the app repo:
 // apps/tracesheet/fastlane/metadata/ios/{en-US,zh-Hans,zh-Hant}/

@@ -9,17 +9,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LOCALES, LOCALE_LABEL, switchHref, type Locale } from "@/lib/i18n";
-import { APEX_DOMAIN } from "@/lib/site";
+import { isCleanAppHost } from "@/lib/site";
 
-export function LocaleSwitch({ current, slug, className = "" }: { current: Locale; slug: string; className?: string }) {
+export function LocaleSwitch({
+  current,
+  slug,
+  domain,
+  className = "",
+}: {
+  current: Locale;
+  slug: string;
+  /** The app's own domain (lingowonders.com), also a clean-path host. */
+  domain?: string;
+  className?: string;
+}) {
   const pathname = usePathname() ?? "/";
   // Server render uses path-style hrefs that work on every host; on the app's
-  // own subdomain they become the clean canonical paths once mounted.
+  // own subdomain or domain they become the clean canonical paths once mounted.
   const [clean, setClean] = useState(false);
   useEffect(() => {
-    const h = location.hostname;
-    setClean(h.endsWith(`.${APEX_DOMAIN}`) && h !== `www.${APEX_DOMAIN}`);
-  }, []);
+    setClean(isCleanAppHost(location.hostname, domain));
+  }, [domain]);
 
   return (
     <span className={`lw-locales ${className}`} aria-label="Language">

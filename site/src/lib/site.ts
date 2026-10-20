@@ -26,6 +26,15 @@ export function appOrigin(app: AppHostRef | string): string {
   return `https://${label}.${APEX_DOMAIN}`;
 }
 
+/**
+ * Whether `hostname` serves an app at clean paths (no /apps/<slug> prefix):
+ * any `<label>.appfactory.sg` except www, or the app's own `domain`.
+ */
+export function isCleanAppHost(hostname: string, domain?: string): boolean {
+  if (domain && hostname === domain) return true;
+  return hostname.endsWith(`.${APEX_DOMAIN}`) && hostname !== `www.${APEX_DOMAIN}`;
+}
+
 export function hubOrigin(): string {
   return `https://${APEX_DOMAIN}`;
 }
