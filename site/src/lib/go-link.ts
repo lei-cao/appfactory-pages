@@ -22,9 +22,11 @@ export const GO_MEDIUM = "go";
 const CAMPAIGN_RE = /^[a-z0-9-]{1,40}$/;
 
 /**
- * Link-preview fetchers and crawlers. They get the plain landing redirect so
- * a shared link previews the app's OG card, never the detect page. iMessage's
- * preview agent claims to be a Mac (and facebookexternalhit), hence the check.
+ * Link-preview fetchers and crawlers posing as a Mac skip the detect page and
+ * get the plain landing redirect, so a shared link previews the app's OG card.
+ * iMessage's preview agent claims to be a Mac (and facebookexternalhit). Only
+ * consulted for Macintosh UAs: in-app browsers on phones (WhatsApp, Telegram…)
+ * must still reach the store.
  */
 const BOT_RE = /bot|crawl|spider|slurp|facebookexternalhit|facebot|preview|whatsapp|telegram|discord|embedly/i;
 
@@ -118,7 +120,6 @@ export function resolveGo(pathname: string, userAgent: string, { apex, getApp }:
   const landing = landingUrl(app, apex, source);
   const appleId = appleIdOf(app);
 
-  if (BOT_RE.test(userAgent)) return redirect(landing);
   if (userAgent.includes("Android")) {
     return redirect(app.playStoreUrl ? playUrl(app.playStoreUrl, app.slug, source) : landing);
   }
@@ -126,7 +127,7 @@ export function resolveGo(pathname: string, userAgent: string, { apex, getApp }:
     return redirect(appleId ? appStoreUrl(appleId, source) : landing);
   }
   // iPadOS Safari reports itself as Macintosh; only a touch screen tells it apart.
-  if (userAgent.includes("Macintosh") && appleId) {
+  if (userAgent.includes("Macintosh") && appleId && !BOT_RE.test(userAgent)) {
     return { kind: "detect", ios: appStoreUrl(appleId, source), other: landing };
   }
   return redirect(landing);

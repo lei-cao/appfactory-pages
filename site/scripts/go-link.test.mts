@@ -119,6 +119,14 @@ test("Android: Play with the install referrer when listed, else the landing page
   );
 });
 
+test("in-app browsers on phones still reach the store; only Mac-posing bots skip the detect page", () => {
+  const waIphone = `${UA.iphone} WhatsApp/24.20.79`;
+  assert.deepEqual(go("/go/poker-night/share-hand", waIphone), redirect(apple("6788786222", "share-hand")));
+  const cubot = "Mozilla/5.0 (Linux; Android 13; CUBOT_X70) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36";
+  assert.match((go("/go/both/qr", cubot) as { url: string }).url, /^https:\/\/play\.google\.com\/.*referrer=utm_source%3Dqr/);
+  assert.deepEqual(go("/go/poker-night/qr", UA.imessage), redirect(landing(REGISTRY[0], "qr")));
+});
+
 test("desktop never goes to a store; TiltFree lands on pokertools.ai, not a phantom subdomain", () => {
   assert.deepEqual(
     go("/go/tiltfree/qr", UA.windows),
