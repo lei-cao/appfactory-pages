@@ -57,6 +57,9 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   // Skip static assets (anything with a file extension) and Next internals;
-  // those are host-independent.
-  matcher: ["/((?!_next/|_vercel|.*\\..*).*)"],
+  // those are host-independent. /go paths always run, dots included, so a
+  // bad source (`/go/poker-night/a.b`) still falls back to `go` and an unknown
+  // slug (`/go/no.such/qr`) still goes home. Keep this a JSON-style array:
+  // scripts/middleware-matcher.mts reads it from this file.
+  matcher: ["/((?!_next/|_vercel|.*\\..*).*)", "/go/:path*"],
 };

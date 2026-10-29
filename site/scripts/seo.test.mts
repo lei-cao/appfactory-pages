@@ -1,9 +1,11 @@
 // SEO invariants. Run: npm test. Pure modules are imported directly; the
-// middleware (which needs Next's runtime) is checked from its source text.
+// middleware (which needs Next's runtime) is checked from its source text and
+// its matcher through Next's matcher code (middleware-matcher.mts).
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
+import { middlewareRuns } from "./middleware-matcher.mts";
 import {
   LOCALES,
   canonicalUrl,
@@ -60,15 +62,11 @@ test("IndexNow key file exists, matches its name, and middleware skips it", () =
   const key = keyFiles[0].replace(".txt", "");
   assert.equal(readFileSync(new URL(keyFiles[0], pub), "utf8").trim(), key);
 
-  const mw = readFileSync(new URL("../src/middleware.ts", import.meta.url), "utf8");
-  const matcher = mw.match(/matcher:\s*\["([^"]+)"\]/)?.[1];
-  assert.ok(matcher, "matcher not found");
-  const re = new RegExp(`^${JSON.parse(`"${matcher}"`)}$`);
   // Not matched by the middleware => served as the static file on every host.
-  assert.equal(re.test(`/${key}.txt`), false);
-  assert.equal(re.test("/llms.txt"), false);
-  assert.equal(re.test("/robots.txt"), false);
-  assert.equal(re.test("/support"), true);
+  assert.equal(middlewareRuns(`/${key}.txt`), false);
+  assert.equal(middlewareRuns("/llms.txt"), false);
+  assert.equal(middlewareRuns("/robots.txt"), false);
+  assert.equal(middlewareRuns("/support"), true);
 });
 
 test("consent defaults: ads denied everywhere, analytics denied only in listed regions", () => {

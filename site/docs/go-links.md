@@ -15,8 +15,12 @@ https://appfactory.sg/go/<slug>/<source>
   domains). Responses are `Cache-Control: no-store`, so a destination can be
   changed later without reprinting anything.
 
-Code: `src/lib/go-link.ts` (pure resolver), `src/middleware.ts` (wiring),
-tests in `scripts/go-link.test.mts`.
+Code: `src/lib/go-link.ts` (pure resolver), `src/middleware.ts` (wiring;
+its matcher sends every `/go/*` path through, dots included). Tests:
+`scripts/go-link.test.mts` (resolver), `scripts/middleware-matcher.test.mts`
+(which paths reach the middleware), both in `npm test`; and
+`scripts/go-http.e2e.mts`, real HTTP against `next start`
+(`npm run build && npm run test:http`).
 
 ## Where a visitor lands
 
