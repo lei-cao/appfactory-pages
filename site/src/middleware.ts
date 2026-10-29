@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { APEX_DOMAIN } from "@/lib/site";
 import { DEFAULT_LOCALE } from "@/lib/i18n";
 import { decideHost } from "@/lib/host-routing";
-import { isGoPath, isShareListPath, resolveGoLink } from "@/lib/go-link";
+import { detectPage, isGoPath, isShareListPath, resolveGo } from "@/lib/go-link";
 import { apps, getApp } from "@/content/apps";
 
 export function middleware(req: NextRequest) {
@@ -21,13 +21,16 @@ export function middleware(req: NextRequest) {
 
   // Short links answer on every host and skip locale handling entirely.
   if (isGoPath(url.pathname)) {
-    const res = NextResponse.redirect(
-      resolveGoLink(url.pathname, req.headers.get("user-agent") ?? "", {
-        apex: APEX_DOMAIN,
-        getApp,
-      }),
-      302,
-    );
+    const go = resolveGo(url.pathname, req.headers.get("user-agent") ?? "", {
+      apex: APEX_DOMAIN,
+      getApp,
+    });
+    const res =
+      go.kind === "redirect"
+        ? NextResponse.redirect(go.url, 302)
+        : new NextResponse(detectPage(go.ios, go.other), {
+            headers: { "Content-Type": "text/html; charset=utf-8" },
+          });
     res.headers.set("Cache-Control", "no-store");
     return res;
   }
