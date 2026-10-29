@@ -11,6 +11,7 @@ DNS on Cloudflare.
 | `poker-night.appfactory.sg` | Poker Night landing page |
 | `poker-night.appfactory.sg/support` | Support + FAQs (App Store support URL) |
 | `poker-night.appfactory.sg/privacy` | Privacy policy |
+| `appfactory.sg/go/<slug>/<source>` | Smart short link for QR codes and shares: App Store / Play / landing page by device ([docs/go-links.md](docs/go-links.md)) |
 
 ## How subdomain routing works
 
