@@ -121,6 +121,11 @@ export default async function Hub({
   const liveApps = APP_ORDER.map((s) => live.find((a) => a.slug === s)).filter(
     (a): a is AppContent => !!a,
   );
+  // Cards in the Apps section: the live apps plus any app on APP_ORDER that
+  // isn't out yet (it stays off the catalogue's "out" rows, footer and JSON-LD).
+  const featuredApps = APP_ORDER.map((s) => records.find((a) => a.slug === s)).filter(
+    (a): a is AppContent => !!a,
+  );
   const next = records.filter((a) => a.status !== "live");
   const bySlug = (slug: string) => records.find((a) => a.slug === slug);
   const posterAlt = (app: AppContent) => {
@@ -279,13 +284,18 @@ export default async function Hub({
           <h2 id="apps-heading">{h.appsTitle}</h2>
           <p>{h.appsIntro}</p>
         </div>
-        {liveApps.map((app) => {
+        {featuredApps.map((app) => {
           const loc = localized(app, locale);
           const link = appLink(app, locale);
+          const posters = postersOf(app.slug);
           return (
             <article key={app.slug} className="feature" aria-labelledby={`${app.slug}-name`}>
-              <div className="feature__visual">
-                {postersOf(app.slug).map((src, n) => (
+              <div className={posters.length ? "feature__visual" : "feature__visual feature__visual--tile"}>
+                {/* No store screenshots yet: the icon, large, on a plain tile. */}
+                {!posters.length && app.icon && (
+                  <Image src={app.icon} alt="" width={512} height={512} sizes="(min-width: 900px) 20vw, 50vw" {...reveal(0)} />
+                )}
+                {posters.map((src, n) => (
                     <Image
                       key={src}
                       src={src}
@@ -320,10 +330,12 @@ export default async function Hub({
                       {link.external ? "↗" : "→"}
                     </span>
                   </a>
-                  {app.appStoreUrl && (
+                  {app.appStoreUrl ? (
                     <a href={app.appStoreUrl} data-app={app.slug} {...externalProps(true)} className="go link">
                       {h.appStore} <span className="arrow" aria-hidden>↗</span>
                     </a>
+                  ) : (
+                    <span className="go go--off">{h.storeComing}</span>
                   )}
                 </div>
               </div>

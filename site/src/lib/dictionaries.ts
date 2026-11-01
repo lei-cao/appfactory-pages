@@ -22,6 +22,8 @@ export interface Dict {
     visit: string;
     appStore: string;
     storeSoon: string;
+    /** Apps-section card for an app with no App Store link yet. */
+    storeComing: string;
     tpTitle: string;
     tpLead: [string, string];
     tpBody: string;
@@ -124,10 +126,11 @@ const en: Dict = {
     gamesTitle: "Games",
     gamesIntro: "Puzzle and card games for iPhone and Android. No timers you didn't ask for.",
     appsTitle: "Apps",
-    appsIntro: "Tools for the poker table and the writing desk.",
+    appsIntro: "Tools for the poker table, the writing desk and your videos.",
     visit: "Visit site",
     appStore: "App Store",
     storeSoon: "App Store link on its way",
+    storeComing: "Coming soon to the App Store",
     tpTitle: "thinking.poker",
     tpLead: ["Run the numbers,", "then decide."],
     tpBody:
@@ -245,10 +248,11 @@ const zhCn: Dict = {
     gamesTitle: "游戏",
     gamesIntro: "适合 iPhone 和安卓的益智与卡牌游戏，没有逼你赶时间的倒计时。",
     appsTitle: "应用",
-    appsIntro: "牌桌上和书桌前用得上的工具。",
+    appsIntro: "牌桌上、书桌前和剪视频时用得上的工具。",
     visit: "访问网站",
     appStore: "App Store",
     storeSoon: "App Store 链接即将上线",
+    storeComing: "即将登陆 App Store",
     tpTitle: "thinking.poker",
     tpLead: ["先算清楚，", "再做决定。"],
     tpBody:
@@ -363,10 +367,11 @@ const zhTw: Dict = {
     gamesTitle: "遊戲",
     gamesIntro: "適合 iPhone 與 Android 的益智與卡牌遊戲，沒有逼你趕時間的倒數計時。",
     appsTitle: "App",
-    appsIntro: "牌桌上和書桌前用得上的工具。",
+    appsIntro: "牌桌上、書桌前和剪影片時用得上的工具。",
     visit: "前往網站",
     appStore: "App Store",
     storeSoon: "App Store 連結即將上線",
+    storeComing: "即將登上 App Store",
     tpTitle: "thinking.poker",
     tpLead: ["先算清楚，", "再做決定。"],
     tpBody:
