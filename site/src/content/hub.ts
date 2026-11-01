@@ -40,8 +40,13 @@ export const POSTER_SIZE = { width: 860, height: 1864 };
 /** Hero crossfade, in order: the most colourful posters first. */
 export const HERO_SLUGS = ["slide-jam", "sushi-sort", "ember-deck", "poker-night"];
 
-/** The Apps section, in reading order: writing, then the poker family. */
-export const APP_ORDER = ["tracesheet", "poker-night", "tiltfree"];
+/**
+ * The Apps section, in reading order: writing, the poker family, then video.
+ * Live apps also go in the catalogue, footer and JSON-LD; an app here that is
+ * not live yet gets its card only, marked "coming soon" until it has an App
+ * Store link.
+ */
+export const APP_ORDER = ["tracesheet", "poker-night", "tiltfree", "popline"];
 
 /** Ember Deck's gameplay loop replaces its poster in the games index. */
 export const LOOPS: Record<string, { src: Partial<Record<Locale, string>>; poster: string }> = {

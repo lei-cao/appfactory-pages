@@ -525,6 +525,19 @@
 .hub .feature__visual img:nth-child(3) {
   display: none;
 }
+/* An app with no store screenshots yet: its icon, large, on a plain tile. */
+.hub .feature__visual--tile {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--surface);
+}
+.hub .feature__visual--tile img {
+  width: min(46%, 280px);
+  border-radius: 22.5%;
+  background: none;
+}
 .hub .feature__cluster {
   display: grid;
   gap: 16px;
@@ -566,6 +579,9 @@
   }
   .hub .feature__visual img:nth-child(3) {
     display: block;
+  }
+  .hub .feature__visual--tile {
+    grid-template-columns: 1fr;
   }
   .hub .feature:hover .feature__visual img:nth-child(2) {
     transform: translateY(-14px);
