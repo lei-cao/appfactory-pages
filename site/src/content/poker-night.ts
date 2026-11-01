@@ -104,7 +104,7 @@ const en: AppLocalized = {
     },
     {
       title: "Poker Night Pro",
-      body: "One optional purchase (US$7.99), yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
+      body: "One optional purchase, yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
     },
   ],
   screenshots: pnScreens("en"),
@@ -139,7 +139,7 @@ const en: AppLocalized = {
     },
     {
       q: "What does Poker Night Pro cost, and is it a subscription?",
-      a: "Pro is a single optional purchase of US$7.99, yours forever. There is no subscription. The ledger, settle-up, share card, host tools and quick hand log stay free. Pro adds depth: unlimited blinds timer nights, past and custom seasons, deep insights, the full Wrapped story, ICM deal calculator, GTO presets, hand replays and CSV export. Already bought Remove Ads? You already have every Pro feature, at no extra cost.",
+      a: "Pro is a single optional purchase, yours forever. There is no subscription. The ledger, settle-up, share card, host tools and quick hand log stay free. Pro adds depth: unlimited blinds timer nights, past and custom seasons, deep insights, the full Wrapped story, ICM deal calculator, GTO presets, hand replays and CSV export. Already bought Remove Ads? You already have every Pro feature, at no extra cost.",
     },
     {
       q: "The chip counts don't balance — what now?",
@@ -309,7 +309,7 @@ const zhCn: AppLocalized = {
     },
     {
       title: "扑克之夜 Pro",
-      body: "一次性可选购买（7.99 美元），永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
+      body: "一次性可选购买，永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
     },
   ],
   screenshots: pnScreens("zh-cn"),
@@ -344,7 +344,7 @@ const zhCn: AppLocalized = {
     },
     {
       q: "扑克之夜 Pro 多少钱？是订阅吗？",
-      a: "Pro 是一次性可选购买，7.99 美元，永久拥有，不是订阅。账本、结算、战报卡片、主持工具和快速牌谱始终免费；Pro 增加深度功能：不限次数的盲注计时、往季与自定义赛季、深度洞察、完整年度回顾、ICM 分配计算器、GTO 预设、牌谱回放和 CSV 导出。之前买过「移除广告」的话，已经自动拥有全部 Pro 功能，无需重复购买。",
+      a: "Pro 是一次性可选购买，永久拥有，不是订阅。账本、结算、战报卡片、主持工具和快速牌谱始终免费；Pro 增加深度功能：不限次数的盲注计时、往季与自定义赛季、深度洞察、完整年度回顾、ICM 分配计算器、GTO 预设、牌谱回放和 CSV 导出。之前买过「移除广告」的话，已经自动拥有全部 Pro 功能，无需重复购买。",
     },
     {
       q: "码量对不上怎么办？",
@@ -512,7 +512,7 @@ const zhTw: AppLocalized = {
     },
     {
       title: "撲克之夜 Pro",
-      body: "一次性選購（7.99 美元），永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
+      body: "一次性選購，永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
     },
   ],
   screenshots: pnScreens("zh-tw"),
@@ -547,7 +547,7 @@ const zhTw: AppLocalized = {
     },
     {
       q: "撲克之夜 Pro 多少錢？是訂閱嗎？",
-      a: "Pro 是一次性選購，7.99 美元，永久擁有，不是訂閱。帳本、結算、戰報卡片、主持工具和快速牌譜始終免費；Pro 增加深度功能：不限次數的盲注計時、往季與自訂賽季、深度洞察、完整年度回顧、ICM 分配計算器、GTO 預設、牌譜回放和 CSV 匯出。之前買過「移除廣告」的話，已經自動擁有全部 Pro 功能，不必重複購買。",
+      a: "Pro 是一次性選購，永久擁有，不是訂閱。帳本、結算、戰報卡片、主持工具和快速牌譜始終免費；Pro 增加深度功能：不限次數的盲注計時、往季與自訂賽季、深度洞察、完整年度回顧、ICM 分配計算器、GTO 預設、牌譜回放和 CSV 匯出。之前買過「移除廣告」的話，已經自動擁有全部 Pro 功能，不必重複購買。",
     },
     {
       q: "碼量對不上怎麼辦？",
@@ -651,7 +651,6 @@ export const pokerNight: AppContent = {
     },
   },
   ogImage: "/apps/poker-night/og.png",
-  proOffer: { name: "Poker Night Pro (one-time in-app purchase)", price: "7.99" },
   appStoreId: "6788786222",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

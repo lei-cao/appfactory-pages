@@ -53,7 +53,7 @@ const SHOTS_EN = pn21("en", {
   wire: "Poker Wire: a list of poker news headlines with search and filters",
   wireReader: "Poker Wire article in the reader view",
   planning: "A planned game: date and time, place, format, a reminder and who is In, Maybe or Out",
-  pro: "The Poker Night Pro sheet: what Pro adds and the one-time price",
+  pro: "The Poker Night Pro sheet: what Pro adds",
 });
 const SHOTS_ZH = pn21("zh", {
   tonight: "今晚页：进行中的牌局卡片，显示玩家、桌上筹码和已进行时间，下方是即将开始的约局",
@@ -67,7 +67,7 @@ const SHOTS_ZH = pn21("zh", {
   wire: "扑克快讯：已翻译成中文的扑克新闻列表，可搜索和筛选",
   wireReader: "扑克快讯的阅读视图：文章已在本机翻译成中文，可切换查看原文",
   planning: "一场约局：时间、地点、玩法、提醒，以及谁确定、待定或不来",
-  pro: "扑克之夜 Pro 页面：Pro 增加的功能和一次性价格",
+  pro: "扑克之夜 Pro 页面：Pro 增加的功能",
 });
 const SHOTS_TW = pn21("zh", {
   tonight: "今晚頁：進行中的牌局卡片，顯示玩家、桌上籌碼和已進行時間，下方是即將開始的約局",
@@ -81,7 +81,7 @@ const SHOTS_TW = pn21("zh", {
   wire: "撲克快訊：已翻譯成中文的撲克新聞列表，可搜尋和篩選",
   wireReader: "撲克快訊的閱讀檢視：文章已在本機翻譯成中文，可切換查看原文",
   planning: "一場約局：時間、地點、玩法、提醒，以及誰確定、待定或不來",
-  pro: "撲克之夜 Pro 頁面：Pro 增加的功能和一次性價格",
+  pro: "撲克之夜 Pro 頁面：Pro 增加的功能",
 });
 
 export interface PnLanding {
@@ -309,8 +309,8 @@ const en: PnLanding = {
   price: {
     lead: "Free to host.",
     before: "Pro is",
-    amount: "US$7.99",
-    after: "once.",
+    amount: "one purchase",
+    after: "yours for good.",
     includes: "The ledger, settle-up, results card, host tools and every odds calculator are free for good. Pro is one purchase, yours forever, with no subscription.",
     cta: "Download free",
     free: { title: "Free", items: ["The full ledger, rebuys and chip count", "Settle-up, payment details and the results card", "3 blinds timer nights", "The equity calculator and every odds tool", "10 trainer questions a day", "3 planned games, 5 recorded hands a night", "Host tools, leaderboard, Poker Wire and the home-game guide"] },
@@ -476,8 +476,8 @@ const zhCn: PnLanding = {
   price: {
     lead: "组局免费，",
     before: "Pro",
-    amount: "7.99 美元",
-    after: "买断。",
+    amount: "一次买断",
+    after: "永久拥有。",
     includes: "账本、结算、战报卡片、主持工具和全部胜率计算器永久免费。Pro 是一次性购买，永久拥有，不是订阅。",
     cta: "免费下载",
     free: { title: "免费", items: ["完整账本、补码与清点", "结算、收款信息与战报卡片", "3 晚盲注计时", "3 场约局，每晚 5 手牌谱记录", "胜率计算器与全部赔率工具", "每天 10 道训练题", "主持工具、排行榜、扑克快讯与家庭牌局指南"] },
@@ -644,8 +644,8 @@ const zhTw: PnLanding = {
   price: {
     lead: "組局免費，",
     before: "Pro",
-    amount: "7.99 美元",
-    after: "買斷。",
+    amount: "一次買斷",
+    after: "永久擁有。",
     includes: "帳本、結算、戰報卡片、主持工具和全部勝率計算器永久免費。Pro 是一次性購買，永久擁有，不是訂閱。",
     cta: "免費下載",
     free: { title: "免費", items: ["完整帳本、補碼與清點", "結算、收款資訊與戰報卡片", "3 晚盲注計時", "3 場約局，每晚 5 手牌譜記錄", "勝率計算器與全部賠率工具", "每天 10 道訓練題", "主持工具、排行榜、撲克快訊與家庭牌局指南"] },
