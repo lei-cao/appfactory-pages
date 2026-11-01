@@ -25,7 +25,7 @@ A chip is worth whatever your group decides. What matters is that everyone agree
 
 ## Common colours
 
-There is no official standard, but many sets and clubs follow roughly this pattern. If your set is different, pick values and say them out loud before the first hand.
+There is no official standard, but many sets and card rooms follow roughly this pattern. If your set is different, pick values and say them out loud before the first hand.
 
 | Colour | Typical value |
 | --- | --- |

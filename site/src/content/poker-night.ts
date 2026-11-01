@@ -127,7 +127,7 @@ const en: AppLocalized = {
     },
     {
       q: "Where is my data stored?",
-      a: "On your device. Player names, buy-ins, chip counts and session history stay on your phone, and there is no account system. The one exception is optional: if you choose to share a night live with your table, a temporary copy of that night is sent so the people at your table can follow along.",
+      a: "On your device. Player names, buy-ins, chip counts and session history stay on your phone, and there is no account system. The one exception is optional: if you choose to share a night live with your table, a temporary copy of that night is sent so guests can follow along.",
     },
     {
       q: "Does Poker Night move money?",
@@ -173,7 +173,7 @@ const en: AppLocalized = {
         heading: "Live sharing (optional)",
         body: [
           "If you tap Share live during a night, Poker Night uploads a read-only snapshot of that night so the people at your table can follow it on their own phones: the display names you typed for tonight's players, buy-ins, chip counts, results, the chip value, who pays whom once settled, and the night's title if you gave it one. It is stored in Google Cloud Firestore (Firebase) under a random 128-bit link, together with an anonymous Firebase sign-in id that lets only your device update or stop it. It is not linked to any account, email, advertising id or analytics id.",
-          "Anyone with the link can view the snapshot; it can't be searched or listed. It's no longer viewable after 48 hours from its last update (or 24 hours after the night settles) — reads are refused past that point. It's deleted outright when you tap Stop sharing, when you delete the night, or automatically 24 hours after the night settles (checked the next time the app runs); there's no separate server-side deletion guarantee beyond that. Nothing is uploaded for nights you don't share, and nobody who opens the link in a browser is asked for anything.",
+          "Anyone with the link or QR code can view the snapshot; it can't be searched or listed. It's no longer viewable after 48 hours from its last update (or 24 hours after the night settles) — reads are refused past that point. It's deleted outright when you tap Stop sharing, when you delete the night, or automatically 24 hours after the night settles (checked the next time the app runs); there's no separate server-side deletion guarantee beyond that. Nothing is uploaded for nights you don't share, and guests who open the link in a browser are not asked for anything.",
         ],
       },
       {
@@ -378,7 +378,7 @@ const zhCn: AppLocalized = {
         heading: "实时共享（可选）",
         body: [
           "如果你在牌局中点了「实时共享」，扑克之夜会上传这一局的只读快照，让同桌的朋友用自己的手机查看：你为今晚玩家填写的显示名字、买入、筹码数、盈亏、筹码折算金额、结算后的转账明细，以及你设置的牌局名称（如有）。快照存放在 Google Cloud Firestore（Firebase）中，以一个 128 位随机链接标识，并附带一个匿名的 Firebase 登录标识，只有你的设备才能更新或停止共享。它不与任何账号、邮箱、广告标识或分析标识关联。",
-          "拿到链接的人都可以查看快照，但无法被搜索或列出。最后一次更新后满 48 小时（或牌局结算后满 24 小时），快照即不再可查看——之后的读取请求会被拒绝。你点击「停止共享」、删除该局，或结算后 24 小时（由应用自动完成，需应用再次运行时触发）都会直接删除快照；除此之外没有额外的服务器端删除保证。没有共享的牌局不会上传任何内容；在浏览器中打开链接的人也不需要提供任何信息。",
+          "拿到链接或二维码的人都可以查看快照，但无法被搜索或列出。最后一次更新后满 48 小时（或牌局结算后满 24 小时），快照即不再可查看——之后的读取请求会被拒绝。你点击「停止共享」、删除该局，或结算后 24 小时（由应用自动完成，需应用再次运行时触发）都会直接删除快照；除此之外没有额外的服务器端删除保证。没有共享的牌局不会上传任何内容；客人在浏览器中打开链接时也不需要提供任何信息。",
         ],
       },
       {
@@ -581,7 +581,7 @@ const zhTw: AppLocalized = {
         heading: "即時分享（選用）",
         body: [
           "如果你在牌局中點了「即時分享」，撲克之夜會上傳這一局的唯讀快照，讓同桌的朋友用自己的手機查看：你為今晚玩家填寫的顯示名稱、買入、籌碼數、盈虧、籌碼換算金額、結算後的轉帳明細，以及你設定的牌局名稱（如有）。快照存放在 Google Cloud Firestore（Firebase）中，以一個 128 位元隨機連結識別，並附帶一個匿名的 Firebase 登入識別碼，只有你的裝置才能更新或停止分享。它不與任何帳號、Email、廣告識別碼或分析識別碼關聯。",
-          "拿到連結的人都可以查看快照，但無法被搜尋或列出。最後一次更新後滿 48 小時（或牌局結算後滿 24 小時），快照即不再可查看——之後的讀取請求會被拒絕。你點擊「停止分享」、刪除該局，或結算後 24 小時（由 App 自動完成，需 App 再次執行時觸發）都會直接刪除快照；除此之外沒有額外的伺服器端刪除保證。沒有分享的牌局不會上傳任何內容；在瀏覽器中開啟連結的人也不需要提供任何資訊。",
+          "拿到連結或 QR code 的人都可以查看快照，但無法被搜尋或列出。最後一次更新後滿 48 小時（或牌局結算後滿 24 小時），快照即不再可查看——之後的讀取請求會被拒絕。你點擊「停止分享」、刪除該局，或結算後 24 小時（由 App 自動完成，需 App 再次執行時觸發）都會直接刪除快照；除此之外沒有額外的伺服器端刪除保證。沒有分享的牌局不會上傳任何內容；客人在瀏覽器中開啟連結時也不需要提供任何資訊。",
         ],
       },
       {
