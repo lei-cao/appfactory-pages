@@ -29,6 +29,7 @@ const REGISTRY = [
   { file: "bottle-guess", slug: "bottle-guess" },
   { file: "crowd-siege", slug: "crowd-siege" },
   { file: "harvest-town", slug: "harvest-town" },
+  { file: "popline", slug: "popline" },
 ] as { file: string; slug: string; host?: string; domain?: string; appStoreId?: string; playStoreUrl?: string; externalUrls?: { en: string } }[];
 
 // Not in the registry: exercises the Play branch (no live app has a Play URL yet).
