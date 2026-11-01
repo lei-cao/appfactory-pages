@@ -28,6 +28,62 @@ export function pnVideoFiles(id: PnVideoId, locale: Locale): { v?: VideoFile; h?
 export interface PnVideoCopy { id: PnVideoId; title: string; body: string }
 export interface PnShot { src: string; alt: string }
 
+// 2.1 screens (scripts/poker-night-shots.sh from the store-shot raws). zh-Hant reuses
+// the zh captures (the app screens are Simplified) with Traditional alt text.
+type PnShotId = "tonight" | "live" | "settle" | "hand" | "handImage" | "soda" | "milk" | "fortune" | "wire" | "wireReader" | "planning" | "pro";
+const PN_FILES: Record<PnShotId, string> = {
+  tonight: "01-tonight", live: "02-live", settle: "03-settle", hand: "04-hand", handImage: "04-hand-image",
+  soda: "05-theme-soda", milk: "05-theme-milk", fortune: "05-theme-fortune",
+  wire: "06-wire", wireReader: "06-wire-reader", planning: "07-planning", pro: "08-pro",
+};
+function pn21(dir: "en" | "zh", alts: Record<PnShotId, string>): Record<PnShotId, PnShot> {
+  const out = {} as Record<PnShotId, PnShot>;
+  for (const id of Object.keys(PN_FILES) as PnShotId[]) out[id] = { src: `/apps/poker-night/v21/${dir}/${PN_FILES[id]}.jpg`, alt: alts[id] };
+  return out;
+}
+const SHOTS_EN = pn21("en", {
+  tonight: "Tonight tab: the live game card with players, money in play and elapsed time, and two planned games below it",
+  live: "Live night with one row per player: buy-ins, chips and net result, and a Balanced check at the top",
+  settle: "Settling: who pays whom, with each payee's Venmo and Zelle details and a Pay button on every transfer",
+  hand: "Hand recorder on the river: a full-screen table with five seats, the board and the Fold, Call and Raise buttons",
+  handImage: "The shared hand picture: the showdown table, the winner and every street's actions",
+  soda: "Tonight in the Soda theme",
+  milk: "Tonight in the Strawberry Milk theme",
+  fortune: "Tonight in the Fortune theme",
+  wire: "Poker Wire: a list of poker news headlines with search and filters",
+  wireReader: "Poker Wire article in the reader view",
+  planning: "A planned game: date and time, place, format, a reminder and who is In, Maybe or Out",
+  pro: "The Poker Night Pro sheet: what Pro adds and the one-time price",
+});
+const SHOTS_ZH = pn21("zh", {
+  tonight: "今晚页：进行中的牌局卡片，显示玩家、桌上筹码和已进行时间，下方是即将开始的约局",
+  live: "进行中的一晚：每位玩家一行，显示买入、筹码和净输赢，顶部有「已平账」核对",
+  settle: "结算：谁付谁，每笔转账都带收款信息和「支付」按钮",
+  hand: "河牌圈的手牌记录：全屏牌桌、五个座位、公共牌和弃牌、跟注、加注按钮",
+  handImage: "分享出去的手牌图片：摊牌时的牌桌、赢家和每条街的行动",
+  soda: "「汽水」主题下的今晚页",
+  milk: "「草莓牛奶」主题下的今晚页",
+  fortune: "「招财」主题下的今晚页",
+  wire: "扑克快讯：已翻译成中文的扑克新闻列表，可搜索和筛选",
+  wireReader: "扑克快讯的阅读视图：文章已在本机翻译成中文，可切换查看原文",
+  planning: "一场约局：时间、地点、玩法、提醒，以及谁确定、待定或不来",
+  pro: "扑克之夜 Pro 页面：Pro 增加的功能和一次性价格",
+});
+const SHOTS_TW = pn21("zh", {
+  tonight: "今晚頁：進行中的牌局卡片，顯示玩家、桌上籌碼和已進行時間，下方是即將開始的約局",
+  live: "進行中的一晚：每位玩家一行，顯示買入、籌碼和淨輸贏，頂部有「已平帳」核對",
+  settle: "結算：誰付誰，每筆轉帳都帶收款資訊和「支付」按鈕",
+  hand: "河牌圈的手牌記錄：全螢幕牌桌、五個座位、公共牌和棄牌、跟注、加注按鈕",
+  handImage: "分享出去的手牌圖片：攤牌時的牌桌、贏家和每條街的行動",
+  soda: "「汽水」主題下的今晚頁",
+  milk: "「草莓牛奶」主題下的今晚頁",
+  fortune: "「招財」主題下的今晚頁",
+  wire: "撲克快訊：已翻譯成中文的撲克新聞列表，可搜尋和篩選",
+  wireReader: "撲克快訊的閱讀檢視：文章已在本機翻譯成中文，可切換查看原文",
+  planning: "一場約局：時間、地點、玩法、提醒，以及誰確定、待定或不來",
+  pro: "撲克之夜 Pro 頁面：Pro 增加的功能和一次性價格",
+});
+
 export interface PnLanding {
   hero: {
     /** The h1 runs lead + [the results-card slot] + tail (the slot is decorative). */
@@ -158,37 +214,39 @@ const en: PnLanding = {
     intro: "Money and chips side by side on every row, total and transfer, from the first buy-in to the last payment.",
     items: [
       {
-        title: "Buy-ins, rebuys and a count that checks itself",
-        body: "Set what a buy-in is worth once (say 200 chips = $20), then tap once per rebuy, with undo. Type each stack at the end and the footer says Balanced, or exactly how far off the count is.",
-        shots: [{ src: "/apps/poker-night/v2/en/04-live.jpg", alt: "Live session: buy-ins and chip counts in money and chips, with the balance check" }],
+        title: "Tonight: the live game and what's next",
+        body: "One card for the game in progress: players, money in play, elapsed time and the last rebuy. The blinds clock runs on the Lock Screen and in the Dynamic Island, and your planned games wait right below.",
+        shots: [SHOTS_EN.tonight],
       },
       {
-        title: "A blinds clock on the Lock Screen",
-        body: "Ready-made or custom structures with breaks and a chime each level. On iPhone a Live Activity keeps the level, blinds and countdown in the Dynamic Island, with widgets for tonight's game.",
-        shots: [{ src: "/apps/poker-night/v2/en/02-timer.jpg", alt: "Blinds timer at Level 1, 25/50, with the countdown in the Dynamic Island" }],
+        title: "One row per player, and a count that checks itself",
+        body: "Buy-ins, chips and the net result on a single row. Set what a buy-in is worth once, tap once per rebuy (with undo), type each stack at the end, and the header says Balanced, or exactly how far off.",
+        shots: [SHOTS_EN.live],
       },
       {
         title: "Who pays whom, in the fewest transfers",
-        body: "Settle-up finds the fewest payments in dollars and chips, or runs banker mode. Pay copies the payee's details; it never opens a payment app. Settled too soon? Undo it.",
-        shots: [{ src: "/apps/poker-night/v2/en/01-settle.jpg", alt: "Settle up in seconds: who pays whom, with each payee's Venmo and Zelle details ready to copy" }],
+        body: "Settle-up lists every transfer with the payee's saved details, in dollars and chips, or runs banker mode. Pay copies the line and never opens a payment app. Settled too soon? Undo it, then share the results card with the group chat.",
+        shots: [SHOTS_EN.settle],
       },
       {
-        title: "A results card for the group chat",
-        body: "The winner, the standings and every transfer with its payment details, as one image. Copy it, save it or share it before the last player finds their coat.",
-        shots: [{ src: "/apps/poker-night/v2/en/03-share-card.jpg", alt: "Results card for the group chat: the winner, the standings and who pays whom" }],
+        title: "Record the big hands, share the picture",
+        body: "Log a hand on a full-screen table with tonight's players already seated: tap the actions street by street, pick the cards, undo or redo. Then share the hand as one image with every street's action. Five recorded hands a night are free.",
+        shots: [SHOTS_EN.hand, SHOTS_EN.handImage],
       },
       {
-        title: "Host tools, tournaments and shared costs",
-        body: "Random seats and a high-card draw for the button, chip sets whose starting stacks add up, tournament entries, bust-outs and payouts, a dealer's choice wheel, and pizza or the table fee split before you add it.",
-        shots: [{ src: "/apps/poker-night/v2/en/08-seats.jpg", alt: "Host tools: random seats and a high-card draw for the button" }],
+        title: "Seven themes, one for every table",
+        body: "Soda, Strawberry Milk, After Hours, Notes, Sorbet, Midnight Chip and Fortune. Pick the one that suits your table.",
+        shots: [SHOTS_EN.soda, SHOTS_EN.milk, SHOTS_EN.fortune],
       },
       {
-        title: "Leaderboard, seasons and Wrapped",
-        body: "Net results, wins, streaks and biggest nights by month, season or all time, 16 badges, player insights, and your group's year told as a story that ends on the MVP.",
-        shots: [
-          { src: "/apps/poker-night/v2/en/05-leaderboard.jpg", alt: "Leaderboard by month, season or all time with wins and streaks" },
-          { src: "/apps/poker-night/v2/en/06-wrapped.jpg", alt: "Wrapped: the group's season as a story, ending on the MVP card" },
-        ],
+        title: "Poker Wire: poker news in one list",
+        body: "Headlines from poker media with search and filters. Translate an article into Chinese on your device, read it in the reader view and switch back to the original any time.",
+        shots: [SHOTS_EN.wire],
+      },
+      {
+        title: "Plan the next game",
+        body: "Pick a date and time, a place and the format, share the invite and see who's In, Maybe or Out. A reminder goes off before the start, and Start game turns the plan into tonight's game. Three planned games are free; Pro makes it unlimited.",
+        shots: [SHOTS_EN.planning],
       },
     ],
   },
@@ -255,8 +313,8 @@ const en: PnLanding = {
     after: "once.",
     includes: "The ledger, settle-up, results card, host tools and every odds calculator are free for good. Pro is one purchase, yours forever, with no subscription.",
     cta: "Download free",
-    free: { title: "Free", items: ["The full ledger, rebuys and chip count", "Settle-up, payment details and the results card", "3 blinds timer nights", "The equity calculator and every odds tool", "10 trainer questions a day", "Host tools, leaderboard and the home-game guide"] },
-    pro: { title: "Poker Night Pro", items: ["Unlimited blinds timer nights", "Unlimited trainer questions with stats and weak spots", "Past and custom seasons, deep insights, the full Wrapped", "GTO presets, ESG mode, saved spots and hand replays", "Custom payouts with an ICM deal calculator, CSV export"] },
+    free: { title: "Free", items: ["The full ledger, rebuys and chip count", "Settle-up, payment details and the results card", "3 blinds timer nights", "The equity calculator and every odds tool", "10 trainer questions a day", "3 planned games, 5 recorded hands a night", "Host tools, leaderboard, Poker Wire and the home-game guide"] },
+    pro: { title: "Poker Night Pro", items: ["Unlimited planned games and recorded hands", "Unlimited blinds timer nights", "Unlimited trainer questions with stats and weak spots", "Past and custom seasons, deep insights, the full Wrapped", "GTO presets, ESG mode, saved spots and hand replays", "Custom payouts with an ICM deal calculator, CSV export"] },
     note: "No ads. No account. No subscription. Bought Remove Ads before? You already have Pro.",
   },
   faqTitle: "Questions from the table",
@@ -323,37 +381,39 @@ const zhCn: PnLanding = {
     intro: "每一行、合计和转账都金额与筹码并列显示，从第一笔买入到最后一笔转账。",
     items: [
       {
-        title: "买入、补码，还有会自己对账的清点",
-        body: "先设定一手买入值多少（例如 200 码 = ¥100），之后每次补码点一下，可撤销。散场时每人码量输入一次，底部直接显示「已平账」，或差多少。",
-        shots: [{ src: "/apps/poker-night/v2/zh/04-live.jpg", alt: "进行中：买入与码量金额筹码并列，附账目核对" }],
+        title: "今晚：进行中的牌局，和接下来的约局",
+        body: "一张卡片说清进行中的牌局：玩家、桌上筹码、已进行时间和最近一次补码。盲注计时在锁屏和灵动岛上走，约好的牌局就在下面。",
+        shots: [SHOTS_ZH.tonight],
       },
       {
-        title: "锁屏上的盲注计时",
-        body: "内置结构也可自定义，含休息，每级升盲有提示音。iPhone 上的实时活动把级别、盲注和倒计时放进灵动岛，还有今晚牌局的小组件。",
-        shots: [{ src: "/apps/poker-night/v2/zh/02-timer.jpg", alt: "盲注计时器第 1 级 25/50，倒计时显示在灵动岛" }],
+        title: "每位玩家一行，清点会自己对账",
+        body: "买入、筹码和净输赢都在一行里。先设定一手买入值多少，每次补码点一下（可撤销），散场时每人码量输入一次，顶部直接显示「已平账」，或差多少。",
+        shots: [SHOTS_ZH.live],
       },
       {
         title: "谁付谁，最少笔数",
-        body: "自动算出最少笔数的转账，金额与筹码并列，也可选一人代收代付。「支付」只复制收款人的收款信息，从不打开任何支付应用。结算早了？可以撤销。",
-        shots: [{ src: "/apps/poker-night/v2/zh/01-settle.jpg", alt: "几秒结算：谁付谁，附收款人的收款信息，一键复制" }],
+        body: "结算列出每一笔转账和收款人保存的收款信息，金额与筹码并列，也可选一人代收代付。「支付」只复制这一笔，从不打开任何支付应用。结算早了？可以撤销，然后把战报卡片发到群里。",
+        shots: [SHOTS_ZH.settle],
       },
       {
-        title: "发到群里的战报卡片",
-        body: "赢家、排名和每一笔转账连同收款信息，一张图说清。最后一位牌友还没穿好外套，你已经复制、保存或分享出去了。",
-        shots: [{ src: "/apps/poker-night/v2/zh/03-share-card.jpg", alt: "发群里的战报卡片：赢家、排名与谁付谁" }],
+        title: "记录关键牌局，分享成一张图",
+        body: "在全屏牌桌上记手牌，今晚的玩家已经坐好：一条街一条街点行动、选牌，可撤销和重做。然后把这手牌分享成一张图，每条街的行动都在上面。每晚 5 手免费。",
+        shots: [SHOTS_ZH.hand, SHOTS_ZH.handImage],
       },
       {
-        title: "主持工具、锦标赛与公摊费用",
-        body: "随机座位与比大小定庄，起始筹码始终等于买入的筹码套装，锦标赛报名、淘汰顺序与奖金分配，选游戏转盘，外卖、小费和场地费也能一起分摊。",
-        shots: [{ src: "/apps/poker-night/v2/zh/08-seats.jpg", alt: "主持工具：随机座位与比大小定庄" }],
+        title: "七套主题，总有一套适合你的牌桌",
+        body: "汽水、草莓牛奶、夜场、素白、糖霜、午夜筹码和招财。选一套适合你们牌桌的。",
+        shots: [SHOTS_ZH.soda, SHOTS_ZH.milk, SHOTS_ZH.fortune],
       },
       {
-        title: "排行榜、赛季与年度回顾",
-        body: "按月、赛季或全部时间看净结果、胜场、连胜与最大的一晚，16 枚徽章、玩家洞察，还有以 MVP 收尾的牌友年度故事。",
-        shots: [
-          { src: "/apps/poker-night/v2/zh/05-leaderboard.jpg", alt: "按月、赛季或全部时间的排行榜，含胜场与连胜" },
-          { src: "/apps/poker-night/v2/zh/06-wrapped.jpg", alt: "年度回顾：把一季牌局做成故事，以 MVP 卡片收尾" },
-        ],
+        title: "扑克快讯：新闻一张列表看完",
+        body: "来自扑克媒体的头条，可搜索和筛选。文章在本机翻译成中文，在阅读视图里读，随时切换回原文。",
+        shots: [SHOTS_ZH.wire, SHOTS_ZH.wireReader],
+      },
+      {
+        title: "约下一场牌局",
+        body: "选好日期时间、地点和玩法，分享邀请，看谁确定、待定或不来。开局前会有提醒，点「开始牌局」就把约局变成今晚的牌局。3 场约局免费，Pro 不限次数。",
+        shots: [SHOTS_ZH.planning],
       },
     ],
   },
@@ -420,8 +480,8 @@ const zhCn: PnLanding = {
     after: "买断。",
     includes: "账本、结算、战报卡片、主持工具和全部胜率计算器永久免费。Pro 是一次性购买，永久拥有，不是订阅。",
     cta: "免费下载",
-    free: { title: "免费", items: ["完整账本、补码与清点", "结算、收款信息与战报卡片", "3 晚盲注计时", "胜率计算器与全部赔率工具", "每天 10 道训练题", "主持工具、排行榜与家庭牌局指南"] },
-    pro: { title: "扑克之夜 Pro", items: ["不限次数的盲注计时", "不限题数的训练，附统计与薄弱点", "往季与自定义赛季、深度洞察、完整年度回顾", "GTO 预设、ESG 模式、保存局面与牌谱回放", "自定义奖金与 ICM 分配计算器、CSV 导出"] },
+    free: { title: "免费", items: ["完整账本、补码与清点", "结算、收款信息与战报卡片", "3 晚盲注计时", "3 场约局，每晚 5 手牌谱记录", "胜率计算器与全部赔率工具", "每天 10 道训练题", "主持工具、排行榜、扑克快讯与家庭牌局指南"] },
+    pro: { title: "扑克之夜 Pro", items: ["不限次数的约局与牌谱记录", "不限次数的盲注计时", "不限题数的训练，附统计与薄弱点", "往季与自定义赛季、深度洞察、完整年度回顾", "GTO 预设、ESG 模式、保存局面与牌谱回放", "自定义奖金与 ICM 分配计算器、CSV 导出"] },
     note: "无广告，无需账号，无订阅。买过「移除广告」？你已拥有 Pro。",
   },
   faqTitle: "牌桌上常问的问题",
@@ -489,37 +549,39 @@ const zhTw: PnLanding = {
     intro: "每一行、合計和轉帳都金額與籌碼並列顯示，從第一筆買入到最後一筆轉帳。",
     items: [
       {
-        title: "買入、補碼，還有會自己對帳的清點",
-        body: "先設定一手買入值多少（例如 200 碼 = NT$500），之後每次補碼點一下，可復原。散場時每人碼量輸入一次，底部直接顯示「已平帳」，或差多少。",
-        shots: [{ src: "/apps/poker-night/v2/zh/04-live.jpg", alt: "進行中：買入與碼量金額籌碼並列，附帳目核對" }],
+        title: "今晚：進行中的牌局，和接下來的約局",
+        body: "一張卡片說清進行中的牌局：玩家、桌上籌碼、已進行時間和最近一次補碼。盲注計時在鎖定畫面和動態島上走，約好的牌局就在下面。",
+        shots: [SHOTS_TW.tonight],
       },
       {
-        title: "鎖定畫面上的盲注計時",
-        body: "內建結構也可自訂，含休息，每級升盲有提示音。iPhone 上的即時動態把級別、盲注和倒數放進動態島，還有今晚牌局的小工具。",
-        shots: [{ src: "/apps/poker-night/v2/zh/02-timer.jpg", alt: "盲注計時器第 1 級 25/50，倒數顯示在動態島" }],
+        title: "每位玩家一行，清點會自己對帳",
+        body: "買入、籌碼和淨輸贏都在一行裡。先設定一手買入值多少，每次補碼點一下（可復原），散場時每人碼量輸入一次，頂部直接顯示「已平帳」，或差多少。",
+        shots: [SHOTS_TW.live],
       },
       {
         title: "誰付誰，最少筆數",
-        body: "自動算出最少筆數的轉帳，金額與籌碼並列，也可選一人代收代付。「支付」只複製收款人的收款資訊，從不開啟任何支付 App。結算早了？可以復原。",
-        shots: [{ src: "/apps/poker-night/v2/zh/01-settle.jpg", alt: "幾秒結算：誰付誰，附收款人的收款資訊，一鍵複製" }],
+        body: "結算列出每一筆轉帳和收款人儲存的收款資訊，金額與籌碼並列，也可選一人代收代付。「支付」只複製這一筆，從不開啟任何支付 App。結算早了？可以復原，然後把戰報卡片發到群組。",
+        shots: [SHOTS_TW.settle],
       },
       {
-        title: "發到群組的戰報卡片",
-        body: "贏家、排名和每一筆轉帳連同收款資訊，一張圖說清。最後一位牌友還沒穿好外套，你已經複製、儲存或分享出去了。",
-        shots: [{ src: "/apps/poker-night/v2/zh/03-share-card.jpg", alt: "發群組的戰報卡片：贏家、排名與誰付誰" }],
+        title: "記錄關鍵牌局，分享成一張圖",
+        body: "在全螢幕牌桌上記手牌，今晚的玩家已經坐好：一條街一條街點行動、選牌，可復原和重做。然後把這手牌分享成一張圖，每條街的行動都在上面。每晚 5 手免費。",
+        shots: [SHOTS_TW.hand, SHOTS_TW.handImage],
       },
       {
-        title: "主持工具、錦標賽與公攤費用",
-        body: "隨機座位與比大小定莊，起始籌碼始終等於買入的籌碼套組，錦標賽報名、淘汰順序與獎金分配，選遊戲轉盤，外送、小費和場地費也能一起分攤。",
-        shots: [{ src: "/apps/poker-night/v2/zh/08-seats.jpg", alt: "主持工具：隨機座位與比大小定莊" }],
+        title: "七套主題，總有一套適合你的牌桌",
+        body: "汽水、草莓牛奶、夜場、素白、糖霜、午夜籌碼和招財。選一套適合你們牌桌的。",
+        shots: [SHOTS_TW.soda, SHOTS_TW.milk, SHOTS_TW.fortune],
       },
       {
-        title: "排行榜、賽季與年度回顧",
-        body: "按月、賽季或全部時間看淨結果、勝場、連勝與最大的一晚，16 枚徽章、玩家洞察，還有以 MVP 收尾的牌友年度故事。",
-        shots: [
-          { src: "/apps/poker-night/v2/zh/05-leaderboard.jpg", alt: "按月、賽季或全部時間的排行榜，含勝場與連勝" },
-          { src: "/apps/poker-night/v2/zh/06-wrapped.jpg", alt: "年度回顧：把一季牌局做成故事，以 MVP 卡片收尾" },
-        ],
+        title: "撲克快訊：新聞一張列表看完",
+        body: "來自撲克媒體的頭條，可搜尋和篩選。文章在本機翻譯成中文，在閱讀檢視裡讀，隨時切換回原文。",
+        shots: [SHOTS_TW.wire, SHOTS_TW.wireReader],
+      },
+      {
+        title: "約下一場牌局",
+        body: "選好日期時間、地點和玩法，分享邀請，看誰確定、待定或不來。開局前會有提醒，點「開始牌局」就把約局變成今晚的牌局。3 場約局免費，Pro 不限次數。",
+        shots: [SHOTS_TW.planning],
       },
     ],
   },
@@ -586,8 +648,8 @@ const zhTw: PnLanding = {
     after: "買斷。",
     includes: "帳本、結算、戰報卡片、主持工具和全部勝率計算器永久免費。Pro 是一次性購買，永久擁有，不是訂閱。",
     cta: "免費下載",
-    free: { title: "免費", items: ["完整帳本、補碼與清點", "結算、收款資訊與戰報卡片", "3 晚盲注計時", "勝率計算器與全部賠率工具", "每天 10 道訓練題", "主持工具、排行榜與家庭牌局指南"] },
-    pro: { title: "撲克之夜 Pro", items: ["不限次數的盲注計時", "不限題數的訓練，附統計與弱點", "往季與自訂賽季、深度洞察、完整年度回顧", "GTO 預設、ESG 模式、儲存局面與牌譜回放", "自訂獎金與 ICM 分配計算器、CSV 匯出"] },
+    free: { title: "免費", items: ["完整帳本、補碼與清點", "結算、收款資訊與戰報卡片", "3 晚盲注計時", "3 場約局，每晚 5 手牌譜記錄", "勝率計算器與全部賠率工具", "每天 10 道訓練題", "主持工具、排行榜、撲克快訊與家庭牌局指南"] },
+    pro: { title: "撲克之夜 Pro", items: ["不限次數的約局與牌譜記錄", "不限次數的盲注計時", "不限題數的訓練，附統計與弱點", "往季與自訂賽季、深度洞察、完整年度回顧", "GTO 預設、ESG 模式、儲存局面與牌譜回放", "自訂獎金與 ICM 分配計算器、CSV 匯出"] },
     note: "無廣告，無需帳號，無訂閱。買過「移除廣告」？你已擁有 Pro。",
   },
   faqTitle: "牌桌上常問的問題",
@@ -605,10 +667,8 @@ const zhTw: PnLanding = {
 
 export const pokerNightLanding: Record<Locale, PnLanding> = { en, "zh-cn": zhCn, "zh-tw": zhTw };
 
-/** The nine App Store screenshots in store order (01 settle … 09 trainer). */
+/** The eight App Store screenshots in store order: tonight, live, settle, hand, themes (one), wire, planning, pro. */
 export function pnScreens(locale: Locale): PnShot[] {
-  const c = pokerNightLanding[locale];
-  return [...c.host.items.flatMap((i) => i.shots), ...c.study.shots].sort((a, b) =>
-    a.src.localeCompare(b.src),
-  );
+  const S = locale === "en" ? SHOTS_EN : locale === "zh-cn" ? SHOTS_ZH : SHOTS_TW;
+  return [S.tonight, S.live, S.settle, S.hand, S.soda, S.wire, S.planning, S.pro];
 }

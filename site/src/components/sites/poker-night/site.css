@@ -794,12 +794,18 @@
 [data-app="poker-night"] .pn-row .pn-row__shots--2 {
   width: clamp(360px, 38vw, 540px);
 }
+[data-app="poker-night"] .pn-row .pn-row__shots--3 {
+  width: clamp(420px, 46vw, 640px);
+}
 [data-app="poker-night"] .pn-row__shots > * {
   flex: 1 1 0;
   min-width: 0;
 }
 [data-app="poker-night"] .pn-row__shots--2 > :last-child {
   margin-top: 18%;
+}
+[data-app="poker-night"] .pn-row__shots--3 > :nth-child(2) {
+  margin-top: 12%;
 }
 @media (max-width: 900px) {
   [data-app="poker-night"] .pn-host__intro,
@@ -821,7 +827,8 @@
     width: 58% !important;
     margin-left: 0;
   }
-  [data-app="poker-night"] .pn-row__shots--2 {
+  [data-app="poker-night"] .pn-row__shots--2,
+  [data-app="poker-night"] .pn-row__shots--3 {
     width: 100% !important;
   }
 }
