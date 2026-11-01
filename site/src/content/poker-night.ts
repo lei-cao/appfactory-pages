@@ -39,6 +39,22 @@ const en: AppLocalized = {
       body: "Get the fewest possible transfers, or have everyone square up with one banker. Tap Pay to copy the line and the payee's saved Venmo, Zelle or PayPal details, ready to paste into the app you already use. Poker Night never touches the money.",
     },
     {
+      title: "Plan a game, see who's in",
+      body: "Pick a date and time, a place and the format, share the invite and see who's In, Maybe or Out. A reminder goes off before the start, and Start game turns the plan into tonight's game. Three planned games are free; Pro makes it unlimited.",
+    },
+    {
+      title: "Record hands, share the picture",
+      body: "A full-screen table with tonight's players already seated: tap the actions street by street, pick the cards, undo or redo, then share the hand as one image. Five recorded hands a night are free.",
+    },
+    {
+      title: "Poker Wire: news with on-device translation",
+      body: "Poker headlines in one list with search and filters. Translate an article into Chinese on your device and read it in the reader view, with the original one tap away.",
+    },
+    {
+      title: "Seven themes",
+      body: "Soda, Strawberry Milk, After Hours, Notes, Sorbet, Midnight Chip and Fortune: pick the look that suits your table.",
+    },
+    {
       title: "Leaderboard & seasons",
       body: "Net results, wins, streaks and biggest nights by month, season or all time, plus head-to-head between any two regulars.",
     },
@@ -51,8 +67,8 @@ const en: AppLocalized = {
       body: "17 short articles on rules, hand rankings, hosting and etiquette, plus an English–中文 glossary — nothing to search for mid-hand.",
     },
     {
-      title: "Four tabs: Tonight, Players, Study, History",
-      body: "Tonight holds the live game and your host tools, Players the roster and leaderboard, Study the odds tools and the guide, History every past night — one tap each.",
+      title: "Five tabs: Tonight, Records, Wire, Study, Settings",
+      body: "Tonight holds the live game, your planned games and host tools, Records every past night, the leaderboard and the roster, Wire the poker news, Study the odds tools and the guide — one tap each.",
     },
     {
       title: "Host tools, tournaments and shared costs",
@@ -88,7 +104,7 @@ const en: AppLocalized = {
     },
     {
       title: "Poker Night Pro",
-      body: "One optional purchase (US$7.99), yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
+      body: "One optional purchase, yours forever, no subscription. Pro adds unlimited blinds clock nights, unlimited trainer questions and stats, unlimited chip sets, past and custom seasons with head-to-head and recaps, deep player insights, the full Wrapped story, custom payouts with an ICM deal calculator, GTO presets, ESG mode, unlimited saved spots, hand replays and CSV export. Bought Remove Ads before? You already have Pro.",
     },
   ],
   screenshots: pnScreens("en"),
@@ -123,7 +139,7 @@ const en: AppLocalized = {
     },
     {
       q: "What does Poker Night Pro cost, and is it a subscription?",
-      a: "Pro is a single optional purchase of US$7.99, yours forever. There is no subscription. The ledger, settle-up, share card, host tools and quick hand log stay free. Pro adds depth: unlimited blinds timer nights, past and custom seasons, deep insights, the full Wrapped story, ICM deal calculator, GTO presets, hand replays and CSV export. Already bought Remove Ads? You already have every Pro feature, at no extra cost.",
+      a: "Pro is a single optional purchase, yours forever. There is no subscription. The ledger, settle-up, share card, host tools and quick hand log stay free. Pro adds depth: unlimited blinds timer nights, past and custom seasons, deep insights, the full Wrapped story, ICM deal calculator, GTO presets, hand replays and CSV export. Already bought Remove Ads? You already have every Pro feature, at no extra cost.",
     },
     {
       q: "The chip counts don't balance — what now?",
@@ -228,6 +244,22 @@ const zhCn: AppLocalized = {
       body: "最少笔数互转，或者指定一人代收代付。点「支付」复制转账信息和收款人保存的收款方式，粘贴到你常用的应用里——扑克之夜完全不经手这笔钱。",
     },
     {
+      title: "约局，看谁来",
+      body: "选好日期时间、地点和玩法，分享邀请，看谁确定、待定或不来。开局前会有提醒，点「开始牌局」就把约局变成今晚的牌局。3 场约局免费，Pro 不限次数。",
+    },
+    {
+      title: "记录手牌，分享成图",
+      body: "全屏牌桌上今晚的玩家已经坐好：一条街一条街点行动、选牌，可撤销和重做，再把这手牌分享成一张图。每晚 5 手免费。",
+    },
+    {
+      title: "扑克快讯：新闻与本机翻译",
+      body: "扑克头条一张列表看完，可搜索和筛选。文章在本机翻译成中文，在阅读视图里读，原文一点就能看。",
+    },
+    {
+      title: "七套主题",
+      body: "汽水、草莓牛奶、夜场、素白、糖霜、午夜筹码和招财：选一套适合你们牌桌的。",
+    },
+    {
       title: "排行榜与赛季",
       body: "按月、按赛季或全部时间查看净结果、胜场与连胜，还能看任意两人的对战记录。",
     },
@@ -240,8 +272,8 @@ const zhCn: AppLocalized = {
       body: "17 篇规则、牌型、组局与礼仪短文，附中英术语表——牌局进行到一半也不用去搜索引擎查。",
     },
     {
-      title: "四个标签：今晚、玩家、学习、历史",
-      body: "「今晚」放着进行中的牌局和主持工具，「玩家」是名单与排行榜，「学习」是胜率工具与指南，「历史」是所有往期牌局——一键直达。",
+      title: "五个标签：今晚、战绩、快讯、学习、设置",
+      body: "「今晚」放着进行中的牌局、约局和主持工具，「战绩」是所有往期牌局、排行榜与名单，「快讯」是扑克新闻，「学习」是胜率工具与指南——一键直达。",
     },
     {
       title: "主持工具、锦标赛与公摊",
@@ -277,7 +309,7 @@ const zhCn: AppLocalized = {
     },
     {
       title: "扑克之夜 Pro",
-      body: "一次性可选购买（7.99 美元），永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
+      body: "一次性可选购买，永久拥有，不是订阅。Pro 解锁不限次数的盲注计时、不限题数的训练与统计、不限数量的筹码套装、往季与自定义赛季（含两人对比与赛季回顾）、深度玩家洞察、完整年度回顾、自定义奖金与 ICM 分配计算器、GTO 预设、ESG 模式、无限保存局面、牌谱回放和 CSV 导出。买过「移除广告」？你已拥有 Pro。",
     },
   ],
   screenshots: pnScreens("zh-cn"),
@@ -312,7 +344,7 @@ const zhCn: AppLocalized = {
     },
     {
       q: "扑克之夜 Pro 多少钱？是订阅吗？",
-      a: "Pro 是一次性可选购买，7.99 美元，永久拥有，不是订阅。账本、结算、战报卡片、主持工具和快速牌谱始终免费；Pro 增加深度功能：不限次数的盲注计时、往季与自定义赛季、深度洞察、完整年度回顾、ICM 分配计算器、GTO 预设、牌谱回放和 CSV 导出。之前买过「移除广告」的话，已经自动拥有全部 Pro 功能，无需重复购买。",
+      a: "Pro 是一次性可选购买，永久拥有，不是订阅。账本、结算、战报卡片、主持工具和快速牌谱始终免费；Pro 增加深度功能：不限次数的盲注计时、往季与自定义赛季、深度洞察、完整年度回顾、ICM 分配计算器、GTO 预设、牌谱回放和 CSV 导出。之前买过「移除广告」的话，已经自动拥有全部 Pro 功能，无需重复购买。",
     },
     {
       q: "码量对不上怎么办？",
@@ -415,6 +447,22 @@ const zhTw: AppLocalized = {
       body: "最少筆數互轉，或者指定一人代收代付。點「支付」複製轉帳資訊和收款人儲存的收款方式，貼到你常用的 App 裡——撲克之夜完全不經手這筆錢。",
     },
     {
+      title: "約局，看誰來",
+      body: "選好日期時間、地點和玩法，分享邀請，看誰確定、待定或不來。開局前會有提醒，點「開始牌局」就把約局變成今晚的牌局。3 場約局免費，Pro 不限次數。",
+    },
+    {
+      title: "記錄手牌，分享成圖",
+      body: "全螢幕牌桌上今晚的玩家已經坐好：一條街一條街點行動、選牌，可復原和重做，再把這手牌分享成一張圖。每晚 5 手免費。",
+    },
+    {
+      title: "撲克快訊：新聞與本機翻譯",
+      body: "撲克頭條一張列表看完，可搜尋和篩選。文章在本機翻譯成中文，在閱讀檢視裡讀，原文一點就能看。",
+    },
+    {
+      title: "七套主題",
+      body: "汽水、草莓牛奶、夜場、素白、糖霜、午夜籌碼和招財：選一套適合你們牌桌的。",
+    },
+    {
       title: "排行榜與賽季",
       body: "按月、按賽季或全部時間查看淨結果、勝場與連勝，還能看任兩人的對戰紀錄。",
     },
@@ -427,8 +475,8 @@ const zhTw: AppLocalized = {
       body: "17 篇規則、牌型、組局與禮儀短文，附中英術語表——牌局進行到一半也不用上網查。",
     },
     {
-      title: "四個分頁：今晚、玩家、學習、歷史",
-      body: "「今晚」放著進行中的牌局和主持工具，「玩家」是名單與排行榜，「學習」是勝率工具與指南，「歷史」是所有過往牌局——一鍵直達。",
+      title: "五個分頁：今晚、戰績、快訊、學習、設定",
+      body: "「今晚」放著進行中的牌局、約局和主持工具，「戰績」是所有過往牌局、排行榜與名單，「快訊」是撲克新聞，「學習」是勝率工具與指南——一鍵直達。",
     },
     {
       title: "主持工具、錦標賽與公攤",
@@ -464,7 +512,7 @@ const zhTw: AppLocalized = {
     },
     {
       title: "撲克之夜 Pro",
-      body: "一次性選購（7.99 美元），永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
+      body: "一次性選購，永久擁有，不是訂閱。Pro 解鎖不限次數的盲注計時、不限題數的訓練與統計、不限數量的籌碼套裝、往季與自訂賽季（含兩人對比與賽季回顧）、深度玩家洞察、完整年度回顧、自訂獎金與 ICM 分配計算器、GTO 預設、ESG 模式、無限儲存局面、牌譜回放和 CSV 匯出。買過「移除廣告」？你已擁有 Pro。",
     },
   ],
   screenshots: pnScreens("zh-tw"),
@@ -499,7 +547,7 @@ const zhTw: AppLocalized = {
     },
     {
       q: "撲克之夜 Pro 多少錢？是訂閱嗎？",
-      a: "Pro 是一次性選購，7.99 美元，永久擁有，不是訂閱。帳本、結算、戰報卡片、主持工具和快速牌譜始終免費；Pro 增加深度功能：不限次數的盲注計時、往季與自訂賽季、深度洞察、完整年度回顧、ICM 分配計算器、GTO 預設、牌譜回放和 CSV 匯出。之前買過「移除廣告」的話，已經自動擁有全部 Pro 功能，不必重複購買。",
+      a: "Pro 是一次性選購，永久擁有，不是訂閱。帳本、結算、戰報卡片、主持工具和快速牌譜始終免費；Pro 增加深度功能：不限次數的盲注計時、往季與自訂賽季、深度洞察、完整年度回顧、ICM 分配計算器、GTO 預設、牌譜回放和 CSV 匯出。之前買過「移除廣告」的話，已經自動擁有全部 Pro 功能，不必重複購買。",
     },
     {
       q: "碼量對不上怎麼辦？",
@@ -603,7 +651,6 @@ export const pokerNight: AppContent = {
     },
   },
   ogImage: "/apps/poker-night/og.png",
-  proOffer: { name: "Poker Night Pro (one-time in-app purchase)", price: "7.99" },
   appStoreId: "6788786222",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };
