@@ -1,0 +1,23 @@
+/* Popline (popline.appfactory.sg): the shared plain shell and landing, with the
+   accent swapped from the hub's indigo to the yellow of the app icon's caption
+   bubble (sampled from the 1024px icon: #f8d008). Scoped to this app only. */
+[data-app="popline"] {
+  --color-indigo: #f8d008;
+  --color-indigo-soft: #ffe266;
+}
+
+[data-app="popline"] ::selection {
+  background: #f8d008;
+  color: #080808;
+}
+
+/* The plain shell's header is one unwrapped row; let it wrap on a phone. */
+@media (max-width: 639px) {
+  [data-app="popline"] header {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+  }
+  [data-app="popline"] header nav {
+    gap: 1rem;
+  }
+}

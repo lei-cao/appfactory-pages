@@ -124,6 +124,7 @@ import { glossyBlocks } from "./glossy-blocks";
 import { bottleGuess } from "./bottle-guess";
 import { crowdSiege } from "./crowd-siege";
 import { harvestTown } from "./harvest-town";
+import { popline } from "./popline";
 
 export const apps: AppContent[] = [
   pokerNight,
@@ -137,6 +138,7 @@ export const apps: AppContent[] = [
   bottleGuess,
   crowdSiege,
   harvestTown,
+  popline,
 ];
 
 export function getApp(slug: string): AppContent | undefined {
