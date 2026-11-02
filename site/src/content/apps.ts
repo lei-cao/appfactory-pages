@@ -54,6 +54,14 @@ export interface AppBase {
   /** Numeric App Store id; emits the apple-itunes-app Smart App Banner. */
   appStoreId?: string;
   playStoreUrl?: string;
+  /**
+   * Google Play URL used only by the /go and /link smart links (Android
+   * visitors), so an app can route there before its landing-page badge says
+   * "Download". Falls back to `playStoreUrl`.
+   */
+  playGoUrl?: string;
+  /** Per-app switch for Play routing in /go; `false` sends Android to the landing page. Default on. */
+  playGo?: boolean;
   /** App icon; omit while the app has no artwork yet (a plain initial tile shows instead). */
   icon?: string;
   /** 1200×630 social card; falls back to the first screenshot. */

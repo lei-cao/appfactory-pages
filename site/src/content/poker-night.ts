@@ -622,6 +622,14 @@ const zhTw: AppLocalized = {
   },
 };
 
+// /go and /link send Android to Google Play while this is true. Poker Night has
+// no public Play release yet (closed testing; see docs/play/OWNER-GUIDE.md in
+// lei-cao/appfactory), so the Play listing 404s until it goes public. Set it
+// to false to send Android to the website again; the landing page badge is not
+// affected (no `playStoreUrl` until the release is public).
+const PLAY_GO = true;
+const PLAY_URL = "https://play.google.com/store/apps/details?id=sg.appfactory.poker_night";
+
 const PN_UTM =
   "utm_source=poker-night.appfactory.sg&utm_medium=referral&utm_campaign=crosspromo";
 
@@ -652,5 +660,7 @@ export const pokerNight: AppContent = {
   },
   ogImage: "/apps/poker-night/og.png",
   appStoreId: "6788786222",
+  playGo: PLAY_GO,
+  playGoUrl: PLAY_URL,
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

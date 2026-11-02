@@ -20,6 +20,7 @@ const UA = {
   android: "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
   windows: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
 };
+const pnPlay = (src: string) => `https://play.google.com/store/apps/details?id=sg.appfactory.poker_night&referrer=utm_source%3D${src}%26utm_medium%3Dgo%26utm_campaign%3Dpoker-night`;
 const pnLanding = (src: string) => `https://poker-night.appfactory.sg/?utm_source=${src}&utm_medium=go&utm_campaign=poker-night`;
 
 let base = process.env.GO_BASE_URL ?? "";
@@ -73,7 +74,7 @@ async function expectRedirect(path: string, ua: string, location: string) {
 test("a dot in the source falls back to ct=go instead of a 404", async () => {
   await expectRedirect("/go/poker-night/a.b", UA.iphone, apple(PN, "go"));
   await expectRedirect("/go/poker-night/v1.2", UA.iphone, apple(PN, "go"));
-  await expectRedirect("/go/poker-night/a.b", UA.android, pnLanding("go"));
+  await expectRedirect("/go/poker-night/a.b", UA.android, pnPlay("go"));
   await expectRedirect("/go/poker-night/a.b", UA.windows, pnLanding("go"));
 });
 
@@ -87,7 +88,7 @@ test("a dot in the slug is an unknown slug and goes home", async () => {
 test("one normal link per platform", async () => {
   await expectRedirect("/go/poker-night/share-hand", UA.iphone, apple(PN, "share-hand"));
   await expectRedirect("/go/poker-night/wrapped", UA.ipad, apple(PN, "wrapped"));
-  await expectRedirect("/go/poker-night/qr", UA.android, pnLanding("qr"));
+  await expectRedirect("/go/poker-night/qr", UA.android, pnPlay("qr"));
   await expectRedirect("/go/poker-night/settings", UA.windows, pnLanding("settings"));
   await expectRedirect("/go/poker-night/share-app", UA.imessage, pnLanding("share-app"));
   await expectRedirect("/go/tracesheet/ig-reels", UA.android, "https://lingowonders.com/?utm_source=ig-reels&utm_medium=go&utm_campaign=tracesheet");

@@ -32,7 +32,7 @@ const BOT_RE = /bot|crawl|spider|slurp|facebookexternalhit|facebot|preview|whats
 
 type GoApp = Pick<
   AppBase,
-  "slug" | "host" | "domain" | "appStoreUrl" | "appStoreId" | "playStoreUrl" | "externalUrls"
+  "slug" | "host" | "domain" | "appStoreUrl" | "appStoreId" | "playStoreUrl" | "playGo" | "playGoUrl" | "externalUrls"
 >;
 
 export interface GoLinkDeps {
@@ -109,6 +109,17 @@ function playUrl(playStoreUrl: string, slug: string, source: string): string {
   return u.toString();
 }
 
+/**
+ * The Play URL Android visitors are sent to, if any. `playGo: false` switches
+ * Play routing off for an app (e.g. before its Play release is public) without
+ * touching the Play badge on its landing page; `playGoUrl` lets an app route
+ * /go to Play while its badges still say "coming soon".
+ */
+export function goPlayUrl(app: GoApp): string | undefined {
+  if (app.playGo === false) return undefined;
+  return app.playGoUrl ?? app.playStoreUrl;
+}
+
 /** Where a `/go/...` request should land. */
 export function resolveGo(pathname: string, userAgent: string, { apex, getApp }: GoLinkDeps): GoDecision {
   const redirect = (url: string): GoDecision => ({ kind: "redirect", url });
@@ -121,7 +132,8 @@ export function resolveGo(pathname: string, userAgent: string, { apex, getApp }:
   const appleId = appleIdOf(app);
 
   if (userAgent.includes("Android")) {
-    return redirect(app.playStoreUrl ? playUrl(app.playStoreUrl, app.slug, source) : landing);
+    const play = goPlayUrl(app);
+    return redirect(play ? playUrl(play, app.slug, source) : landing);
   }
   if (/iPhone|iPad|iPod/.test(userAgent)) {
     return redirect(appleId ? appStoreUrl(appleId, source) : landing);
