@@ -19,6 +19,8 @@ const POSTER_LOCALES: Record<string, Locale[]> = {
   "arrow-out": ["en"],
   "tile-trio": ["en"],
   "slide-jam": ["en"],
+  // HQ-101 store set (iphone69 01-captions, 03-styles, 04-tap-to-fix), HQ-104.
+  popline: ["en", "zh-cn", "zh-tw"],
 };
 
 /** Posters 1–3 exist for every app above. */
