@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "node --test scripts/*.test.mts",
+    "guard": "next build && COPY_GUARD_REQUIRE=1 node --test scripts/copy-guard.test.mts",
     "setup-infra": "node scripts/setup-infra.mjs",
     "add-app": "node scripts/add-app.mjs",
     "deploy": "npx vercel deploy --prod",
