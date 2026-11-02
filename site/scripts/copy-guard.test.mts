@@ -28,7 +28,9 @@ const SELLER = "APPFACTORY STUDIO PTE. LTD.";
 /** Words that must never appear (any case, any language we ship). */
 const BANNED = /\bfree\b|免费|免費|無料/i;
 /** Facts that changed for 1.0: nine styles, no Karaoke or Pill. */
-const STALE = /\bkaraoke\b|\bpill\b|\b11 caption styles\b|十一种|十一種|11 ?种字幕|11 ?種字幕/i;
+const STALE = /\bkaraoke\b|\bpill\b|\b11 (caption )?styles\b|十一种|十一種|11 ?[种種](字幕)?样式|11 ?[种種]字幕|11 ?[种種]樣式|卡拉 ?OK/i;
+/** The 1.0 style list, exactly (store-listing-v1.md). */
+const STYLES = ["Punch", "Reveal", "Minimal", "Editorial", "Bold", "Highlight", "Block", "Shadow", "Emoji pop"];
 
 function strings(value: unknown, path = "", out: [string, string][] = []): [string, string][] {
   if (typeof value === "string") out.push([path, value]);
@@ -47,6 +49,16 @@ test("Popline registry and landing copy: no free wording, no stale style facts",
   assert.ok(all.length > 150, "walked the content");
   assert.deepEqual(hits(all, BANNED), []);
   assert.deepEqual(hits(all, STALE), []);
+});
+
+test("every locale lists exactly the nine 1.0 styles, matching the store subtitle", () => {
+  for (const l of LOCALES) {
+    const f = popline.i18n[l].features.find((x) => /9 /.test(x.title) && STYLES.every((s) => x.body.includes(s)));
+    assert.ok(f, `${l}: a feature names all nine styles`);
+  }
+  assert.equal(popline.i18n["zh-cn"].subtitle, "几秒出字幕，无水印");
+  assert.equal(popline.i18n["zh-tw"].subtitle, "快速上字幕，無浮水印");
+  assert.equal(popline.i18n.en.subtitle, "Fast captions, no watermark");
 });
 
 test("shared dictionary sections Popline pages render have no free wording", () => {
@@ -93,6 +105,10 @@ async function page(locale: string, p: string): Promise<string | null> {
 }
 
 const rendered = LIVE || existsSync(new URL(`en/apps/popline.html`, BUILD));
+// CI / pre-merge: `COPY_GUARD_REQUIRE=1 npm test` after `next build` fails
+// instead of skipping when there is nothing rendered to scan.
+if (process.env.COPY_GUARD_REQUIRE && !rendered)
+  throw new Error("copy guard: no .next build and no COPY_GUARD_BASE to scan");
 
 test(
   "rendered Popline pages (text, meta, og, twitter, alt, JSON-LD) pass the guard",
@@ -117,7 +133,20 @@ test(
           assert.ok(html.includes(SELLER), `${where}: names ${SELLER}`);
           assert.equal(/lei cao/i.test(html), false, `${where}: still says lei cao`);
         }
-        if (p === "") assert.match(html, /alt="[^"]+"/, `${where}: alt text`);
+        if (p === "") {
+          assert.match(html, /alt="[^"]+"/, `${where}: alt text`);
+          if (popline.status !== "live") {
+            assert.equal(/apps\.apple\.com/.test(html), false, `${where}: no App Store link before release`);
+            const soon = { en: "Coming soon on the", "zh-cn": "即将登陆", "zh-tw": "即將登上" }[l];
+            assert.ok(html.includes(soon), `${where}: shows "${soon} App Store"`);
+          }
+          assert.ok(/AI presenter|AI 主持人/.test(html), `${where}: AI presenter label`);
+        }
       }
+    if (!LIVE) {
+      // Other apps keep the individual developer name (Popline-only change).
+      const other = new URL("en/apps/poker-night/privacy.html", BUILD);
+      if (existsSync(other)) assert.match(readFileSync(other, "utf8"), /is developed by lei cao/);
+    }
   },
 );

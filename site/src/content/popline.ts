@@ -160,10 +160,10 @@ const zhCn: AppLocalized = {
   name: "Popline",
   storeName: "Popline：自动字幕",
   tagline: "选一段视频，几秒就有字幕。",
-  subtitle: "快速上字幕，无水印",
+  subtitle: "几秒出字幕，无水印",
   oneLiner: "选一段视频，几秒就有带样式的短句字幕。画面上的字点一下就能改。9 种字幕样式，10 款字体。无需账号，不上传，无水印。",
   statusNote: "需要 iOS 26 或更高版本，支持 iPhone 和 iPad。",
-  metaTitle: "Popline：自动字幕｜快速上字幕，无水印",
+  metaTitle: "Popline：自动字幕｜几秒出字幕，无水印",
   metaDescription: "选一段视频，几秒就有字幕。点画面上的字就能改。9 种字幕样式，10 款字体。无需账号，不上传，无水印。",
   features: [
     {
