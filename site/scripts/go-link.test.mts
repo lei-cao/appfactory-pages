@@ -17,8 +17,9 @@ const APEX = "appfactory.sg";
 // Mirror of the registry's routing fields (src/content/*.ts). The registry uses
 // the "@/" alias, so "registry fixture matches the content files" below reads
 // the sources as text to keep this table honest.
+const PN_PLAY = "https://play.google.com/store/apps/details?id=sg.appfactory.poker_night";
 const REGISTRY = [
-  { file: "poker-night", slug: "poker-night", appStoreId: "6788786222" },
+  { file: "poker-night", slug: "poker-night", appStoreId: "6788786222", playGoUrl: PN_PLAY },
   { file: "tiltfree", slug: "tiltfree", appStoreId: "6758140114", externalUrls: { en: "https://www.pokertools.ai?utm_source=appfactory.sg&utm_medium=referral&utm_campaign=crosspromo" } },
   { file: "sushi-sort", slug: "sushi-sort", appStoreId: "6792529319" },
   { file: "tracesheet", slug: "tracesheet", host: "lingowonders", domain: "lingowonders.com", appStoreId: "6816287607" },
@@ -30,7 +31,7 @@ const REGISTRY = [
   { file: "crowd-siege", slug: "crowd-siege" },
   { file: "harvest-town", slug: "harvest-town" },
   { file: "popline", slug: "popline" },
-] as { file: string; slug: string; host?: string; domain?: string; appStoreId?: string; playStoreUrl?: string; externalUrls?: { en: string } }[];
+] as { file: string; slug: string; host?: string; domain?: string; appStoreId?: string; playStoreUrl?: string; playGoUrl?: string; playGo?: boolean; externalUrls?: { en: string } }[];
 
 // Not in the registry: exercises the Play branch (no live app has a Play URL yet).
 const PLAY_APP = { slug: "both", appStoreId: "123", playStoreUrl: "https://play.google.com/store/apps/details?id=x.y" };
@@ -77,6 +78,7 @@ test("registry fixture matches the content files", () => {
       assert.match(src, /const RELEASED = \{ ios: false, android: false \};/);
     } else {
       assert.equal(/^ {2}playStoreUrl:/m.test(src), !!a.playStoreUrl, `${a.file} playStoreUrl`);
+      assert.equal(/^ {2}playGoUrl: PLAY_URL,$/m.test(src), !!a.playGoUrl, `${a.file} playGoUrl`);
       assert.equal(/^ {2}appStoreUrl:/m.test(src), !!a.appStoreId, `${a.file} appStoreUrl`);
     }
   }
@@ -89,8 +91,9 @@ test("every app x platform lands where docs/go-links.md says", () => {
     const path = `/go/${app.slug}/ig-reels`;
     const id = app.appStoreId;
     const land = landing(app, "ig-reels");
-    const play = app.playStoreUrl
-      ? `${app.playStoreUrl}&referrer=utm_source%3Dig-reels%26utm_medium%3Dgo%26utm_campaign%3D${app.slug}`
+    const playBase = app.playGo === false ? undefined : (app.playGoUrl ?? app.playStoreUrl);
+    const play = playBase
+      ? `${playBase}&referrer=utm_source%3Dig-reels%26utm_medium%3Dgo%26utm_campaign%3D${app.slug}`
       : land;
     const expected: Record<keyof typeof UA, unknown> = {
       iphone: redirect(id ? apple(id, "ig-reels") : land),
@@ -144,7 +147,7 @@ test("poker-night surfaces each keep their source as ct=", () => {
     assert.deepEqual(go(`/go/poker-night/${src}`, UA.iphone), redirect(apple("6788786222", src)), src);
     assert.deepEqual(
       go(`/go/poker-night/${src}`, UA.android),
-      redirect(`https://poker-night.appfactory.sg/?utm_source=${src}&utm_medium=go&utm_campaign=poker-night`),
+      redirect(`${PN_PLAY}&referrer=utm_source%3D${src}%26utm_medium%3Dgo%26utm_campaign%3Dpoker-night`),
       src,
     );
   }
@@ -191,4 +194,22 @@ test("only /go/tracesheet/l renders the shared-list page; other /go paths still 
   }
   assert.equal(isGoPath("/go/tracesheet/sheet"), true);
   assert.deepEqual(go("/go/tracesheet/sheet", UA.iphone), redirect(apple("6816287607", "sheet")));
+});
+
+test("Poker Night: Android goes to Google Play while its flag is on", () => {
+  const play = `${PN_PLAY}&referrer=utm_source%3Dqr%26utm_medium%3Dgo%26utm_campaign%3Dpoker-night`;
+  assert.deepEqual(go("/go/poker-night/qr", UA.android), redirect(play));
+  const src = readFileSync(new URL("../src/content/poker-night.ts", import.meta.url), "utf8");
+  assert.match(src, /^const PLAY_GO = true;$/m);
+  assert.ok(src.includes(`const PLAY_URL = "${PN_PLAY}";`));
+  // The landing-page badge must not claim a public release yet.
+  assert.equal(/^ {2}playStoreUrl:/m.test(src), false);
+});
+
+test("the Play flag off sends Android to the landing page; iOS and desktop are unaffected", () => {
+  const off = { ...PLAY_APP, slug: "off", playGo: false };
+  const d = { apex: APEX, getApp: (s: string) => (s === "off" ? off : undefined) };
+  assert.deepEqual(resolveGo("/go/off/qr", UA.android, d), redirect(landing(off, "qr")));
+  assert.deepEqual(resolveGo("/go/off/qr", UA.iphone, d), redirect(apple("123", "qr")));
+  assert.deepEqual(resolveGo("/go/off/qr", UA.windows, d), redirect(landing(off, "qr")));
 });
