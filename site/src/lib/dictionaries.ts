@@ -213,7 +213,7 @@ const en: Dict = {
     updated: "last updated {date}",
     title: "Privacy Policy",
     intro:
-      '{name} is developed by lei cao ("we"). This policy explains what data the app handles and why.',
+      '{name} is developed by {developer} ("we"). This policy explains what data the app handles and why.',
     meta: "{name} privacy policy: what data the app handles, why, and the choices you have.",
   },
   terms: {
@@ -333,7 +333,7 @@ const zhCn: Dict = {
   privacy: {
     updated: "最近更新 {date}",
     title: "隐私政策",
-    intro: "{name} 由 lei cao（“我们”）开发。本政策说明应用会处理哪些数据以及原因。",
+    intro: "{name} 由 {developer}（“我们”）开发。本政策说明应用会处理哪些数据以及原因。",
     meta: "{name} 隐私政策：应用会处理哪些数据、为什么，以及你可以做的选择。",
   },
   terms: {
@@ -453,7 +453,7 @@ const zhTw: Dict = {
     updated: "最近更新 {date}",
     title: "隱私權政策",
     intro:
-      "{name} 由 lei cao（「我們」）開發。本政策說明應用程式會處理哪些資料以及原因。",
+      "{name} 由 {developer}（「我們」）開發。本政策說明應用程式會處理哪些資料以及原因。",
     meta: "{name} 隱私權政策：應用會處理哪些資料、為什麼，以及你可以做的選擇。",
   },
   terms: {

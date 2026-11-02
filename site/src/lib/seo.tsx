@@ -129,11 +129,12 @@ export function softwareApplicationLd(
         installUrl: store,
       }),
     // Always present (Google requires offers for a software rich result).
-    // Free to download; apps that aren't in a store yet are pre-order.
+    // Price 0 to download; apps that aren't in a store yet are pre-order.
+    // No offer name: the old "Free download" put a word Apple review and
+    // our copy rules reject into every app page's markup (HQ-104).
     offers: [
       {
         "@type": "Offer",
-        name: "Free download",
         price: "0",
         priceCurrency: "USD",
         availability: live

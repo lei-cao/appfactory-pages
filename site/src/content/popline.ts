@@ -1,38 +1,42 @@
 // Popline (apps/popline in the appfactory repo, bundle id com.appfactory.popline):
-// registry content in all three locales. It uses the shared plain shell and
-// landing (components/sites/shared), with only the accent colour changed
-// (components/sites/popline/site.css).
+// registry content in all three locales. Popline has its own landing
+// (components/sites/popline/landing.tsx) inside the shared plain shell; support
+// and privacy are the shared pages.
 //
-// Unreleased: status "building", no store link, no App Store id.
-// TODO(Lei): once the store record exists, add `appStoreId` and `appStoreUrl`
-// below, set status "live", and add the app to scripts/go-link.test.mts.
-//
-// Copy is not written here; it is cut down from App Marketing's drafts:
-// - en and zh-tw: artifacts hq/_repo/evidence/2026-11-01_popline-marketing/
-//   aso.md (en-US and zh-Hant listing) and BRIEF.md (one-liner, key claims).
-// - zh-cn: the zh-Hans store copy in appfactory apps/popline/docs/store-listing.md.
-//   That copy leads with on-device wording, so the subtitle and tagline use the
-//   zh-Hant wording converted to Simplified (marked below).
-// - privacy: apps/popline/docs/privacy.md section 4 (draft policy text). The
-//   zh-cn and zh-tw versions are translations of the English draft; no Chinese
-//   version exists yet.
-// Screenshots: none exist yet, so the lists are empty (the landing copes).
+// Copy is cut down from App Marketing's ASC-ready listing,
+// ~/projects/personal/marketing/popline/store-listing-v1.md (en-US, zh-Hans,
+// zh-Hant), the same text Apple review sees. Rules for every string here,
+// alt text and meta included (HQ-104; scripts/copy-guard.test.mts checks them):
+// 9 caption styles (Karaoke and Pill are not in 1.0), 10 fonts, and never
+// free / 免费 / 免費 / 無料.
+// Privacy: apps/popline/docs/privacy.md. The zh versions translate the English.
+// Screenshots: the HQ-101 store set, 660px webp, one set per locale.
 
 import type { AppContent, AppLocalized } from "./apps";
 
 const IMG = "/apps/popline";
+
+/**
+ * App Store record (ASC app id 6829481152). The link 404s until Apple releases
+ * the app, so the site shows "Coming soon on the App Store" while this is
+ * false. The day Popline is live: set it true (the badge links, the Smart App
+ * Banner appears, the status turns live) and add popline to
+ * scripts/go-link.test.mts.
+ */
+export const POPLINE_ON_APP_STORE: boolean = false;
+const APP_STORE_ID = "6829481152";
+// ct=web-site: the landing page's own campaign token (App Marketing tracking.md).
+const APP_STORE_URL = `https://apps.apple.com/app/apple-store/id${APP_STORE_ID}?pt=119559267&ct=web-site&mt=8`;
 
 const en: AppLocalized = {
   name: "Popline",
   storeName: "Popline: Auto Captions",
   tagline: "Pick a video. Get styled captions in seconds.",
   subtitle: "Fast captions, no watermark",
-  oneLiner:
-    "Pick a video, get styled captions in seconds, fix any word right on the video. 11 caption styles, 10 free fonts. No account, no upload, no watermark.",
+  oneLiner: "Pick a video, get styled captions in seconds, and fix any word by tapping it on the video. 9 caption styles, 10 fonts. No account, no upload, no watermark.",
   statusNote: "Needs iOS 26 or later. iPhone and iPad.",
   metaTitle: "Popline: Auto Captions. Fast captions, no watermark",
-  metaDescription:
-    "Pick a video, get styled captions in seconds. Tap any line on the video to fix it. 11 caption styles, 10 free fonts. No account, no upload, no watermark.",
+  metaDescription: "Pick a video, get styled captions in seconds. Tap any line on the video to fix it. 9 caption styles, 10 fonts. No account, no upload, no watermark.",
   features: [
     {
       title: "Fast",
@@ -40,26 +44,43 @@ const en: AppLocalized = {
     },
     {
       title: "Edit right on the video",
-      body: "Tap a caption to change it. Split, merge, or move it a tenth of a second earlier or later. Find and replace across every line. Remove um, uh and other fillers in one tap. Every change can be undone.",
+      body: "Tap a caption to change it. Split, merge, or move it a tenth of a second earlier or later. Find and replace across every line. Every change can be undone.",
     },
     {
-      title: "11 caption styles",
-      body: "Punch, Karaoke, Pill, Reveal, Minimal, Editorial, Bold, Highlight, Block, Shadow and Emoji pop. Change the look with one tap.",
+      title: "Um and uh, gone",
+      body: "Remove um and uh from your captions in one tap.",
     },
     {
-      title: "10 free fonts",
+      title: "9 caption styles",
+      body: "Punch, Reveal, Minimal, Editorial, Bold, Highlight, Block, Shadow and Emoji pop. Change the look with one tap.",
+    },
+    {
+      title: "10 fonts",
       body: "Anton, Bebas Neue, Poppins, Bangers and more. Pick one for every caption, or keep the style's own.",
     },
     {
       title: "Out of the way",
-      body: "Captions stay clear of the buttons TikTok, Reels and Shorts put on top of your video, and away from faces where there's room. If there isn't, Popline tells you and you drag them where you want.",
+      body: "Captions stay clear of the buttons that short-video apps put on top of a vertical video, and away from faces where there's room. If there isn't, Popline tells you and you drag them where you want.",
     },
     {
       title: "English, Chinese, Japanese",
-      body: "Chinese and Japanese lines never break in the middle of a word.",
+      body: "English, Mandarin Chinese (shown in Simplified) and Japanese speech. Chinese and Japanese lines never break in the middle of a word.",
+    },
+    {
+      title: "Private",
+      body: "Speech recognition runs on your device and your video is never uploaded. No account needed.",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/01-captions-en.webp`, alt: "Popline screen with captions written on a video: captions in seconds" },
+    { src: `${IMG}/shots/02-auto-en.webp`, alt: "Picking a video in Popline: the captions are made for you" },
+    { src: `${IMG}/shots/03-styles-en.webp`, alt: "The caption style picker with 9 styles" },
+    { src: `${IMG}/shots/04-tap-to-fix-en.webp`, alt: "Tapping a caption on the video to fix a word" },
+    { src: `${IMG}/shots/05-fillers-en.webp`, alt: "Removing um and uh from captions in one tap" },
+    { src: `${IMG}/shots/06-fonts-en.webp`, alt: "The font picker with 10 fonts" },
+    { src: `${IMG}/shots/07-export-en.webp`, alt: "Export screen: full quality, no watermark, no account, no upload" },
+    { src: `${IMG}/shots/08-languages-en.webp`, alt: "Language picker: English, Chinese and Japanese" },
+  ],
   trust: {
     title: "No watermark",
     body: "Export at full resolution to Photos, or save an SRT file. No account, no upload.",
@@ -71,23 +92,23 @@ const en: AppLocalized = {
     },
     {
       q: "Which languages does Popline caption?",
-      a: "English, Chinese and Japanese. Chinese and Japanese lines never break in the middle of a word.",
+      a: "English, Mandarin Chinese (shown in Simplified) and Japanese. Chinese and Japanese lines never break in the middle of a word.",
     },
     {
       q: "How do I fix a word or a timing?",
-      a: "Tap a caption on the video to change it. You can split or merge captions, move one a tenth of a second earlier or later, find and replace across every line, and remove fillers like um and uh in one tap. Every change can be undone.",
+      a: "Tap a caption on the video to change it. You can split or merge captions, move one a tenth of a second earlier or later, find and replace across every line, and remove um and uh in one tap. Every change can be undone.",
     },
     {
       q: "Is there a watermark? Do I need an account?",
       a: "No watermark and no account. Export at full resolution to Photos, or save an SRT file. Nothing is uploaded.",
     },
     {
-      q: "Will captions cover the buttons on TikTok, Reels or Shorts?",
-      a: "Popline keeps captions clear of the buttons those apps put on top of your video, and away from faces where there's room. If there isn't, Popline tells you and you can drag the captions where you want them.",
+      q: "Will captions cover the buttons on short-video apps?",
+      a: "Popline keeps captions clear of the buttons short-video apps put on top of a vertical video, and away from faces where there's room. If there isn't, Popline tells you and you can drag the captions where you want them.",
     },
   ],
   privacy: {
-    updated: "2026-11-01",
+    updated: "2026-11-02",
     sections: [
       {
         heading: "Overview",
@@ -138,73 +159,85 @@ const en: AppLocalized = {
 const zhCn: AppLocalized = {
   name: "Popline",
   storeName: "Popline：自动字幕",
-  // Converted to Simplified from the zh-Hant tagline: the zh-Hans promo text
-  // leads with speed and privacy wording.
   tagline: "选一段视频，几秒就有字幕。",
-  // Simplified form of the zh-Hant subtitle (zh-Hans one reads "本机生成字幕，无水印").
   subtitle: "快速上字幕，无水印",
-  oneLiner:
-    "Popline 为你的视频加上简短、有样式的字幕。从相册选一段视频，几秒生成字幕。无需账号，不上传，无水印。",
-  statusNote: "需要 iOS 26 或更高版本，适用于 iPhone 和 iPad。",
+  oneLiner: "选一段视频，几秒就有带样式的短句字幕。画面上的字点一下就能改。9 种字幕样式，10 款字体。无需账号，不上传，无水印。",
+  statusNote: "需要 iOS 26 或更高版本，支持 iPhone 和 iPad。",
   metaTitle: "Popline：自动字幕｜快速上字幕，无水印",
-  metaDescription:
-    "选一段视频，几秒生成简短、有样式的字幕。十一种字幕样式，10 种免费字体。无需账号，不上传，无水印，按原分辨率导出。",
+  metaDescription: "选一段视频，几秒就有字幕。点画面上的字就能改。9 种字幕样式，10 款字体。无需账号，不上传，无水印。",
   features: [
     {
-      title: "几秒就有字幕",
-      body: "从相册选一段视频，字幕按停顿和语句切成短句，快速浏览也好读，并自动套用一种样式。",
+      title: "快",
+      body: "选好视频，字幕马上自动生成、对好时间、套好样式。",
     },
     {
-      title: "改字、调时间",
-      body: "需要时可改字，或微调某句字幕的时间。",
+      title: "直接在视频上改",
+      body: "点字幕就能改字。拆开、合并、提早或延后 0.1 秒。全部字幕一起查找替换。每一步都能撤销。",
     },
     {
-      title: "十一种字幕样式",
-      body: "Punch、Karaoke、Pill、Reveal、Minimal、Editorial、Bold、Highlight、Block、Shadow 和 Emoji pop。一键即可更换。",
+      title: "“嗯”“呃”一键删掉",
+      body: "字幕里的“嗯”“呃”一键删掉。",
     },
     {
-      title: "10 种免费字体",
-      body: "可为所有字幕选一种字体，也可保留样式自带的字体。中文和日文字幕使用系统字体。",
+      title: "9 种字幕样式",
+      body: "Punch、Reveal、Minimal、Editorial、Bold、Highlight、Block、Shadow、Emoji pop，点一下就换。",
     },
     {
-      title: "不挡画面的字幕",
-      body: "Popline 会避开 TikTok、Reels 和 Shorts 用按钮和文字覆盖的区域；画面有空间时，也会避开人脸。如果无法让每张脸都不被挡住，它会提示你，你可以把字幕拖到想要的位置。",
+      title: "10 款字体",
+      body: "Anton、Bebas Neue、Poppins、Bangers 等。可为所有字幕选一种字体，也可保留样式自带的字体。",
+    },
+    {
+      title: "不挡画面",
+      body: "竖屏视频上，字幕会避开短视频平台的按钮；画面有空间时也会避开人脸。挡不开时会提示你，你可以把字幕拖到想要的位置。",
     },
     {
       title: "中文、英文、日文",
-      body: "支持中文、英文和日文语音。中文和日文按词断行，不会把一个词拆成两行。",
+      body: "支持中文普通话（以简体中文显示）、英文和日文语音。中文和日文按词断行，不会把一个词拆成两行。",
+    },
+    {
+      title: "隐私",
+      body: "语音识别在本机完成，视频不上传，不用账号；每种语言首次使用时下载一次，之后离线可用。",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/01-captions-zh-cn.webp`, alt: "Popline 在视频上生成的字幕：几秒就有字幕" },
+    { src: `${IMG}/shots/02-auto-zh-cn.webp`, alt: "在 Popline 里选一段视频，字幕自动生成" },
+    { src: `${IMG}/shots/03-styles-zh-cn.webp`, alt: "字幕样式选择，共 9 种样式" },
+    { src: `${IMG}/shots/04-tap-to-fix-zh-cn.webp`, alt: "点一下画面上的字幕就能改字" },
+    { src: `${IMG}/shots/05-fillers-zh-cn.webp`, alt: "一键删掉字幕里的“嗯”“呃”" },
+    { src: `${IMG}/shots/06-fonts-zh-cn.webp`, alt: "字体选择，共 10 款字体" },
+    { src: `${IMG}/shots/07-export-zh-cn.webp`, alt: "导出画面：原画质，无水印，不用账号，不上传" },
+    { src: `${IMG}/shots/08-languages-zh-cn.webp`, alt: "语言选择：中文、英文、日文" },
+  ],
   trust: {
-    title: "无水印",
-    body: "导出带字幕的视频，按原分辨率存入相册；也可导出 SRT 字幕文件。无需账号，不上传。",
+    title: "原画质，无水印",
+    body: "按原分辨率存入相册，也能导出 SRT 字幕文件。无需账号，不上传。",
   },
   faqs: [
     {
       q: "运行 Popline 需要什么？",
-      a: "需要 iOS 26 或更高版本，适用于 iPhone 和 iPad。",
+      a: "需要 iOS 26 或更高版本，支持 iPhone 和 iPad。",
     },
     {
       q: "Popline 支持哪些语言？",
-      a: "支持中文、英文和日文。中文和日文按词断行，不会把一个词拆成两行。",
+      a: "支持中文普通话（以简体中文显示）、英文和日文。中文和日文按词断行，不会把一个词拆成两行。",
     },
     {
       q: "怎么改字或调整时间？",
-      a: "需要时可改字，或微调某句字幕的时间。",
+      a: "点画面上的字幕就能改字。可以拆开、合并、提早或延后 0.1 秒，全部字幕一起查找替换，一键删掉“嗯”“呃”。每一步都能撤销。",
     },
     {
       q: "有水印吗？需要账号吗？",
-      a: "无水印，也无需账号。导出带字幕的视频，按原分辨率存入相册；也可导出 SRT 字幕文件。不上传。",
+      a: "无水印，也无需账号。按原分辨率存入相册，也能导出 SRT 字幕文件。不上传。",
     },
     {
-      q: "字幕会挡住 TikTok、Reels 或 Shorts 的按钮吗？",
-      a: "Popline 会避开这些应用用按钮和文字覆盖的区域；画面有空间时，也会避开人脸。如果无法让每张脸都不被挡住，它会提示你，你可以把字幕拖到想要的位置。",
+      q: "字幕会挡住短视频平台的按钮吗？",
+      a: "竖屏视频上，字幕会避开短视频平台的按钮；画面有空间时也会避开人脸。挡不开时会提示你，你可以把字幕拖到想要的位置。",
     },
   ],
   // Translation of the English draft policy (no Chinese version exists yet).
   privacy: {
-    updated: "2026-11-01",
+    updated: "2026-11-02",
     sections: [
       {
         heading: "概述",
@@ -249,43 +282,57 @@ const zhTw: AppLocalized = {
   storeName: "Popline：自動字幕",
   tagline: "選一支影片，幾秒就有字幕。",
   subtitle: "快速上字幕，無浮水印",
-  oneLiner:
-    "選一支影片，幾秒就有字幕。畫面上的字點一下就能改。11 種字幕樣式、10 款免費字型。不用帳號、不用上傳、沒有浮水印。",
+  oneLiner: "選一支影片，幾秒就有字幕。畫面上的字點一下就能改。9 種字幕樣式，10 款字型。不用帳號、不用上傳、沒有浮水印。",
   statusNote: "需要 iOS 26 以上，支援 iPhone 與 iPad。",
   metaTitle: "Popline：自動字幕｜快速上字幕，無浮水印",
-  metaDescription:
-    "選一支影片，幾秒就有字幕。直接點畫面上的字就能改。11 種字幕樣式、10 款免費字型。不用帳號、不用上傳、沒有浮水印。",
+  metaDescription: "選一支影片，幾秒就有字幕。點畫面上的字就能改。9 種字幕樣式，10 款字型。不用帳號、不用上傳、沒有浮水印。",
   features: [
     {
       title: "快",
-      body: "選好影片，字幕馬上自動生成、對好時間、套好樣式。斷句跟著說話的停頓走，看起來不累。",
+      body: "選好影片，字幕馬上自動生成、對好時間、套好樣式。",
     },
     {
       title: "直接在影片上改",
-      body: "點字幕就能改字。拆開、合併、提早或延後 0.1 秒。全部字幕一起尋找取代。「嗯」「呃」這類贅字一鍵刪掉。每一步都能復原。",
+      body: "點字幕就能改字。拖曳移動、兩指縮放大小。拆開、合併、提早或延後 0.1 秒。全部字幕一起尋找取代。每一步都能復原。",
     },
     {
-      title: "11 種字幕樣式",
-      body: "Punch、Karaoke、Pill、Reveal、Minimal、Editorial、Bold、Highlight、Block、Shadow、Emoji pop，點一下就換。",
+      title: "「嗯」「呃」一鍵刪掉",
+      body: "字幕裡的「嗯」「呃」一鍵刪掉。",
     },
     {
-      // The zh-Hant listing has no body for this section; converted from the zh-Hans one.
-      title: "10 款免費字型",
-      body: "可為所有字幕選一種字型，也可保留樣式自帶的字型。中文和日文字幕使用系統字型。",
+      title: "9 種字幕樣式",
+      body: "Punch、Reveal、Minimal、Editorial、Bold、Highlight、Block、Shadow、Emoji pop，點一下就換。",
+    },
+    {
+      title: "10 款字型",
+      body: "Anton、Bebas Neue、Archivo Black、Poppins、Bangers、Luckiest Guy、Lilita One、Permanent Marker、Pacifico、DM Serif Display。",
     },
     {
       title: "不擋畫面",
-      body: "字幕會避開 TikTok、Reels、Shorts 的按鈕，也盡量避開人臉；避不開時會提醒你，自己拖到想要的位置。",
+      body: "直式影片上，字幕會避開短影音平台的按鈕，也會避開人臉。",
     },
     {
       title: "中文、英文、日文",
-      body: "中文和日文不會把一個詞從中間斷開。",
+      body: "支援英文、中文普通話（以簡體中文顯示）和日文語音。",
+    },
+    {
+      title: "隱私",
+      body: "語音辨識在本機完成，影片不上傳，不用帳號；每種語言下載一次，之後離線也能用。",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/01-captions-zh-tw.webp`, alt: "Popline 在影片上產生的字幕：幾秒就有字幕" },
+    { src: `${IMG}/shots/02-auto-zh-tw.webp`, alt: "選影片，字幕自己出來" },
+    { src: `${IMG}/shots/03-styles-zh-tw.webp`, alt: "字幕樣式選擇，共 9 種樣式" },
+    { src: `${IMG}/shots/04-tap-to-fix-zh-tw.webp`, alt: "點一下畫面上的字幕就能改" },
+    { src: `${IMG}/shots/05-fillers-zh-tw.webp`, alt: "一鍵刪掉字幕裡的「嗯」「呃」" },
+    { src: `${IMG}/shots/06-fonts-zh-tw.webp`, alt: "字型選擇，共 10 款字型" },
+    { src: `${IMG}/shots/07-export-zh-tw.webp`, alt: "匯出畫面：原畫質，無浮水印，不用帳號，不用上傳" },
+    { src: `${IMG}/shots/08-languages-zh-tw.webp`, alt: "語言選擇：英文、中文、日文" },
+  ],
   trust: {
-    title: "沒有浮水印",
-    body: "原解析度存回相簿，也能匯出 SRT。不用帳號，不用上傳。",
+    title: "原畫質，沒有浮水印",
+    body: "以原解析度和影格率存回相簿，保留 HDR。也能匯出 SRT。不用帳號，不用上傳。",
   },
   faqs: [
     {
@@ -294,24 +341,24 @@ const zhTw: AppLocalized = {
     },
     {
       q: "Popline 支援哪些語言？",
-      a: "中文、英文、日文。中文和日文不會把一個詞從中間斷開。",
+      a: "英文、中文普通話（以簡體中文顯示）和日文。",
     },
     {
       q: "怎麼改字或調整時間？",
-      a: "點字幕就能改字。可以拆開、合併、提早或延後 0.1 秒，全部字幕一起尋找取代，「嗯」「呃」這類贅字一鍵刪掉。每一步都能復原。",
+      a: "點畫面上的字幕就能改字。可以拆開、合併、提早或延後 0.1 秒，全部字幕一起尋找取代，一鍵刪掉「嗯」「呃」。每一步都能復原。",
     },
     {
       q: "有浮水印嗎？需要帳號嗎？",
       a: "沒有浮水印，也不用帳號。原解析度存回相簿，也能匯出 SRT。不用上傳。",
     },
     {
-      q: "字幕會擋住 TikTok、Reels 或 Shorts 的按鈕嗎？",
-      a: "字幕會避開這些 App 的按鈕，也盡量避開人臉；避不開時會提醒你，自己拖到想要的位置。",
+      q: "字幕會擋住短影音平台的按鈕嗎？",
+      a: "直式影片上，字幕會避開短影音平台的按鈕，也會避開人臉。",
     },
   ],
   // Translation of the English draft policy (no Chinese version exists yet).
   privacy: {
-    updated: "2026-11-01",
+    updated: "2026-11-02",
     sections: [
       {
         heading: "概述",
@@ -355,10 +402,14 @@ export const popline: AppContent = {
   slug: "popline",
   category: "app",
   icon: `${IMG}/icon.png`,
+  ogImage: `${IMG}/og.png`,
   buildNumber: 16,
   version: "1.0.0",
-  status: "building",
+  status: POPLINE_ON_APP_STORE ? "live" : "building",
   platforms: ["iOS"],
+  ...(POPLINE_ON_APP_STORE ? { appStoreUrl: APP_STORE_URL, appStoreId: APP_STORE_ID } : {}),
   schemaCategory: "PhotoAndVideoApplication",
+  // The App Store seller; the privacy policy names it as the developer.
+  developer: "APPFACTORY STUDIO PTE. LTD.",
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

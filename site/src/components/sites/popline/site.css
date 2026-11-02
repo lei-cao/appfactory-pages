@@ -1,4 +1,5 @@
-/* Popline (popline.appfactory.sg): the shared plain shell and landing, with the
+/* Popline (popline.appfactory.sg): the shared plain shell with its own landing
+   (landing.tsx), and the
    accent swapped from the hub's indigo to the yellow of the app icon's caption
    bubble (sampled from the 1024px icon: #f8d008). Scoped to this app only. */
 [data-app="popline"] {
@@ -20,4 +21,56 @@
   [data-app="popline"] header nav {
     gap: 1rem;
   }
+}
+
+/* Landing (landing.tsx) */
+[data-app="popline"] .pop-index {
+  color: #f8d008;
+}
+
+[data-app="popline"] .pop-store {
+  background: #f8d008;
+  color: #080808;
+}
+
+/* The App Store preview in a plain device edge: a dark bezel and one hairline. */
+[data-app="popline"] .pop-phone {
+  border-radius: 2.5rem;
+  padding: 0.6rem;
+  background: #05070d;
+  box-shadow:
+    0 0 0 1px var(--color-line),
+    0 40px 80px -30px rgb(248 208 8 / 0.18);
+}
+
+/* "AI presenter" label: the preview's presenter is AI-generated (HQ-104, Lei). */
+[data-app="popline"] .pop-ai-chip {
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgb(8 8 8 / 0.78);
+  color: #f8d008;
+  border: 1px solid rgb(248 208 8 / 0.55);
+}
+
+/* A caption-style highlight behind the trust line, like Popline's own Highlight look. */
+[data-app="popline"] .pop-mark {
+  background: #f8d008;
+  color: #080808;
+  padding: 0 0.25em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+[data-app="popline"] .pop-rail {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+[data-app="popline"] .pop-faq summary::-webkit-details-marker {
+  display: none;
 }
