@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getApp, localized } from "@/content/apps";
+import { DEFAULT_DEVELOPER, getApp, localized } from "@/content/apps";
 import { getDict } from "@/lib/dictionaries";
 import { fmt, isLocale } from "@/lib/i18n";
 import { appPageMetadata, breadcrumbLd, JsonLd } from "@/lib/seo";
@@ -53,7 +53,10 @@ export default async function Privacy({
         {dict.privacy.title}
       </h1>
       <p className="text-slate mt-4 leading-relaxed">
-        {fmt(dict.privacy.intro, { name: loc.name })}
+        {fmt(dict.privacy.intro, {
+          name: loc.name,
+          developer: app.developer ?? DEFAULT_DEVELOPER,
+        })}
       </p>
 
       {loc.privacy.sections.map((section) => (

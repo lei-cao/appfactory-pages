@@ -66,6 +66,12 @@ export interface AppBase {
   icon?: string;
   /** 1200×630 social card; falls back to the first screenshot. */
   ogImage?: string;
+  /**
+   * Who the privacy policy names as the developer ("{developer}" in the
+   * dictionary intro). Set it to the App Store seller of the app's account;
+   * defaults to DEFAULT_DEVELOPER (the individual account most apps are on).
+   */
+  developer?: string;
   /** Support contact for this app; defaults to the site-wide CONTACT_EMAIL. */
   contactEmail?: string;
   /** schema.org applicationCategory; defaults by category (Utilities / Game). */
@@ -148,6 +154,9 @@ export const apps: AppContent[] = [
   harvestTown,
   popline,
 ];
+
+/** The developer name privacy policies use when an app sets none. */
+export const DEFAULT_DEVELOPER = "lei cao";
 
 export function getApp(slug: string): AppContent | undefined {
   return apps.find((a) => a.slug === slug);
