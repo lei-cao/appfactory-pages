@@ -76,3 +76,28 @@ export function goStoreHref(href: string, source: string, appleId: string): stri
   const next = u.toString();
   return next === href ? null : next;
 }
+
+/** What GoCt remembers per anchor: its placement href and what it wrote. */
+export interface GoMemo {
+  original: string;
+  written: string;
+}
+
+/**
+ * The href an anchor should carry for the current arrival. Always derived from
+ * the anchor's original placement href, never from a ct this component wrote
+ * earlier, so a second arrival in the same tab (`?utm_source=share-hand` after
+ * `share-night`, via a query-only client navigation) replaces the first. If
+ * React has since put a new href on the anchor (current !== memo.written),
+ * that new href is the original.
+ */
+export function goAnchorHref(
+  current: string,
+  memo: GoMemo | undefined,
+  arrival: GoArrival | null,
+  appleId: string | undefined,
+): GoMemo {
+  const original = memo && current === memo.written ? memo.original : current;
+  const written = (arrival && appleId ? goStoreHref(original, arrival.source, appleId) : null) ?? original;
+  return { original, written };
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import localFont from "next/font/local";
 import { getDict } from "@/lib/dictionaries";
@@ -100,7 +101,9 @@ export default async function RootLayout({
       <body className="bg-ink text-paper min-h-dvh antialiased">
         {children}
         <Analytics />
-        <GoCt appleIds={APPLE_IDS} />
+        <Suspense fallback={null}>
+          <GoCt appleIds={APPLE_IDS} />
+        </Suspense>
       </body>
     </html>
   );

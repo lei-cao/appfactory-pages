@@ -5,7 +5,7 @@
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
-import { goArrival, goStoreHref, parseArrival } from "../src/lib/go-ct.ts";
+import { goAnchorHref, goArrival, goStoreHref, parseArrival } from "../src/lib/go-ct.ts";
 
 const PN = "6788786222";
 const pnStore = (ct: string) => `https://apps.apple.com/app/apple-store/id${PN}?pt=119559267&ct=${ct}&mt=8`;
@@ -84,5 +84,31 @@ test("a stored arrival is re-validated", () => {
 
 test("the root layout mounts GoCt", () => {
   const layout = readFileSync(new URL("../src/app/[locale]/layout.tsx", import.meta.url), "utf8");
-  assert.match(layout, /<GoCt appleIds=\{APPLE_IDS\} \/>/);
+  assert.match(layout, /<Suspense fallback=\{null\}>\s*<GoCt appleIds=\{APPLE_IDS\} \/>\s*<\/Suspense>/);
+});
+
+test("a second arrival in the same tab replaces the first (query-only navigation)", () => {
+  const night = { source: "share-night", slug: "poker-night" };
+  const hand = { source: "share-hand", slug: "poker-night" };
+  const placement = pnStore("site-hero");
+  const first = goAnchorHref(placement, undefined, night, PN);
+  assert.deepEqual(first, { original: placement, written: pnStore("share-night") });
+  // The anchor now carries ct=share-night; the next arrival starts from site-hero.
+  const second = goAnchorHref(first.written, first, hand, PN);
+  assert.deepEqual(second, { original: placement, written: pnStore("share-hand") });
+  // Arrival for an app with no App Store id (or none at all) restores the placement.
+  assert.equal(goAnchorHref(second.written, second, null, undefined).written, placement);
+  assert.equal(goAnchorHref(second.written, second, { source: "qr", slug: "other" }, undefined).written, placement);
+});
+
+test("a new href React put on the anchor becomes its original", () => {
+  const night = { source: "share-night", slug: "poker-night" };
+  const first = goAnchorHref(pnStore("site-hero"), undefined, night, PN);
+  const rerendered = goAnchorHref(pnStore("site-guide"), first, night, PN);
+  assert.deepEqual(rerendered, { original: pnStore("site-guide"), written: pnStore("share-night") });
+  // Non-store links pass through untouched.
+  assert.deepEqual(goAnchorHref("https://x.example/a", undefined, night, PN), {
+    original: "https://x.example/a",
+    written: "https://x.example/a",
+  });
 });
