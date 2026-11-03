@@ -24,7 +24,7 @@ const en: AppLocalized = {
   subtitle: "Blinds timer, odds & trainer",
   oneLiner:
     "Poker Night runs your home game and sharpens your play: track buy-ins and rebuys, run the blinds timer, settle the night in the fewest transfers and share a results card with the group chat. Between nights, an equity calculator, pot odds and one-handed trainers. No ads, no subscription.",
-  statusNote: "Free on the App Store for iPhone and iPad. Android release in progress.",
+  statusNote: "Free on the App Store and Google Play. iPhone, iPad and Android.",
   features: [
     {
       title: "Money-first ledger",
@@ -229,7 +229,7 @@ const zhCn: AppLocalized = {
   subtitle: "盲注计时·胜率计算·德扑训练",
   oneLiner:
     "扑克之夜帮你组好朋友局，也帮你把牌打得更好：随手记录买入和补码，盲注计时，散场用最少笔数结算，再把战报卡片发到群里。牌局之间，用胜率计算器、底池赔率和单手训练练牌。无广告，无订阅。",
-  statusNote: "已在 App Store 上线，iPhone 与 iPad 免费下载；Android 版本即将推出。",
+  statusNote: "已在 App Store 和 Google Play 上线，iPhone、iPad 与 Android 免费下载。",
   features: [
     {
       title: "金额优先的账本",
@@ -432,7 +432,7 @@ const zhTw: AppLocalized = {
   subtitle: "盲注計時·勝率計算·德撲訓練",
   oneLiner:
     "撲克之夜幫你組好朋友局，也幫你把牌打得更好：隨手記錄買入和補碼，盲注計時，散場用最少筆數結算，再把戰報卡片發到群組。牌局之間，用勝率計算器、底池賠率和單手訓練練牌。無廣告，無訂閱。",
-  statusNote: "已在 App Store 上架，iPhone 與 iPad 免費下載；Android 版本即將推出。",
+  statusNote: "已在 App Store 和 Google Play 上架，iPhone、iPad 與 Android 免費下載。",
   features: [
     {
       title: "金額優先的帳本",
@@ -622,12 +622,8 @@ const zhTw: AppLocalized = {
   },
 };
 
-// /go and /link send Android to Google Play while this is true. Poker Night has
-// no public Play release yet (closed testing; see docs/play/OWNER-GUIDE.md in
-// lei-cao/appfactory), so the Play listing 404s until it goes public. Set it
-// to false to send Android to the website again; the landing page badge is not
-// affected (no `playStoreUrl` until the release is public).
-const PLAY_GO = true;
+// Poker Night is public on Google Play (package sg.appfactory.poker_night): the landing page shows the badge and /go
+// sends Android there.
 const PLAY_URL = "https://play.google.com/store/apps/details?id=sg.appfactory.poker_night";
 
 const PN_UTM =
@@ -639,8 +635,7 @@ export const pokerNight: AppContent = {
   buildNumber: 1,
   version: "2.0.0",
   status: "live",
-  appStoreUrl:
-    "https://apps.apple.com/us/app/poker-night-home-game-tracker/id6788786222",
+  appStoreUrl: "https://apps.apple.com/app/apple-store/id6788786222?pt=119559267&ct=site&mt=8",
   platforms: ["iOS", "Android"],
   icon: "/apps/poker-night/icon.png",
   // Cross-promo: surface TiltFree to players who also want to study hands.
@@ -660,7 +655,6 @@ export const pokerNight: AppContent = {
   },
   ogImage: "/apps/poker-night/og.png",
   appStoreId: "6788786222",
-  playGo: PLAY_GO,
-  playGoUrl: PLAY_URL,
+  playStoreUrl: PLAY_URL,
   i18n: { en, "zh-cn": zhCn, "zh-tw": zhTw },
 };

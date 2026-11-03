@@ -4,6 +4,7 @@
 // under it (PnMotion switches data-field); the footer closes every page
 // with the contact address set as the headline.
 
+import { appStoreAt } from "@/lib/store-links";
 import Image from "next/image";
 import Link from "next/link";
 import { getApp, localized } from "@/content/apps";
@@ -21,7 +22,7 @@ const SHELL: Record<Locale, { menu: string; store: string; top: string; about: s
     menu: "Menu",
     store: "App Store",
     top: "Back to top",
-    about: "Poker Night is a home game tracker for iPhone and iPad: ledger, blinds timer, settle-up and odds study.",
+    about: "Poker Night is a home game tracker for iPhone, iPad and Android: ledger, blinds timer, settle-up and odds study.",
     promise: "No ads. No account. Your ledger stays on your device.",
     write: "Questions, ideas or a bug? Write to",
     year: "© 2026 App Factory",
@@ -30,7 +31,7 @@ const SHELL: Record<Locale, { menu: string; store: string; top: string; about: s
     menu: "菜单",
     store: "App Store",
     top: "回到顶部",
-    about: "扑克之夜是 iPhone 与 iPad 上的德州扑克牌局记账 App：账本、盲注计时、结算与胜率学习。",
+    about: "扑克之夜是 iPhone、iPad 与 Android 上的德州扑克牌局记账 App：账本、盲注计时、结算与胜率学习。",
     promise: "无广告，无需账号，账本只存在你的设备上。",
     write: "有问题、想法或发现 bug？写信到",
     year: "© 2026 App Factory",
@@ -39,7 +40,7 @@ const SHELL: Record<Locale, { menu: string; store: string; top: string; about: s
     menu: "選單",
     store: "App Store",
     top: "回到頂端",
-    about: "撲克之夜是 iPhone 與 iPad 上的德州撲克牌局記帳 App：帳本、盲注計時、結算與勝率學習。",
+    about: "撲克之夜是 iPhone、iPad 與 Android 上的德州撲克牌局記帳 App：帳本、盲注計時、結算與勝率學習。",
     promise: "無廣告，無需帳號，帳本只存在你的裝置上。",
     write: "有問題、想法或發現 bug？寫信到",
     year: "© 2026 App Factory",
@@ -93,8 +94,13 @@ export function PokerNightShell({ locale, slug, children }: SiteShellProps) {
             {switcher}
           </nav>
           {app.appStoreUrl && (
-            <a href={app.appStoreUrl} data-app={slug} className="pn-button pn-button--small">
+            <a href={appStoreAt(app.appStoreUrl, "site-header")} data-app={slug} className="pn-button pn-button--small">
               {s.store}
+            </a>
+          )}
+          {app.playStoreUrl && (
+            <a href={app.playStoreUrl} data-app={slug} className="pn-button pn-button--small pn-button--play">
+              Google Play
             </a>
           )}
           <details className="pn-menu">
@@ -106,6 +112,11 @@ export function PokerNightShell({ locale, slug, children }: SiteShellProps) {
                 </Link>
               ))}
               {switcher}
+              {app.playStoreUrl && (
+                <a href={app.playStoreUrl} data-app={slug} className="pn-link">
+                  Google Play
+                </a>
+              )}
               <StudioLink locale={locale} variant="long" className="pn-link" markClassName="pn-studio__mark" />
             </div>
           </details>

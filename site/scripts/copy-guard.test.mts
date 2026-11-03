@@ -74,14 +74,10 @@ test("Popline privacy names the App Store seller; other apps keep their default"
   for (const l of LOCALES) assert.match(getDict(l).privacy.intro, /\{developer\}/);
 });
 
-test("Popline is not linked to the App Store before it is live", () => {
-  // The store link 404s until Apple releases the app: no link, "coming soon".
-  if (popline.status !== "live") {
-    assert.equal(popline.appStoreUrl, undefined);
-    assert.equal(popline.appStoreId, undefined);
-  } else {
-    assert.match(popline.appStoreUrl ?? "", /^https:\/\/apps\.apple\.com\/app\/apple-store\/id6829481152\?pt=119559267&ct=web-site&mt=8$/);
-  }
+test("Popline is live on the App Store with a pt/ct link", () => {
+  assert.equal(popline.status, "live");
+  assert.equal(popline.appStoreId, "6829481152");
+  assert.match(popline.appStoreUrl ?? "", /^https:\/\/apps\.apple\.com\/app\/apple-store\/id6829481152\?pt=119559267&ct=site&mt=8$/);
 });
 
 // ---- rendered pages ----

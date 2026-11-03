@@ -1,3 +1,4 @@
+import { appStoreAt } from "@/lib/store-links";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -331,11 +332,16 @@ export default async function Hub({
                     </span>
                   </a>
                   {app.appStoreUrl ? (
-                    <a href={app.appStoreUrl} data-app={app.slug} {...externalProps(true)} className="go link">
+                    <a href={appStoreAt(app.appStoreUrl, "site-hub")} data-app={app.slug} {...externalProps(true)} className="go link">
                       {h.appStore} <span className="arrow" aria-hidden>↗</span>
                     </a>
                   ) : (
                     <span className="go go--off">{h.storeComing}</span>
+                  )}
+                  {app.playStoreUrl && (
+                    <a href={app.playStoreUrl} data-app={app.slug} {...externalProps(true)} className="go link">
+                      Google Play <span className="arrow" aria-hidden>↗</span>
+                    </a>
                   )}
                 </div>
               </div>

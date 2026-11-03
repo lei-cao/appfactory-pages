@@ -19,6 +19,7 @@ import Link from "next/link";
 import { getApp, localized } from "@/content/apps";
 import { pokerNightLanding, pnVideoFiles, type PnShot, type PnVideoCopy } from "@/content/poker-night-landing";
 import { PnVideo } from "@/components/poker-night/video";
+import { appStoreAt } from "@/lib/store-links";
 import { PnSettle } from "@/components/poker-night/settle";
 import { isGuideLocale } from "@/lib/guide";
 import type { Locale } from "@/lib/i18n";
@@ -89,6 +90,7 @@ export function PokerNightLandingPage({ locale }: { locale: Locale }) {
   const base = `${localePrefix(locale)}/apps/${SLUG}`;
   const hasGuide = isGuideLocale(locale);
   const store = app.appStoreUrl;
+  const play = app.playStoreUrl;
   const tiltfree = app.studioLink?.urls[locale] ?? app.studioLink?.urls.en ?? "https://www.pokertools.ai";
 
   // Every video on the page, once, for VideoObject JSON-LD.
@@ -136,9 +138,16 @@ export function PokerNightLandingPage({ locale }: { locale: Locale }) {
         <div className="pn-herofoot__text">
           <p className="pn-lead">{c.hero.body}</p>
           {store && (
-            <a href={store} data-app={SLUG} className="pn-button">
-              {c.hero.cta}
-            </a>
+            <div className="pn-stores">
+              <a href={appStoreAt(store, "site-hero")} data-app={SLUG} className="pn-button">
+                {c.hero.cta}
+              </a>
+              {play && (
+                <a href={play} data-app={SLUG} className="pn-button">
+                  {c.playCta}
+                </a>
+              )}
+            </div>
           )}
           <p className="pn-small">{c.hero.note}</p>
         </div>
@@ -348,9 +357,16 @@ export function PokerNightLandingPage({ locale }: { locale: Locale }) {
         <div className="pn-price__foot" data-reveal>
           <p className="pn-lead">{c.price.includes}</p>
           {store && (
-            <a href={store} data-app={SLUG} className="pn-button">
-              {c.price.cta}
-            </a>
+            <div className="pn-stores">
+              <a href={appStoreAt(store, "site-price")} data-app={SLUG} className="pn-button">
+                {c.price.cta}
+              </a>
+              {play && (
+                <a href={play} data-app={SLUG} className="pn-button">
+                  {c.playCta}
+                </a>
+              )}
+            </div>
           )}
         </div>
         <div className="pn-price__lists" data-reveal>

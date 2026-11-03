@@ -5,6 +5,7 @@ import { getApp, localized } from "@/content/apps";
 import { getDict } from "@/lib/dictionaries";
 import { localePrefix, type Locale } from "@/lib/i18n";
 import { JsonLd, organizationLd, softwareApplicationLd } from "@/lib/seo";
+import { appStoreAt } from "@/lib/store-links";
 import { COPY } from "./copy";
 
 const SLUG = "popline";
@@ -40,6 +41,8 @@ function StoreButton({ href, eyebrow, label }: { href?: string; eyebrow: string;
   );
 }
 
+const store_ = (url: string | undefined, ct: string) => (url ? appStoreAt(url, ct) : undefined);
+
 export function PoplineLanding({ locale }: { locale: Locale }) {
   const app = getApp(SLUG)!;
   const loc = localized(app, locale);
@@ -62,7 +65,7 @@ export function PoplineLanding({ locale }: { locale: Locale }) {
           </h1>
           <p className="text-slate mt-7 max-w-xl text-lg leading-relaxed">{loc.oneLiner}</p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
-            <StoreButton href={app.appStoreUrl} eyebrow={store.eyebrow} label={store.label} />
+            <StoreButton href={store_(app.appStoreUrl, "site-hero")} eyebrow={store.eyebrow} label={store.label} />
             <p className="spec-label max-w-52">{loc.statusNote}</p>
           </div>
         </div>
@@ -166,7 +169,7 @@ export function PoplineLanding({ locale }: { locale: Locale }) {
           <AppIcon icon={app.icon} name={loc.name} size={64} className="rounded-2xl" />
           <p className="font-display max-w-md text-2xl leading-snug font-semibold">{t.closing}</p>
         </div>
-        <StoreButton href={app.appStoreUrl} eyebrow={store.eyebrow} label={store.label} />
+        <StoreButton href={store_(app.appStoreUrl, "site-closing")} eyebrow={store.eyebrow} label={store.label} />
       </section>
     </main>
   );

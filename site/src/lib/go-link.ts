@@ -131,6 +131,9 @@ export function resolveGo(pathname: string, userAgent: string, { apex, getApp }:
   const landing = landingUrl(app, apex, source);
   const appleId = appleIdOf(app);
 
+  // WeChat's in-app browser blocks the App Store and Google Play hand-off, so it
+  // gets the landing page, which carries both store buttons.
+  if (/MicroMessenger/i.test(userAgent)) return redirect(landing);
   if (userAgent.includes("Android")) {
     const play = goPlayUrl(app);
     return redirect(play ? playUrl(play, app.slug, source) : landing);

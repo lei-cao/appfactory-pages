@@ -28,6 +28,7 @@ its matcher sends every `/go/*` path through, dots included). Tests:
 |---|---|
 | iPhone / iPad (UA has `iPhone`, `iPad` or `iPod`) | App Store: `https://apps.apple.com/app/apple-store/id<appStoreId>?pt=119559267&ct=<source>&mt=8`. No App Store id yet → landing page. |
 | Mac or iPadOS Safari in desktop mode (UA has `Macintosh`) | A tiny no-store HTML page that checks `navigator.maxTouchPoints > 1`: touch screen (an iPad) → App Store as above, otherwise → landing page. Without JavaScript the `<noscript>` refresh goes to the landing page. Apps without an App Store id skip this and 302 straight to the landing page. |
+| WeChat's in-app browser (UA has `MicroMessenger`), iOS or Android | Landing page, which carries the App Store and Google Play buttons (the store hand-off is blocked inside WeChat). Checked before the iOS and Android rows. |
 | Android (UA has `Android`) | Google Play (`playGoUrl`, else `playStoreUrl`; skipped when the app's `playGo` flag is `false`) with `&referrer=utm_source%3D<source>%26utm_medium%3Dgo%26utm_campaign%3D<slug>` when the app has one; otherwise the landing page. |
 | Everything else (Windows, Linux, unknown) | Landing page. |
 | Link-preview bots and crawlers (iMessage, Slack, WhatsApp, Facebook, …) | Landing page, so the preview shows the app's OG card, never the detect page. |
@@ -52,9 +53,4 @@ picks them up. Add or update the app's row in `REGISTRY` in
 
 ### Play routing flag (`playGo`)
 
-`playGoUrl` + `playGo` route /go to Google Play without touching the landing
-page's store badge (which follows `playStoreUrl`). Poker Night sets both in
-`src/content/poker-night.ts` (`PLAY_GO = true`) but its Play release is not
-public yet, so Android gets a Play page that only works once the release goes
-public. Flip `PLAY_GO` to `false` to send Android to the website again; once
-the release is public, replace `playGoUrl` with `playStoreUrl` and drop the flag.
+`playGoUrl` + `playGo` route /go to Google Play without touching the landing page's store badge (which follows `playStoreUrl`). Use them only while a Play release is not public. Poker Night is public, so it sets `playStoreUrl` alone (badge and /go). There is no `/link/` route; only `/go/` exists.

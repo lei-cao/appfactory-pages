@@ -17,16 +17,14 @@ import type { AppContent, AppLocalized } from "./apps";
 const IMG = "/apps/popline";
 
 /**
- * App Store record (ASC app id 6829481152). The link 404s until Apple releases
- * the app, so the site shows "Coming soon on the App Store" while this is
- * false. The day Popline is live: set it true (the badge links, the Smart App
- * Banner appears, the status turns live) and add popline to
- * scripts/go-link.test.mts.
+ * App Store record (ASC app id 6829481152), released 2026-11-03. While this is
+ * false the status is "building" and the hub marks the card "coming soon"; the
+ * App Store URL and id are always set, because /go routes iPhones by them.
  */
-export const POPLINE_ON_APP_STORE: boolean = false;
+export const POPLINE_ON_APP_STORE: boolean = true;
 const APP_STORE_ID = "6829481152";
-// ct=web-site: the landing page's own campaign token (App Marketing tracking.md).
-const APP_STORE_URL = `https://apps.apple.com/app/apple-store/id${APP_STORE_ID}?pt=119559267&ct=web-site&mt=8`;
+// Placements override ct (appStoreAt); ct=site is the default.
+const APP_STORE_URL = `https://apps.apple.com/app/apple-store/id${APP_STORE_ID}?pt=119559267&ct=site&mt=8`;
 
 const en: AppLocalized = {
   name: "Popline",
@@ -407,7 +405,8 @@ export const popline: AppContent = {
   version: "1.0.0",
   status: POPLINE_ON_APP_STORE ? "live" : "building",
   platforms: ["iOS"],
-  ...(POPLINE_ON_APP_STORE ? { appStoreUrl: APP_STORE_URL, appStoreId: APP_STORE_ID } : {}),
+  appStoreUrl: APP_STORE_URL,
+  appStoreId: "6829481152",
   schemaCategory: "PhotoAndVideoApplication",
   // The App Store seller; the privacy policy names it as the developer.
   developer: "APPFACTORY STUDIO PTE. LTD.",
