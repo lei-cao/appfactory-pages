@@ -10,6 +10,9 @@ import {
 } from "@/lib/i18n";
 import { hubOrigin, SITE_NAME } from "@/lib/site";
 import { Analytics } from "@/components/analytics";
+import { GoCt } from "@/components/go-ct";
+import { apps } from "@/content/apps";
+import { appleIdOf } from "@/lib/go-link";
 import "../globals.css";
 
 // Self-hosted (Latin subsets in src/app/fonts, fetched with
@@ -40,6 +43,14 @@ const archivo = localFont({
   ],
   variable: "--font-archivo",
 });
+
+// slug → App Store id, so a /go arrival only re-tags its own app's buttons.
+const APPLE_IDS: Record<string, string> = Object.fromEntries(
+  apps.flatMap((a) => {
+    const id = appleIdOf(a);
+    return id ? [[a.slug, id]] : [];
+  }),
+);
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -89,6 +100,7 @@ export default async function RootLayout({
       <body className="bg-ink text-paper min-h-dvh antialiased">
         {children}
         <Analytics />
+        <GoCt appleIds={APPLE_IDS} />
       </body>
     </html>
   );
