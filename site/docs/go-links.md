@@ -50,8 +50,9 @@ the layout's `GoCt` component (`src/components/go-ct.tsx`, rules in
 of `/go/poker-night/share-night` who later installs on an iPhone from the site
 counts under `ct=share-night`, the same as an iPhone that went straight to the
 store. The arrival is kept in `sessionStorage` for the rest of the visit
-(guides, support). App Store links to other apps (cross-promo) and every
-non-go visit keep their placement ct. A source the middleware wouldn't have
+(guides, support). App Store links to other apps (cross-promo), links whose ct
+is not a `site*` placement (the shared-list page's `ct=list`) and every non-go
+visit keep their own ct. A source the middleware wouldn't have
 produced is ignored, never defaulted. This happens in the browser after
 hydration. The pages stay static, and the server-rendered HTML still shows
 the placement ct.

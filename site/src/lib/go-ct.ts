@@ -52,8 +52,9 @@ export function parseArrival(raw: string | null): GoArrival | null {
 
 /**
  * `href` with `ct=<source>` (and the studio's pt, mt=8) when it is an App Store
- * link to the arrival's app (`appleId`); null for anything else, so a
- * cross-promo button for another app keeps its own ct. Same rewrite as
+ * link to the arrival's app (`appleId`) whose ct is a site placement or
+ * absent; null for anything else, so a cross-promo button for another app (or
+ * a link that is its own campaign) keeps its own ct. Same rewrite as
  * lib/store-links.ts appStoreAt.
  */
 export function goStoreHref(href: string, source: string, appleId: string): string | null {
@@ -65,6 +66,10 @@ export function goStoreHref(href: string, source: string, appleId: string): stri
   }
   if (u.hostname !== "apps.apple.com" && u.hostname !== "itunes.apple.com") return null;
   if (u.pathname.match(/\/id(\d+)(?:\/|$)/)?.[1] !== appleId) return null;
+  // Only site placements (or no ct) give way; a link that is itself a
+  // campaign (the shared-list page's ct=list) keeps its own token.
+  const ct = u.searchParams.get("ct");
+  if (ct !== null && ct !== source && !/^site(-|$)/.test(ct)) return null;
   u.searchParams.set("pt", "119559267");
   u.searchParams.set("ct", source);
   u.searchParams.set("mt", "8");

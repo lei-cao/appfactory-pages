@@ -68,6 +68,9 @@ test("other apps' App Store links and non-store links are left alone", () => {
   assert.equal(goStoreHref("https://play.google.com/store/apps/details?id=sg.appfactory.poker_night", "share-night", PN), null);
   assert.equal(goStoreHref(`https://evil.example/apps.apple.com/app/id${PN}`, "share-night", PN), null);
   assert.equal(goStoreHref("/en/guides", "share-night", PN), null);
+  // A link that is itself a campaign (shared-list page, go/tracesheet/l) keeps it.
+  assert.equal(goStoreHref("https://apps.apple.com/app/apple-store/id6816287607?pt=119559267&ct=list&mt=8", "qr", "6816287607"), null);
+  assert.equal(goStoreHref(pnStore("sitemap"), "share-night", PN), null);
   // Already right: no rewrite needed.
   assert.equal(goStoreHref(pnStore("share-night"), "share-night", PN), null);
 });

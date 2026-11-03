@@ -37,11 +37,12 @@ export function GoCt({ appleIds }: { appleIds: Record<string, string> }) {
       const a = (e.target as Element | null)?.closest?.("a[href]");
       if (a) apply(a as HTMLAnchorElement);
     };
-    document.addEventListener("click", onClick, true);
-    document.addEventListener("auxclick", onClick, true);
+    // pointerdown/contextmenu: long-press, copy link and drag-to-tab read the
+    // href before any click fires.
+    const events = ["pointerdown", "contextmenu", "click", "auxclick"] as const;
+    for (const ev of events) document.addEventListener(ev, onClick, true);
     return () => {
-      document.removeEventListener("click", onClick, true);
-      document.removeEventListener("auxclick", onClick, true);
+      for (const ev of events) document.removeEventListener(ev, onClick, true);
     };
   }, [pathname, appleIds]);
 
