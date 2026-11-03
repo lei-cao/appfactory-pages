@@ -2,6 +2,7 @@
 // (internal link for readers who arrive from search) and the App Store.
 
 import Link from "next/link";
+import { appStoreAt } from "@/lib/store-links";
 import { localePrefix, type Locale } from "@/lib/i18n";
 
 const COPY: Record<Locale, { title: string; body: string; home: string; store: string }> = {
@@ -30,11 +31,13 @@ export function GuideCta({
   slug,
   name,
   storeUrl,
+  playUrl,
 }: {
   locale: Locale;
   slug: string;
   name: string;
   storeUrl?: string;
+  playUrl?: string;
 }) {
   const c = COPY[locale];
   return (
@@ -45,8 +48,13 @@ export function GuideCta({
         {c.home}
       </Link>
       {storeUrl && (
-        <a href={storeUrl} data-app={slug} className="pn-button">
+        <a href={appStoreAt(storeUrl, "site-guide")} data-app={slug} className="pn-button">
           {c.store}
+        </a>
+      )}
+      {playUrl && (
+        <a href={playUrl} data-app={slug} className="pn-button">
+          Google Play
         </a>
       )}
     </aside>

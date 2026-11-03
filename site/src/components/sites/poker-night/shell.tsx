@@ -4,6 +4,7 @@
 // under it (PnMotion switches data-field); the footer closes every page
 // with the contact address set as the headline.
 
+import { appStoreAt } from "@/lib/store-links";
 import Image from "next/image";
 import Link from "next/link";
 import { getApp, localized } from "@/content/apps";
@@ -93,8 +94,13 @@ export function PokerNightShell({ locale, slug, children }: SiteShellProps) {
             {switcher}
           </nav>
           {app.appStoreUrl && (
-            <a href={app.appStoreUrl} data-app={slug} className="pn-button pn-button--small">
+            <a href={appStoreAt(app.appStoreUrl, "site-header")} data-app={slug} className="pn-button pn-button--small">
               {s.store}
+            </a>
+          )}
+          {app.playStoreUrl && (
+            <a href={app.playStoreUrl} data-app={slug} className="pn-button pn-button--small pn-button--play">
+              Google Play
             </a>
           )}
           <details className="pn-menu">

@@ -150,7 +150,7 @@ export default async function GuideArticlePage({
               </Link>
             )}
           </nav>
-          <GuideCta locale={locale} slug={slug} name={loc.name} storeUrl={app.appStoreUrl} />
+          <GuideCta locale={locale} slug={slug} name={loc.name} storeUrl={app.appStoreUrl} playUrl={app.playStoreUrl} />
         </div>
       </div>
     </main>

@@ -78,7 +78,7 @@ export default async function GuideIndex({
         ))}
       </ol>
 
-      <GuideCta locale={locale} slug={slug} name={loc.name} storeUrl={app.appStoreUrl} />
+      <GuideCta locale={locale} slug={slug} name={loc.name} storeUrl={app.appStoreUrl} playUrl={app.playStoreUrl} />
     </main>
   );
 }

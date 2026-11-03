@@ -19,7 +19,7 @@ const APEX = "appfactory.sg";
 // the sources as text to keep this table honest.
 const PN_PLAY = "https://play.google.com/store/apps/details?id=sg.appfactory.poker_night";
 const REGISTRY = [
-  { file: "poker-night", slug: "poker-night", appStoreId: "6788786222", playGoUrl: PN_PLAY },
+  { file: "poker-night", slug: "poker-night", appStoreId: "6788786222", playStoreUrl: PN_PLAY },
   { file: "tiltfree", slug: "tiltfree", appStoreId: "6758140114", externalUrls: { en: "https://www.pokertools.ai?utm_source=appfactory.sg&utm_medium=referral&utm_campaign=crosspromo" } },
   { file: "sushi-sort", slug: "sushi-sort", appStoreId: "6792529319" },
   { file: "tracesheet", slug: "tracesheet", host: "lingowonders", domain: "lingowonders.com", appStoreId: "6816287607" },
@@ -30,7 +30,7 @@ const REGISTRY = [
   { file: "bottle-guess", slug: "bottle-guess" },
   { file: "crowd-siege", slug: "crowd-siege" },
   { file: "harvest-town", slug: "harvest-town" },
-  { file: "popline", slug: "popline" },
+  { file: "popline", slug: "popline", appStoreId: "6829481152" },
 ] as { file: string; slug: string; host?: string; domain?: string; appStoreId?: string; playStoreUrl?: string; playGoUrl?: string; playGo?: boolean; externalUrls?: { en: string } }[];
 
 // Not in the registry: exercises the Play branch (no live app has a Play URL yet).
@@ -196,14 +196,13 @@ test("only /go/tracesheet/l renders the shared-list page; other /go paths still 
   assert.deepEqual(go("/go/tracesheet/sheet", UA.iphone), redirect(apple("6816287607", "sheet")));
 });
 
-test("Poker Night: Android goes to Google Play while its flag is on", () => {
+test("Poker Night: Android goes to Google Play", () => {
   const play = `${PN_PLAY}&referrer=utm_source%3Dqr%26utm_medium%3Dgo%26utm_campaign%3Dpoker-night`;
   assert.deepEqual(go("/go/poker-night/qr", UA.android), redirect(play));
   const src = readFileSync(new URL("../src/content/poker-night.ts", import.meta.url), "utf8");
-  assert.match(src, /^const PLAY_GO = true;$/m);
   assert.ok(src.includes(`const PLAY_URL = "${PN_PLAY}";`));
-  // The landing-page badge must not claim a public release yet.
-  assert.equal(/^ {2}playStoreUrl:/m.test(src), false);
+  assert.match(src, /^ {2}playStoreUrl: PLAY_URL,$/m);
+  assert.equal(src.includes("com.appfactory.poker_night"), false);
 });
 
 test("the Play flag off sends Android to the landing page; iOS and desktop are unaffected", () => {
@@ -212,4 +211,19 @@ test("the Play flag off sends Android to the landing page; iOS and desktop are u
   assert.deepEqual(resolveGo("/go/off/qr", UA.android, d), redirect(landing(off, "qr")));
   assert.deepEqual(resolveGo("/go/off/qr", UA.iphone, d), redirect(apple("123", "qr")));
   assert.deepEqual(resolveGo("/go/off/qr", UA.windows, d), redirect(landing(off, "qr")));
+});
+
+test("WeChat's in-app browser gets the landing page on iPhone and Android, with both stores one tap away there", () => {
+  const wxIos = `${UA.iphone} MicroMessenger/8.0.50(0x18003230) NetType/WIFI Language/zh_CN`;
+  const wxAndroid = `${UA.android} MicroMessenger/8.0.50.2701(0x28003234) WeChat/arm64 Weixin NetType/WIFI`;
+  for (const slug of ["popline", "poker-night"]) {
+    const land = `https://${slug}.appfactory.sg/?utm_source=wechat&utm_medium=go&utm_campaign=${slug}`;
+    assert.deepEqual(go(`/go/${slug}/wechat`, wxIos), redirect(land), `${slug} ios`);
+    assert.deepEqual(go(`/go/${slug}/wechat`, wxAndroid), redirect(land), `${slug} android`);
+  }
+});
+
+test("Popline: iPhone goes straight to the App Store, Android to the landing page (no Play listing)", () => {
+  assert.deepEqual(go("/go/popline/qr", UA.iphone), redirect(apple("6829481152", "qr")));
+  assert.deepEqual(go("/go/popline/qr", UA.android), redirect("https://popline.appfactory.sg/?utm_source=qr&utm_medium=go&utm_campaign=popline"));
 });

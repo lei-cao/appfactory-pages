@@ -85,6 +85,8 @@ const SHOTS_TW = pn21("zh", {
 });
 
 export interface PnLanding {
+  /** Google Play button label (the App Store one is hero.cta / price.cta). */
+  playCta: string;
   hero: {
     /** The h1 runs lead + [the results-card slot] + tail (the slot is decorative). */
     lead: string;
@@ -163,6 +165,7 @@ export interface PnLanding {
 }
 
 const en: PnLanding = {
+  playCta: "Get it on Google Play",
   hero: {
     lead: "Poker Night,",
     tail: "settled.",
@@ -170,7 +173,7 @@ const en: PnLanding = {
     body:
       "Poker Night keeps the ledger, runs the blinds clock and settles who pays whom in the fewest transfers. Between nights, it teaches the odds.",
     cta: "Get it on the App Store",
-    note: "Free on iPhone and iPad. No ads, no account. Android is on its way.",
+    note: "Free on iPhone, iPad and Android. No ads, no account.",
     videoTitle: "Settle a home game in seconds",
     videoBody: "The lead story: count to Balanced, the fewest transfers and the results card, in 30 seconds.",
     videoLabel: "Video: settle a home game in seconds with Poker Night",
@@ -331,13 +334,14 @@ const en: PnLanding = {
 };
 
 const zhCn: PnLanding = {
+  playCta: "在 Google Play 下载",
   hero: {
     lead: "扑克之夜，",
     tail: "几秒算清。",
     slot: { src: "/apps/poker-night/slot-card-zh.jpg", alt: "扑克之夜战报卡片：今晚大赢家小明 +¥125.00，盖着「已结清」章" },
     body: "扑克之夜帮你记账、跑盲注计时，散场用最少笔数算清谁付谁。牌局之间，还能练胜率和底池赔率。",
     cta: "在 App Store 下载",
-    note: "iPhone 和 iPad 免费下载。无广告，无需账号。Android 版即将推出。",
+    note: "iPhone、iPad 和 Android 免费下载。无广告，无需账号。",
     videoTitle: "家庭牌局，几秒算清",
     videoBody: "主打短片：清点到已平账、最少笔数转账和战报卡片，30 秒看完。",
     videoLabel: "视频：用扑克之夜几秒算清家庭牌局",
@@ -499,13 +503,14 @@ const zhCn: PnLanding = {
 
 // zh-TW: Traditional characters, Taiwan phrasing (帳/資訊/影片/鎖定畫面), NT$ examples.
 const zhTw: PnLanding = {
+  playCta: "在 Google Play 下載",
   hero: {
     lead: "撲克之夜，",
     tail: "幾秒算清。",
     slot: { src: "/apps/poker-night/slot-card-zh.jpg", alt: "撲克之夜戰報卡片：今晚大贏家小明 +¥125.00，蓋著「已結清」章" },
     body: "撲克之夜幫你記帳、跑盲注計時，散場用最少筆數算清誰付誰。牌局之間，還能練勝率和底池賠率。",
     cta: "在 App Store 下載",
-    note: "iPhone 和 iPad 免費下載。無廣告，無需帳號。Android 版即將推出。",
+    note: "iPhone、iPad 和 Android 免費下載。無廣告，無需帳號。",
     videoTitle: "家庭牌局，幾秒算清",
     videoBody: "主打短片：清點到已平帳、最少筆數轉帳和戰報卡片，30 秒看完。",
     videoLabel: "影片：用撲克之夜幾秒算清家庭牌局",
