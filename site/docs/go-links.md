@@ -41,6 +41,22 @@ pokertools.ai), its own `domain` (LingoWonders → lingowonders.com), else
 utm params already in the URL, so GA4 sees the same source the App Store sees
 as `ct=`.
 
+**On the landing page the source carries on to the App Store buttons.** Each
+App Store button has its own placement ct (`site-hero`, `site-header`,
+`site-price`, `site-guide`, …). When a visitor arrives with `utm_medium=go`,
+the layout's `GoCt` component (`src/components/go-ct.tsx`, rules in
+`src/lib/go-ct.ts`) sets `ct=<source>` on every App Store link **to that app**
+(matched by the App Store id of `utm_campaign`). So an Android or desktop viewer
+of `/go/poker-night/share-night` who later installs on an iPhone from the site
+counts under `ct=share-night`, the same as an iPhone that went straight to the
+store. The arrival is kept in `sessionStorage` for the rest of the visit
+(guides, support). App Store links to other apps (cross-promo), links whose ct
+is not a `site*` placement (the shared-list page's `ct=list`) and every non-go
+visit keep their own ct. A source the middleware wouldn't have
+produced is ignored, never defaulted. This happens in the browser after
+hydration. The pages stay static, and the server-rendered HTML still shows
+the placement ct.
+
 Checking with curl: an iPhone, Android or Windows UA gets a `302` with a
 `Location`; a Mac UA gets `200` with the detect page (`var I=` is the App Store
 URL, `var O=` the landing page).
