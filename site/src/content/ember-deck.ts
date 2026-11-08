@@ -122,7 +122,7 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-26",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "The short version",
@@ -344,7 +344,7 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-26",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "简要说明",
@@ -567,7 +567,7 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-26",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "簡要說明",

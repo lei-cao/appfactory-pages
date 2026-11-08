@@ -131,7 +131,7 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-07-23",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "What we collect",
@@ -359,7 +359,7 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-07-23",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "我们收集什么",
@@ -583,7 +583,7 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-07-23",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "我們收集什麼",
