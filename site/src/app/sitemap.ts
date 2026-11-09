@@ -65,7 +65,10 @@ function tracesheetGuideEntries(origin: string): MetadataRoute.Sitemap {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const out: MetadataRoute.Sitemap = [...entriesFor(hubOrigin(), "/")];
+  const out: MetadataRoute.Sitemap = [
+    ...entriesFor(hubOrigin(), "/"),
+    ...entriesFor(hubOrigin(), "/chat-derby"),
+  ];
   for (const app of apps) {
     // External apps live on their own domain — skip subdomain sitemap entries.
     if (app.externalUrls) continue;
