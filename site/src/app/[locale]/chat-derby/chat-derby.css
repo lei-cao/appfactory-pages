@@ -1,0 +1,121 @@
+/* Chat Derby page (appfactory.sg/chat-derby). Rides on the hub's dark room: tokens, bar, button and links come from
+   hub.css; this file only lays out the page. */
+
+.hub.derby {
+  min-height: 100vh;
+  padding: 0 var(--margin) calc(var(--section) / 2);
+}
+
+.derby .bar {
+  position: static;
+  padding-inline: 0;
+}
+
+.derby__hero {
+  display: grid;
+  gap: var(--gap);
+  align-items: center;
+  padding-block: clamp(32px, 6vw, 88px);
+}
+
+.derby__copy {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+
+.derby__copy h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: var(--step-head);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.derby__copy p {
+  margin: 0;
+  max-width: 34em;
+}
+
+.derby__shot {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+.derby__sect {
+  padding-block: clamp(40px, 6vw, 88px);
+  border-top: 1px solid rgba(233, 233, 230, 0.14);
+}
+
+.derby h2 {
+  margin: 0 0 12px;
+  font-weight: 400;
+  font-size: var(--step-title);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.derby__cmds {
+  display: grid;
+  margin: 24px 0 0;
+}
+
+.derby__cmds > div {
+  display: grid;
+  gap: 4px 24px;
+  padding-block: 14px;
+  border-top: 1px solid rgba(233, 233, 230, 0.1);
+}
+
+.derby__cmds dt,
+.derby__cmds dd {
+  margin: 0;
+}
+
+.derby__cmds code {
+  font-family: inherit;
+  color: var(--accent);
+}
+
+.derby__cols {
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+  padding-block: clamp(40px, 6vw, 88px);
+  border-top: 1px solid rgba(233, 233, 230, 0.14);
+}
+
+.derby__cols ul {
+  margin: 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: 10px;
+}
+
+.derby__cols p {
+  margin: 0;
+  max-width: 34em;
+}
+
+.derby__live {
+  margin-top: 36px !important;
+}
+
+.derby__foot {
+  padding-top: 24px;
+  border-top: 1px solid rgba(233, 233, 230, 0.14);
+}
+
+@media (min-width: 900px) {
+  .derby__hero {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 80px);
+  }
+  .derby__cmds > div {
+    grid-template-columns: 16em 1fr;
+  }
+  .derby__cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
