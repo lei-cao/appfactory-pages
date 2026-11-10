@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
+import { apps } from "@/content/apps";
 import { hubOrigin } from "@/lib/site";
 
 // Decision (HQ search hub): allow every AI crawler, search and training alike.
@@ -31,12 +33,16 @@ export const AI_BOTS = [
   "MistralAI-User",
 ];
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  // An app with its own domain points at its own sitemap, not the apex one.
+  const host = ((await headers()).get("host") ?? "").split(":")[0].toLowerCase();
+  const own = apps.find((a) => a.domain && (host === a.domain || host === `www.${a.domain}`));
+  const origin = own ? `https://${own.domain}` : hubOrigin();
   return {
     rules: [
       { userAgent: "*", allow: "/" },
       { userAgent: AI_BOTS, allow: "/" },
     ],
-    sitemap: `${hubOrigin()}/sitemap.xml`,
+    sitemap: `${origin}/sitemap.xml`,
   };
 }
