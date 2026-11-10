@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LANDING, MAC_LINKS, PRICE } from "@/content/popline-mac";
+import { LANDING, MAC_LINKS } from "@/content/popline-mac";
 import { JsonLd, organizationLd } from "@/lib/seo";
 import { macAppLd, macHref } from "./meta";
 
@@ -67,16 +67,12 @@ export function MacLanding() {
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <MacButton
             href={MAC_LINKS.download}
-            label="Download for Mac"
-            sub="Free, no account"
-            placeholder="Opens at launch"
+            {...t.buttons.download}
             primary
           />
           <MacButton
             href={MAC_LINKS.buy}
-            label={`Buy Pro, ${PRICE}`}
-            sub="One time, via Paddle"
-            placeholder="Checkout opens at launch"
+            {...t.buttons.buy}
           />
         </div>
         <p className="text-paper mt-6 max-w-xl text-sm leading-relaxed">{t.requires}</p>

@@ -63,6 +63,10 @@ export const LANDING = {
   headline: ["Captions for ", "long", " videos, made on your Mac."],
   lede: "Drop in a video of any length and get captions without uploading anything. Fix them in an editor built for an hour of speech, then export SRT, VTT or a burned-in MP4. No account, no watermark.",
   requires: "macOS 26 on an Apple silicon Mac. Speech in English, Chinese and Japanese.",
+  buttons: {
+    download: { label: "Download for Mac", sub: "Free, no account", placeholder: "Opens at launch" },
+    buy: { label: `Buy Pro, ${PRICE}`, sub: "One time, via Paddle", placeholder: "Checkout opens at launch" },
+  },
   notOpen:
     "Popline for Mac 1.0 is not on sale yet. The download and checkout open here at launch.",
   shot: {
@@ -77,8 +81,8 @@ export const LANDING = {
     {
       heading: "One mistake, fixed everywhere.",
       body: [
-        "Speech recognition gets a product name wrong the same way a hundred times. Find it once and replace it everywhere, as one undo.",
-        "The timeline shows the waveform and every caption. Drag an edge to re-time it. The preview draws each frame exactly as the export will.",
+        "Speech recognition tends to get a product name wrong the same way every time it comes up. Find it once and replace it everywhere, as one undo.",
+        "The timeline shows the waveform and every caption. Drag an edge to re-time it. The preview shows each caption on the video in the style you picked.",
       ],
     },
     {
@@ -346,14 +350,14 @@ export const REFUNDS: MacDoc = {
 export const PRIVACY: MacDoc = {
   title: "Popline for Mac privacy policy",
   description:
-    "Popline for Mac has no account and no analytics and uploads nothing. This page lists everything the app sends, and what happens when you buy or visit this site.",
+    "Popline for Mac has no account and no analytics and never uploads your videos or captions. This page lists everything the app sends, and what happens when you buy or visit this site.",
   intro: `${SELLER} ("we") makes Popline for Mac and runs this website. We are the controller of the personal data described here. Questions and requests: ${CONTACT}.`,
   sections: [
     {
       id: "app",
       heading: "Your videos and captions stay on your Mac",
       body: [
-        "Popline for Mac has no account, no analytics and no advertising, and it uploads nothing. Speech recognition runs on your Mac with Apple's on-device speech models. We never receive your videos, audio, scripts or captions.",
+        "Popline for Mac has no account, no analytics and no advertising, and it never uploads your videos, audio, scripts or captions. Speech recognition runs on your Mac with Apple's on-device speech models. We never receive them. The only connections it makes are listed in the next section.",
       ],
     },
     {
