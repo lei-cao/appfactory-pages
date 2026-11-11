@@ -15,6 +15,8 @@ import {
 import { TRACESHEET_GUIDE_IDS, tracesheetGuideUpdated } from "@/content/tracesheet-guides";
 import { canonicalUrl, languageAlternates, LOCALES } from "@/lib/i18n";
 import { appOrigin, hubOrigin } from "@/lib/site";
+import { MAC_PAGES, MAC_UPDATED } from "@/content/popline-mac";
+import { macUrl } from "@/components/sites/popline/mac/meta";
 
 function entriesFor(
   origin: string,
@@ -77,6 +79,14 @@ function appEntries(app: (typeof apps)[number]): MetadataRoute.Sitemap {
   if (en.terms) out.push(...entriesFor(origin, "/terms", en.terms.updated));
   if (app.slug === "poker-night") out.push(...guideEntriesFor(origin));
   if (app.slug === "tracesheet") out.push(...tracesheetGuideEntries(origin));
+  // Popline for Mac (APPFA2-3): English only, so no hreflang set and no zh entries.
+  if (app.slug === "popline")
+    out.push(
+      ...MAC_PAGES.map((p) => ({
+        url: macUrl(p.path),
+        lastModified: p.path === "" || p.path === "/support" ? undefined : new Date(MAC_UPDATED),
+      })),
+    );
   return out;
 }
 

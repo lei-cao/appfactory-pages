@@ -1,0 +1,92 @@
+/* Popline for Mac (/mac/*): the Popline site's tokens (site.css) plus the few
+   pieces the Mac pages add. Scoped under .mac-site so the iOS pages never get them. */
+
+/* The app screenshot in a plain window edge: one hairline, no glow, no tilt. */
+.mac-site .mac-window {
+  overflow: hidden;
+  border-radius: 0.9rem;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  box-shadow: 0 30px 60px -40px rgb(0 0 0 / 0.8);
+}
+
+/* "Pro" beside a heading, in the caption-bubble yellow outline. */
+.mac-site .mac-tag {
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 0.15rem 0.6rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f8d008;
+  border: 1px solid rgb(248 208 8 / 0.55);
+}
+
+/* The agent's tool calls, as a terminal would print them. */
+.mac-site .mac-log {
+  margin: 0;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  padding: 1.1rem 1.2rem;
+  font: 0.82rem/1.75 var(--font-mono), ui-monospace, Menlo, monospace;
+  white-space: pre;
+}
+.mac-site .mac-log b {
+  color: #f8d008;
+  font-weight: 500;
+}
+
+/* Free vs Pro: a plain comparison table. */
+.mac-site .mac-plans th,
+.mac-site .mac-plans td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.9rem 0.75rem 0.9rem 0;
+  vertical-align: top;
+}
+.mac-site .mac-plans tbody th {
+  line-height: 1.5;
+}
+.mac-site .mac-plans td,
+.mac-site .mac-plans .mac-plan-head {
+  width: 9rem;
+  padding-right: 0;
+  padding-left: 0.75rem;
+}
+.mac-site .mac-plans .mac-plan-head {
+  vertical-align: bottom;
+  padding-bottom: 1.1rem;
+}
+.mac-site .mac-yes {
+  color: #f8d008;
+  font-weight: 600;
+}
+.mac-site .mac-no {
+  color: var(--color-slate);
+  opacity: 0.6;
+}
+@media (max-width: 639px) {
+  .mac-site .mac-plans td,
+  .mac-site .mac-plans .mac-plan-head {
+    width: 5.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+.mac-site .mac-doc-table th,
+.mac-site .mac-doc-table td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.75rem 1rem 0.75rem 0;
+  vertical-align: top;
+  line-height: 1.55;
+  min-width: 9rem;
+}
+.mac-site .mac-doc-table th {
+  font-weight: 600;
+}
+.mac-site .mac-doc-table td {
+  color: var(--color-slate);
+}

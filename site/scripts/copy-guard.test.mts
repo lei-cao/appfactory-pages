@@ -23,6 +23,16 @@ import { getDict } from "../src/lib/dictionaries.ts";
 
 const LOCALES = ["en", "zh-cn", "zh-tw"] as const;
 const PAGES = ["", "/privacy", "/support"] as const;
+/**
+ * The one exception (APPFA2-3): Popline for Mac has a free tier and must say
+ * so, so its pages under /mac are not scanned for BANNED. They are English
+ * only, their copy lives in src/content/popline-mac.ts (never walked by the
+ * source layer below), and scripts/popline-mac.test.mts holds their own rules.
+ * Nothing else is exempt: the tests below prove the iOS pages still fail on
+ * "free" and that the exception covers /mac and nothing more.
+ */
+const MAC_EXEMPT = ["/mac", "/mac/support", "/mac/terms", "/mac/refunds", "/mac/privacy"] as const;
+const isMacRoute = (p: string) => p === "/mac" || p.startsWith("/mac/");
 const SELLER = "APPFACTORY STUDIO PTE. LTD.";
 
 /** Words that must never appear (any case, any language we ship). */
@@ -38,6 +48,14 @@ function strings(value: unknown, path = "", out: [string, string][] = []): [stri
   else if (value && typeof value === "object")
     for (const [k, v] of Object.entries(value)) strings(v, path ? `${path}.${k}` : k, out);
   return out;
+}
+
+/** What the rendered-page scan reports for one page: banned and stale words. */
+export function scanHtml(html: string): { banned: string[]; stale: string[] } {
+  return {
+    banned: html.match(new RegExp(BANNED.source, "gi")) ?? [],
+    stale: html.match(new RegExp(STALE.source, "gi")) ?? [],
+  };
 }
 
 function hits(all: [string, string][], re: RegExp): string[] {
@@ -121,10 +139,9 @@ test(
         assert.match(html, /<meta property="og:title"/, `${where}: og`);
         assert.match(html, /<meta name="twitter:/, `${where}: twitter`);
         assert.match(html, /application\/ld\+json/, `${where}: JSON-LD`);
-        const bad = html.match(new RegExp(BANNED.source, "gi"));
-        assert.equal(bad, null, `${where}: banned words ${bad?.join(", ")}`);
-        const stale = html.match(new RegExp(STALE.source, "gi"));
-        assert.equal(stale, null, `${where}: stale facts ${stale?.join(", ")}`);
+        const { banned: bad, stale } = scanHtml(html);
+        assert.deepEqual(bad, [], `${where}: banned words ${bad.join(", ")}`);
+        assert.deepEqual(stale, [], `${where}: stale facts ${stale.join(", ")}`);
         if (p === "/privacy") {
           assert.ok(html.includes(SELLER), `${where}: names ${SELLER}`);
           assert.equal(/lei cao/i.test(html), false, `${where}: still says lei cao`);
@@ -144,5 +161,43 @@ test(
       const other = new URL("en/apps/poker-night/privacy.html", BUILD);
       if (existsSync(other)) assert.match(readFileSync(other, "utf8"), /is developed by lei cao/);
     }
+  },
+);
+
+// ---- the /mac exception (APPFA2-3) ----
+
+test("the Mac exception is /mac only: no iOS page is exempt, and the Mac copy is not in the scanned sources", () => {
+  for (const p of PAGES) assert.equal(isMacRoute(p), false, `${p || "/"} must stay scanned`);
+  for (const p of MAC_EXEMPT) assert.ok(isMacRoute(p), `${p} is a Mac route`);
+  for (const p of ["/macro", "/support/mac", "/privacy#mac", "/zh-cn/mac"]) assert.equal(isMacRoute(p), false, p);
+  // The scanned registry and landing chrome never carry Mac sales copy.
+  const all = [...strings(popline, "popline"), ...strings(COPY, "COPY")];
+  assert.deepEqual(hits(all, /\$39|Popline for Mac/), []);
+});
+
+test("the scan still fails an iOS page that says free (fixture)", () => {
+  const ok = `<title>Popline</title><p>Fast captions, no watermark.</p>`;
+  assert.deepEqual(scanHtml(ok).banned, []);
+  for (const word of ["Free", "free trial", "FREE", "免费", "免費", "無料"]) {
+    const html = ok.replace("no watermark", `no watermark, ${word}`);
+    assert.ok(scanHtml(html).banned.length > 0, `"${word}" is caught`);
+  }
+});
+
+test(
+  "the scan still fails a real rendered iOS page once free is added, and would fail every Mac page",
+  { skip: existsSync(new URL("en/apps/popline.html", BUILD)) ? false : "no .next build" },
+  () => {
+    for (const l of LOCALES)
+      for (const p of PAGES) {
+        const html = readFileSync(new URL(`${l}/apps/popline${p}.html`, BUILD), "utf8");
+        assert.deepEqual(scanHtml(html).banned, [], `${l}${p || "/"} is clean`);
+        const injected = html.replace("</h1>", " Free</h1>");
+        assert.notEqual(injected, html, `${l}${p || "/"} has an h1 to inject into`);
+        assert.ok(scanHtml(injected).banned.length > 0, `${l}${p || "/"} fails with free in it`);
+      }
+    // The exemption is doing real work: the Mac landing says Free and the scan sees it.
+    const mac = readFileSync(new URL("en/apps/popline/mac.html", BUILD), "utf8");
+    assert.ok(scanHtml(mac).banned.length > 0, "the Mac page says free, which is why it is exempt");
   },
 );
