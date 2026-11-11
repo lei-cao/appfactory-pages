@@ -58,12 +58,14 @@ test("sitemap.ts builds every <loc> with canonicalUrl", () => {
 test("IndexNow key file exists, matches its name, and middleware skips it", () => {
   const pub = new URL("../public/", import.meta.url);
   const keyFiles = readdirSync(pub).filter((f) => /^[0-9a-f]{32}\.txt$/.test(f));
-  assert.equal(keyFiles.length, 1);
-  const key = keyFiles[0].replace(".txt", "");
-  assert.equal(readFileSync(new URL(keyFiles[0], pub), "utf8").trim(), key);
-
-  // Not matched by the middleware => served as the static file on every host.
-  assert.equal(middlewareRuns(`/${key}.txt`), false);
+  // One key per property served from this project (appfactory.sg, lingowonders.com).
+  assert.equal(keyFiles.length, 2);
+  for (const f of keyFiles) {
+    const key = f.replace(".txt", "");
+    assert.equal(readFileSync(new URL(f, pub), "utf8").trim(), key);
+    // Not matched by the middleware => served as the static file on every host.
+    assert.equal(middlewareRuns(`/${key}.txt`), false);
+  }
   assert.equal(middlewareRuns("/llms.txt"), false);
   assert.equal(middlewareRuns("/robots.txt"), false);
   assert.equal(middlewareRuns("/support"), true);

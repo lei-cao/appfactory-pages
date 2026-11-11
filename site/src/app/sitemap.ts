@@ -4,6 +4,7 @@
 // fine because robots.txt on every host points at this sitemap.
 
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
 import { apps, localized } from "@/content/apps";
 import {
   GUIDE_ARTICLE_IDS,
@@ -66,7 +67,37 @@ function tracesheetGuideEntries(origin: string): MetadataRoute.Sitemap {
   ];
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+/** Entries for one app, on its own canonical origin. */
+function appEntries(app: (typeof apps)[number]): MetadataRoute.Sitemap {
+  const origin = appOrigin(app);
+  const en = localized(app, "en");
+  const out: MetadataRoute.Sitemap = [
+    ...entriesFor(origin, "/"),
+    ...entriesFor(origin, "/support"),
+    ...entriesFor(origin, "/privacy", en.privacy.updated),
+  ];
+  if (en.terms) out.push(...entriesFor(origin, "/terms", en.terms.updated));
+  if (app.slug === "poker-night") out.push(...guideEntriesFor(origin));
+  if (app.slug === "tracesheet") out.push(...tracesheetGuideEntries(origin));
+  // Popline for Mac (APPFA2-3): English only, so no hreflang set and no zh entries.
+  if (app.slug === "popline")
+    out.push(
+      ...MAC_PAGES.map((p) => ({
+        url: macUrl(p.path),
+        lastModified: p.path === "" || p.path === "/support" ? undefined : new Date(MAC_UPDATED),
+      })),
+    );
+  return out;
+}
+
+// An app with its own domain (lingowonders.com) gets its own sitemap there:
+// the host header decides, so /sitemap.xml on that domain lists only that
+// domain's canonical URLs. The shared appfactory.sg sitemap no longer lists it.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const host = ((await headers()).get("host") ?? "").split(":")[0].toLowerCase();
+  const own = apps.find((a) => a.domain && (host === a.domain || host === `www.${a.domain}`));
+  if (own) return appEntries(own);
+
   const out: MetadataRoute.Sitemap = [
     ...entriesFor(hubOrigin(), "/"),
     ...entriesFor(hubOrigin(), "/chat-derby"),
@@ -74,22 +105,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const app of apps) {
     // External apps live on their own domain — skip subdomain sitemap entries.
     if (app.externalUrls) continue;
-    const origin = appOrigin(app);
-    const en = localized(app, "en");
-    out.push(...entriesFor(origin, "/"));
-    out.push(...entriesFor(origin, "/support"));
-    out.push(...entriesFor(origin, "/privacy", en.privacy.updated));
-    if (en.terms) out.push(...entriesFor(origin, "/terms", en.terms.updated));
-    if (app.slug === "poker-night") out.push(...guideEntriesFor(origin));
-    if (app.slug === "tracesheet") out.push(...tracesheetGuideEntries(origin));
-    // Popline for Mac (APPFA2-3): English only, so no hreflang set and no zh entries.
-    if (app.slug === "popline")
-      out.push(
-        ...MAC_PAGES.map((p) => ({
-          url: macUrl(p.path),
-          lastModified: p.path === "" || p.path === "/support" ? undefined : new Date(MAC_UPDATED),
-        })),
-      );
+    if (app.domain) continue; // own domain: listed in that domain's sitemap
+    out.push(...appEntries(app));
   }
   return out;
 }
