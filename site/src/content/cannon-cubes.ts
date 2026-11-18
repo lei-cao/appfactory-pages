@@ -4,7 +4,7 @@
 // (components/sites/cannon-cubes/site.tsx) with the shared privacy and support
 // pages. Unreleased: status "building", no store links until the App Store
 // record exists. Claims are limited to what version 1.0.0 contains: Classic
-// and Daily Harbour, aim-and-fire input, Big Shot, powder kegs, physics cubes,
+// Daily Harbour and Cargo Run, aim-and-fire input, Big Shot, powder kegs, physics cubes,
 // no ads, no purchases, no accounts, no network use, no data collected.
 // Names and mode labels follow the in-app strings (translations/strings.csv).
 // Listing text: apps/game-hall/fastlane/metadata/ios/<locale>/.
@@ -25,7 +25,7 @@ const en: AppLocalized = {
   statusNote: "In development. Coming to the App Store for iPhone.",
   metaTitle: "Cannon Cubes: Block Puzzle. Aim, fire, clear the grid",
   metaDescription:
-    "A 3D block puzzle where a cannon fires every piece onto the board and cleared lines break into physics cubes. Classic and Daily Harbour modes. No ads, no purchases, plays offline.",
+    "A 3D block puzzle where a cannon fires every piece onto the board and cleared lines break into physics cubes. Classic, Daily Harbour and 40 Cargo Run levels. No ads, no purchases, plays offline.",
   features: [
     {
       title: "Aim, never drag",
@@ -44,8 +44,8 @@ const en: AppLocalized = {
       body: "A keg cube takes out the eight cubes around it when its line clears, and kegs next to kegs set each other off.",
     },
     {
-      title: "Classic and Daily Harbour",
-      body: "Play an endless run for your best score, or a new seeded board each day with a daily best and a streak of days played.",
+      title: "Classic, Daily Harbour, Cargo Run",
+      body: "Play an endless run for your best score, a new seeded board each day with a daily best and a streak, or 40 Cargo Run levels where you clear every crate within a shot limit.",
     },
     {
       title: "Plays offline, keeps to itself",
@@ -141,7 +141,7 @@ const zhCn: AppLocalized = {
   statusNote: "开发中，即将登陆 iPhone 版 App Store。",
   metaTitle: "Cannon Cubes：方块大炮解谜，瞄准、开炮、消除整行整列",
   metaDescription:
-    "一款 3D 方块解谜游戏：大炮把每一块打上棋盘，消除的行列碎成物理小方块。经典模式和每日港湾。无广告、无内购，可离线游玩。",
+    "一款 3D 方块解谜游戏：大炮把每一块打上棋盘，消除的行列碎成物理小方块。经典模式、每日港湾和 40 关货箱关卡。无广告、无内购，可离线游玩。",
   features: [
     {
       title: "只瞄准，不拖动",
@@ -160,8 +160,8 @@ const zhCn: AppLocalized = {
       body: "火药桶所在的行列消除时，会炸掉周围八格；紧挨着的火药桶还会接连引爆。",
     },
     {
-      title: "经典模式与每日港湾",
-      body: "经典模式是刷最高分的无尽挑战；每日港湾每天一个新棋盘，有当日最高分和连续天数。",
+      title: "经典模式、每日港湾、货箱关卡",
+      body: "经典模式是刷最高分的无尽挑战；每日港湾每天一个新棋盘，有当日最高分和连续天数；货箱关卡共 40 关，要在限定的炮弹数内清掉所有木箱。",
     },
     {
       title: "可离线，只留在你手里",
@@ -236,7 +236,7 @@ const zhTw: AppLocalized = {
   statusNote: "開發中，即將登陸 iPhone 版 App Store。",
   metaTitle: "Cannon Cubes：方塊大砲解謎，瞄準、開炮、消除整行整列",
   metaDescription:
-    "一款 3D 方塊解謎遊戲：大砲把每一塊打上棋盤，消除的行列碎成物理小方塊。經典模式和每日港灣。無廣告、無內購，可離線遊玩。",
+    "一款 3D 方塊解謎遊戲：大砲把每一塊打上棋盤，消除的行列碎成物理小方塊。經典模式、每日港灣和 40 關貨箱關卡。無廣告、無內購，可離線遊玩。",
   features: [
     {
       title: "只瞄準，不拖動",
@@ -255,8 +255,8 @@ const zhTw: AppLocalized = {
       body: "火藥桶所在的行列消除時，會炸掉周圍八格；緊挨著的火藥桶還會接連引爆。",
     },
     {
-      title: "經典模式與每日港灣",
-      body: "經典模式是刷最高分的無盡挑戰；每日港灣每天一個新棋盤，有當日最高分和連續天數。",
+      title: "經典模式、每日港灣、貨箱關卡",
+      body: "經典模式是刷最高分的無盡挑戰；每日港灣每天一個新棋盤，有當日最高分和連續天數；貨箱關卡共 40 關，要在限定的砲彈數內清掉所有木箱。",
     },
     {
       title: "可離線，只留在你手裡",
