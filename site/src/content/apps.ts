@@ -139,6 +139,7 @@ import { bottleGuess } from "./bottle-guess";
 import { crowdSiege } from "./crowd-siege";
 import { harvestTown } from "./harvest-town";
 import { popline } from "./popline";
+import { cannonCubes } from "./cannon-cubes";
 
 export const apps: AppContent[] = [
   pokerNight,
@@ -153,6 +154,7 @@ export const apps: AppContent[] = [
   crowdSiege,
   harvestTown,
   popline,
+  cannonCubes,
 ];
 
 /** The developer name privacy policies use when an app sets none. */
