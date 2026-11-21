@@ -16,6 +16,7 @@ import type { AppContent, AppLocalized } from "./apps";
 /** The App Store seller of the studio account (same as Popline's privacy page). */
 const DEVELOPER = "APPFACTORY STUDIO PTE. LTD.";
 const UPDATED = "2026-11-21";
+const IMG = "/apps/cannon-cubes";
 
 const en: AppLocalized = {
   name: "Otter Harbor",
@@ -54,7 +55,13 @@ const en: AppLocalized = {
       body: "No account and no network connection needed. Progress and settings stay on your device. English, Simplified Chinese and Traditional Chinese.",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/breakyard.webp`, alt: "Breaker's Yard in Otter Harbor" },
+    { src: `${IMG}/shots/fireworks.webp`, alt: "Fireworks Jetty in Otter Harbor" },
+    { src: `${IMG}/shots/lighthouse.webp`, alt: "Lighthouse in Otter Harbor" },
+    { src: `${IMG}/shots/tug.webp`, alt: "Tugboat in Otter Harbor" },
+    { src: `${IMG}/shots/warehouse.webp`, alt: "Tea Warehouse in Otter Harbor" },
+  ],
   trust: {
     title: "No ads, no purchases, no data",
     body: "Version 1.0 has no ads, no in-app purchases, no accounts, no tracking, no analytics and no third-party SDKs. The game makes no network requests and collects nothing.",
@@ -170,7 +177,13 @@ const zhCn: AppLocalized = {
       body: "无需账号，也不用联网，进度和设置只保存在你的设备上。支持英文、简体中文和繁体中文。",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/breakyard.webp`, alt: "水獭港里的拆解场" },
+    { src: `${IMG}/shots/fireworks.webp`, alt: "水獭港里的烟花栈桥" },
+    { src: `${IMG}/shots/lighthouse.webp`, alt: "水獭港里的灯塔" },
+    { src: `${IMG}/shots/tug.webp`, alt: "水獭港里的拖船" },
+    { src: `${IMG}/shots/warehouse.webp`, alt: "水獭港里的茶叶仓库" },
+  ],
   trust: {
     title: "无广告，无内购，不收集数据",
     body: "1.0 版本没有广告、内购、账号、追踪、分析和第三方 SDK。游戏不发出任何网络请求，也不收集任何数据。",
@@ -262,7 +275,13 @@ const zhTw: AppLocalized = {
       body: "無需帳號，也不用連線，進度和設定只保存在你的裝置上。支援英文、簡體中文和繁體中文。",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/breakyard.webp`, alt: "水獺港裡的拆解場" },
+    { src: `${IMG}/shots/fireworks.webp`, alt: "水獺港裡的煙花棧橋" },
+    { src: `${IMG}/shots/lighthouse.webp`, alt: "水獺港裡的燈塔" },
+    { src: `${IMG}/shots/tug.webp`, alt: "水獺港裡的拖船" },
+    { src: `${IMG}/shots/warehouse.webp`, alt: "水獺港裡的茶葉倉庫" },
+  ],
   trust: {
     title: "無廣告，無內購，不蒐集資料",
     body: "1.0 版本沒有廣告、內購、帳號、追蹤、分析和第三方 SDK。遊戲不發出任何網路請求，也不蒐集任何資料。",
@@ -320,6 +339,8 @@ const zhTw: AppLocalized = {
 export const cannonCubes: AppContent = {
   slug: "cannon-cubes",
   category: "game",
+  icon: `${IMG}/icon.png`,
+  ogImage: `${IMG}/og.png`,
   buildNumber: 17,
   version: "1.0.0",
   status: "building",
