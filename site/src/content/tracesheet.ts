@@ -131,18 +131,18 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-10-20",
+    updated: "2026-10-25",
     sections: [
       {
         heading: "About this app",
         body: [
-          "LingoWonders (formerly TraceSheet) is made by AppFactory. This policy covers the LingoWonders app on iPhone and iPad.",
+          "LingoWonders (formerly TraceSheet) is made by AppFactory. This policy covers the LingoWonders app on iPhone, iPad and Android.",
         ],
       },
       {
         heading: "What stays on your device",
         body: [
-          "Your lists, readings, progress, children's profiles and recordings stay on your device. There is no account and no sign-up. The speech check, translations and reading text from photos run on the device. A backup is a file you save yourself; there is no cloud sync.",
+          "Your lists, readings, progress, children's profiles and recordings stay on your device. There is no account and no sign-up. Offline photo text recognition runs on your device. Supported speech checks and Apple translation run on-device on iPhone and iPad; Apple translation is not available on Android. Online AI photo features are described below. A backup is a file you save yourself; there is no cloud sync.",
         ],
       },
       {
@@ -155,14 +155,14 @@ const en: AppLocalized = {
             "Paper Check: the photo of the practice sheet.",
             "List photo: a list photo scanned while online is also sent, at a smaller size, to find underlined words.",
           ],
-          "Each request carries a random install id, and a Pro purchase receipt if you have one, so fair-use limits can be counted. Our server passes the request to Google's Gemini API to make the answer. Our server does not store the photos or the words; its logs hold only counts, timings and error codes. To keep usage fair it keeps the random install id (not linked to you) with a request count and, for Pro, the App Store transaction id of the purchase. Google may keep requests for a short time to detect abuse, under its Gemini API terms, and does not use them to train its models. A Paper Check photo stays on your device for 30 days for the check history; list photos stay on your device with the list.",
+          "Each request carries a random install id, and a Pro purchase receipt if you have one, so fair-use limits can be counted. Our server passes the request to Google's Gemini API to make the answer. Our server does not store the photos or the words; its logs hold only counts, timings and error codes. To keep usage fair it keeps the random install id (not linked to you) with a request count and, for Pro, the purchase's store id (the App Store transaction id, or the Google Play order id or a hash of the purchase token). Google may keep requests for a short time to detect abuse, under its Gemini API terms, and does not use them to train its models. A Paper Check photo stays on your device for 30 days for the check history; list photos stay on your device with the list.",
         ],
       },
       {
         heading: "Analytics and crash reports",
         body: [
           [
-            "Usage analytics (Google Firebase Analytics): anonymous app-usage events, for example that a sheet was made or the Pro page was shown. Analytics never carry words, text or images.",
+            "Usage analytics (Google Firebase Analytics): anonymous app-usage events, for example that a sheet was made or the Pro page was shown. Analytics never carry words, text or images. Firebase also derives approximate location from masked IP addresses for analytics; the app does not request GPS location.",
             "Crash reports (Firebase Crashlytics): technical crash and diagnostic data, used only to fix bugs.",
           ],
         ],
@@ -182,13 +182,13 @@ const en: AppLocalized = {
       {
         heading: "Purchases",
         body: [
-          "LingoWonders Pro is a one-time purchase with Family Sharing, processed entirely by the App Store. We never see your payment details.",
+          "LingoWonders Pro is a one-time purchase processed by the App Store on iPhone and iPad or Google Play on Android. Family Sharing applies only to eligible App Store purchases. We never see your payment details. Store purchases are restored through the store account used to buy them; they do not transfer between stores.",
         ],
       },
       {
         heading: "Children",
         body: [
-          "LingoWonders is designed for a parent to use together with their child. It has no chat and no social features. AI features are off until a parent allows them. Sheets and lists leave the device only when you print or share them yourself through the system share sheet.",
+          "LingoWonders is designed for a parent to use together with their child. It has no chat and no social features. AI features are off until a parent allows them. Aside from the optional AI requests described above, sheets and lists leave the device only when you print or share them yourself through the system share sheet.",
         ],
       },
       {
@@ -360,18 +360,18 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-10-20",
+    updated: "2026-10-25",
     sections: [
       {
         heading: "关于本应用",
         body: [
-          "LingoWonders（原名 TraceSheet）由 AppFactory 开发。本政策适用于 iPhone 和 iPad 上的 LingoWonders 应用。",
+          "LingoWonders（原名 TraceSheet）由 AppFactory 开发。本政策适用于 iPhone、iPad 和 Android 上的 LingoWonders 应用。",
         ],
       },
       {
         heading: "留在你设备上的数据",
         body: [
-          "清单、阅读内容、进度、孩子的档案和录音都只保存在你的设备上。没有账号，无需注册。语音检查、翻译以及从照片识别文字都在设备上完成。备份是你自己保存的文件，没有云同步。",
+          "清单、阅读内容、进度、孩子的档案和录音都只保存在你的设备上。没有账号，无需注册。离线照片文字识别在设备上完成。支持的语音检查和 Apple 翻译在 iPhone 和 iPad 本机运行；Android 不提供 Apple 翻译。联网 AI 照片功能见下文。备份是你自己保存的文件，没有云同步。",
         ],
       },
       {
@@ -384,14 +384,14 @@ const zhCn: AppLocalized = {
             "纸面检查：答题纸的照片。",
             "清单照片：联网时扫描的清单照片也会缩小后发送，用来找出画线的词语。",
           ],
-          "每个请求都带有随机的安装编号，若有 Pro 购买凭证也会带上，用于计算合理使用额度。我们的服务器会把请求转交给 Google 的 Gemini API 来生成结果。服务器不保存照片或词语，日志里只有次数、耗时和错误代码。为了计算合理使用额度，服务器会保留随机安装编号（与你本人无关联）及其请求次数；Pro 用户还会保留该购买的 App Store 交易编号。Google 可能会按其 Gemini API 条款短暂保留请求以防滥用，且不会用于训练模型。纸面检查的照片会在你的设备上保留 30 天，用于检查记录；清单照片随清单保存在你的设备上。",
+          "每个请求都带有随机的安装编号，若有 Pro 购买凭证也会带上，用于计算合理使用额度。我们的服务器会把请求转交给 Google 的 Gemini API 来生成结果。服务器不保存照片或词语，日志里只有次数、耗时和错误代码。为了计算合理使用额度，服务器会保留随机安装编号（与你本人无关联）及其请求次数；Pro 用户还会保留该购买的商店编号（App Store 交易编号，或 Google Play 订单编号／购买凭证的哈希值）。Google 可能会按其 Gemini API 条款短暂保留请求以防滥用，且不会用于训练模型。纸面检查的照片会在你的设备上保留 30 天，用于检查记录；清单照片随清单保存在你的设备上。",
         ],
       },
       {
         heading: "统计与崩溃报告",
         body: [
           [
-            "使用统计（Google Firebase Analytics）：匿名的应用使用事件，例如生成了一份字帖，或展示了 Pro 页面。统计数据不包含词语、文字或图片。",
+            "使用统计（Google Firebase Analytics）：匿名的应用使用事件，例如生成了一份字帖，或展示了 Pro 页面。统计数据不包含词语、文字或图片。Firebase 还会根据掩码 IP 地址推断大致位置用于分析；应用不会申请 GPS 位置权限。",
             "崩溃报告（Firebase Crashlytics）：技术性崩溃与诊断数据，仅用于修复问题。",
           ],
         ],
@@ -411,13 +411,13 @@ const zhCn: AppLocalized = {
       {
         heading: "购买",
         body: [
-          "LingoWonders Pro 是支持家人共享的一次性购买，完全由 App Store 处理，我们不会接触你的付款信息。",
+          "LingoWonders Pro 是一次性购买，iPhone 和 iPad 由 App Store 处理，Android 由 Google Play 处理。家人共享仅适用于符合条件的 App Store 购买。我们不会接触付款信息。购买通过原商店账号恢复，不能跨商店转移。",
         ],
       },
       {
         heading: "儿童",
         body: [
-          "LingoWonders 是设计给家长陪孩子一起使用的应用。没有聊天和社交功能。AI 功能在家长允许之前保持关闭。字帖和词表只有在你自己打印或通过系统分享面板分享时才会离开设备。",
+          "LingoWonders 是设计给家长陪孩子一起使用的应用。没有聊天和社交功能。AI 功能在家长允许之前保持关闭。除上文说明的可选 AI 请求外，字帖和词表只有在你自己打印或通过系统分享面板分享时才会离开设备。",
         ],
       },
       {
@@ -589,18 +589,18 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-10-20",
+    updated: "2026-10-25",
     sections: [
       {
         heading: "關於本應用程式",
         body: [
-          "LingoWonders（原名 TraceSheet）由 AppFactory 開發。本政策適用於 iPhone 和 iPad 上的 LingoWonders 應用程式。",
+          "LingoWonders（原名 TraceSheet）由 AppFactory 開發。本政策適用於 iPhone、iPad 和 Android 上的 LingoWonders 應用程式。",
         ],
       },
       {
         heading: "留在你裝置上的資料",
         body: [
-          "清單、閱讀內容、進度、孩子的檔案和錄音都只儲存在你的裝置上。沒有帳號，無需註冊。語音檢查、翻譯以及從照片辨識文字都在裝置上完成。備份是你自己儲存的檔案，沒有雲端同步。",
+          "清單、閱讀內容、進度、孩子的檔案和錄音都只儲存在你的裝置上。沒有帳號，無需註冊。離線照片文字辨識在裝置上完成。支援的語音檢查和 Apple 翻譯在 iPhone 和 iPad 本機執行；Android 不提供 Apple 翻譯。連線 AI 照片功能見下文。備份是你自己儲存的檔案，沒有雲端同步。",
         ],
       },
       {
@@ -613,14 +613,14 @@ const zhTw: AppLocalized = {
             "紙本檢查：答題紙的照片。",
             "清單照片：連線時掃描的清單照片也會縮小後傳送，用來找出畫線的詞語。",
           ],
-          "每個請求都帶有隨機的安裝編號，若有 Pro 購買憑證也會帶上，用於計算合理使用額度。我們的伺服器會把請求轉交給 Google 的 Gemini API 來產生結果。伺服器不儲存照片或詞語，紀錄裡只有次數、耗時和錯誤代碼。為了計算合理使用額度，伺服器會保留隨機安裝編號（與你本人無關聯）及其請求次數；Pro 使用者還會保留該購買的 App Store 交易編號。Google 可能會依其 Gemini API 條款短暫保留請求以防濫用，且不會用於訓練模型。紙本檢查的照片會在你的裝置上保留 30 天，用於檢查紀錄；清單照片隨清單儲存在你的裝置上。",
+          "每個請求都帶有隨機的安裝編號，若有 Pro 購買憑證也會帶上，用於計算合理使用額度。我們的伺服器會把請求轉交給 Google 的 Gemini API 來產生結果。伺服器不儲存照片或詞語，紀錄裡只有次數、耗時和錯誤代碼。為了計算合理使用額度，伺服器會保留隨機安裝編號（與你本人無關聯）及其請求次數；Pro 使用者還會保留該購買的商店編號（App Store 交易編號，或 Google Play 訂單編號／購買憑證的雜湊值）。Google 可能會依其 Gemini API 條款短暫保留請求以防濫用，且不會用於訓練模型。紙本檢查的照片會在你的裝置上保留 30 天，用於檢查紀錄；清單照片隨清單儲存在你的裝置上。",
         ],
       },
       {
         heading: "統計與當機報告",
         body: [
           [
-            "使用統計（Google Firebase Analytics）：匿名的應用程式使用事件，例如產生了一份字帖，或顯示了 Pro 頁面。統計資料不包含詞語、文字或圖片。",
+            "使用統計（Google Firebase Analytics）：匿名的應用程式使用事件，例如產生了一份字帖，或顯示了 Pro 頁面。統計資料不包含詞語、文字或圖片。Firebase 也會根據遮罩 IP 位址推斷大概位置用於分析；應用程式不會要求 GPS 位置權限。",
             "當機報告（Firebase Crashlytics）：技術性當機與診斷資料，僅用於修正問題。",
           ],
         ],
@@ -640,13 +640,13 @@ const zhTw: AppLocalized = {
       {
         heading: "購買",
         body: [
-          "LingoWonders Pro 是支援家人共享的一次性購買，完全由 App Store 處理，我們不會接觸你的付款資訊。",
+          "LingoWonders Pro 是一次性購買，iPhone 和 iPad 由 App Store 處理，Android 由 Google Play 處理。家人共享僅適用於符合資格的 App Store 購買。我們不會接觸付款資訊。購買透過原商店帳號恢復，不能跨商店轉移。",
         ],
       },
       {
         heading: "兒童",
         body: [
-          "LingoWonders 是設計給家長陪孩子一起使用的應用程式。沒有聊天和社交功能。AI 功能在家長允許之前保持關閉。字帖和詞表只有在你自己列印或透過系統分享面板分享時才會離開裝置。",
+          "LingoWonders 是設計給家長陪孩子一起使用的應用程式。沒有聊天和社交功能。AI 功能在家長允許之前保持關閉。除上文說明的可選 AI 請求外，字帖和詞表只有在你自己列印或透過系統分享面板分享時才會離開裝置。",
         ],
       },
       {
