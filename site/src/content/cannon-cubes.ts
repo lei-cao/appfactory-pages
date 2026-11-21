@@ -1,82 +1,87 @@
-// Cannon Cubes (apps/game-hall in the appfactory repo, bundle id
-// sg.appfactory.gameHall, HALL-1): registry content in all three locales for
-// cannon-cubes.appfactory.sg, rendered by the shared plain shell and landing
-// (components/sites/cannon-cubes/site.tsx) with the shared privacy and support
-// pages. Unreleased: status "building", no store links until the App Store
-// record exists. Claims are limited to what version 1.0.0 contains: Classic
-// Daily Harbour and Cargo Run, aim-and-fire input, Big Shot, powder kegs, physics cubes,
-// no ads, no purchases, no accounts, no network use, no data collected.
-// Names and mode labels follow the in-app strings (translations/strings.csv).
-// Listing text: apps/game-hall/fastlane/metadata/ios/<locale>/.
+// Otter Harbor: Cozy Arcade (HALL-9; renamed from Cannon Cubes; apps/game-hall in the
+// appfactory repo, bundle id sg.appfactory.gameHall). Registry content in all three
+// locales for cannon-cubes.appfactory.sg, rendered by the shared plain shell and
+// landing (components/sites/cannon-cubes/site.tsx) with the shared privacy and
+// support pages. The slug, route and host stay "cannon-cubes" until a new domain
+// is set up (follow-up). Unreleased: status "building", no store links until the
+// App Store record is live. Claims are limited to what version 1.0 contains: a toy
+// harbor island with eleven places (Barge Berth, Breaker's Yard, Fireworks Jetty,
+// Crane Arm, Tea Warehouse, Inspection Bench, Channel Watch, Pier Arcade,
+// Lighthouse, Tugboat, Maelstrom), harbor tokens that restore the island, a daily
+// challenge per place, no ads, no purchases, no accounts, no network use, no data
+// collected. Listing text: apps/game-hall/fastlane/metadata/ios/<locale>/.
 
 import type { AppContent, AppLocalized } from "./apps";
 
 /** The App Store seller of the studio account (same as Popline's privacy page). */
 const DEVELOPER = "APPFACTORY STUDIO PTE. LTD.";
-const UPDATED = "2026-11-19";
+const UPDATED = "2026-11-21";
+const IMG = "/apps/cannon-cubes";
 
 const en: AppLocalized = {
-  name: "Cannon Cubes",
-  storeName: "Cannon Cubes: Block Puzzle",
-  tagline: "You never drag a piece. The cannon delivers it.",
-  subtitle: "Aim, fire, clear the grid",
+  name: "Otter Harbor",
+  storeName: "Otter Harbor: Cozy Arcade",
+  tagline: "A small harbor island where every pier is a little game.",
+  subtitle: "Block Puzzle, Cannon & Physics",
   oneLiner:
-    "A 3D block puzzle on an 8x8 board: aim, and a brass cannon fires every piece into place. Full rows and columns break apart into physics cubes that splash into the sea.",
+    "A toy harbor island with eleven places to play: block puzzles with a cargo cannon, physics demolition, fireworks, a crane and more. Win to earn harbor tokens and restore the island.",
   statusNote: "In development. Coming to the App Store for iPhone.",
-  metaTitle: "Cannon Cubes: Block Puzzle. Aim, fire, clear the grid",
+  metaTitle: "Otter Harbor: Cozy Arcade. Block Puzzle, Cannon & Physics",
   metaDescription:
-    "A 3D block puzzle where a cannon fires every piece onto the board and cleared lines break into physics cubes. Classic, Daily Harbour and 40 Cargo Run levels. No ads, no purchases, plays offline.",
+    "A cozy harbor island where each pier is a small game: block puzzle with a cargo cannon, physics demolition, fireworks and more. Win harbor tokens to restore the island. No ads, no purchases, plays offline.",
   features: [
     {
-      title: "Aim, never drag",
-      body: "Touch the board and a ghost shows where the piece will land. Slide to adjust and lift to fire, or tap a glowing target and let the cannon do the rest.",
+      title: "One island, eleven places",
+      body: "Barge Berth, Breaker's Yard, Fireworks Jetty, Crane Arm, Tea Warehouse, Inspection Bench, Channel Watch, Pier Arcade, Lighthouse, Tugboat and Maelstrom. Each pier is its own small game.",
     },
     {
-      title: "Lines break apart",
-      body: "A full row or column bursts into small physics cubes that tumble off the raft and splash into the harbour.",
+      title: "Barge Berth: block puzzle with a cannon",
+      body: "You never drag a piece. Aim, and a cargo cannon fires it into place. Full rows and columns break into physics cubes that splash into the sea.",
     },
     {
-      title: "Charge a Big Shot",
-      body: "Every cleared line charges the cannon. A full charge gives you a cannonball that knocks out a 3x3 area.",
+      title: "Breaker's Yard: physics demolition",
+      body: "Four demolition jobs where you plan your shots and let physics bring the structure down.",
     },
     {
-      title: "Powder keg chains",
-      body: "A keg cube takes out the eight cubes around it when its line clears, and kegs next to kegs set each other off.",
+      title: "Win tokens, restore the island",
+      body: "Winning earns harbor tokens. Spend them to repair and bring back the places around the harbor.",
     },
     {
-      title: "Classic, Daily Harbour, Cargo Run",
-      body: "Play an endless run for your best score, a new seeded board each day with a daily best and a streak, or 40 Cargo Run levels where you clear every crate within a shot limit.",
+      title: "A daily challenge per place",
+      body: "Each place has a new challenge every day, so there is always a reason to visit a pier.",
     },
     {
       title: "Plays offline, keeps to itself",
-      body: "No account and no network connection needed. Scores and settings stay on your device. English, Simplified Chinese and Traditional Chinese.",
+      body: "No account and no network connection needed. Progress and settings stay on your device. English, Simplified Chinese and Traditional Chinese.",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/breakyard.webp`, alt: "Breaker's Yard in Otter Harbor" },
+    { src: `${IMG}/shots/fireworks.webp`, alt: "Fireworks Jetty in Otter Harbor" },
+    { src: `${IMG}/shots/lighthouse.webp`, alt: "Lighthouse in Otter Harbor" },
+    { src: `${IMG}/shots/tug.webp`, alt: "Tugboat in Otter Harbor" },
+    { src: `${IMG}/shots/warehouse.webp`, alt: "Tea Warehouse in Otter Harbor" },
+  ],
   trust: {
     title: "No ads, no purchases, no data",
-    body: "Version 1.0 has no ads, no in-app purchases, no accounts, no analytics and no third-party SDKs. The game makes no network requests and collects nothing.",
+    body: "Version 1.0 has no ads, no in-app purchases, no accounts, no tracking, no analytics and no third-party SDKs. The game makes no network requests and collects nothing.",
   },
   faqs: [
     {
       q: "Do I need an internet connection?",
-      a: "No. Cannon Cubes runs fully offline, and the game makes no network requests.",
+      a: "No. Otter Harbor runs fully offline, and the game makes no network requests.",
     },
     {
       q: "Are there ads or in-app purchases?",
       a: "Not in version 1.0. There are no ads and nothing to buy.",
     },
     {
-      q: "Where are my scores and my unfinished run kept?",
-      a: "Only on your device. We never receive them, so deleting the app removes them.",
+      q: "Where is my progress kept?",
+      a: "Only on your device. We never receive it, so deleting the app removes it.",
     },
     {
-      q: "How do I aim?",
-      a: "Touch the board, slide to move the ghost to a spot that fits, and lift your finger to fire. You can also tap a glowing target, or tap the cannon to fire at the best spot.",
-    },
-    {
-      q: "What is Daily Harbour?",
-      a: "A new seeded board every day, with a scatter of cubes to play around, a best score for the day and a streak of the days you have played.",
+      q: "What are harbor tokens?",
+      a: "You earn them by winning at the places around the harbor. They are spent in the game to restore the island, and they cannot be bought.",
     },
     {
       q: "Which languages does it support?",
@@ -89,19 +94,19 @@ const en: AppLocalized = {
       {
         heading: "Overview",
         body: [
-          "Cannon Cubes is a puzzle game that works on your device. It collects nothing about you.",
+          "Otter Harbor: Cozy Arcade is a collection of small games that works on your device. It collects nothing about you.",
         ],
       },
       {
         heading: "What we collect",
         body: [
-          "Nothing. Cannon Cubes has no accounts, no advertising, no analytics, no crash reporting and no third-party SDKs. We do not receive your name, email, contacts, photos, location, device identifiers or anything else.",
+          "Nothing. Otter Harbor has no accounts, no advertising, no tracking, no analytics, no crash reporting and no third-party SDKs. We do not receive your name, email, contacts, photos, location, device identifiers or anything else.",
         ],
       },
       {
         heading: "What stays on your device",
         body: [
-          "Your best scores, your daily streak, your settings (sound, music, haptics, language) and an unfinished run are saved in the app's own storage on your device. We cannot see them, and they are removed when you delete the app.",
+          "Your best scores, your harbor tokens and island progress, your daily challenge results, your settings (sound, music, haptics, language) and any unfinished game are saved in the app's own storage on your device. We cannot see them, and they are removed when you delete the app.",
         ],
       },
       {
@@ -132,56 +137,58 @@ const en: AppLocalized = {
 };
 
 const zhCn: AppLocalized = {
-  name: "Cannon Cubes",
-  storeName: "Cannon Cubes：方块大炮解谜",
-  tagline: "你从不拖动方块，大炮替你送到位。",
-  subtitle: "瞄准、开炮、消除整行整列",
+  name: "水獭港",
+  storeName: "水獭港：治愈街机",
+  tagline: "一座小小的港口岛，每个码头都是一个小游戏。",
+  subtitle: "方块益智、大炮和物理玩法",
   oneLiner:
-    "一款 8x8 棋盘上的 3D 方块解谜游戏：你来瞄准，黄铜大炮把每一块打到位。整行整列会碎成物理小方块，落进海里。",
+    "一座玩具般的港口岛，有十一个地方可玩：带货运大炮的方块益智、物理拆除、烟花、吊车等等。获胜可赚取港口代币，修复这座岛。",
   statusNote: "开发中，即将登陆 iPhone 版 App Store。",
-  metaTitle: "Cannon Cubes：方块大炮解谜，瞄准、开炮、消除整行整列",
+  metaTitle: "水獭港：治愈街机，方块益智、大炮和物理玩法",
   metaDescription:
-    "一款 3D 方块解谜游戏：大炮把每一块打上棋盘，消除的行列碎成物理小方块。经典模式、每日港湾和 40 关货箱关卡。无广告、无内购，可离线游玩。",
+    "一座治愈的港口岛，每个码头都是一个小游戏：带货运大炮的方块益智、物理拆除、烟花等等。获胜赚取港口代币，修复小岛。无广告、无内购，可离线游玩。",
   features: [
     {
-      title: "只瞄准，不拖动",
-      body: "按住棋盘，虚影会显示方块将落在哪里。滑动调整、松手开炮；也可以点一个发光目标，剩下的交给大炮。",
+      title: "一座岛，十一个地方",
+      body: "驳船泊位、拆解场、烟花栈桥、吊臂、茶叶仓库、检验台、航道瞭望、码头游乐场、灯塔、拖船和大漩涡。每个码头都是一个独立的小游戏。",
     },
     {
-      title: "整行整列碎开",
-      body: "填满一整行或一整列，它会炸成许多小物理方块，从木筏上滚落，扑通掉进港湾。",
+      title: "驳船泊位：带大炮的方块益智",
+      body: "你从不拖动方块。瞄准之后，货运大炮会把它打到位。填满的整行整列会碎成物理小方块，落进海里。",
     },
     {
-      title: "攒一发重炮",
-      body: "每消除一行都会给大炮充能，充满后得到一颗能打掉 3x3 范围的炮弹。",
+      title: "拆解场：物理拆除",
+      body: "四个拆除任务，先想好每一炮，再让物理把建筑推倒。",
     },
     {
-      title: "火药桶连锁",
-      body: "火药桶所在的行列消除时，会炸掉周围八格；紧挨着的火药桶还会接连引爆。",
+      title: "获胜赚代币，修复小岛",
+      body: "获胜可赚取港口代币，用来修复并唤回港口周围的各个地方。",
     },
     {
-      title: "经典模式、每日港湾、货箱关卡",
-      body: "经典模式是刷最高分的无尽挑战；每日港湾每天一个新棋盘，有当日最高分和连续天数；货箱关卡共 40 关，要在限定的炮弹数内清掉所有木箱。",
+      title: "每个地方每天一个挑战",
+      body: "每个地方每天都有新的挑战，总有理由去码头逛一逛。",
     },
     {
       title: "可离线，只留在你手里",
-      body: "无需账号，也不用联网，分数和设置只保存在你的设备上。支持英文、简体中文和繁体中文。",
+      body: "无需账号，也不用联网，进度和设置只保存在你的设备上。支持英文、简体中文和繁体中文。",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/breakyard.webp`, alt: "水獭港里的拆解场" },
+    { src: `${IMG}/shots/fireworks.webp`, alt: "水獭港里的烟花栈桥" },
+    { src: `${IMG}/shots/lighthouse.webp`, alt: "水獭港里的灯塔" },
+    { src: `${IMG}/shots/tug.webp`, alt: "水獭港里的拖船" },
+    { src: `${IMG}/shots/warehouse.webp`, alt: "水獭港里的茶叶仓库" },
+  ],
   trust: {
     title: "无广告，无内购，不收集数据",
-    body: "1.0 版本没有广告、内购、账号、分析和第三方 SDK。游戏不发出任何网络请求，也不收集任何数据。",
+    body: "1.0 版本没有广告、内购、账号、追踪、分析和第三方 SDK。游戏不发出任何网络请求，也不收集任何数据。",
   },
   faqs: [
-    { q: "需要联网吗？", a: "不需要。Cannon Cubes 完全离线运行，游戏不发出任何网络请求。" },
+    { q: "需要联网吗？", a: "不需要。水獭港完全离线运行，游戏不发出任何网络请求。" },
     { q: "有广告或内购吗？", a: "1.0 版本没有。没有广告，也没有需要购买的内容。" },
-    { q: "我的分数和未完成的一局存在哪里？", a: "只在你的设备上。我们不会收到这些数据，删除应用即会一并清除。" },
-    {
-      q: "怎么瞄准？",
-      a: "按住棋盘，滑动让虚影移到能放下的位置，松开手指开炮。也可以点一个发光目标，或点大炮直接打向最佳位置。",
-    },
-    { q: "每日港湾是什么？", a: "每天一个新的棋盘，开局散落着一些方块；有当日最高分，以及记录你玩了多少天的连续天数。" },
+    { q: "我的进度存在哪里？", a: "只在你的设备上。我们不会收到这些数据，删除应用即会一并清除。" },
+    { q: "港口代币是什么？", a: "在港口各处获胜即可赚取，在游戏里用来修复小岛，无法用钱购买。" },
     { q: "支持哪些语言？", a: "英文、简体中文和繁体中文。可以在菜单里设置语言，也可以跟随系统语言。" },
   ],
   privacy: {
@@ -189,18 +196,18 @@ const zhCn: AppLocalized = {
     sections: [
       {
         heading: "概述",
-        body: ["Cannon Cubes 是一款在你的设备上运行的解谜游戏，不收集任何关于你的信息。"],
+        body: ["水獭港：治愈街机是一组在你的设备上运行的小游戏，不收集任何关于你的信息。"],
       },
       {
         heading: "我们收集什么",
         body: [
-          "什么都不收集。Cannon Cubes 没有账号，没有广告，没有分析，没有崩溃报告，也没有第三方 SDK。我们不会收到你的姓名、邮箱、通讯录、照片、位置、设备标识符或其他任何信息。",
+          "什么都不收集。水獭港没有账号，没有广告，没有追踪，没有分析，没有崩溃报告，也没有第三方 SDK。我们不会收到你的姓名、邮箱、通讯录、照片、位置、设备标识符或其他任何信息。",
         ],
       },
       {
         heading: "留在你设备上的内容",
         body: [
-          "你的最高分、每日连续天数、设置（音效、音乐、震动、语言）以及未完成的一局，都保存在应用在你设备上的专属存储里。我们看不到这些内容，删除应用时它们会一并清除。",
+          "你的最高分、港口代币和小岛进度、每日挑战结果、设置（音效、音乐、震动、语言）以及未完成的游戏，都保存在应用在你设备上的专属存储里。我们看不到这些内容，删除应用时它们会一并清除。",
         ],
       },
       {
@@ -227,56 +234,58 @@ const zhCn: AppLocalized = {
 };
 
 const zhTw: AppLocalized = {
-  name: "Cannon Cubes",
-  storeName: "Cannon Cubes：方塊大砲解謎",
-  tagline: "你從不拖動方塊，大砲替你送到位。",
-  subtitle: "瞄準、開炮、消除整行整列",
+  name: "水獺港",
+  storeName: "水獺港：療癒街機",
+  tagline: "一座小小的港口島，每個碼頭都是一個小遊戲。",
+  subtitle: "方塊益智、大砲和物理玩法",
   oneLiner:
-    "一款 8x8 棋盤上的 3D 方塊解謎遊戲：你來瞄準，黃銅大砲把每一塊打到位。整行整列會碎成物理小方塊，落進海裡。",
+    "一座玩具般的港口島，有十一個地方可玩：帶貨運大砲的方塊益智、物理拆除、煙花、吊車等等。獲勝可賺取港口代幣，修復這座島。",
   statusNote: "開發中，即將登陸 iPhone 版 App Store。",
-  metaTitle: "Cannon Cubes：方塊大砲解謎，瞄準、開炮、消除整行整列",
+  metaTitle: "水獺港：療癒街機，方塊益智、大砲和物理玩法",
   metaDescription:
-    "一款 3D 方塊解謎遊戲：大砲把每一塊打上棋盤，消除的行列碎成物理小方塊。經典模式、每日港灣和 40 關貨箱關卡。無廣告、無內購，可離線遊玩。",
+    "一座療癒的港口島，每個碼頭都是一個小遊戲：帶貨運大砲的方塊益智、物理拆除、煙花等等。獲勝賺取港口代幣，修復小島。無廣告、無內購，可離線遊玩。",
   features: [
     {
-      title: "只瞄準，不拖動",
-      body: "按住棋盤，虛影會顯示方塊將落在哪裡。滑動調整、放手開炮；也可以點一個發光目標，剩下的交給大砲。",
+      title: "一座島，十一個地方",
+      body: "駁船泊位、拆解場、煙花棧橋、吊臂、茶葉倉庫、檢驗台、航道瞭望、碼頭遊樂場、燈塔、拖船和大漩渦。每個碼頭都是一個獨立的小遊戲。",
     },
     {
-      title: "整行整列碎開",
-      body: "填滿一整行或一整列，它會炸成許多小物理方塊，從木筏上滾落，噗通掉進港灣。",
+      title: "駁船泊位：帶大砲的方塊益智",
+      body: "你從不拖動方塊。瞄準之後，貨運大砲會把它打到位。填滿的整行整列會碎成物理小方塊，落進海裡。",
     },
     {
-      title: "攢一發重砲",
-      body: "每消除一行都會替大砲充能，充滿後得到一顆能打掉 3x3 範圍的砲彈。",
+      title: "拆解場：物理拆除",
+      body: "四個拆除任務，先想好每一砲，再讓物理把建築推倒。",
     },
     {
-      title: "火藥桶連鎖",
-      body: "火藥桶所在的行列消除時，會炸掉周圍八格；緊挨著的火藥桶還會接連引爆。",
+      title: "獲勝賺代幣，修復小島",
+      body: "獲勝可賺取港口代幣，用來修復並喚回港口周圍的各個地方。",
     },
     {
-      title: "經典模式、每日港灣、貨箱關卡",
-      body: "經典模式是刷最高分的無盡挑戰；每日港灣每天一個新棋盤，有當日最高分和連續天數；貨箱關卡共 40 關，要在限定的砲彈數內清掉所有木箱。",
+      title: "每個地方每天一個挑戰",
+      body: "每個地方每天都有新的挑戰，總有理由去碼頭逛一逛。",
     },
     {
       title: "可離線，只留在你手裡",
-      body: "無需帳號，也不用連線，分數和設定只保存在你的裝置上。支援英文、簡體中文和繁體中文。",
+      body: "無需帳號，也不用連線，進度和設定只保存在你的裝置上。支援英文、簡體中文和繁體中文。",
     },
   ],
-  screenshots: [],
+  screenshots: [
+    { src: `${IMG}/shots/breakyard.webp`, alt: "水獺港裡的拆解場" },
+    { src: `${IMG}/shots/fireworks.webp`, alt: "水獺港裡的煙花棧橋" },
+    { src: `${IMG}/shots/lighthouse.webp`, alt: "水獺港裡的燈塔" },
+    { src: `${IMG}/shots/tug.webp`, alt: "水獺港裡的拖船" },
+    { src: `${IMG}/shots/warehouse.webp`, alt: "水獺港裡的茶葉倉庫" },
+  ],
   trust: {
     title: "無廣告，無內購，不蒐集資料",
-    body: "1.0 版本沒有廣告、內購、帳號、分析和第三方 SDK。遊戲不發出任何網路請求，也不蒐集任何資料。",
+    body: "1.0 版本沒有廣告、內購、帳號、追蹤、分析和第三方 SDK。遊戲不發出任何網路請求，也不蒐集任何資料。",
   },
   faqs: [
-    { q: "需要連線嗎？", a: "不需要。Cannon Cubes 完全離線執行，遊戲不發出任何網路請求。" },
+    { q: "需要連線嗎？", a: "不需要。水獺港完全離線執行，遊戲不發出任何網路請求。" },
     { q: "有廣告或內購嗎？", a: "1.0 版本沒有。沒有廣告，也沒有需要購買的內容。" },
-    { q: "我的分數和未完成的一局存在哪裡？", a: "只在你的裝置上。我們不會收到這些資料，刪除應用程式即會一併清除。" },
-    {
-      q: "怎麼瞄準？",
-      a: "按住棋盤，滑動讓虛影移到能放下的位置，放開手指開炮。也可以點一個發光目標，或點大砲直接打向最佳位置。",
-    },
-    { q: "每日港灣是什麼？", a: "每天一個新的棋盤，開局散落著一些方塊；有當日最高分，以及記錄你玩了多少天的連續天數。" },
+    { q: "我的進度存在哪裡？", a: "只在你的裝置上。我們不會收到這些資料，刪除應用程式即會一併清除。" },
+    { q: "港口代幣是什麼？", a: "在港口各處獲勝即可賺取，在遊戲裡用來修復小島，無法用錢購買。" },
     { q: "支援哪些語言？", a: "英文、簡體中文和繁體中文。可以在選單裡設定語言，也可以跟隨系統語言。" },
   ],
   privacy: {
@@ -284,18 +293,18 @@ const zhTw: AppLocalized = {
     sections: [
       {
         heading: "概述",
-        body: ["Cannon Cubes 是一款在你的裝置上執行的解謎遊戲，不蒐集任何關於你的資訊。"],
+        body: ["水獺港：療癒街機是一組在你的裝置上執行的小遊戲，不蒐集任何關於你的資訊。"],
       },
       {
         heading: "我們蒐集什麼",
         body: [
-          "什麼都不蒐集。Cannon Cubes 沒有帳號，沒有廣告，沒有分析，沒有當機回報，也沒有第三方 SDK。我們不會收到你的姓名、電子郵件、通訊錄、照片、位置、裝置識別碼或其他任何資訊。",
+          "什麼都不蒐集。水獺港沒有帳號，沒有廣告，沒有追蹤，沒有分析，沒有當機回報，也沒有第三方 SDK。我們不會收到你的姓名、電子郵件、通訊錄、照片、位置、裝置識別碼或其他任何資訊。",
         ],
       },
       {
         heading: "留在你裝置上的內容",
         body: [
-          "你的最高分、每日連續天數、設定（音效、音樂、震動、語言）以及未完成的一局，都保存在應用程式在你裝置上的專屬儲存空間裡。我們看不到這些內容，刪除應用程式時它們會一併清除。",
+          "你的最高分、港口代幣和小島進度、每日挑戰結果、設定（音效、音樂、震動、語言）以及未完成的遊戲，都保存在應用程式在你裝置上的專屬儲存空間裡。我們看不到這些內容，刪除應用程式時它們會一併清除。",
         ],
       },
       {
@@ -324,6 +333,8 @@ const zhTw: AppLocalized = {
 export const cannonCubes: AppContent = {
   slug: "cannon-cubes",
   category: "game",
+  icon: `${IMG}/icon.png`,
+  ogImage: `${IMG}/og.png`,
   buildNumber: 17,
   version: "1.0.0",
   status: "building",
