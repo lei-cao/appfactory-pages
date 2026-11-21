@@ -5,9 +5,9 @@
 // support pages. The slug, route and host stay "cannon-cubes" until a new domain
 // is set up (follow-up). Unreleased: status "building", no store links until the
 // App Store record is live. Claims are limited to what version 1.0 contains: a toy
-// harbour island with eleven places (Barge Berth, Breaker's Yard, Fireworks Jetty,
+// harbor island with eleven places (Barge Berth, Breaker's Yard, Fireworks Jetty,
 // Crane Arm, Tea Warehouse, Inspection Bench, Channel Watch, Pier Arcade,
-// Lighthouse, Tugboat, Maelstrom), harbour tokens that restore the island, a daily
+// Lighthouse, Tugboat, Maelstrom), harbor tokens that restore the island, a daily
 // challenge per place, no ads, no purchases, no accounts, no network use, no data
 // collected. Listing text: apps/game-hall/fastlane/metadata/ios/<locale>/.
 
@@ -21,14 +21,14 @@ const IMG = "/apps/cannon-cubes";
 const en: AppLocalized = {
   name: "Otter Harbor",
   storeName: "Otter Harbor: Cozy Arcade",
-  tagline: "A small harbour island where every pier is a little game.",
+  tagline: "A small harbor island where every pier is a little game.",
   subtitle: "Block Puzzle, Cannon & Physics",
   oneLiner:
-    "A toy harbour island with eleven places to play: block puzzles with a cargo cannon, physics demolition, fireworks, a crane and more. Win to earn harbour tokens and restore the island.",
+    "A toy harbor island with eleven places to play: block puzzles with a cargo cannon, physics demolition, fireworks, a crane and more. Win to earn harbor tokens and restore the island.",
   statusNote: "In development. Coming to the App Store for iPhone.",
   metaTitle: "Otter Harbor: Cozy Arcade. Block Puzzle, Cannon & Physics",
   metaDescription:
-    "A cozy harbour island where each pier is a small game: block puzzle with a cargo cannon, physics demolition, fireworks and more. Win harbour tokens to restore the island. No ads, no purchases, plays offline.",
+    "A cozy harbor island where each pier is a small game: block puzzle with a cargo cannon, physics demolition, fireworks and more. Win harbor tokens to restore the island. No ads, no purchases, plays offline.",
   features: [
     {
       title: "One island, eleven places",
@@ -44,7 +44,7 @@ const en: AppLocalized = {
     },
     {
       title: "Win tokens, restore the island",
-      body: "Winning earns harbour tokens. Spend them to repair and bring back the places around the harbour.",
+      body: "Winning earns harbor tokens. Spend them to repair and bring back the places around the harbor.",
     },
     {
       title: "A daily challenge per place",
@@ -80,12 +80,8 @@ const en: AppLocalized = {
       a: "Only on your device. We never receive it, so deleting the app removes it.",
     },
     {
-      q: "What are harbour tokens?",
-      a: "You earn them by winning at the places around the harbour. They are spent in the game to restore the island, and they cannot be bought.",
-    },
-    {
-      q: "Was this game called Cannon Cubes?",
-      a: "Yes. Cannon Cubes, the block puzzle with a cargo cannon, is now Barge Berth, one of the places on the island.",
+      q: "What are harbor tokens?",
+      a: "You earn them by winning at the places around the harbor. They are spent in the game to restore the island, and they cannot be bought.",
     },
     {
       q: "Which languages does it support?",
@@ -98,7 +94,7 @@ const en: AppLocalized = {
       {
         heading: "Overview",
         body: [
-          "Otter Harbor: Cozy Arcade is a collection of small games that works on your device. It collects nothing about you. The app was previously named Cannon Cubes.",
+          "Otter Harbor: Cozy Arcade is a collection of small games that works on your device. It collects nothing about you.",
         ],
       },
       {
@@ -110,7 +106,7 @@ const en: AppLocalized = {
       {
         heading: "What stays on your device",
         body: [
-          "Your best scores, your harbour tokens and island progress, your daily challenge results, your settings (sound, music, haptics, language) and any unfinished game are saved in the app's own storage on your device. We cannot see them, and they are removed when you delete the app.",
+          "Your best scores, your harbor tokens and island progress, your daily challenge results, your settings (sound, music, haptics, language) and any unfinished game are saved in the app's own storage on your device. We cannot see them, and they are removed when you delete the app.",
         ],
       },
       {
@@ -193,7 +189,6 @@ const zhCn: AppLocalized = {
     { q: "有广告或内购吗？", a: "1.0 版本没有。没有广告，也没有需要购买的内容。" },
     { q: "我的进度存在哪里？", a: "只在你的设备上。我们不会收到这些数据，删除应用即会一并清除。" },
     { q: "港口代币是什么？", a: "在港口各处获胜即可赚取，在游戏里用来修复小岛，无法用钱购买。" },
-    { q: "这款游戏以前叫 Cannon Cubes 吗？", a: "是的。带货运大炮的方块益智 Cannon Cubes，现在是岛上的一个地方：驳船泊位。" },
     { q: "支持哪些语言？", a: "英文、简体中文和繁体中文。可以在菜单里设置语言，也可以跟随系统语言。" },
   ],
   privacy: {
@@ -201,7 +196,7 @@ const zhCn: AppLocalized = {
     sections: [
       {
         heading: "概述",
-        body: ["水獭港：治愈街机是一组在你的设备上运行的小游戏，不收集任何关于你的信息。本应用此前名为 Cannon Cubes。"],
+        body: ["水獭港：治愈街机是一组在你的设备上运行的小游戏，不收集任何关于你的信息。"],
       },
       {
         heading: "我们收集什么",
@@ -291,7 +286,6 @@ const zhTw: AppLocalized = {
     { q: "有廣告或內購嗎？", a: "1.0 版本沒有。沒有廣告，也沒有需要購買的內容。" },
     { q: "我的進度存在哪裡？", a: "只在你的裝置上。我們不會收到這些資料，刪除應用程式即會一併清除。" },
     { q: "港口代幣是什麼？", a: "在港口各處獲勝即可賺取，在遊戲裡用來修復小島，無法用錢購買。" },
-    { q: "這款遊戲以前叫 Cannon Cubes 嗎？", a: "是的。帶貨運大砲的方塊益智 Cannon Cubes，現在是島上的一個地方：駁船泊位。" },
     { q: "支援哪些語言？", a: "英文、簡體中文和繁體中文。可以在選單裡設定語言，也可以跟隨系統語言。" },
   ],
   privacy: {
@@ -299,7 +293,7 @@ const zhTw: AppLocalized = {
     sections: [
       {
         heading: "概述",
-        body: ["水獺港：療癒街機是一組在你的裝置上執行的小遊戲，不蒐集任何關於你的資訊。本應用程式此前名為 Cannon Cubes。"],
+        body: ["水獺港：療癒街機是一組在你的裝置上執行的小遊戲，不蒐集任何關於你的資訊。"],
       },
       {
         heading: "我們蒐集什麼",
