@@ -61,7 +61,7 @@ const en: AppLocalized = {
     { src: `${IMG}/shots/warehouse.webp`, alt: "Tea Warehouse in Otter Harbor" },
   ],
   trust: {
-    title: "No purchases, no account, ads you choose",
+    title: "No purchases, no account, no ads during play",
     body: "There is nothing to buy and no account. The game shows ads from Google AdMob: videos you choose to watch, and short ads between rounds, never during play and never right after a loss. There are no banners. It uses Firebase for anonymous game statistics and crash reports. The privacy policy lists what is collected.",
   },
   faqs: [
@@ -190,7 +190,7 @@ const zhCn: AppLocalized = {
     { src: `${IMG}/shots/warehouse.webp`, alt: "水獭港里的茶叶仓库" },
   ],
   trust: {
-    title: "无内购，无需账号，广告由你选择",
+    title: "无内购，无需账号，游戏中不插广告",
     body: "没有需要购买的内容，也没有账号。游戏会展示 Google AdMob 广告：可自愿观看的视频，以及回合之间的短广告，游戏进行中和失败后立刻都不会出现。没有横幅广告。游戏使用 Firebase 收集匿名的游戏统计和崩溃报告。具体收集内容见隐私政策。",
   },
   faqs: [
@@ -302,7 +302,7 @@ const zhTw: AppLocalized = {
     { src: `${IMG}/shots/warehouse.webp`, alt: "水獺港裡的茶葉倉庫" },
   ],
   trust: {
-    title: "無內購，無需帳號，廣告由你選擇",
+    title: "無內購，無需帳號，遊戲中不插廣告",
     body: "沒有需要購買的內容，也沒有帳號。遊戲會顯示 Google AdMob 廣告：可自願觀看的影片，以及回合之間的短廣告，遊戲進行中和失敗後立刻都不會出現。沒有橫幅廣告。遊戲使用 Firebase 蒐集匿名的遊戲統計和當機回報。具體蒐集內容見隱私權政策。",
   },
   faqs: [
