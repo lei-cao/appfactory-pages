@@ -1,10 +1,15 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.appfactory.tracesheet",
-      "sha256_cert_fingerprints": ["27:18:D9:50:D0:5D:0C:83:49:27:E6:B8:7C:CC:C2:DF:7F:79:44:34:CA:FE:14:20:4C:6F:A0:FB:32:31:D7:78"]
+      "sha256_cert_fingerprints": [
+        "27:18:D9:50:D0:5D:0C:83:49:27:E6:B8:7C:CC:C2:DF:7F:79:44:34:CA:FE:14:20:4C:6F:A0:FB:32:31:D7:78",
+        "F1:0C:F5:D0:0A:B0:E9:BA:15:34:A3:84:91:6F:04:B4:D8:F7:21:1B:9E:92:E2:E6:C2:BB:A5:4A:F1:FB:C6:87"
+      ]
     }
   }
 ]

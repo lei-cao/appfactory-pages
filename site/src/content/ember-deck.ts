@@ -122,7 +122,7 @@ const en: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-26",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "The short version",
@@ -138,6 +138,7 @@ const en: AppLocalized = {
             "Crash and performance data (Firebase Crashlytics and Firebase performance monitoring): stack traces, device state at the time of a crash, and timing data such as load times. We use it to fix bugs and keep the game smooth.",
             "Remote configuration (Firebase Remote Config and A/B Testing): on launch the app fetches settings such as balance numbers, ad frequency caps and store offers, using a Firebase installation identifier. You may be placed in a test group that sees a different value; this never changes the rules of a run in progress.",
             "Advertising (Google AdMob): when an ad is shown, Google's SDK may use your device's advertising identifier (IDFA on iOS, Advertising ID on Android), your IP address and ad-interaction data to serve, measure and cap ads. On iPhone we ask your permission first through App Tracking Transparency. If you decline, the identifier is not shared. In the EEA, UK and Switzerland, Google's consent form (UMP) is shown before any ad loads.",
+            "Google AdMob also collects and shares approximate location derived from IP addresses, app interactions, diagnostics and device identifiers for advertising, analytics and fraud prevention. This does not require GPS permission and can occur for non-personalised ads too.",
           ],
           "This matches the app's App Store privacy label: device ID, advertising data, product interaction, crash data, performance data and other diagnostics, all marked as not linked to you. Only the device ID and advertising data may be used for tracking, and only with your permission.",
         ],
@@ -343,7 +344,7 @@ const zhCn: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-26",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "简要说明",
@@ -359,6 +360,7 @@ const zhCn: AppLocalized = {
             "崩溃与性能数据（Firebase Crashlytics 与 Firebase 性能监控）：崩溃时的堆栈信息与设备状态，以及加载时间等性能数据，用于修复问题、保持游戏流畅。",
             "远程配置（Firebase Remote Config 与 A/B 测试）：启动时，应用会凭 Firebase 安装标识符获取数值平衡、广告频率上限和商店优惠等配置。你可能被分入某个测试组、看到不同的数值；这绝不会改变正在进行中的那一局的规则。",
             "广告（Google AdMob）：展示广告时，Google 的 SDK 可能使用你设备的广告标识符（iOS 上为 IDFA，Android 上为广告 ID）、IP 地址以及广告互动数据，用于投放、衡量广告效果和控制展示频率。在 iPhone 上，我们会先通过「App 跟踪透明度」征求你的许可；如果你拒绝，广告标识符不会被共享。在欧洲经济区、英国和瑞士，任何广告加载前都会先显示 Google 的授权表单（UMP）。",
+            "Google AdMob 还会收集和共享由 IP 地址推断的大致位置、应用互动、诊断数据和设备标识符，用于广告、分析和防范欺诈。这不需要 GPS 权限，非个性化广告也可能涉及这些数据。",
           ],
           "以上内容与本应用在 App Store 上的隐私标签一致：设备 ID、广告数据、产品交互、崩溃数据、性能数据及其他诊断数据，均标注为「不与你关联」。其中只有设备 ID 和广告数据可能被用于追踪，而且仅在你许可的前提下。",
         ],
@@ -565,7 +567,7 @@ const zhTw: AppLocalized = {
     },
   ],
   privacy: {
-    updated: "2026-09-26",
+    updated: "2026-11-09",
     sections: [
       {
         heading: "簡要說明",
@@ -581,6 +583,7 @@ const zhTw: AppLocalized = {
             "當機與效能資料（Firebase Crashlytics 與 Firebase 效能監控）：當機時的堆疊資訊與裝置狀態，以及載入時間等效能資料，用於修正問題、維持遊戲流暢。",
             "遠端設定（Firebase Remote Config 與 A/B 測試）：啟動時，App 會憑 Firebase 安裝識別碼取得數值平衡、廣告頻率上限和商店優惠等設定。你可能被分到某個測試組、看到不同的數值；這絕不會改變正在進行中那一局的規則。",
             "廣告（Google AdMob）：顯示廣告時，Google 的 SDK 可能使用你裝置的廣告識別碼（iOS 為 IDFA，Android 為廣告 ID）、IP 位址以及廣告互動資料，用於投放、衡量成效和控制顯示頻率。在 iPhone 上，我們會先透過「App 追蹤透明度」徵求你的許可；如果你拒絕，廣告識別碼不會被分享。在歐洲經濟區、英國和瑞士，任何廣告載入前都會先顯示 Google 的同意表單（UMP）。",
+            "Google AdMob 也會收集及分享由 IP 位址推斷的大概位置、應用程式互動、診斷資料和裝置識別碼，用於廣告、分析及防範詐騙。這不需要 GPS 權限，非個人化廣告也可能涉及這些資料。",
           ],
           "以上內容與本 App 在 App Store 上的隱私權標籤一致：裝置 ID、廣告資料、產品互動、當機資料、效能資料及其他診斷資料，皆標示為「不會與你連結」。其中只有裝置 ID 和廣告資料可能被用於追蹤，而且僅在你許可的前提下。",
         ],
