@@ -1,19 +1,7 @@
-// Otter Harbor: Cozy Arcade (apps/game-hall in the appfactory repo, bundle id
-// sg.appfactory.gameHall). Registry content in all three locales for
-// cannon-cubes.appfactory.sg, rendered by the shared plain shell and landing
-// (components/sites/cannon-cubes/site.tsx) with the shared privacy and support
-// pages. The slug, route and host stay "cannon-cubes" until a new domain is set
-// up. Unreleased: status "building", no store links until the App Store record
-// is live. The game is a toy harbor island with eleven places, harbor tokens and
-// a daily challenge per place; it has no purchases and no accounts. It shows
-// Google AdMob ads, asks for tracking permission once, uses Firebase Analytics
-// and Crashlytics, and can send local reminders; the privacy policy and the
-// claims below say so. Listing text: apps/game-hall/fastlane/metadata/ios/<locale>/.
-
 import type { AppContent, AppLocalized } from "./apps";
 
 const DEVELOPER = "APPFACTORY STUDIO PTE. LTD.";
-const UPDATED = "2026-11-22";
+const UPDATED = "2026-11-27";
 const IMG = "/apps/cannon-cubes";
 
 const en: AppLocalized = {
@@ -92,16 +80,23 @@ const en: AppLocalized = {
       {
         heading: "Overview",
         body: [
-          "Otter Harbor: Cozy Arcade is a collection of small games that works on your device. It has no accounts and never asks for your name, email or contacts. To show ads and to keep the game working well, it uses two Google services, described below. We do not sell your data.",
+          "Otter Harbor: Cozy Arcade is a collection of small games that works on your device. It has no accounts and never asks for your name, email or contacts. To show ads and to keep the game working well, it uses Google services and Tenjin, described below. We do not sell your data.",
         ],
       },
       {
         heading: "Ads: Google AdMob",
         body: [
           "The game shows ads from Google AdMob. Rewarded videos are always your choice: one more try after a near miss, or double tokens on a win. Short full-screen ads appear only between rounds, never during play and never right after a loss. There are no banners.",
-          "To choose and measure ads, AdMob receives information about your device (model, system version, language), the ads you see and tap, and an approximate location derived from your IP address. It receives your device's advertising identifier only if you allow tracking when the app asks (App Tracking Transparency, asked once, after your first win, at a break between rounds, never at launch). If you decline, the game and its ads work the same; the ads are just not personalised. You can change this any time in the iPhone's Settings > Privacy & Security > Tracking.",
+          "To choose and measure ads, AdMob receives information about your device (model, system version, language), the ads you see and tap, and an approximate location derived from your IP address. It receives your device's advertising identifier only if you allow tracking when the app asks (App Tracking Transparency, asked once, when the game is not in a round or showing an ad). If you decline, the game and its ads work the same; the ads are just not personalised. You can change this any time in the iPhone's Settings > Privacy & Security > Tracking.",
           "Where the law requires it (the European Economic Area, the UK, Switzerland and US states with privacy laws), Google's consent form asks for your choice before any ad is requested. You can reopen it any time in the game's Settings > Privacy choices.",
           "Google's own policy explains how it uses this data: https://policies.google.com/technologies/ads",
+        ],
+      },
+      {
+        heading: "Mobile ad attribution and measurement: Tenjin",
+        body: [
+          "We use Tenjin to attribute installs to advertising campaigns and measure their performance. Tenjin receives install and session information, device and app details, IP address, a vendor or installation identifier, and the iOS advertising identifier (IDFA) only when tracking is allowed. The game connects to Tenjin after you answer the tracking prompt, whether you allow or deny it.",
+          "The game sends selected events such as first play, level completion and rewarded ads watched, as well as AdMob impression-level revenue and related ad details. Tenjin processes this for us and may share attribution and event data with enabled advertising partners, such as Meta, to measure and optimize campaigns. You can change tracking permission in iPhone Settings > Privacy & Security > Tracking. Tenjin privacy policy: https://tenjin.com/privacy/",
         ],
       },
       {
@@ -206,16 +201,23 @@ const zhCn: AppLocalized = {
       {
         heading: "概述",
         body: [
-          "水獭港：治愈街机是一组在你的设备上运行的小游戏。它没有账号，也不会索取你的姓名、邮箱或通讯录。为了展示广告并让游戏稳定运行，它使用下面说明的两项 Google 服务。我们不会出售你的数据。",
+          "水獭港：治愈街机是一组在你的设备上运行的小游戏。它没有账号，也不会索取你的姓名、邮箱或通讯录。为了展示广告并让游戏稳定运行，它使用下文说明的 Google 服务和 Tenjin。我们不会出售你的数据。",
         ],
       },
       {
         heading: "广告：Google AdMob",
         body: [
           "游戏会展示 Google AdMob 的广告。奖励视频永远由你选择：失误后再试一次，或在获胜时让代币翻倍。回合之间才会出现全屏短广告，游戏进行中绝不出现，失败后也不会立刻出现。没有横幅广告。",
-          "为了选择和衡量广告，AdMob 会收到你设备的信息（型号、系统版本、语言）、你看到和点击的广告，以及根据 IP 地址推算的大致位置。只有当你在应用询问时允许跟踪（App 跟踪透明度，只在你首次获胜后、回合之间的间隙询问一次，绝不在启动时询问），它才会收到设备的广告标识符。若你拒绝，游戏和广告照常运行，只是广告不会个性化。你可以随时在 iPhone 的“设置 > 隐私与安全性 > 跟踪”中更改。",
+          "为了选择和衡量广告，AdMob 会收到你设备的信息（型号、系统版本、语言）、你看到和点击的广告，以及根据 IP 地址推算的大致位置。只有当你在应用询问时允许跟踪（App 跟踪透明度，只在游戏不处于回合中或展示广告时询问一次），它才会收到设备的广告标识符。若你拒绝，游戏和广告照常运行，只是广告不会个性化。你可以随时在 iPhone 的“设置 > 隐私与安全性 > 跟踪”中更改。",
           "在法律要求的地区（欧洲经济区、英国、瑞士，以及设有隐私法的美国各州），请求任何广告之前会先由 Google 的同意表单询问你的选择，之后可随时在游戏的“设置 > 隐私选项”中重新打开。",
           "Google 的政策说明了它如何使用这些数据：https://policies.google.com/technologies/ads",
+        ],
+      },
+      {
+        heading: "移动广告归因与效果衡量：Tenjin",
+        body: [
+          "我们使用 Tenjin 将安装归因于广告活动并衡量效果。Tenjin 会收到安装和会话信息、设备与应用信息、IP 地址、供应商或安装标识符；只有你允许追踪时才可读取 iOS 广告标识符（IDFA）。无论允许或拒绝，游戏都会在你回答追踪许可后连接 Tenjin。",
+          "游戏会发送首次游玩、完成关卡、观看激励广告等选定事件，以及 AdMob 单次展示的广告收入和相关广告信息。Tenjin 代我们处理这些数据，并可能与已启用的广告合作伙伴（例如 Meta）分享归因及事件数据，以衡量和优化广告活动。你可在 iPhone“设置 > 隐私与安全性 > 跟踪”更改许可。Tenjin 隐私政策：https://tenjin.com/privacy/",
         ],
       },
       {
@@ -318,16 +320,23 @@ const zhTw: AppLocalized = {
       {
         heading: "概述",
         body: [
-          "水獺港：療癒街機是一組在你的裝置上執行的小遊戲。它沒有帳號，也不會索取你的姓名、電子郵件或通訊錄。為了顯示廣告並讓遊戲穩定執行，它使用下方說明的兩項 Google 服務。我們不會出售你的資料。",
+          "水獺港：療癒街機是一組在你的裝置上執行的小遊戲。它沒有帳號，也不會索取你的姓名、電子郵件或通訊錄。為了顯示廣告並讓遊戲穩定執行，它使用下方說明的 Google 服務和 Tenjin。我們不會出售你的資料。",
         ],
       },
       {
         heading: "廣告：Google AdMob",
         body: [
           "遊戲會顯示 Google AdMob 的廣告。獎勵影片永遠由你選擇：失誤後再試一次，或在獲勝時讓代幣加倍。回合之間才會出現全螢幕短廣告，遊戲進行中絕不出現，失敗後也不會立刻出現。沒有橫幅廣告。",
-          "為了選擇和衡量廣告，AdMob 會收到你裝置的資訊（型號、系統版本、語言）、你看到和點擊的廣告，以及依 IP 位址推算的大致位置。只有當你在 App 詢問時允許追蹤（App 追蹤透明度，只在你首次獲勝後、回合之間的空檔詢問一次，絕不在啟動時詢問），它才會收到裝置的廣告識別碼。若你拒絕，遊戲和廣告照常運作，只是廣告不會個人化。你可以隨時在 iPhone 的「設定 > 隱私權與安全性 > 追蹤」中變更。",
+          "為了選擇和衡量廣告，AdMob 會收到你裝置的資訊（型號、系統版本、語言）、你看到和點擊的廣告，以及依 IP 位址推算的大致位置。只有當你在 App 詢問時允許追蹤（App 追蹤透明度，只在遊戲不處於回合中或顯示廣告時詢問一次），它才會收到裝置的廣告識別碼。若你拒絕，遊戲和廣告照常運作，只是廣告不會個人化。你可以隨時在 iPhone 的「設定 > 隱私權與安全性 > 追蹤」中變更。",
           "在法律要求的地區（歐洲經濟區、英國、瑞士，以及設有隱私法的美國各州），要求任何廣告之前會先由 Google 的同意表單詢問你的選擇，之後可隨時在遊戲的「設定 > 隱私選項」中重新開啟。",
           "Google 的政策說明了它如何使用這些資料：https://policies.google.com/technologies/ads",
+        ],
+      },
+      {
+        heading: "行動廣告歸因與成效衡量：Tenjin",
+        body: [
+          "我們使用 Tenjin 將安裝歸因於廣告活動並衡量成效。Tenjin 會收到安裝和工作階段資訊、裝置與 App 資訊、IP 位址、供應商或安裝識別碼；只有你允許追蹤時才可讀取 iOS 廣告識別碼（IDFA）。無論允許或拒絕，遊戲都會在你回答追蹤許可後連線 Tenjin。",
+          "遊戲會傳送首次遊玩、完成關卡、觀看獎勵廣告等選定事件，以及 AdMob 單次曝光的廣告收入和相關廣告資訊。Tenjin 代我們處理這些資料，並可能與已啟用的廣告合作夥伴（例如 Meta）分享歸因及事件資料，以衡量和最佳化廣告活動。你可在 iPhone「設定 > 隱私權與安全性 > 追蹤」更改許可。Tenjin 隱私權政策：https://tenjin.com/privacy/",
         ],
       },
       {
@@ -371,6 +380,7 @@ const zhTw: AppLocalized = {
 
 export const cannonCubes: AppContent = {
   slug: "cannon-cubes",
+  host: "otter-harbor",
   category: "game",
   icon: `${IMG}/icon.png`,
   ogImage: `${IMG}/og.png`,
